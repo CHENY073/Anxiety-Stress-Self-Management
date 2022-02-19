@@ -1,40 +1,127 @@
 ### GUIDE TO START THE APPLICATION
 
 ## Step 1: in terminal, update the version of react-native to the latest version
-npm install --save react-native@latest
-
-# NOTE: if you have node_modules already in your directory, delete the node_modules file and run the above command again. You only have to run the above command once, every other time after you will use
 npm install
 
+# NOTE: To upgrade react-native to the latest version (DO NOT DO THIS UNLESS YOU ARE TOLD TO)!!!
+npm install --save react-native@latest
 
-## Step 2: To start Metro, inside your React Native project run
+# NOTE: if you upgrade react-native's version, you also have to update the react-native-cli (DO NOT DO THIS UNLESS YOU ARE TOLD TO)
+npm install -i -g --force react-native-cli
+
+## Step 2: Start Metro (application watcher), inside your React Native project run
 npx react-native start
 
-# open a new terminal and run the line below (inside VSC)
-npm start
-    or
-npx react-native start
-
-## Step 3: Start your application
+## Step 3: Start the application
 
 # (Android) open another terminal aside from the first one and run the line below
-npm run android
-    or
 npx react-native run-android
 
 # (ios) open another terminal aside from the first one and run the line below
-npm run ios
-    or
-npx react-native run-ios --verbose
+npx react-native run-ios
 
 # TROUBLESHOOTING: go to https://reactnative.dev/docs/troubleshooting
 
-
 ----------------------------------------------------------------------------------------------
 
-### ANDROID SET UP
 
-## Step 1: 
+### ANDROID SETUP
+
+## Step 1: Download Node LTS windows installer, go to
+https://nodejs.org/en/download/
+
+## Step 2: Download Java 11 jdk, go to
+https://www.oracle.com/java/technologies/downloads/
+
+## Step 3: Download and install Android Studio
+https://developer.android.com/studio
+
+## Step 4: Configure the ANDROID_HOME environment variable
+File Explorer > Control Panel > User Account > User Accounts > Change my environment variables
+
+# Under "user variables" > "New..."
+Variable name: ANDROID_HOME
+Variable value: C:\Users\[name]\AppData\Local\Android\Sdk
+
+# Copy and paste into powershell, and verify ANDROID_HOME has been added
+Get-ChildItem -Path Env:\ 
+
+## Step 5: Configure JAVA_HOME environment variable
+File Explorer > Control Panel > User Account > User Accounts > Change my environment variables
+
+# Under "user variables" > "New..."
+Variable name: JAVA_HOME
+Variable value: C:\Program Files\Java\jdk-[version]
+# "OK"
+
+# under "user variables" > "Path" > "Edit..." > "New"
+%JAVA_HOME%\bin
+# "OK"
+
+# Copy and paste into CMD, and verify JAVA_HOME has been added
+echo %JAVA_HOME%
+
+## Step 6: Configure path to Android Studio platform tool (this will allow you to run the project from VSC)
+
+# under "user variables" > "Path" > "Edit..." > "New"
+C:\Users\[name]\AppData\Local\Android\Sdk\platform-tools
+# "OK"
+
+## Step 7: Open Android Studio > open settings > SDK Manager > SDK Platforms, select
+Android API 32
+Android 11.0 (R)
+
+# Select "Show Package Details" and under "Android 11.0 (R)" section, select
+Android SDK Platform 30
+Sources for Android 30
+Intel x86 Atom_64 System Image
+Google APIs Intel x86 Atom System Image
+Google APIs Intel x86 Atom_64 System Image
+Google Play Intel x86 Atom System Image
+Google Play Intel x86 Atom_64 System Image
+
+## Step 8: Open Android Studio > open settings > SDK Manager > SDK Tools, select
+Android SDK Build-Tools 33-rc1
+Android SDK Command-line Tools (latest)
+Android Auto API Simulators
+Android Auto Desktop Head Unit Emulator
+Android Emulator
+Android SDK Platform-Tools
+Google Play APK Expansion library
+Google Play Instant Development SDK
+Google Play Licensing Library
+Google Play services
+Google Web Driver
+Intel x86 Emulator Accelerator (HAXM installer)
+# OK
+
+## Step 9: Open Android Studio > open settings > Virtual Device Manager > Create device, select
+Pixel 2
+
+# Under x86 Images, download both
+R 30 x86 Android 11.0(Google APIs)
+R 30 x86_64 Android 11.0
+
+# NOTE: Select the image that has (Google APIs) on it, and press "Finish", then try launching the emulator, if it works, you're good to go. 
+If you get an error, try the option below
+
+# NOTE: Select the image WITHOUT (Google APIs) on it, then try launching the emulator.
+If you still get an error, try the option below
+
+# NOTE: Select the image that has (Google APIs) on it, then before pressing "Finish" under the section of "Emulated Performance" change the Graphics to "Software - GLES 2.0", then try running the emulator.
+If you still get an error, try the option below
+
+# NOTE: Select the image WITHOUT (Google APIs) on it, then before pressing "Finish" under the section of "Emulated Performance" change the Graphics to "Software - GLES 2.0", then try running the emulator.
+If you still get an error, try the option below
+
+# NOTE: Open File Explorer > C:\Users\[name]\.android, add a new file called "advancedFeatures.ini", inside add
+Vulkan = off
+GLDirectMem = on
+# save and repeat Step 9, until one of the options above works
+
+## Step 10: Open the project in Android Studio under the "android" file that's inside of the main directory of this project. (Keep Android Studio Opened)
+
+### ANDROID SETUP DONE
 
 
 ----------------------------------------------------------------------------------------------
