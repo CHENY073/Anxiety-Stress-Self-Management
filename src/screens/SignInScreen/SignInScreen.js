@@ -12,14 +12,13 @@ const SignInScreen = () => {
   const [password, setPassword] = useState('');
 
   const {height} = useWindowDimensions();
-  const {width} = useWindowDimensions();
 
   const onSignInPressed = () => {
     console.warn('Sign in');
   };
 
   return (
-    <View style={styles.root, {height: height, width: width}}>
+    <View style={styles.root, {height: height}}>
       <ImageBackground source={SignInBackground} style={styles.background}>
         <View style={styles.overlay} />
         <Image source={Logo} style={styles.logo, {height: height * 0.35}} resizeMode="contain" />
@@ -53,7 +52,6 @@ const styles = StyleSheet.create({
     alignItems:'center',
   },
   logo: {
-    width: '70%',
     maxWidth: 300,
     maxHeight: 200,
   },
