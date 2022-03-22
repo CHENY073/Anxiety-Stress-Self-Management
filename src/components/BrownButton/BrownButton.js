@@ -5,7 +5,7 @@ import { View, Text, StyleSheet, Pressable} from 'react-native';
 const BrownButton = ({text, onPress}) => {
 
   return (
-    <Pressable onPress={onPress} style={styles.container}>
+    <Pressable onPress={onPress} style={({pressed})=>[{backgroundColor: pressed? '#675a5e': '#736468'},styles.container]}>
       <Text style={styles.text}>{text}</Text>
     </Pressable>
   );
@@ -13,7 +13,6 @@ const BrownButton = ({text, onPress}) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#736468',
     width: 150,
     padding: 8.5,
     marginVertical: 5,
