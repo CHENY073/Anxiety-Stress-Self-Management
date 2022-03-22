@@ -15,13 +15,13 @@ const SignInScreen = () => {
 
   const onSignInPressed = () => {
     console.warn('Sign in');
-  }
+  };
 
   return (
     <View style={styles.root}>
-      <ImageBackground source={SignInBackground} style={styles.background}>
+      <ImageBackground source={SignInBackground} style={styles.background} resizeMode="cover">
         <View style={styles.overlay} />
-        <Image source={Logo} style={styles.logo, {height: height * 0.37}} resizeMode="contain" />
+        <Image source={Logo} style={styles.logo, {height: height * 0.35}} resizeMode="contain" />
         <Text>{"\n"}</Text>
         <CustomInput placeholder="Username" value={username} setValue={setUsername}/>
         <CustomInput placeholder="Password" value={password} setValue={setPassword} secureTextEntry={true}/>
@@ -45,11 +45,12 @@ const styles = StyleSheet.create({
   overlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: 'rgba(255,122,186,0.5)',
+    height: 1000,
   },
   background: {
     flex: 1,
     width:'100%',
-    height:'100%',
+    height: 1000,
     justifyContent: 'center',
     alignItems:'center',
   },
