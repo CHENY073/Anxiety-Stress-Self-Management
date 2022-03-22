@@ -14,14 +14,16 @@ const BrownButton = ({text, onPress}) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#736468',
-    width: '40%',
-    padding: 15,
+    width: 150,
+    padding: 8.5,
     marginVertical: 5,
     alignItems: 'center',
+    borderRadius: 25,
   },
   text: {
     fontWeight: 'bold',
     color: 'white',
+    fontSize: 25,
   },
 })
 

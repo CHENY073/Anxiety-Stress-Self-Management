@@ -21,11 +21,17 @@ const SignInScreen = () => {
     <View style={styles.root}>
       <ImageBackground source={SignInBackground} style={styles.background}>
         <View style={styles.overlay} />
-        <Image source={Logo} style={styles.logo, {height: height * 0.35}} resizeMode="contain" />
+        <Image source={Logo} style={styles.logo, {height: height * 0.37}} resizeMode="contain" />
         <Text>{"\n"}</Text>
-        <CustomInput placeholder="Username" value={username} setValue={setUsername} secureTextEntry={false}/>
+        <CustomInput placeholder="Username" value={username} setValue={setUsername}/>
         <CustomInput placeholder="Password" value={password} setValue={setPassword} secureTextEntry={true}/>
-        <BrownButton text="Login" onPress={onSignInPressed}/>
+        <View style={styles.buttonRowContainer}>
+          <View style={styles.buttonRowInner}>
+            <BrownButton text="Sign Up"/>
+            <BrownButton text="Login" onPress={onSignInPressed}/>
+          </View>
+        </View>
+        <Text>{"\n"}</Text>
       </ImageBackground>
     </View>
   );
@@ -51,6 +57,16 @@ const styles = StyleSheet.create({
     width: '70%',
     maxWidth: 300,
     maxHeight: 200,
+  },
+  buttonRowContainer: {
+    flexDirection: 'row',
+    width: '90%',
+    padding: 5,
+  },
+  buttonRowInner: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
 });
 
