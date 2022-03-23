@@ -4,8 +4,7 @@ import {View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground} fro
 import Logo from '../../../assets/images/Logo.png';
 import CustomInput from '../../components/CustomInput';
 import SignInBackground from '../../../assets/gif/SignInBackGround.gif';
-import BrownButton from '../../components/BrownButton';
-import WhiteButton from '../../components/WhiteButton';
+import CustomButton from '../../components/CustomButton';
 
 const SignInScreen = () => {
 
@@ -28,8 +27,8 @@ const SignInScreen = () => {
         <CustomInput placeholder="Password" value={password} setValue={setPassword} secureTextEntry={true}/>
         <View style={styles.buttonRowContainer}>
           <View style={styles.buttonRowInner}>
-            <WhiteButton text="Sign Up"/>
-            <BrownButton text="Login" onPress={onSignInPressed}/>
+            <CustomButton text="Sign Up" type="PRIMARY"/>
+            <CustomButton text="Login" onPress={onSignInPressed} type="SECONDARY"/>
           </View>
         </View>
         <Text>{"\n"}</Text>
