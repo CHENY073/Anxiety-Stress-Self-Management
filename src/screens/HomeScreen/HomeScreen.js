@@ -6,7 +6,7 @@ import CustomInput from '../../components/CustomInput';
 import SignInBackground from '../../../assets/gif/SignInBackGround.gif';
 import CustomButton from '../../components/CustomButton';
 
-const SignInScreen = ({ navigation }) => {
+const HomeScreen = ({ navigation }) => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -27,7 +27,7 @@ const SignInScreen = ({ navigation }) => {
         <CustomInput placeholder="Password" value={password} setValue={setPassword} secureTextEntry={true}/>
         <View style={styles.buttonRowContainer}>
           <View style={styles.buttonRowInner}>
-            <CustomButton text="Sign Up" type="PRIMARY"/>
+            <CustomButton text="Sign Up" onPress={() => navigation.navigate('Sign Up')} type="PRIMARY"/>
             <CustomButton text="Login" onPress={onSignInPressed} type="SECONDARY"/>
           </View>
         </View>
@@ -68,4 +68,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignInScreen;
+export default HomeScreen;

@@ -4,7 +4,7 @@ import {View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground} fro
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 
-const ForgotPasswordScreen = ({ navigation }) => {
+const SignUpScreen = ({ navigation }) => {
 
   const {height} = useWindowDimensions();
 
@@ -22,4 +22,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ForgotPasswordScreen;
+export default SignUpScreen;

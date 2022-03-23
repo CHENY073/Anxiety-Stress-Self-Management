@@ -8,25 +8,23 @@
 
 import React from 'react';
 import {SafeAreaView, StyleSheet, Text} from 'react-native';
-import SignInScreen from './src/screens/SignInScreen';
+import HomeScreen from './src/screens/HomeScreen';
 import ForgotPasswordScreen from './src/screens/ForgotPasswordScreen';
+import DashboardScreen from './src/screens/DashboardScreen';
+import SignUpScreen from './src/screens/SignUpScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
 
-const MyStack = () => {
+const app = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen options ={{headerShown: false}}
-          name="Sign In"
-          component={SignInScreen}
-        />
-        <Stack.Screen options ={{headerShown: false}}
-        name="Forgot Password"
-        component={ForgotPasswordScreen} 
-        />
+        <Stack.Screen options ={{headerShown: false}} name="Home" component={HomeScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Forgot Password" component={ForgotPasswordScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Sign Up" component={SignUpScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Dashboard" component={DashboardScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -38,4 +36,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MyStack;
+export default app;
