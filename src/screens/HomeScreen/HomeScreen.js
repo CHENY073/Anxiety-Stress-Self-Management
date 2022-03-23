@@ -4,9 +4,9 @@ import {View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground} fro
 import Logo from '../../../assets/images/Logo.png';
 import CustomInput from '../../components/CustomInput';
 import SignInBackground from '../../../assets/gif/SignInBackGround.gif';
-import BrownButton from '../../components/BrownButton';
+import CustomButton from '../../components/CustomButton';
 
-const SignInScreen = () => {
+const HomeScreen = ({ navigation }) => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -27,10 +27,11 @@ const SignInScreen = () => {
         <CustomInput placeholder="Password" value={password} setValue={setPassword} secureTextEntry={true}/>
         <View style={styles.buttonRowContainer}>
           <View style={styles.buttonRowInner}>
-            <BrownButton text="Sign Up"/>
-            <BrownButton text="Login" onPress={onSignInPressed}/>
+            <CustomButton text="Sign Up" onPress={() => navigation.navigate('Sign Up')} type="PRIMARY"/>
+            <CustomButton text="Login" onPress={onSignInPressed} type="SECONDARY"/>
           </View>
         </View>
+        <CustomButton text= "Forgot Password?" onPress={() => navigation.navigate('Forgot Password')} type="TERTIARY"/>
         <Text>{"\n"}</Text>
       </ImageBackground>
     </View>
@@ -67,4 +68,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignInScreen;
+export default HomeScreen;
