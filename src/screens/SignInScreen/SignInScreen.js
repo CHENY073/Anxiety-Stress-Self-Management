@@ -5,6 +5,7 @@ import Logo from '../../../assets/images/Logo.png';
 import CustomInput from '../../components/CustomInput';
 import SignInBackground from '../../../assets/gif/SignInBackGround.gif';
 import BrownButton from '../../components/BrownButton';
+import WhiteButton from '../../components/WhiteButton';
 
 const SignInScreen = () => {
 
@@ -27,7 +28,7 @@ const SignInScreen = () => {
         <CustomInput placeholder="Password" value={password} setValue={setPassword} secureTextEntry={true}/>
         <View style={styles.buttonRowContainer}>
           <View style={styles.buttonRowInner}>
-            <BrownButton text="Sign Up"/>
+            <WhiteButton text="Sign Up"/>
             <BrownButton text="Login" onPress={onSignInPressed}/>
           </View>
         </View>
