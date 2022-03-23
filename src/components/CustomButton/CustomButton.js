@@ -29,7 +29,12 @@ const styles = StyleSheet.create({
     borderRadius: 25,
   },
   container_TERTIARY:{
-
+    backgroundColor: 'rgba(52, 52, 52, 0.0)',
+    width: 300,
+    padding: 8.5,
+    marginVertical: 5,
+    alignItems: 'center',
+    borderRadius: 25,
   },
    text_PRIMARY:{
     fontWeight: 'bold',
@@ -40,6 +45,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     fontSize: 24,
+  },
+  text_TERTIARY: {
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    fontSize: 18,
   },
 })
 

@@ -17,6 +17,10 @@ const SignInScreen = () => {
     console.warn('Sign in');
   };
 
+  const onForgotPasswordPressed = () => {
+
+  };
+
   return (
     <View style={styles.root, {height: height}}>
       <ImageBackground source={SignInBackground} style={styles.background}>
@@ -31,6 +35,7 @@ const SignInScreen = () => {
             <CustomButton text="Login" onPress={onSignInPressed} type="SECONDARY"/>
           </View>
         </View>
+        <CustomButton text= "Forgot Password?" onPress={onForgotPasswordPressed} type="TERTIARY"/>
         <Text>{"\n"}</Text>
       </ImageBackground>
     </View>
