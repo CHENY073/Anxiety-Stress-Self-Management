@@ -6,7 +6,7 @@ import CustomInput from '../../components/CustomInput';
 import SignInBackground from '../../../assets/gif/SignInBackGround.gif';
 import CustomButton from '../../components/CustomButton';
 
-const SignInScreen = () => {
+const SignInScreen = ({ navigation }) => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -15,10 +15,6 @@ const SignInScreen = () => {
 
   const onSignInPressed = () => {
     console.warn('Sign in');
-  };
-
-  const onForgotPasswordPressed = () => {
-
   };
 
   return (
@@ -35,7 +31,7 @@ const SignInScreen = () => {
             <CustomButton text="Login" onPress={onSignInPressed} type="SECONDARY"/>
           </View>
         </View>
-        <CustomButton text= "Forgot Password?" onPress={onForgotPasswordPressed} type="TERTIARY"/>
+        <CustomButton text= "Forgot Password?" onPress={() => navigation.navigate('Forgot Password')} type="TERTIARY"/>
         <Text>{"\n"}</Text>
       </ImageBackground>
     </View>
