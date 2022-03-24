@@ -19,7 +19,7 @@ const Stack = createNativeStackNavigator();
 
 const app = () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer style={styles.root}>
       <Stack.Navigator>
         <Stack.Screen options ={{headerShown: false}} name="Home" component={HomeScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Forgot Password" component={ForgotPasswordScreen}/>
