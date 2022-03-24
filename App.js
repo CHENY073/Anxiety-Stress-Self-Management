@@ -14,6 +14,7 @@ import DashboardScreen from './src/screens/DashboardScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import PolicyScreen from './src/screens/PolicyScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +26,8 @@ const app = () => {
         <Stack.Screen options ={{headerShown: false}} name="Forgot Password" component={ForgotPasswordScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Sign Up" component={SignUpScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Dashboard" component={DashboardScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Policy" component={PolicyScreen}/>
+
       </Stack.Navigator>
     </NavigationContainer>
   );

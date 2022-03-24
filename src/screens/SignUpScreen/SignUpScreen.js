@@ -21,9 +21,11 @@ const SignUpScreen = ({ navigation }) => {
   //thinking button where you press sign up
 
   const onSignUpPressed = () => {
-    console.warn('Sign Up');
-  }
+    console.warn('You have signed up');
 
+  };
+
+  
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       
@@ -90,7 +92,10 @@ const SignUpScreen = ({ navigation }) => {
       <Text style = {styles.terms}>
       •I confirm that I am over the age of 18 {"\n"}
       •I confirm that I have read and ageed to the terms of {' '}
-      <Text style={styles.link}>policy</Text>
+      <Text style={styles.link} onPress={() =>navigation.navigate("Policy")}>
+        
+        policy
+        </Text>
       {"\n"}
       
       {"\n"}
@@ -103,7 +108,7 @@ const SignUpScreen = ({ navigation }) => {
     
 
         
-        <CustomButton text="Sign Up" onpress={onSignUpPressed} type="QUATERNARY" />
+        <CustomButton text="Sign Up" onPress={onSignUpPressed} type="QUATERNARY" />
         <Text>
         {"\n"}
         </Text>
