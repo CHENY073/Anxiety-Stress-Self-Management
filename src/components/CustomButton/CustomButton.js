@@ -36,6 +36,27 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 25,
   },
+  container_QUATERNARY:{
+    borderWidth:2,
+    backgroundColor: 'rgba(52, 52, 52, 0.0)',
+    borderColor:'#736468',
+    
+    width: 150,
+    padding: 8.5,
+    marginVertical: -5,
+    alignItems: 'center',
+    borderRadius: 25,
+  },
+  container_QUINARY:{
+    borderWidth:0,
+    backgroundColor: 'rgba(52, 52, 52, 0.0)',
+    width: 50,
+    padding: 8.5,
+    marginVertical: -30,
+    alignSelf: 'flex-end',
+    marginTop: -100,
+    borderRadius: 15,
+  },
    text_PRIMARY:{
     fontWeight: 'bold',
     color: '#736468',
@@ -50,6 +71,20 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#FFFFFF',
     fontSize: 18,
+  },
+  text_QUATERNARY: {
+    
+    color: '#736468',
+    fontSize: 27,
+    fontWeight: 'bold',
+    
+  },
+  text_QUINARY: {
+    fontWeight: 'bold',
+    color: '#000000',
+    fontSize: 27,
+    
+    
   },
 })
 
