@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
-import {View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground} from 'react-native';
+import {View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground, KeyboardAvoidingView} from 'react-native';
 import Logo from '../../../assets/images/Logo.png';
 import CustomInput from '../../components/CustomInput';
 import SignInBackground from '../../../assets/gif/SignInBackGround.gif';
@@ -18,7 +18,7 @@ const HomeScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.root, {height: height}}>
+    <KeyboardAvoidingView behavior='padding' style={styles.root, {height: height}}>
       <ImageBackground source={SignInBackground} style={styles.background}>
         <View style={styles.overlay} />
         <Image source={Logo} style={styles.logo, {height: height * 0.35}} resizeMode="contain" />
@@ -34,7 +34,7 @@ const HomeScreen = ({ navigation }) => {
         <CustomButton text= "Forgot Password?" onPress={() => navigation.navigate('Forgot Password')} type="TERTIARY"/>
         <Text>{"\n"}</Text>
       </ImageBackground>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
