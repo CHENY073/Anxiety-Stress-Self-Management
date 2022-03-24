@@ -7,18 +7,33 @@
  */
 
 import React from 'react';
-import { Text, View } from 'react-native';
-import Form from './Form';
+import {SafeAreaView, StyleSheet, Text} from 'react-native';
+import HomeScreen from './src/screens/HomeScreen';
+import ForgotPasswordScreen from './src/screens/ForgotPasswordScreen';
+import DashboardScreen from './src/screens/DashboardScreen';
+import SignUpScreen from './src/screens/SignUpScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const App = () => {
+const Stack = createNativeStackNavigator();
+
+const app = () => {
   return (
-    <div className='App'>
-      <Form />
-
-      
-    </div>
-    
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen options ={{headerShown: false}} name="Home" component={HomeScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Forgot Password" component={ForgotPasswordScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Sign Up" component={SignUpScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Dashboard" component={DashboardScreen}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-export default App;
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+  },
+});
+
+export default app;
