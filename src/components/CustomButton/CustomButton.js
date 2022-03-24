@@ -29,6 +29,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(52, 52, 52, 0.0)',
     width: 300,
   },
+  container_GOOGLE:{
+    backgroundColor: '#FFF',
+    width: 300,
+  },
   pressed_PRIMARY:{
     backgroundColor: '#D5D2D2',
   },
@@ -36,6 +40,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#675A5E',
   },
   pressed_TERTIARY:{
+    width: 300,
+  },
+  pressed_GOOGLE:{
+    backgroundColor: '#EEE',
     width: 300,
   },
   text:{
@@ -51,6 +59,9 @@ const styles = StyleSheet.create({
   text_TERTIARY: {
     color: '#EDE9E9',
     fontSize: 18,
+  },
+  text_GOOGLE: {
+    color: '#D3473C',
   },
 })
 

@@ -32,7 +32,8 @@ const HomeScreen = ({ navigation }) => {
           </View>
         </View>
         <CustomButton text= "Forgot Password?" onPress={() => navigation.navigate('Forgot Password')} type="TERTIARY"/>
-        <Text>{"\n"}</Text>
+        <View style={styles.divider}/>
+        <CustomButton text="Google" onPress={onSignInPressed} type="GOOGLE"/>
       </ImageBackground>
     </KeyboardAvoidingView>
   );
@@ -65,6 +66,12 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around',
+  },
+  divider:{
+    width: '90%',
+    borderBottomWidth: 2,
+    borderBottomColor: '#EDE9E9',
+    margin: 5,
   },
 });
 
