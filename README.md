@@ -175,4 +175,4 @@ npm install -i -g --force react-native-cli
 # delete the node_modules, reinstall pods, delete workspace build, re-install dependencies, and run metro and the project again
 
 
-LITTLE TEST
+LITTLE TES
