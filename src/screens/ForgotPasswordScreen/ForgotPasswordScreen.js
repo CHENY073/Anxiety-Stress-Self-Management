@@ -9,7 +9,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
   const {height} = useWindowDimensions();
 
   return (
-    <View style={styles.root, {height: height}}>
+    <View style={styles.root}>
         <CustomButton text= "Back" onPress={() => navigation.navigate('Home')} type="SECONDARY"/>
     </View>
   );

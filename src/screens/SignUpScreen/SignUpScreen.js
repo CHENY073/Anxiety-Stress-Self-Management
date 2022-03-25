@@ -12,6 +12,10 @@ const SignUpScreen = ({ navigation }) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [code, setCode] = useState('');
+
+
+ 
+  
   
 
 
@@ -34,6 +38,10 @@ const SignUpScreen = ({ navigation }) => {
       <SafeAreaView>
       <Image source={Logo} style={styles.logo} resizeMode="contain" />
          </SafeAreaView>
+
+
+
+         
     
          <CustomButton text= "✖" onPress={() => navigation.navigate('Home')} type="QUINARY"/>
       <Text style = {styles.title}>
@@ -92,28 +100,20 @@ const SignUpScreen = ({ navigation }) => {
       <Text style = {styles.terms}>
       •I confirm that I am over the age of 18 {"\n"}
       •I confirm that I have read and ageed to the terms of {' '}
-      <Text style={styles.link} onPress={() =>navigation.navigate("Policy")}>
-        
+      <Text style={styles.link} onPress={() =>navigation.navigate("Policy")}> 
         policy
         </Text>
       {"\n"}
       
       {"\n"}
-      
- 
+
       </Text>
-      
-      
 
-    
-
-        
-        <CustomButton text="Sign Up" onPress={onSignUpPressed} type="QUATERNARY" />
+        <CustomButton text="Sign Up" onPress={()=>navigation.navigate("Dashboard")} type="QUATERNARY" />
         <Text>
         {"\n"}
         </Text>
-
-        
+   
     </View>
     </ScrollView>
   );

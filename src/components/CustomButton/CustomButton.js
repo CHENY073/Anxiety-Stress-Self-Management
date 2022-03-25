@@ -57,6 +57,89 @@ const styles = StyleSheet.create({
     marginTop: -100,
     borderRadius: 15,
   },
+    
+  container_moodButton:{
+    
+    backgroundColor: '#748894',
+    width: 380,
+    padding: 18,
+    
+    alignSelf: 'center',
+    
+    borderRadius: 35,
+
+  },
+  container_exercisesButton:{
+    
+    backgroundColor: '#bdb49d',
+    width: 380,
+    padding: 18,
+    
+    alignSelf: 'center',
+    
+    borderRadius: 35,
+
+  },
+  container_dropButton:{
+    
+    
+    width: 100,
+    padding: 10,
+    
+    alignSelf: 'flex-start',
+    
+    
+    borderRadius: 35,
+    marginVertical: 15,
+    marginHorizontal: -20,
+
+  },
+  container_whiteBackButton:{
+    
+    
+    width: 100,
+    padding: 10,
+    
+    alignSelf: 'flex-start',
+    
+    
+    borderRadius: 35,
+    marginVertical: -10,
+    marginHorizontal: -20,
+
+  },
+  container_blackBackButton:{
+    
+    
+    width: 100,
+    padding: 10,
+    
+    alignSelf: 'flex-start',
+    
+    
+    borderRadius: 35,
+    marginVertical: 15,
+    marginHorizontal: -20,
+
+  },
+  container_logOutButton:{
+    
+    backgroundColor: '#FFFFFF',
+    width: 500,
+    padding: 5,
+    
+    alignSelf: 'center',
+    
+    
+    borderRadius: 35,
+    marginVertical: 15,
+    marginHorizontal: -20,
+
+  }, 
+
+
+
+
    text_PRIMARY:{
     fontWeight: 'bold',
     color: '#736468',
@@ -83,6 +166,54 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#000000',
     fontSize: 27,
+    
+    
+  },
+  text_moodButton: {
+    
+    color: '#FFFFFF',
+    fontSize: 24,
+    alignSelf: 'center',
+    
+    
+  },
+  text_exercisesButton: {
+    
+    color: '#FFFFFF',
+    fontSize: 24,
+    alignSelf: 'center',
+    
+    
+  },
+  text_dropButton: {
+    
+    color: 'black',
+    fontSize: 40,
+    alignSelf: 'center',
+    
+    
+  },
+  text_whiteBackButton: {
+    
+    color: 'white',
+    fontSize: 40,
+    alignSelf: 'center',
+    
+    
+  },
+  text_blackBackButton: {
+    
+    color: 'black',
+    fontSize: 40,
+    alignSelf: 'center',
+    
+    
+  },
+  text_logOutButton: {
+    
+    color: '#736467',
+    fontSize: 40,
+    alignSelf: 'center',
     
     
   },

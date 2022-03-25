@@ -9,8 +9,22 @@ const DashboardScreen = ({ navigation }) => {
   const {height} = useWindowDimensions();
 
   return (
-    <View style={styles.root, {height: height}}>
-        <CustomButton text= "Back" onPress={() => navigation.navigate('Home')} type="SECONDARY"/>
+    <View style={styles.root}>
+      <CustomButton text= "≡" onPress={() => navigation.navigate('Menu Screen')} type="dropButton"/>
+      <Text style={styles.title}>
+        Dashboard
+      </Text>
+      <Text>
+      {"\n"}{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}
+      </Text>
+      
+        <CustomButton text= "Mood Diary" onPress={() => navigation.navigate('Mood Diary')} type="moodButton"/>
+        <Text>
+          {"\n"}
+          
+        </Text>
+        
+        <CustomButton text= "Exercises" onPress={() => navigation.navigate('Home')} type="exercisesButton"/>
     </View>
   );
 };
@@ -20,6 +34,14 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
+  title: {
+    fontSize: 37,
+    alignSelf: 'center',
+    fontWeight: 'bold',
+    color: 'black',
+    marginVertical: -78,
+  },
+  
 });
 
 export default DashboardScreen;

@@ -15,6 +15,8 @@ import SignUpScreen from './src/screens/SignUpScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import PolicyScreen from './src/screens/PolicyScreen';
+import MoodDiaryScreen from './src/screens/MoodDiaryScreen';
+import MenuScreen from './src/screens/MenuScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +29,10 @@ const app = () => {
         <Stack.Screen options ={{headerShown: false}} name="Sign Up" component={SignUpScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Dashboard" component={DashboardScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Policy" component={PolicyScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Mood Diary" component={MoodDiaryScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Menu Screen" component={MenuScreen}/>
+        
+        
 
       </Stack.Navigator>
     </NavigationContainer>
