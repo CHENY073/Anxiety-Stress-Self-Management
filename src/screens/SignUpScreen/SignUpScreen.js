@@ -98,8 +98,7 @@ const SignUpScreen = ({ navigation }) => {
       </Text>
 
       <Text style = {styles.terms}>
-      •I confirm that I am over the age of 18 {"\n"}
-      •I confirm that I have read and ageed to the terms of {' '}
+      •By signing up you confirm that you are{"\n"} at least 18 years old  and have read and {"\n"} ageed to the terms of {''}
       <Text style={styles.link} onPress={() =>navigation.navigate("Policy")}> 
         policy
         </Text>
@@ -134,12 +133,16 @@ const styles = StyleSheet.create({
   parameters : {
     fontSize: 14,
     color: '#736468',
-    marginLeft: -45,
+    
+    alignSelf: 'flex-start',
+    marginHorizontal: 45,
   },
   terms : {
     fontSize: 15,
     color: '#736468',
-    marginLeft: 45,
+    
+    alignSelf: 'flex-start',
+    marginHorizontal: 45,
   },
   logo: {
     maxWidth: 100,
