@@ -3,7 +3,7 @@ import {View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground, Scr
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 
-const MenuScreen = ({ navigation }) => {
+const AccountScreen = ({ navigation }) => {
 
   const {height} = useWindowDimensions();
 
@@ -26,12 +26,9 @@ const MenuScreen = ({ navigation }) => {
   }}
 />
 
-
-<Text style={styles.options} onPress={() =>navigation.navigate("Account Screen")}> 
-Account
+        <Text style={styles.options}>
+            Account
         </Text>
-
-        
 
         <View
   style={{
@@ -158,4 +155,4 @@ const styles = StyleSheet.create({
   
 });
 
-export default MenuScreen;
+export default AccountScreen;
