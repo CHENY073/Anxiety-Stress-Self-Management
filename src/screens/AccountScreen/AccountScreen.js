@@ -11,112 +11,30 @@ const AccountScreen = ({ navigation }) => {
     <ScrollView showsVerticalScrollIndicator={false}>
     <View style={styles.root}>
       
-        <CustomButton text= "<" onPress={() => navigation.navigate('Dashboard')} type="whiteBackButton"/>
+        <CustomButton text= "<" onPress={() => navigation.navigate('Menu Screen')} type="whiteBackButton"/>
         <Text style={styles.title}>
-        [NAME] 
+        Account
       </Text>
         
-
-        <View
-  style={{
-    borderBottomColor: 'white',
-    borderBottomWidth: 2,
     
-    alignSelf: 'stretch',
-  }}
-/>
+ 
 
         <Text style={styles.options}>
-            Account
+            {"\n"}{"\n"}
+            NAME
+            
         </Text>
 
-        <View
-  style={{
-    borderBottomColor: 'white',
-    borderBottomWidth: 2,
-    
-    alignSelf: 'stretch',
-  }}
-/>
-<Text>
-        {"\n"}{"\n"}{"\n"}
-    </Text>
-<View
-  style={{
-    borderBottomColor: 'white',
-    borderBottomWidth: 2,
-    
-    alignSelf: 'stretch',
-  }}
-/>
 
     
-<Text style={styles.options}>
-            Settings
-        </Text>
-
-        <View
-  style={{
-    borderBottomColor: 'white',
-    borderBottomWidth: 2,
-    
-    alignSelf: 'stretch',
-  }}
-/>
-<Text>
-        {"\n"}{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}
-    </Text>
-
-    <View
-  style={{
-    borderBottomColor: 'white',
-    borderBottomWidth: 2,
-    
-    alignSelf: 'stretch',
-  }}
-/>
-
-    <Text style={styles.options}>
-            About Us
-        </Text>
-
-        <View
-  style={{
-    borderBottomColor: 'white',
-    borderBottomWidth: 2,
-    
-    alignSelf: 'stretch',
-  }}
-/>
-<Text>
-       
-    </Text>
-
-<View
-  style={{
-    borderBottomColor: 'white',
-    borderBottomWidth: 2,
-    
-    alignSelf: 'stretch',
-  }}
-/>
-        <Text style={styles.options}>
-           Help
-        </Text>
-        <View
-  style={{
-    borderBottomColor: 'white',
-    borderBottomWidth: 2,
-    
-    alignSelf: 'stretch',
-  }}
-/>
-<Text>
-        {"\n"}{"\n"}{"\n"}{"\n"}{"\n"}
-    </Text>
 
 
-<CustomButton text= "Log Out" onPress={() => navigation.navigate('Home')} type="logOutButton"/>
+   
+ 
+
+
+
+
 
         
     </View>
@@ -127,16 +45,18 @@ const AccountScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
+    borderBottomWidth: 700,
+    borderBottomColor: 'white',
     
     backgroundColor :'#736467',
   },
   title: {
     fontSize: 28,
-    alignSelf: 'center',
+    
     
     color: 'white',
-    marginVertical: 20,
-    alignSelf: 'flex-start',
+    marginVertical: -35,
+    alignSelf: 'center',
     marginHorizontal: 8,
   },
   options: {
