@@ -1,60 +1,32 @@
 import React, {useState} from 'react';
-import {View, Text, Switch, Image, StyleSheet, useWindowDimensions, ImageBackground, ScrollView} from 'react-native';
+import {View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground, ScrollView} from 'react-native';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 
-const SettingsScreen = ({ navigation }) => {
+
+const AboutUsScreen = ({ navigation }) => {
 
   const {height} = useWindowDimensions();
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
   return (
-    
     <ScrollView showsVerticalScrollIndicator={false}>
-        
-        
-        
-        
     <View style={styles.root}>
-    
-    
       
         <CustomButton text= "<" onPress={() => navigation.navigate('Menu Screen')} type="whiteBackButton"/>
         <Text style={styles.title}>
-        Settings
+        About Us
       </Text>
         
     
-    <View style={styles.top} />
+ 
 
         <Text style={styles.options}>
             {"\n"}{"\n"}
-            NAME
-            
-            
-            
+           
             
         </Text>
 
-        
-
-        <View style={styles.container}>
-            <Text> Push Notifications</Text>
-      <Switch
-        trackColor={{ false: "#767577", true: "#81b0ff" }}
-        thumbColor={isEnabled ? "blue" : "#f4f3f4"}
-        ios_backgroundColor="#3e3e3e"
-        onValueChange={toggleSwitch}
-        value={isEnabled}
-
-      />
-      
-    </View>
-
-
  
-    
     </View>
     </ScrollView>
   );
@@ -63,17 +35,11 @@ const SettingsScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-  
+    borderBottomWidth: 700,
+    borderBottomColor: 'white',
+    
     backgroundColor :'#736467',
   },
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: 'row'
-  },
-  
- 
   title: {
     fontSize: 28,
     
@@ -95,4 +61,4 @@ const styles = StyleSheet.create({
   
 });
 
-export default SettingsScreen;
+export default AboutUsScreen;

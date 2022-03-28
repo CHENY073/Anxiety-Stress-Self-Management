@@ -79,7 +79,7 @@ Account
   }}
 />
 
-    <Text style={styles.options}>
+    <Text style={styles.options} onPress={() =>navigation.navigate("About Us")}> 
             About Us
         </Text>
 
