@@ -18,6 +18,7 @@ import PolicyScreen from './src/screens/PolicyScreen';
 import MoodDiaryScreen from './src/screens/MoodDiaryScreen';
 import MenuScreen from './src/screens/MenuScreen';
 import AccountScreen from './src/screens/AccountScreen';
+import SettingsScreen from './src/screens/SettingsScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +34,7 @@ const app = () => {
         <Stack.Screen options ={{headerShown: false}} name="Mood Diary" component={MoodDiaryScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Menu Screen" component={MenuScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Account Screen" component={AccountScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Settings" component={SettingsScreen}/>
         
         
 

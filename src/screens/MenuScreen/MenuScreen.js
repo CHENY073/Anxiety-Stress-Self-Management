@@ -54,7 +54,7 @@ Account
 />
 
     
-<Text style={styles.options}>
+<Text style={styles.options} onPress={() =>navigation.navigate("Settings")}> 
             Settings
         </Text>
 
