@@ -1,12 +1,13 @@
 /* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
-import {View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground, ScrollView, SafeAreaView, } from 'react-native';
+import {View, Text, Image, StyleSheet, useWindowDimensions,  ImageBackground, ScrollView, SafeAreaView, } from 'react-native';
 
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import Logo from '../../../assets/images/Logo.png';
 
 const SignUpScreen = ({ navigation }) => {
+  const window = useWindowDimensions();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -14,9 +15,7 @@ const SignUpScreen = ({ navigation }) => {
   const [code, setCode] = useState('');
 
 
- 
-  
-  
+
 
 
   
@@ -34,7 +33,7 @@ const SignUpScreen = ({ navigation }) => {
     <ScrollView showsVerticalScrollIndicator={false}>
       
     
-    <View style={styles.root }>
+    <View style={styles.root}>
       <SafeAreaView>
       <Image source={Logo} style={styles.logo} resizeMode="contain" />
          </SafeAreaView>
@@ -61,7 +60,7 @@ const SignUpScreen = ({ navigation }) => {
       <CustomInput
       placeholder="Email"
       value={email}
-      setValue={email}
+      setValue={setEmail}
 
       //this one needs to be optional
       />
@@ -118,10 +117,16 @@ const SignUpScreen = ({ navigation }) => {
   );
 };
 
+
+
+
 const styles = StyleSheet.create({
   root: {
     flex: 1,
     alignItems: 'center',
+    width: window.width,
+    height: window.height,
+    
   },
   title : {
     fontSize: 38,
@@ -158,7 +163,7 @@ const styles = StyleSheet.create({
   link: {
     color: 'red',
     textDecorationLine: 'underline',
-  }
+  },
   
 
   

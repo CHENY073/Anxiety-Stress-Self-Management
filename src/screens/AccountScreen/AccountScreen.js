@@ -25,18 +25,7 @@ const AccountScreen = ({ navigation }) => {
             
         </Text>
 
-
-    
-
-
-   
  
-
-
-
-
-
-        
     </View>
     </ScrollView>
   );
@@ -68,10 +57,6 @@ const styles = StyleSheet.create({
       
       
   },
-  
-    
-    
-
   
 });
 

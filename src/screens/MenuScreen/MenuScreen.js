@@ -103,7 +103,7 @@ Account
     alignSelf: 'stretch',
   }}
 />
-        <Text style={styles.options}>
+        <Text style={styles.options} onPress={() =>navigation.navigate("Help")}> 
            Help
         </Text>
         <View

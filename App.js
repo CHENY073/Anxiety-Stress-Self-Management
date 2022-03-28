@@ -20,6 +20,8 @@ import MenuScreen from './src/screens/MenuScreen';
 import AccountScreen from './src/screens/AccountScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
 import AboutUsScreen from './src/screens/AboutUsScreen';
+import HelpScreen from './src/screens/HelpScreen';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -37,6 +39,9 @@ const app = () => {
         <Stack.Screen options ={{headerShown: false}} name="Account Screen" component={AccountScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Settings" component={SettingsScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="About Us" component={AboutUsScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Help" component={HelpScreen}/>
+        
+        
         
         
 

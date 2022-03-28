@@ -136,6 +136,20 @@ const styles = StyleSheet.create({
     marginHorizontal: -20,
 
   }, 
+  container_continueButton:{
+    borderWidth:2,
+    backgroundColor: 'rgba(52, 52, 52, 0.0)',
+    borderColor:'#736468',
+    
+    width: 150,
+    padding: 8.5,
+    marginVertical: -5,
+    alignItems: 'center',
+    borderRadius: 25,
+    marginVertical: 250,
+  },
+
+
 
 
 
@@ -167,14 +181,12 @@ const styles = StyleSheet.create({
     color: '#000000',
     fontSize: 27,
     
-    
   },
   text_moodButton: {
     
     color: '#FFFFFF',
     fontSize: 24,
     alignSelf: 'center',
-    
     
   },
   text_exercisesButton: {
@@ -183,14 +195,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     alignSelf: 'center',
     
-    
   },
   text_dropButton: {
     
     color: 'black',
     fontSize: 40,
     alignSelf: 'center',
-    
     
   },
   text_whiteBackButton: {
@@ -199,14 +209,12 @@ const styles = StyleSheet.create({
     fontSize: 40,
     alignSelf: 'center',
     
-    
   },
   text_blackBackButton: {
     
     color: 'black',
     fontSize: 40,
     alignSelf: 'center',
-    
     
   },
   text_logOutButton: {
@@ -215,6 +223,12 @@ const styles = StyleSheet.create({
     fontSize: 40,
     alignSelf: 'center',
     
+  },
+  text_continueButton: {
+    
+    color: '#736468',
+    fontSize: 27,
+    fontWeight: 'bold',
     
   },
 })
