@@ -8,8 +8,11 @@ import CustomButton from '../../components/CustomButton';
 import database from '@react-native-firebase/database';
 import auth from '@react-native-firebase/auth';
 
-const HomeScreen = ({ navigation }) => {
 
+
+
+const HomeScreen = ({ navigation }) => {
+  var error;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -25,10 +28,11 @@ const HomeScreen = ({ navigation }) => {
   const handleLogin = () => {
     if(!email || !password){
       Alert.alert('Enter your username and password')
-    }else{
+    }
+    else{
     signIn(email, password);
-    Alert.alert('Login successful');
-    //navigation.navigate('Dashboard'); 
+    
+    
     }
     
   };
@@ -38,9 +42,20 @@ const HomeScreen = ({ navigation }) => {
       let response = await auth().signInWithEmailAndPassword(email, password)
       if (response && response.user) {
         Alert.alert("Success ✅", "Authenticated successfully")
+        navigation.navigate('Dashboard'); 
       }
     } catch (e) {
-      console.error(e.message)
+      if(e.code === 'auth/invalid-email'){
+        Alert.alert("Invalid email");
+        console.error("Invalid email")
+      }else if(e.code === 'auth/user-not-found'){
+        Alert.alert("User not found");
+        console.error("User not found")
+       // console.error("User not found")
+
+      }
+
+      
     }
   }
   
