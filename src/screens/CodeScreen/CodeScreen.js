@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
 import {View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground, ScrollView, SafeAreaView, } from 'react-native';
+import { KeycodeInput } from 'react-native-keycode'
 
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
@@ -38,11 +39,12 @@ const CodeScreen = ({ navigation }) => {
         {"\n"} 
       </Text>
       
-      <CustomInput
-      placeholder="Code"
-      value={code}
-      setValue={setCode}
-      />
+     
+      <KeycodeInput
+  onComplete={(value) => {
+    alert(value)
+  }}
+/>
    
         <CustomButton text="Continue" onPress={()=>navigation.navigate("New Password")} type="continueButton" />
         

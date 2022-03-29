@@ -62,7 +62,7 @@ const NewPasswordScreen = ({ navigation }) => {
  
       </Text>
    
-        <CustomButton text="Submit" onPress={()=>navigation.navigate("Dashboard")} type="submitButton" />
+        <CustomButton text="Submit" onPress={()=>navigation.navigate("Home")} type="submitButton" />
         
         </View>
    
