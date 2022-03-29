@@ -16,6 +16,7 @@ const SignUpScreen = ({ navigation }) => {
   const [code, setCode] = useState('');
 
   const [toggleCheckBox, setToggleCheckBox] = useState(false)
+  const [toggleSecondCheckBox, setToggleSecondCheckBox] = useState(false)
 
 
 
@@ -104,32 +105,26 @@ const SignUpScreen = ({ navigation }) => {
     onValueChange={(newValue) => setToggleCheckBox(newValue)}
   />
   <Text style = {styles.terms}>
-      By signing up you confirm that you are{"\n"} at least 18 years old
+      By signing up you confirm {"\n"}you areat least 18 years old
       </Text>
-      
       </View>
 
       <View style = {styles.container}>
+      
       <CheckBox
     disabled={false}
-    value={toggleCheckBox}
-    onValueChange={(newValue) => setToggleCheckBox(newValue)}
+    value={toggleSecondCheckBox}
+    onValueChange={(newValue) => setToggleSecondCheckBox(newValue)}
   />
-  <Text style = {styles.terms}>
-      I confirm that I have read and {"\n"} agreed to the terms of {''}
-      <Text style={styles.link} onPress={() =>navigation.navigate("Policy")}> 
-        policy
-        </Text>
-   
-      
-        
 
+  <Text style = {styles.terms}>
+      I confirm that I have read and {"\n"}agreed to the terms of {''}
+      <Text style={styles.link} onPress={() =>navigation.navigate("Policy")}> 
+        policy {"\n"}{"\n"}
+        </Text>
       </Text>
-      
       </View>
       
-      
-
         <CustomButton text="Sign Up" onPress={()=>navigation.navigate("Dashboard")} type="QUATERNARY" />
         <Text>
         {"\n"}
@@ -170,7 +165,7 @@ const styles = StyleSheet.create({
     color: '#736468',
     
     alignSelf: 'flex-start',
-    marginHorizontal: 2,
+    marginHorizontal: 5,
   },
   logo: {
     maxWidth: 100,
@@ -189,11 +184,13 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    alignItems: "center",
+    alignSelf: "baseline",
     justifyContent: "center",
     flexDirection: 'row',
+    marginHorizontal: 75,
     
   },
+  //align self by doing the amrgin horizontal but get the width/2
   
 
   
