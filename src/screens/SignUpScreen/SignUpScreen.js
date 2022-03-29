@@ -7,10 +7,17 @@ import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import Logo from '../../../assets/images/Logo.png';
 import database from '@react-native-firebase/database';
+import auth from '@react-native-firebase/auth';
+
+var numberRegex = new RegExp("^(?=.*[0-9])");
+var specialCharacterRegex = new RegExp("^(?=.*[!@#$%^&*])");
+var lowercaseRegex = new RegExp("^(?=.*[a-z])");
+var uppercaseRegex = new RegExp("^(?=.*[A-Z])");
+var whitespaceRegex = new RegExp("^(?=.*[\\s])");
 
 const SignUpScreen = ({ navigation }) => {
   const window = useWindowDimensions();
-  const [username, setUsername] = useState('');
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -19,12 +26,28 @@ const SignUpScreen = ({ navigation }) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false)
   const [toggleSecondCheckBox, setToggleSecondCheckBox] = useState(false)
 
+  const __doCreateUser = async (email, password) => {
+    try {
+      let response = await auth().createUserWithEmailAndPassword(email, password)
+      if (response) {
+        console.log(tag, "?", response)
+      }
+    } catch (e) {
+      console.error(e.message)
+    }
+  }
+
+
+
+
   //this authenticates the user, alets of successful signup, and changes page
   const handleSignUp = () => {
-    authenticate(username, email, code, password, confirmPassword);
+    __doCreateUser(email, password);
     Alert.alert('Sign up successful');
     navigation.navigate("Dashboard")
   };
+
+ 
 
   
 
@@ -34,16 +57,31 @@ const SignUpScreen = ({ navigation }) => {
       Alert.alert("Please agree to terms")
     } else if(password!=confirmPassword){
       Alert.alert("Passwords do not match")
+    }else if(password.length<8){
+      Alert.alert("Password is too short")
+    }else if(password.length>20){
+      Alert.alert("Password is too long")
+    }else if(!numberRegex.test(password)){
+      Alert.alert("Password must contain at least 1 number")
+    }else if(!specialCharacterRegex.test(password)){
+      Alert.alert("Password must contain at least 1 special character")
+    }else if(!lowercaseRegex.test(password)){
+      Alert.alert("Password must contain at least 1 lowercase character")
+    }else if(!uppercaseRegex.test(password)){
+      Alert.alert("Password must contain at least 1 uppercase character")
+    }else if(whitespaceRegex.test(password)){
+      Alert.alert("Password can not contain whitespace")
     }
+
     else{
       handleSignUp();
     }
   }
 
  //pushes info to db
-  let authenticate = (username, email, code, password, confirmPassword) => {
+  let authenticate = (email, code, password, confirmPassword) => {
     database().ref('/accounts').push({
-      username: username,
+      
       email: email,
       code: code,
       password: password,
@@ -55,12 +93,7 @@ const SignUpScreen = ({ navigation }) => {
 
   
 
-  //thinking button where you press sign up
-
-  const onSignUpPressed = () => {
-    console.warn('You have signed up');
-
-  };
+ 
 
   
   return (
@@ -85,12 +118,7 @@ const SignUpScreen = ({ navigation }) => {
       <Text style = {styles.subTitle}>
         Please fill in the fields below
       </Text>
-      <CustomInput
-      placeholder="Username"
-      value={username}
-      setValue={setUsername}
-
-      />
+      
       <CustomInput
       placeholder="Email"
       value={email}
@@ -120,12 +148,12 @@ const SignUpScreen = ({ navigation }) => {
       />
 
       <Text style = {styles.parameters}>
-      •Must be longer than 8 characters {"\n"}
-      •Must be shorter than 20 characters {"\n"}
+      •Must be 8 characters or longer {"\n"}
+      •Must be 20 characters or shorter {"\n"}
       •Cannot have white spaces {"\n"}
-      •Must contain at least 1 uppercase {"\n"}
-      •Must contain at least 1 lowercase {"\n"}
-      •Must contain at least 1 number {"\n"}
+      •Must contain at least 1 uppercase character{"\n"}
+      •Must contain at least 1 lowercase character{"\n"}
+      •Must contain at least 1 numerical character {"\n"}
       •Must contain at least 1 special character {"\n"}
       </Text>
       <View style = {styles.container}>
