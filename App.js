@@ -27,6 +27,7 @@ import NewPasswordScreen from './src/screens/NewPasswordScreen';
 
 const Stack = createNativeStackNavigator();
 
+
 const app = () => {
   return (
     <NavigationContainer style={styles.root}>
@@ -44,10 +45,6 @@ const app = () => {
         <Stack.Screen options ={{headerShown: false}} name="Help" component={HelpScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Code" component={CodeScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="New Password" component={NewPasswordScreen}/>
-        
-        
-        
-
       </Stack.Navigator>
     </NavigationContainer>
   );

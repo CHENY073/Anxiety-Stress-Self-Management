@@ -1,10 +1,11 @@
 /* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
-import {View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground} from 'react-native';
+import {View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground, Alert} from 'react-native';
 import Logo from '../../../assets/images/Logo.png';
 import CustomInput from '../../components/CustomInput';
 import SignInBackground from '../../../assets/gif/SignInBackGround.gif';
 import CustomButton from '../../components/CustomButton';
+import database from '@react-native-firebase/database';
 
 const HomeScreen = ({ navigation }) => {
 
@@ -12,6 +13,17 @@ const HomeScreen = ({ navigation }) => {
   const [password, setPassword] = useState('');
 
   const {height} = useWindowDimensions();
+
+  let authenticate = item => {
+    database().ref('/items').push({
+      username: item
+    });
+  };
+
+  const handleLogin = () => {
+    authenticate(username);
+    Alert.alert('Item saved successfully');
+  };
 
   const onSignInPressed = () => {
     console.warn('Sign in');
@@ -28,7 +40,7 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.buttonRowContainer}>
           <View style={styles.buttonRowInner}>
             <CustomButton text="Sign Up" onPress={() => navigation.navigate('Sign Up')} type="PRIMARY"/>
-            <CustomButton text="Login" onPress={onSignInPressed} type="SECONDARY"/>
+            <CustomButton text="Login" onPress={handleLogin} type="SECONDARY"/>
           </View>
         </View>
         <CustomButton text= "Forgot Password?" onPress={() => navigation.navigate('Forgot Password')} type="TERTIARY"/>
