@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
 import {View, Text, Image, StyleSheet, useWindowDimensions,  ImageBackground, ScrollView, SafeAreaView, } from 'react-native';
+import CheckBox from '@react-native-community/checkbox';
 
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
@@ -13,6 +14,8 @@ const SignUpScreen = ({ navigation }) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [code, setCode] = useState('');
+
+  const [toggleCheckBox, setToggleCheckBox] = useState(false)
 
 
 
@@ -93,19 +96,39 @@ const SignUpScreen = ({ navigation }) => {
       •Must contain at least 1 lowercase {"\n"}
       •Must contain at least 1 number {"\n"}
       •Must contain at least 1 special character {"\n"}
- 
       </Text>
+      <View style = {styles.container}>
+      <CheckBox
+    disabled={false}
+    value={toggleCheckBox}
+    onValueChange={(newValue) => setToggleCheckBox(newValue)}
+  />
+  <Text style = {styles.terms}>
+      By signing up you confirm that you are{"\n"} at least 18 years old
+      </Text>
+      
+      </View>
 
-      <Text style = {styles.terms}>
-      •By signing up you confirm that you are{"\n"} at least 18 years old  and have read and {"\n"} ageed to the terms of {''}
+      <View style = {styles.container}>
+      <CheckBox
+    disabled={false}
+    value={toggleCheckBox}
+    onValueChange={(newValue) => setToggleCheckBox(newValue)}
+  />
+  <Text style = {styles.terms}>
+      I confirm that I have read and {"\n"} agreed to the terms of {''}
       <Text style={styles.link} onPress={() =>navigation.navigate("Policy")}> 
         policy
         </Text>
-      {"\n"}
+   
       
-      {"\n"}
+        
 
       </Text>
+      
+      </View>
+      
+      
 
         <CustomButton text="Sign Up" onPress={()=>navigation.navigate("Dashboard")} type="QUATERNARY" />
         <Text>
@@ -147,7 +170,7 @@ const styles = StyleSheet.create({
     color: '#736468',
     
     alignSelf: 'flex-start',
-    marginHorizontal: 45,
+    marginHorizontal: 2,
   },
   logo: {
     maxWidth: 100,
@@ -163,6 +186,13 @@ const styles = StyleSheet.create({
   link: {
     color: 'red',
     textDecorationLine: 'underline',
+  },
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: 'row',
+    
   },
   
 
