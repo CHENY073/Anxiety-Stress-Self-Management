@@ -22,8 +22,14 @@ const HomeScreen = ({ navigation }) => {
   };
 
   const handleLogin = () => {
-    authenticate(username, password);
+    if(!username || !password){
+      Alert.alert('Enter your username and password')
+    }else{
+      authenticate(username, password);
     Alert.alert('Login successful');
+    navigation.navigate('Dashboard'); 
+    }
+    
   };
 
   const onSignInPressed = () => {
@@ -42,7 +48,7 @@ const HomeScreen = ({ navigation }) => {
           <View style={styles.buttonRowInner}>
             <CustomButton text="Sign Up" onPress={() => navigation.navigate('Sign Up')} type="PRIMARY"/>
             <CustomButton text="Login"
-             onPress={() => {navigation.navigate('Dashboard');      handleLogin();}
+             onPress={() => {    handleLogin();}
             } 
              type="SECONDARY"/>
           </View>
