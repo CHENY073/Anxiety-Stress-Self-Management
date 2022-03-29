@@ -14,14 +14,15 @@ const HomeScreen = ({ navigation }) => {
 
   const {height} = useWindowDimensions();
 
-  let authenticate = item => {
-    database().ref('/items').push({
-      username: item
+  let authenticate = (username, password) => {
+    database().ref('/users').push({
+      username: username,
+      password: password,
     });
   };
 
   const handleLogin = () => {
-    authenticate(username);
+    authenticate(username, password);
     Alert.alert('Item saved successfully');
   };
 
