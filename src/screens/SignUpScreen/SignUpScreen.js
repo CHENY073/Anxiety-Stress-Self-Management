@@ -1,11 +1,12 @@
 /* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
-import {View, Text, Image, StyleSheet, useWindowDimensions,  ImageBackground, ScrollView, SafeAreaView, } from 'react-native';
+import {View, Text, Image, StyleSheet, useWindowDimensions, Alert, ImageBackground, ScrollView, SafeAreaView, } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import Logo from '../../../assets/images/Logo.png';
+import database from '@react-native-firebase/database';
 
 const SignUpScreen = ({ navigation }) => {
   const window = useWindowDimensions();
@@ -19,10 +20,22 @@ const SignUpScreen = ({ navigation }) => {
   const [toggleSecondCheckBox, setToggleSecondCheckBox] = useState(false)
 
 
+  let authenticate = (username, email, code, password, confirmPassword) => {
+    database().ref('/accounts').push({
+      username: username,
+      email: email,
+      code: code,
+      password: password,
+      confirmPassword: confirmPassword,
+      
+      
+    });
+  };
 
-
-
-  
+  const handleSignUp = () => {
+    authenticate(username, email, code, password, confirmPassword);
+    Alert.alert('Sign up successful');
+  };
 
 
   //thinking button where you press sign up
@@ -125,7 +138,10 @@ const SignUpScreen = ({ navigation }) => {
       </Text>
       </View>
       
-        <CustomButton text="Sign Up" onPress={()=>navigation.navigate("Dashboard")} type="QUATERNARY" />
+        <CustomButton text="Sign Up"
+         onPress={()=>{handleSignUp();navigation.navigate("Dashboard");}
+        } 
+         type="QUATERNARY" />
         <Text>
         {"\n"}
         </Text>

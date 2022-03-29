@@ -23,7 +23,7 @@ const HomeScreen = ({ navigation }) => {
 
   const handleLogin = () => {
     authenticate(username, password);
-    Alert.alert('Item saved successfully');
+    Alert.alert('Login successful');
   };
 
   const onSignInPressed = () => {
@@ -41,7 +41,10 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.buttonRowContainer}>
           <View style={styles.buttonRowInner}>
             <CustomButton text="Sign Up" onPress={() => navigation.navigate('Sign Up')} type="PRIMARY"/>
-            <CustomButton text="Login" onPress={handleLogin} type="SECONDARY"/>
+            <CustomButton text="Login"
+             onPress={() => {navigation.navigate('Dashboard');      handleLogin();}
+            } 
+             type="SECONDARY"/>
           </View>
         </View>
         <CustomButton text= "Forgot Password?" onPress={() => navigation.navigate('Forgot Password')} type="TERTIARY"/>
