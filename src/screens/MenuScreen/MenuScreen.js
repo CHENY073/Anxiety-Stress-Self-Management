@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground, ScrollView} from 'react-native';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
+import auth from '@react-native-firebase/auth';
 
 const MenuScreen = ({ navigation }) => {
 

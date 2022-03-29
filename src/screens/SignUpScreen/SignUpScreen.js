@@ -28,23 +28,42 @@ const SignUpScreen = ({ navigation }) => {
 
   const createUser = async (email, password) => {
     try {
-      let response = await auth().createUserWithEmailAndPassword(email, password)
-      if (response) {
-        console.log(tag, "?", response)
-      }
+      await auth().createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        console.log("User created")
+        navigation.navigate("Dashboard")
+      })
+     
+        
+        
+      
+      
+      
     } catch (e) {
+      if(e.code === 'auth/email-already-in-use'){
+        console.error(e.message)
+        Alert.alert('Email is already in use');
+
+      }
+      if(e.code === 'auth/invalid-email'){
+        console.error(e.message)
+        Alert.alert('Invalid email');
+
+      }
+      
       console.error(e.message)
+      
     }
   }
 
 
 
 
-  //this authenticates the user, alets of successful signup, and changes page
+  //this authenticates the user
   const handleSignUp = () => {
     createUser(email, password);
-    Alert.alert('Sign up successful');
-    navigation.navigate("Dashboard")
+    
+    
   };
 
  
