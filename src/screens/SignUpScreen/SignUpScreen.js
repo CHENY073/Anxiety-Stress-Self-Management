@@ -19,7 +19,28 @@ const SignUpScreen = ({ navigation }) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false)
   const [toggleSecondCheckBox, setToggleSecondCheckBox] = useState(false)
 
+  //this authenticates the user, alets of successful signup, and changes page
+  const handleSignUp = () => {
+    authenticate(username, email, code, password, confirmPassword);
+    Alert.alert('Sign up successful');
+    navigation.navigate("Dashboard")
+  };
 
+  
+
+  //function to only allow sign up if terms are ageed to 
+  const checkSignUp = () => {
+    if(!toggleCheckBox || !toggleSecondCheckBox) {
+      Alert.alert("Please agree to terms")
+    } else if(password!=confirmPassword){
+      Alert.alert("Passwords do not match")
+    }
+    else{
+      handleSignUp();
+    }
+  }
+
+ //pushes info to db
   let authenticate = (username, email, code, password, confirmPassword) => {
     database().ref('/accounts').push({
       username: username,
@@ -32,11 +53,7 @@ const SignUpScreen = ({ navigation }) => {
     });
   };
 
-  const handleSignUp = () => {
-    authenticate(username, email, code, password, confirmPassword);
-    Alert.alert('Sign up successful');
-  };
-
+  
 
   //thinking button where you press sign up
 
@@ -118,7 +135,7 @@ const SignUpScreen = ({ navigation }) => {
     onValueChange={(newValue) => setToggleCheckBox(newValue)}
   />
   <Text style = {styles.terms}>
-      By signing up you confirm {"\n"}you areat least 18 years old
+      I confirm that I am least {"\n"}18 years old
       </Text>
       </View>
 
@@ -139,7 +156,7 @@ const SignUpScreen = ({ navigation }) => {
       </View>
       
         <CustomButton text="Sign Up"
-         onPress={()=>{handleSignUp();navigation.navigate("Dashboard");}
+         onPress={()=>{checkSignUp();}
         } 
          type="QUATERNARY" />
         <Text>
