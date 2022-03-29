@@ -6,35 +6,47 @@ import CustomInput from '../../components/CustomInput';
 import SignInBackground from '../../../assets/gif/SignInBackGround.gif';
 import CustomButton from '../../components/CustomButton';
 import database from '@react-native-firebase/database';
+import auth from '@react-native-firebase/auth';
 
 const HomeScreen = ({ navigation }) => {
 
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const {height} = useWindowDimensions();
 
-  let authenticate = (username, password) => {
+  let authenticate = (email, password) => {
     database().ref('/users').push({
-      username: username,
+      email: email,
       password: password,
     });
   };
 
   const handleLogin = () => {
-    if(!username || !password){
+    if(!email || !password){
       Alert.alert('Enter your username and password')
     }else{
-      authenticate(username, password);
+    signIn(email, password);
     Alert.alert('Login successful');
-    navigation.navigate('Dashboard'); 
+    //navigation.navigate('Dashboard'); 
     }
     
   };
+  //method to check if user exists in database
+  const signIn = async (email, password) => {
+    try {
+      let response = await auth().signInWithEmailAndPassword(email, password)
+      if (response && response.user) {
+        Alert.alert("Success ✅", "Authenticated successfully")
+      }
+    } catch (e) {
+      console.error(e.message)
+    }
+  }
+  
 
-  const onSignInPressed = () => {
-    console.warn('Sign in');
-  };
+
+  
 
   return (
     <View style={styles.root, {height: height}}>
@@ -42,7 +54,7 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.overlay} />
         <Image source={Logo} style={styles.logo, {height: height * 0.35}} resizeMode="contain" />
         <Text>{"\n"}</Text>
-        <CustomInput placeholder="Username" value={username} setValue={setUsername}/>
+        <CustomInput placeholder="Email" value={email} setValue={setEmail}/>
         <CustomInput placeholder="Password" value={password} setValue={setPassword} secureTextEntry={true}/>
         <View style={styles.buttonRowContainer}>
           <View style={styles.buttonRowInner}>

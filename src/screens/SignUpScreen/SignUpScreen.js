@@ -26,7 +26,7 @@ const SignUpScreen = ({ navigation }) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false)
   const [toggleSecondCheckBox, setToggleSecondCheckBox] = useState(false)
 
-  const __doCreateUser = async (email, password) => {
+  const createUser = async (email, password) => {
     try {
       let response = await auth().createUserWithEmailAndPassword(email, password)
       if (response) {
@@ -42,7 +42,7 @@ const SignUpScreen = ({ navigation }) => {
 
   //this authenticates the user, alets of successful signup, and changes page
   const handleSignUp = () => {
-    __doCreateUser(email, password);
+    createUser(email, password);
     Alert.alert('Sign up successful');
     navigation.navigate("Dashboard")
   };
