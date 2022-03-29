@@ -6,9 +6,9 @@ import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import Logo from '../../../assets/images/Logo.png';
 
-const ForgotPasswordScreen = ({ navigation }) => {
+const CodeScreen = ({ navigation }) => {
   
-  const [email, setEmail] = useState('');
+  const [code, setCode] = useState('');
 
   //thinking button where you press sign up
 
@@ -27,24 +27,24 @@ const ForgotPasswordScreen = ({ navigation }) => {
 
          <CustomButton text= "✖" onPress={() => navigation.navigate('Home')} type="QUINARY"/>
       <Text style = {styles.title}>
-        Forgot Password
+        Enter Code
         
         
       </Text>
       <Text style = {styles.subTitle}>
         
-            Please enter the email {"\n"}corresponding to your {"\n"}            account.
+            Enter the 4-digit code that was sent{"\n"}           to your email account
         {"\n"} 
         {"\n"} 
       </Text>
       
       <CustomInput
-      placeholder="Email"
-      value={email}
-      setValue={setEmail}
+      placeholder="Code"
+      value={code}
+      setValue={setCode}
       />
    
-        <CustomButton text="Continue" onPress={()=>navigation.navigate("Code")} type="continueButton" />
+        <CustomButton text="Continue" onPress={()=>navigation.navigate("New Password")} type="continueButton" />
         
         </View>
    
@@ -96,11 +96,8 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
   
- 
-
-  
 });
 
 
 
-export default ForgotPasswordScreen;
+export default CodeScreen;

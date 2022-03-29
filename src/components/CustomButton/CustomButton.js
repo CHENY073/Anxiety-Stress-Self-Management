@@ -146,13 +146,20 @@ const styles = StyleSheet.create({
     marginVertical: -5,
     alignItems: 'center',
     borderRadius: 25,
-    marginVertical: 250,
+    marginVertical: 200,
   },
-
-
-
-
-
+  container_submitButton:{
+    borderWidth:2,
+    backgroundColor: 'rgba(52, 52, 52, 0.0)',
+    borderColor:'#736468',
+    
+    width: 150,
+    padding: 8.5,
+    marginVertical: -5,
+    alignItems: 'center',
+    borderRadius: 25,
+    marginVertical: 50,
+  },
 
    text_PRIMARY:{
     fontWeight: 'bold',
@@ -225,6 +232,13 @@ const styles = StyleSheet.create({
     
   },
   text_continueButton: {
+    
+    color: '#736468',
+    fontSize: 27,
+    fontWeight: 'bold',
+    
+  },
+  text_submitButton: {
     
     color: '#736468',
     fontSize: 27,

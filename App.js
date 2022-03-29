@@ -21,6 +21,8 @@ import AccountScreen from './src/screens/AccountScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
 import AboutUsScreen from './src/screens/AboutUsScreen';
 import HelpScreen from './src/screens/HelpScreen';
+import CodeScreen from './src/screens/CodeScreen';
+import NewPasswordScreen from './src/screens/NewPasswordScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -40,7 +42,8 @@ const app = () => {
         <Stack.Screen options ={{headerShown: false}} name="Settings" component={SettingsScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="About Us" component={AboutUsScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Help" component={HelpScreen}/>
-        
+        <Stack.Screen options ={{headerShown: false}} name="Code" component={CodeScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="New Password" component={NewPasswordScreen}/>
         
         
         
