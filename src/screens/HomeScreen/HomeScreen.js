@@ -20,7 +20,8 @@ const HomeScreen = ({ navigation }) => {
   const {height} = useWindowDimensions();
 
 
-
+  //this checks if the user is already logged in or not, 
+  //if they are, takes them to dashboard
   auth().onAuthStateChanged((user) => {
     if (user) {
       console.log('user logged');
@@ -30,7 +31,7 @@ const HomeScreen = ({ navigation }) => {
   
   });
 
-
+  //method to push to database
   //let authenticate = (email, password) => {
    // database().ref('/users').push({
     ////  email: email,
@@ -45,7 +46,7 @@ const HomeScreen = ({ navigation }) => {
 
 
 
-
+  //checks if user entered info and then calls signIn 
   const handleLogin = () => {
     if(!email || !password){
       Alert.alert('Enter your username and password')
@@ -57,7 +58,7 @@ const HomeScreen = ({ navigation }) => {
     }
     
   };
-  //method to check if user exists in database
+  //method to check if user exists in database, signs them in
   const signIn = async (email, password) => {
     try {
       let response = await auth().signInWithEmailAndPassword(email, password)
@@ -79,19 +80,6 @@ const HomeScreen = ({ navigation }) => {
       
     }
   }
-  //const auth = getAuth();
-//const user = auth.currentUser;
-
-//if (user) {
- // navigation.navigate('Dashboard')
-  
-//} else {
-  //Alert.alert("No one is signed in")
-//}
-  
-
-
-  
 
   return (
     <View style={styles.root, {height: height}}>
