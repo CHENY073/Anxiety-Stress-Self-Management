@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "14011892852",
+    "project_id": "anxiety-and-stress",
+    "storage_bucket": "anxiety-and-stress.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:14011892852:android:62f79d2273778d7e6cfd21",
+        "android_client_info": {
+          "package_name": "com.anxietystressselfmanagement"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "14011892852-nkn2h4900prc2kgg6nvubu10p0mscc51.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlujtc3_PITiXXD6TX0kbNZhp4EnqHg3A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "14011892852-nkn2h4900prc2kgg6nvubu10p0mscc51.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

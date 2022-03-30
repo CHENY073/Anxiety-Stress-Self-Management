@@ -1,10 +1,11 @@
 /* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
-import {View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground, KeyboardAvoidingView} from 'react-native';
+import {View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground, Alert} from 'react-native';
 import Logo from '../../../assets/images/Logo.png';
 import CustomInput from '../../components/CustomInput';
 import SignInBackground from '../../../assets/gif/SignInBackGround.gif';
 import CustomButton from '../../components/CustomButton';
+import database from '@react-native-firebase/database';
 
 const HomeScreen = ({ navigation }) => {
 
@@ -13,12 +14,24 @@ const HomeScreen = ({ navigation }) => {
 
   const {height} = useWindowDimensions();
 
+  let authenticate = (username, password) => {
+    database().ref('/users').push({
+      username: username,
+      password: password,
+    });
+  };
+
+  const handleLogin = () => {
+    authenticate(username, password);
+    Alert.alert('Item saved successfully');
+  };
+
   const onSignInPressed = () => {
     console.warn('Sign in');
   };
 
   return (
-    <KeyboardAvoidingView behavior='padding' style={styles.root, {height: height}}>
+    <View style={styles.root, {height: height}}>
       <ImageBackground source={SignInBackground} style={styles.background}>
         <View style={styles.overlay} />
         <Image source={Logo} style={styles.logo, {height: height * 0.35}} resizeMode="contain" />
@@ -28,14 +41,13 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.buttonRowContainer}>
           <View style={styles.buttonRowInner}>
             <CustomButton text="Sign Up" onPress={() => navigation.navigate('Sign Up')} type="PRIMARY"/>
-            <CustomButton text="Login" onPress={onSignInPressed} type="SECONDARY"/>
+            <CustomButton text="Login" onPress={handleLogin} type="SECONDARY"/>
           </View>
         </View>
         <CustomButton text= "Forgot Password?" onPress={() => navigation.navigate('Forgot Password')} type="TERTIARY"/>
-        <View style={styles.divider}/>
-        <CustomButton text="Google" onPress={onSignInPressed} type="GOOGLE"/>
+        <Text>{"\n"}</Text>
       </ImageBackground>
-    </KeyboardAvoidingView>
+    </View>
   );
 };
 
@@ -66,12 +78,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around',
-  },
-  divider:{
-    width: '90%',
-    borderBottomWidth: 2,
-    borderBottomColor: '#EDE9E9',
-    margin: 5,
   },
 });
 

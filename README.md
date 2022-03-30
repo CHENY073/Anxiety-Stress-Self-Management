@@ -129,6 +129,7 @@ GLDirectMem = on
 ### IOS SETUP
 
 # Step 1: Open terminal outside of VSC (Keep this terminal open)
+brew update
 brew install node
 brew install watchman
 brew install git

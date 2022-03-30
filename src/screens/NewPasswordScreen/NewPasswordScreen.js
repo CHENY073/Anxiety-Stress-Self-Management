@@ -6,9 +6,11 @@ import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import Logo from '../../../assets/images/Logo.png';
 
-const ForgotPasswordScreen = ({ navigation }) => {
+
+const NewPasswordScreen = ({ navigation }) => {
   
-  const [email, setEmail] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   //thinking button where you press sign up
 
@@ -27,24 +29,40 @@ const ForgotPasswordScreen = ({ navigation }) => {
 
          <CustomButton text= "✖" onPress={() => navigation.navigate('Home')} type="QUINARY"/>
       <Text style = {styles.title}>
-        Forgot Password
+        New Password
         
         
       </Text>
       <Text style = {styles.subTitle}>
         
-            Please enter the email {"\n"}corresponding to your {"\n"}            account.
+            Enter your new pasword and{"\n"}    confirm that it matches
         {"\n"} 
         {"\n"} 
       </Text>
       
       <CustomInput
-      placeholder="Email"
-      value={email}
-      setValue={setEmail}
+      placeholder="New Password"
+      value={newPassword}
+      setValue={setNewPassword}
       />
+
+      <CustomInput
+      placeholder="Confirm Password"
+      value={confirmPassword}
+      setValue={setConfirmPassword}
+      />
+       <Text style = {styles.parameters}>
+      •Must be longer than 8 characters {"\n"}
+      •Must be shorter than 20 characters {"\n"}
+      •Cannot have white spaces {"\n"}
+      •Must contain at least 1 uppercase {"\n"}
+      •Must contain at least 1 lowercase {"\n"}
+      •Must contain at least 1 number {"\n"}
+      •Must contain at least 1 special character {"\n"}
+ 
+      </Text>
    
-        <CustomButton text="Continue" onPress={()=>navigation.navigate("Code")} type="continueButton" />
+        <CustomButton text="Submit" onPress={()=>navigation.navigate("Dashboard")} type="submitButton" />
         
         </View>
    
@@ -96,11 +114,8 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
   
- 
-
-  
 });
 
 
 
-export default ForgotPasswordScreen;
+export default NewPasswordScreen;
