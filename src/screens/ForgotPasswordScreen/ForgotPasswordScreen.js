@@ -25,6 +25,15 @@ const ForgotPasswordScreen = ({ navigation }) => {
     
   };
 
+  const doReset = () => {
+    if(email === ""){
+    Alert.alert("Please enter an email")
+    }
+    else{
+      handleReset();
+    }
+  }
+
   //thinking button where you press sign up
 
 
@@ -59,7 +68,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
       setValue={setEmail}
       />
    
-        <CustomButton text="Continue" onPress={()=>handleReset(email)} type="continueButton" />
+        <CustomButton text="Continue" onPress={()=>doReset(email)} type="continueButton" />
         
         </View>
    
