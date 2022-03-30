@@ -57,7 +57,6 @@ const styles = StyleSheet.create({
     marginTop: -100,
     borderRadius: 15,
   },
-    
   container_moodButton:{
     
     backgroundColor: '#748894',
@@ -160,6 +159,14 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     marginVertical: 50,
   },
+  container_GOOGLE:{
+    backgroundColor: '#FFF',
+    width: 300,
+    padding: 8.5,
+    marginVertical: 5,
+    alignItems: 'center',
+    borderRadius: 25,
+  },
 
    text_PRIMARY:{
     fontWeight: 'bold',
@@ -244,6 +251,11 @@ const styles = StyleSheet.create({
     fontSize: 27,
     fontWeight: 'bold',
     
+  },
+  text_GOOGLE: {
+    fontWeight: 'bold',
+    color: '#D3473C',
+    fontSize: 24,
   },
 })
 
