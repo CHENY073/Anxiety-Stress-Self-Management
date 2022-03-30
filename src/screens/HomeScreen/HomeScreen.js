@@ -12,11 +12,24 @@ import auth from '@react-native-firebase/auth';
 
 
 const HomeScreen = ({ navigation }) => {
-  var error;
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  
 
   const {height} = useWindowDimensions();
+
+
+
+  auth().onAuthStateChanged((user) => {
+    if (user) {
+      console.log('user logged');
+      
+      navigation.navigate("Dashboard")
+    }
+  
+  });
+
 
   //let authenticate = (email, password) => {
    // database().ref('/users').push({
@@ -24,6 +37,10 @@ const HomeScreen = ({ navigation }) => {
      // password: password,
    // });
   //};
+
+  
+
+ 
 
 
 
@@ -62,6 +79,15 @@ const HomeScreen = ({ navigation }) => {
       
     }
   }
+  //const auth = getAuth();
+//const user = auth.currentUser;
+
+//if (user) {
+ // navigation.navigate('Dashboard')
+  
+//} else {
+  //Alert.alert("No one is signed in")
+//}
   
 
 
