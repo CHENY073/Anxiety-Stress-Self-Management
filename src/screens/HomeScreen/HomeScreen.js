@@ -18,12 +18,16 @@ const HomeScreen = ({ navigation }) => {
 
   const {height} = useWindowDimensions();
 
-  let authenticate = (email, password) => {
-    database().ref('/users').push({
-      email: email,
-      password: password,
-    });
-  };
+  //let authenticate = (email, password) => {
+   // database().ref('/users').push({
+    ////  email: email,
+     // password: password,
+   // });
+  //};
+
+
+
+
 
   const handleLogin = () => {
     if(!email || !password){

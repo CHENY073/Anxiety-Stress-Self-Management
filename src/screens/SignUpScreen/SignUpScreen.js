@@ -30,15 +30,10 @@ const SignUpScreen = ({ navigation }) => {
     try {
       await auth().createUserWithEmailAndPassword(email, password)
       .then(() => {
-        console.log("User created")
+        Alert.alert("Success ✅", "Signed Up!");
         navigation.navigate("Dashboard")
       })
      
-        
-        
-      
-      
-      
     } catch (e) {
       if(e.code === 'auth/email-already-in-use'){
         console.error(e.message)
