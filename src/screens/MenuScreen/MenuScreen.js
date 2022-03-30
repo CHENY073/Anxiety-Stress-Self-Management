@@ -9,8 +9,9 @@ const MenuScreen = ({ navigation }) => {
   const {height} = useWindowDimensions();
 
   const handleSignOut = () => {
-    try{Alert.alert("hello")
+    try{
     auth().signOut();
+    Alert.alert("Success ✅", "Logged out!")
     navigation.navigate("Home")}
     catch (e){
       console.error(e.message)

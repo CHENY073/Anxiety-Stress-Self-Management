@@ -51,20 +51,13 @@ const SignUpScreen = ({ navigation }) => {
     }
   }
 
-
-
-
   //this authenticates the user
   const handleSignUp = () => {
     createUser(email, password);
     
-    
   };
 
  
-
-  
-
   //function to only allow sign up if terms are ageed to 
   const checkSignUp = () => {
     if(!toggleCheckBox || !toggleSecondCheckBox) {
@@ -86,6 +79,9 @@ const SignUpScreen = ({ navigation }) => {
     }else if(whitespaceRegex.test(password)){
       Alert.alert("Password can not contain whitespace")
     }
+    else if(email === ""){
+      Alert.alert("Please enter an email")
+    }
 
     else{
       handleSignUp();
@@ -93,17 +89,17 @@ const SignUpScreen = ({ navigation }) => {
   }
 
  //pushes info to db
-  let authenticate = (email, code, password, confirmPassword) => {
-    database().ref('/accounts').push({
+ // let authenticate = (email, code, password, confirmPassword) => {
+  //  database().ref('/accounts').push({
       
-      email: email,
-      code: code,
-      password: password,
-      confirmPassword: confirmPassword,
+     // email: email,
+    //  code: code,
+     // password: password,
+   //   confirmPassword: confirmPassword,
       
       
-    });
-  };
+  //  });
+  //};
 
   
 
@@ -141,9 +137,10 @@ const SignUpScreen = ({ navigation }) => {
       //this one needs to be optional
       />
       <CustomInput
-      placeholder="Code"
+      placeholder="Code (optional)"
       value={code}
       setValue={setCode}
+      
 
       />
       <CustomInput
