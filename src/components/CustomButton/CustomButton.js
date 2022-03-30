@@ -5,7 +5,7 @@ import { View, Text, StyleSheet, Pressable} from 'react-native';
 const CustomButton = ({text, onPress, type}) => {
 
   return (
-    <Pressable onPress={onPress} style={[styles.container, styles[`container_${type}`]]}>
+    <Pressable onPress={onPress} style={({pressed}) => pressed ? [styles[`container_${type}`],styles[`pressed_${type}`]] : styles[`container_${type}`]}>
       <Text style={styles.text, styles[`text_${type}`]}>{text}</Text>
     </Pressable>
   );
@@ -166,6 +166,16 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     alignItems: 'center',
     borderRadius: 25,
+  },
+
+  pressed_PRIMARY:{
+    backgroundColor: '#D5D2D2',
+  },
+  pressed_SECONDARY:{
+    backgroundColor: '#675A5E',
+  },
+  pressed_GOOGLE:{
+    backgroundColor: "#EEE",
   },
 
    text_PRIMARY:{
