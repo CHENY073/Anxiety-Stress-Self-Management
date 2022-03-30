@@ -1,14 +1,29 @@
 /* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
-import {View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground, ScrollView, SafeAreaView, } from 'react-native';
+import {View, Text, Image, StyleSheet,Alert, useWindowDimensions, ImageBackground, ScrollView, SafeAreaView, } from 'react-native';
 
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import Logo from '../../../assets/images/Logo.png';
+import auth from '@react-native-firebase/auth';
 
 const ForgotPasswordScreen = ({ navigation }) => {
   
   const [email, setEmail] = useState('');
+
+
+  const handleReset = async (email) => {
+    try{
+    await auth().sendPasswordResetEmail(email);
+    console.log('password reset sent');
+    Alert.alert("Success ✅", "Email sent");
+    navigation.navigate("Home");
+    }catch (e){
+      console.error(e.message);
+
+    }
+    
+  };
 
   //thinking button where you press sign up
 
@@ -44,7 +59,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
       setValue={setEmail}
       />
    
-        <CustomButton text="Continue" onPress={()=>navigation.navigate("Code")} type="continueButton" />
+        <CustomButton text="Continue" onPress={()=>handleReset(email)} type="continueButton" />
         
         </View>
    
