@@ -44,7 +44,7 @@ const SignUpScreen = ({ navigation }) => {
       .then((userCredential) => {
         userCredential.user.sendEmailVerification();
         handleSignOut();
-        Alert.alert("✅", "Please verify your email to continue sign up!");
+        Alert.alert("✅", "Please verify your email to log in!");
         
       })
      

@@ -19,10 +19,10 @@ const HomeScreen = ({ navigation }) => {
   //this checks if the user is already logged in or not, if they are, takes them to dashboard
   
   auth().onAuthStateChanged((user) => {
-    if (user) {
+    if (user && user.emailVerified) {
     
     console.log('user logged');
-    navigation.navigate("Menu Screen");
+    navigation.navigate("Dashboard");
     }else{
       navigation.navigate("Home");
     }
@@ -38,10 +38,10 @@ const HomeScreen = ({ navigation }) => {
   };
 
   //method to check if user exists in database, signs them in
-  const signIn = async (email, password) => {
+  const signIn = async (email, password,) => {
     try {
       let response = await auth().signInWithEmailAndPassword(email, password);
-      if (response && response.user) {
+      if (response && response.user && response.user.emailVerified) {
         Alert.alert("Success ✅", "Signed in!");
         navigation.navigate('Dashboard');
       }
