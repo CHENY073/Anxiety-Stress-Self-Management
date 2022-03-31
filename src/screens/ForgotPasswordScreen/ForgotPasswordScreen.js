@@ -30,7 +30,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
     Alert.alert("Please enter an email")
     }
     else{
-      handleReset();
+      handleReset(email);
     }
   }
 

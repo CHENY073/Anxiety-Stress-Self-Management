@@ -30,7 +30,6 @@ const HomeScreen = ({ navigation }) => {
     }
   
   });
-
   //method to push to database
   //let authenticate = (email, password) => {
    // database().ref('/users').push({
@@ -38,13 +37,6 @@ const HomeScreen = ({ navigation }) => {
      // password: password,
    // });
   //};
-
-  
-
- 
-
-
-
 
   //checks if user entered info and then calls signIn 
   const handleLogin = () => {
@@ -69,17 +61,24 @@ const HomeScreen = ({ navigation }) => {
     } catch (e) {
       if(e.code === 'auth/invalid-email'){
         Alert.alert("Invalid email");
-        console.error("Invalid email")
+        console.error("Invalid email");
       }else if(e.code === 'auth/user-not-found'){
         Alert.alert("User not found");
-        console.error("User not found")
+        console.error("User not found");
        // console.error("User not found")
-
-      }
-
-      
+      }else if(e.code === 'auth/wrong-password'){
+        Alert.alert("Invalid password");
+        console.error("Invalid password");
+       // console.error("User not found")
     }
+    else if(e.code === 'auth/too-many-requests'){
+      Alert.alert("Too many requests", "Try again later");
+      console.error("Too many requests");
+     // console.error("User not found")
   }
+    console.error(e.message);
+  }
+}
 
   return (
     <KeyboardAvoidingView behavior='padding' style={styles.root, {height: height}}>
@@ -100,7 +99,7 @@ const HomeScreen = ({ navigation }) => {
         </View>
         <CustomButton text= "Forgot Password?" onPress={() => navigation.navigate('Forgot Password')} type="TERTIARY"/>
         <View style={styles.divider}/>
-        <CustomButton text="Google" onPress={onSignInPressed} type="GOOGLE"/>
+        <CustomButton text="Google" onPress={() => navigation.navigate('Dashboard')} type="GOOGLE"/>
       </ImageBackground>
     </KeyboardAvoidingView>
   );
