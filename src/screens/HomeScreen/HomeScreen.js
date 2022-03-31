@@ -1,11 +1,12 @@
 /* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
 import {View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground, Alert, KeyboardAvoidingView} from 'react-native';
+import Toast from 'react-native-toast-message';
 import Logo from '../../../assets/images/Logo.png';
 import CustomInput from '../../components/CustomInput';
 import SignInBackground from '../../../assets/gif/SignInBackGround.gif';
 import CustomButton from '../../components/CustomButton';
-import database from '@react-native-firebase/database';
+//import database from '@react-native-firebase/database';
 import auth from '@react-native-firebase/auth';
 
 
@@ -15,6 +16,53 @@ const HomeScreen = ({ navigation }) => {
   const [password, setPassword] = useState('');
   
   const {height} = useWindowDimensions();
+
+  //shows toast message on top
+  const verifyEmailToast = () => {
+    Toast.show({
+      type: 'error',
+      text1: 'Unverified Email',
+      text2: 'Please verify your email',
+      autoHide: false,
+    });
+  }
+  const invalidEmailToast = () => {
+    Toast.show({
+      type: 'error',
+      text1: 'Invalid Email',
+      text2: 'Please enter a valid email',
+      autoHide: false,
+    });
+  }
+  const userNotFoundToast = () => {
+    Toast.show({
+      type: 'error',
+      text1: 'Email Not Found',
+      text2: 'Please enter your email again',
+      autoHide: false,
+    });
+  }
+  const invalidPasswordToast = () => {
+    Toast.show({
+      type: 'error',
+      text1: 'Wrong Password',
+      text2: 'Please enter your password again',
+      autoHide: false,
+    });
+  }
+  const tooManyRequestsToast = () => {
+    Toast.show({
+      type: 'error',
+      text1: 'Too Many Requests',
+      text2: 'Please try again later',
+      autoHide: false,
+    });
+  }
+
+
+
+
+
 
   //this checks if the user is already logged in or not, if they are, takes them to dashboard
   
@@ -44,24 +92,28 @@ const HomeScreen = ({ navigation }) => {
       if (response && response.user && response.user.emailVerified) {
         Alert.alert("Success ✅", "Signed in!");
         navigation.navigate('Dashboard');
+      }else if(!response.user.emailVerified){
+        verifyEmailToast();
+
       }
     } catch (e) {
       if(e.code === 'auth/invalid-email'){
-        Alert.alert("Invalid email");
-        console.error("Invalid email");
+        invalidEmailToast();
+        //console.error("Invalid email");
       }else if(e.code === 'auth/user-not-found'){
-        Alert.alert("User not found");
-        console.error("User not found");
-       // console.error("User not found")
+        userNotFoundToast();
+        //console.error("User not found");
+       
       }else if(e.code === 'auth/wrong-password'){
-        Alert.alert("Invalid password");
-        console.error("Invalid password");
-       // console.error("User not found")
+        invalidPasswordToast();
+        //console.error("Invalid password");
+       
       }else if(e.code === 'auth/too-many-requests'){
-        Alert.alert("Too many requests", "Try again later");
-        console.error("Too many requests");
-     // console.error("User not found")
+        tooManyRequestsToast();
+        //console.error("Too many requests");
+     
   }
+    //outputs any issues with authentication
     console.error(e.message);
   }
 }
@@ -87,6 +139,7 @@ const handleGoogle = () =>{
         <CustomButton text= "Forgot Password?" onPress={() => navigation.navigate('Forgot Password')} type="TERTIARY"/>
         <View style={styles.divider}/>
         <CustomButton text="Google" onPress={handleGoogle} type="GOOGLE"/>
+        <Toast />
       </ImageBackground>
     </KeyboardAvoidingView>
   );

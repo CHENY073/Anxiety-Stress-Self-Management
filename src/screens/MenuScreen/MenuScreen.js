@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {View, Text, Image, Alert, StyleSheet, useWindowDimensions, ImageBackground, ScrollView} from 'react-native';
+import {View, Text, Image, Alert, StyleSheet, useWindowDimensions, ImageBackground, ToastAndroid, ScrollView} from 'react-native';
+import Toast from 'react-native-toast-message';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import auth from '@react-native-firebase/auth';
@@ -8,25 +9,23 @@ const MenuScreen = ({ navigation }) => {
 
   const {height} = useWindowDimensions();
 
+  const showToastAndroid = () => {
+    ToastAndroid.show("LOGGED OUT", ToastAndroid.SHORT);};
+    
+ 
+
   const handleSignOut = () => {
     try{
     auth().signOut();
-    Alert.alert("Success ✅", "Logged out!")
-    navigation.navigate("Home")}
-    catch (e){
-      console.error(e.message)
-
+    showToastAndroid();
+    navigation.navigate("Home");
     }
-    
+    catch (e){
+      console.error(e.message);
+    }
   };
-
-
- 
-
-  //this authenticates the user
+//this authenticates the user
   
-
-
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
     <View style={styles.root}>
@@ -45,6 +44,7 @@ const MenuScreen = ({ navigation }) => {
     alignSelf: 'stretch',
   }}
 />
+
 
 
 <Text style={styles.options} onPress={() =>navigation.navigate("Account Screen")}> 
@@ -143,7 +143,7 @@ Account
         } 
   type="logOutButton"/>
 
-        
+        <Toast />
     </View>
     </ScrollView>
   );
