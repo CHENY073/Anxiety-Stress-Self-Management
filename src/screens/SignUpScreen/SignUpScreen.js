@@ -1,15 +1,23 @@
 /* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
-import {View, Text, Image, StyleSheet, useWindowDimensions,  ImageBackground, ScrollView, SafeAreaView, } from 'react-native';
+import {View, Text, Image, StyleSheet, useWindowDimensions, Alert, ImageBackground, ScrollView, SafeAreaView, } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import Logo from '../../../assets/images/Logo.png';
+import database from '@react-native-firebase/database';
+import auth from '@react-native-firebase/auth';
+
+var numberRegex = new RegExp("^(?=.*[0-9])");
+var specialCharacterRegex = new RegExp("^(?=.*[!@#$%^&*])");
+var lowercaseRegex = new RegExp("^(?=.*[a-z])");
+var uppercaseRegex = new RegExp("^(?=.*[A-Z])");
+var whitespaceRegex = new RegExp("^(?=.*[\\s])");
 
 const SignUpScreen = ({ navigation }) => {
   const window = useWindowDimensions();
-  const [username, setUsername] = useState('');
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -18,19 +26,84 @@ const SignUpScreen = ({ navigation }) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false)
   const [toggleSecondCheckBox, setToggleSecondCheckBox] = useState(false)
 
+  const createUser = async (email, password) => {
+    try {
+      await auth().createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        Alert.alert("Success ✅", "Signed Up!");
+        navigation.navigate("Dashboard")
+      })
+     
+    } catch (e) {
+      if(e.code === 'auth/email-already-in-use'){
+        console.error(e.message)
+        Alert.alert('Email is already in use');
 
+      }
+      if(e.code === 'auth/invalid-email'){
+        console.error(e.message)
+        Alert.alert('Invalid email');
 
+      }
+      
+      console.error(e.message)
+      
+    }
+  }
 
+  //this authenticates the user
+  const handleSignUp = () => {
+    createUser(email, password);
+    
+  };
+
+ 
+  //function to only allow sign up if terms are ageed to 
+  const checkSignUp = () => {
+    if(!toggleCheckBox || !toggleSecondCheckBox) {
+      Alert.alert("Please agree to terms")
+    } else if(password!=confirmPassword){
+      Alert.alert("Passwords do not match")
+    }else if(password.length<8){
+      Alert.alert("Password is too short")
+    }else if(password.length>20){
+      Alert.alert("Password is too long")
+    }else if(!numberRegex.test(password)){
+      Alert.alert("Password must contain at least 1 number")
+    }else if(!specialCharacterRegex.test(password)){
+      Alert.alert("Password must contain at least 1 special character")
+    }else if(!lowercaseRegex.test(password)){
+      Alert.alert("Password must contain at least 1 lowercase character")
+    }else if(!uppercaseRegex.test(password)){
+      Alert.alert("Password must contain at least 1 uppercase character")
+    }else if(whitespaceRegex.test(password)){
+      Alert.alert("Password can not contain whitespace")
+    }
+    else if(email === ""){
+      Alert.alert("Please enter an email")
+    }
+
+    else{
+      handleSignUp();
+    }
+  }
+
+ //pushes info to db
+ // let authenticate = (email, code, password, confirmPassword) => {
+  //  database().ref('/accounts').push({
+      
+     // email: email,
+    //  code: code,
+     // password: password,
+   //   confirmPassword: confirmPassword,
+      
+      
+  //  });
+  //};
 
   
 
-
-  //thinking button where you press sign up
-
-  const onSignUpPressed = () => {
-    console.warn('You have signed up');
-
-  };
+ 
 
   
   return (
@@ -55,12 +128,7 @@ const SignUpScreen = ({ navigation }) => {
       <Text style = {styles.subTitle}>
         Please fill in the fields below
       </Text>
-      <CustomInput
-      placeholder="Username"
-      value={username}
-      setValue={setUsername}
-
-      />
+      
       <CustomInput
       placeholder="Email"
       value={email}
@@ -69,9 +137,10 @@ const SignUpScreen = ({ navigation }) => {
       //this one needs to be optional
       />
       <CustomInput
-      placeholder="Code"
+      placeholder="Code (optional)"
       value={code}
       setValue={setCode}
+      
 
       />
       <CustomInput
@@ -90,12 +159,12 @@ const SignUpScreen = ({ navigation }) => {
       />
 
       <Text style = {styles.parameters}>
-      •Must be longer than 8 characters {"\n"}
-      •Must be shorter than 20 characters {"\n"}
+      •Must be 8 characters or longer {"\n"}
+      •Must be 20 characters or shorter {"\n"}
       •Cannot have white spaces {"\n"}
-      •Must contain at least 1 uppercase {"\n"}
-      •Must contain at least 1 lowercase {"\n"}
-      •Must contain at least 1 number {"\n"}
+      •Must contain at least 1 uppercase character{"\n"}
+      •Must contain at least 1 lowercase character{"\n"}
+      •Must contain at least 1 numerical character {"\n"}
       •Must contain at least 1 special character {"\n"}
       </Text>
       <View style = {styles.container}>
@@ -105,7 +174,7 @@ const SignUpScreen = ({ navigation }) => {
     onValueChange={(newValue) => setToggleCheckBox(newValue)}
   />
   <Text style = {styles.terms}>
-      By signing up you confirm {"\n"}you areat least 18 years old
+      I confirm that I am least {"\n"}18 years old
       </Text>
       </View>
 
@@ -125,7 +194,10 @@ const SignUpScreen = ({ navigation }) => {
       </Text>
       </View>
       
-        <CustomButton text="Sign Up" onPress={()=>navigation.navigate("Dashboard")} type="QUATERNARY" />
+        <CustomButton text="Sign Up"
+         onPress={()=>{checkSignUp();}
+        } 
+         type="QUATERNARY" />
         <Text>
         {"\n"}
         </Text>

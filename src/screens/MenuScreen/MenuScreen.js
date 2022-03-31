@@ -1,11 +1,31 @@
 import React, {useState} from 'react';
-import {View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground, ScrollView} from 'react-native';
+import {View, Text, Image, Alert, StyleSheet, useWindowDimensions, ImageBackground, ScrollView} from 'react-native';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
+import auth from '@react-native-firebase/auth';
 
 const MenuScreen = ({ navigation }) => {
 
   const {height} = useWindowDimensions();
+
+  const handleSignOut = () => {
+    try{
+    auth().signOut();
+    Alert.alert("Success ✅", "Logged out!")
+    navigation.navigate("Home")}
+    catch (e){
+      console.error(e.message)
+
+    }
+    
+  };
+
+
+ 
+
+  //this authenticates the user
+  
+
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -119,7 +139,9 @@ Account
     </Text>
 
 
-<CustomButton text= "Log Out" onPress={() => navigation.navigate('Home')} type="logOutButton"/>
+<CustomButton text= "Log Out" onPress={()=>{handleSignOut();}
+        } 
+  type="logOutButton"/>
 
         
     </View>

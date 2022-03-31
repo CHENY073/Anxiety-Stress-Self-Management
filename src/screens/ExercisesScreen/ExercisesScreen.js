@@ -3,7 +3,8 @@ import {View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground} fro
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 
-const MoodDiaryScreen = ({ navigation }) => {
+
+const ExercisesScreen = ({ navigation }) => {
 
   const {height} = useWindowDimensions();
 
@@ -12,7 +13,7 @@ const MoodDiaryScreen = ({ navigation }) => {
       
         <CustomButton text= "≡" onPress={() => navigation.navigate('Dashboard')} type="dropButton"/>
         <Text style={styles.title}>
-        Mood Diary
+        Exercises
       </Text>
         <Text>
           {"\n"}{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}
@@ -40,4 +41,4 @@ const styles = StyleSheet.create({
   
 });
 
-export default MoodDiaryScreen;
+export default ExercisesScreen;

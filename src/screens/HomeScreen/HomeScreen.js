@@ -6,29 +6,80 @@ import CustomInput from '../../components/CustomInput';
 import SignInBackground from '../../../assets/gif/SignInBackGround.gif';
 import CustomButton from '../../components/CustomButton';
 import database from '@react-native-firebase/database';
+import auth from '@react-native-firebase/auth';
+
+
+
 
 const HomeScreen = ({ navigation }) => {
-
-  const [username, setUsername] = useState('');
+  
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  
 
   const {height} = useWindowDimensions();
 
-  let authenticate = (username, password) => {
-    database().ref('/users').push({
-      username: username,
-      password: password,
-    });
-  };
 
+  //this checks if the user is already logged in or not, 
+  //if they are, takes them to dashboard
+  auth().onAuthStateChanged((user) => {
+    if (user) {
+      console.log('user logged');
+      
+      navigation.navigate("Dashboard")
+    }
+  
+  });
+
+  //method to push to database
+  //let authenticate = (email, password) => {
+   // database().ref('/users').push({
+    ////  email: email,
+     // password: password,
+   // });
+  //};
+
+  
+
+ 
+
+
+
+
+  //checks if user entered info and then calls signIn 
   const handleLogin = () => {
-    authenticate(username, password);
-    Alert.alert('Item saved successfully');
+    if(!email || !password){
+      Alert.alert('Enter your username and password')
+    }
+    else{
+    signIn(email, password);
+    
+    
+    }
+    
   };
+  //method to check if user exists in database, signs them in
+  const signIn = async (email, password) => {
+    try {
+      let response = await auth().signInWithEmailAndPassword(email, password)
+      if (response && response.user) {
+        Alert.alert("Success ✅", "Signed in!")
+        navigation.navigate('Dashboard'); 
+      }
+    } catch (e) {
+      if(e.code === 'auth/invalid-email'){
+        Alert.alert("Invalid email");
+        console.error("Invalid email")
+      }else if(e.code === 'auth/user-not-found'){
+        Alert.alert("User not found");
+        console.error("User not found")
+       // console.error("User not found")
 
-  const onSignInPressed = () => {
-    console.warn('Sign in');
-  };
+      }
+
+      
+    }
+  }
 
   return (
     <KeyboardAvoidingView behavior='padding' style={styles.root, {height: height}}>
@@ -36,12 +87,15 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.overlay} />
         <Image source={Logo} style={styles.logo, {height: height * 0.35}} resizeMode="contain" />
         <Text>{"\n"}</Text>
-        <CustomInput placeholder="Username" value={username} setValue={setUsername}/>
+        <CustomInput placeholder="Email" value={email} setValue={setEmail}/>
         <CustomInput placeholder="Password" value={password} setValue={setPassword} secureTextEntry={true}/>
         <View style={styles.buttonRowContainer}>
           <View style={styles.buttonRowInner}>
             <CustomButton text="Sign Up" onPress={() => navigation.navigate('Sign Up')} type="PRIMARY"/>
-            <CustomButton text="Login" onPress={handleLogin} type="SECONDARY"/>
+            <CustomButton text="Login"
+             onPress={() => {    handleLogin();}
+            } 
+             type="SECONDARY"/>
           </View>
         </View>
         <CustomButton text= "Forgot Password?" onPress={() => navigation.navigate('Forgot Password')} type="TERTIARY"/>
