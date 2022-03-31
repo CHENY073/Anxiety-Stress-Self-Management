@@ -5,7 +5,7 @@ import { View, Text, StyleSheet, Pressable} from 'react-native';
 const CustomButton = ({text, onPress, type}) => {
 
   return (
-    <Pressable onPress={onPress} style={[styles.container, styles[`container_${type}`]]}>
+    <Pressable onPress={onPress} style={({pressed}) => pressed ? [styles[`container_${type}`],styles[`pressed_${type}`]] : styles[`container_${type}`]}>
       <Text style={styles.text, styles[`text_${type}`]}>{text}</Text>
     </Pressable>
   );
@@ -57,7 +57,6 @@ const styles = StyleSheet.create({
     marginTop: -100,
     borderRadius: 15,
   },
-    
   container_moodButton:{
     
     backgroundColor: '#748894',
@@ -160,6 +159,24 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     marginVertical: 50,
   },
+  container_GOOGLE:{
+    backgroundColor: '#FFF',
+    width: 300,
+    padding: 8.5,
+    marginVertical: 5,
+    alignItems: 'center',
+    borderRadius: 25,
+  },
+
+  pressed_PRIMARY:{
+    backgroundColor: '#D5D2D2',
+  },
+  pressed_SECONDARY:{
+    backgroundColor: '#675A5E',
+  },
+  pressed_GOOGLE:{
+    backgroundColor: "#EEE",
+  },
 
    text_PRIMARY:{
     fontWeight: 'bold',
@@ -244,6 +261,11 @@ const styles = StyleSheet.create({
     fontSize: 27,
     fontWeight: 'bold',
     
+  },
+  text_GOOGLE: {
+    fontWeight: 'bold',
+    color: '#D3473C',
+    fontSize: 24,
   },
 })
 
