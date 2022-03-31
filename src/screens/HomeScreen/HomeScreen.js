@@ -17,22 +17,13 @@ const HomeScreen = ({ navigation }) => {
   const {height} = useWindowDimensions();
 
   //this checks if the user is already logged in or not, if they are, takes them to dashboard
+ 
   auth().onAuthStateChanged((user) => {
     if (user) {
-      console.log('user logged');
-      navigation.navigate("Dashboard")
+    console.log('user logged');
+    navigation.navigate("Dashboard")
     }
   });
-<<<<<<< HEAD
-  //method to push to database
-  //let authenticate = (email, password) => {
-   // database().ref('/users').push({
-    ////  email: email,
-     // password: password,
-   // });
-  //};
-=======
->>>>>>> ecf781a3e6078311d147c904da90a169ff05a1dd
 
   //checks if user entered info and then calls signIn 
   const handleLogin = () => {
@@ -63,26 +54,17 @@ const HomeScreen = ({ navigation }) => {
         Alert.alert("Invalid password");
         console.error("Invalid password");
        // console.error("User not found")
-<<<<<<< HEAD
-    }
-    else if(e.code === 'auth/too-many-requests'){
-      Alert.alert("Too many requests", "Try again later");
-      console.error("Too many requests");
+      }else if(e.code === 'auth/too-many-requests'){
+        Alert.alert("Too many requests", "Try again later");
+        console.error("Too many requests");
      // console.error("User not found")
   }
     console.error(e.message);
   }
 }
-=======
-      }
-    }
-  };
-
-  const handleGoogle = () =>{
-    navigation.navigate('Dashboard');
-  };
->>>>>>> ecf781a3e6078311d147c904da90a169ff05a1dd
-
+const handleGoogle = () =>{
+  navigation.navigate('Dashboard');
+};
   return (
     <KeyboardAvoidingView behavior='padding' style={styles.root, {height: height}}>
       <ImageBackground source={SignInBackground} style={styles.background}>
@@ -101,11 +83,7 @@ const HomeScreen = ({ navigation }) => {
         </View>
         <CustomButton text= "Forgot Password?" onPress={() => navigation.navigate('Forgot Password')} type="TERTIARY"/>
         <View style={styles.divider}/>
-<<<<<<< HEAD
-        <CustomButton text="Google" onPress={() => navigation.navigate('Dashboard')} type="GOOGLE"/>
-=======
         <CustomButton text="Google" onPress={handleGoogle} type="GOOGLE"/>
->>>>>>> ecf781a3e6078311d147c904da90a169ff05a1dd
       </ImageBackground>
     </KeyboardAvoidingView>
   );
