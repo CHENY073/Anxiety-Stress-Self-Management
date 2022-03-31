@@ -26,22 +26,26 @@ const SignUpScreen = ({ navigation }) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false)
   const [toggleSecondCheckBox, setToggleSecondCheckBox] = useState(false)
 
-  const logout = () => async() =>{
+  const handleSignOut = () => {
     try{
-      await auth().signOut();
-    } catch (e){
-      console.log(e);
+    auth().signOut();
+    
+    navigation.navigate("Home")}
+    catch (e){
+      console.error(e.message)
+
     }
-  }
+    
+  };
 
   const createUser = async (email, password) => {
     try {
       await auth().createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
         userCredential.user.sendEmailVerification();
-        logout();
-        Alert.alert("Success ✅", "Signed Up!");
-        navigation.navigate("Home")
+        handleSignOut();
+        Alert.alert("✅", "Please verify your email to continue sign up!");
+        
       })
      
     } catch (e) {

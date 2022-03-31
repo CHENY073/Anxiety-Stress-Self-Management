@@ -17,11 +17,14 @@ const HomeScreen = ({ navigation }) => {
   const {height} = useWindowDimensions();
 
   //this checks if the user is already logged in or not, if they are, takes them to dashboard
- 
+  
   auth().onAuthStateChanged((user) => {
     if (user) {
+    
     console.log('user logged');
-    navigation.navigate("Dashboard")
+    navigation.navigate("Menu Screen");
+    }else{
+      navigation.navigate("Home");
     }
   });
 
