@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
-import {View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground, Alert, KeyboardAvoidingView} from 'react-native';
+import {View, Text, Image, StyleSheet, useWindowDimensions, ToastAndroid, ImageBackground, Alert, KeyboardAvoidingView} from 'react-native';
 import Toast from 'react-native-toast-message';
 import Logo from '../../../assets/images/Logo.png';
 import CustomInput from '../../components/CustomInput';
@@ -58,6 +58,18 @@ const HomeScreen = ({ navigation }) => {
       autoHide: false,
     });
   }
+  const emptyInputToast = () => {
+    Toast.show({
+      type: 'error',
+      text1: 'Error:',
+      text2: 'Please enter your username and password',
+      
+      autoHide: false,
+    });
+  }
+
+  const showToastAndroid = () => {
+    ToastAndroid.show("SIGNED IN", ToastAndroid.SHORT);};
 
 
 
@@ -79,7 +91,7 @@ const HomeScreen = ({ navigation }) => {
   //checks if user entered info and then calls signIn 
   const handleLogin = () => {
     if(!email || !password){
-      Alert.alert('Enter your username and password')
+      emptyInputToast();
     }else{
       signIn(email, password);
     }
@@ -90,7 +102,7 @@ const HomeScreen = ({ navigation }) => {
     try {
       let response = await auth().signInWithEmailAndPassword(email, password);
       if (response && response.user && response.user.emailVerified) {
-        Alert.alert("Success ✅", "Signed in!");
+        showToastAndroid();
         navigation.navigate('Dashboard');
       }else if(!response.user.emailVerified){
         verifyEmailToast();

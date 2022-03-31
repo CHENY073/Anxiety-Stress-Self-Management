@@ -44,6 +44,14 @@ const SignUpScreen = ({ navigation }) => {
       autoHide: false,
     });
   }
+  const emptyEmailToast = () => {
+    Toast.show({
+      type: 'error',
+      text1: 'Invalid Email',
+      text2: 'Please enter an email',
+      autoHide: false,
+    });
+  }
 
   const handleSignOut = () => {
     try{
@@ -72,17 +80,12 @@ const SignUpScreen = ({ navigation }) => {
         emailAlreadyInUseToast();
         //console.error(e.message)
        // Alert.alert('Email is already in use');
-       
-
-      }
-      if(e.code === 'auth/invalid-email'){
+      }if(e.code === 'auth/invalid-email'){
         //console.error(e.message)
        // Alert.alert('Invalid email');
         invalidEmailToast();
       }
-      
       console.error(e.message)
-      
     }
   }
 
@@ -115,7 +118,7 @@ const SignUpScreen = ({ navigation }) => {
       Alert.alert("Password can not contain whitespace")
     }
     else if(email === ""){
-      Alert.alert("Please enter an email")
+      emptyEmailToast();
     }
 
     else{
