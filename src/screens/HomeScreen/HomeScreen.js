@@ -9,27 +9,21 @@ import database from '@react-native-firebase/database';
 import auth from '@react-native-firebase/auth';
 
 
-
-
 const HomeScreen = ({ navigation }) => {
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   
-
   const {height} = useWindowDimensions();
 
-
-  //this checks if the user is already logged in or not, 
-  //if they are, takes them to dashboard
+  //this checks if the user is already logged in or not, if they are, takes them to dashboard
   auth().onAuthStateChanged((user) => {
     if (user) {
       console.log('user logged');
-      
       navigation.navigate("Dashboard")
     }
-  
   });
+<<<<<<< HEAD
   //method to push to database
   //let authenticate = (email, password) => {
    // database().ref('/users').push({
@@ -37,26 +31,25 @@ const HomeScreen = ({ navigation }) => {
      // password: password,
    // });
   //};
+=======
+>>>>>>> ecf781a3e6078311d147c904da90a169ff05a1dd
 
   //checks if user entered info and then calls signIn 
   const handleLogin = () => {
     if(!email || !password){
       Alert.alert('Enter your username and password')
+    }else{
+      signIn(email, password);
     }
-    else{
-    signIn(email, password);
-    
-    
-    }
-    
   };
+
   //method to check if user exists in database, signs them in
   const signIn = async (email, password) => {
     try {
-      let response = await auth().signInWithEmailAndPassword(email, password)
+      let response = await auth().signInWithEmailAndPassword(email, password);
       if (response && response.user) {
-        Alert.alert("Success ✅", "Signed in!")
-        navigation.navigate('Dashboard'); 
+        Alert.alert("Success ✅", "Signed in!");
+        navigation.navigate('Dashboard');
       }
     } catch (e) {
       if(e.code === 'auth/invalid-email'){
@@ -70,6 +63,7 @@ const HomeScreen = ({ navigation }) => {
         Alert.alert("Invalid password");
         console.error("Invalid password");
        // console.error("User not found")
+<<<<<<< HEAD
     }
     else if(e.code === 'auth/too-many-requests'){
       Alert.alert("Too many requests", "Try again later");
@@ -79,6 +73,15 @@ const HomeScreen = ({ navigation }) => {
     console.error(e.message);
   }
 }
+=======
+      }
+    }
+  };
+
+  const handleGoogle = () =>{
+    navigation.navigate('Dashboard');
+  };
+>>>>>>> ecf781a3e6078311d147c904da90a169ff05a1dd
 
   return (
     <KeyboardAvoidingView behavior='padding' style={styles.root, {height: height}}>
@@ -92,14 +95,17 @@ const HomeScreen = ({ navigation }) => {
           <View style={styles.buttonRowInner}>
             <CustomButton text="Sign Up" onPress={() => navigation.navigate('Sign Up')} type="PRIMARY"/>
             <CustomButton text="Login"
-             onPress={() => {    handleLogin();}
-            } 
+             onPress={() => {handleLogin();}}
              type="SECONDARY"/>
           </View>
         </View>
         <CustomButton text= "Forgot Password?" onPress={() => navigation.navigate('Forgot Password')} type="TERTIARY"/>
         <View style={styles.divider}/>
+<<<<<<< HEAD
         <CustomButton text="Google" onPress={() => navigation.navigate('Dashboard')} type="GOOGLE"/>
+=======
+        <CustomButton text="Google" onPress={handleGoogle} type="GOOGLE"/>
+>>>>>>> ecf781a3e6078311d147c904da90a169ff05a1dd
       </ImageBackground>
     </KeyboardAvoidingView>
   );
