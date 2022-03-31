@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
-import {View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground, Alert} from 'react-native';
+import {View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground, Alert, KeyboardAvoidingView} from 'react-native';
 import Logo from '../../../assets/images/Logo.png';
 import CustomInput from '../../components/CustomInput';
 import SignInBackground from '../../../assets/gif/SignInBackGround.gif';
@@ -82,7 +82,7 @@ const HomeScreen = ({ navigation }) => {
   }
 
   return (
-    <View style={styles.root, {height: height}}>
+    <KeyboardAvoidingView behavior='padding' style={styles.root, {height: height}}>
       <ImageBackground source={SignInBackground} style={styles.background}>
         <View style={styles.overlay} />
         <Image source={Logo} style={styles.logo, {height: height * 0.35}} resizeMode="contain" />
@@ -99,9 +99,10 @@ const HomeScreen = ({ navigation }) => {
           </View>
         </View>
         <CustomButton text= "Forgot Password?" onPress={() => navigation.navigate('Forgot Password')} type="TERTIARY"/>
-        <Text>{"\n"}</Text>
+        <View style={styles.divider}/>
+        <CustomButton text="Google" onPress={onSignInPressed} type="GOOGLE"/>
       </ImageBackground>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -132,6 +133,12 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around',
+  },
+  divider:{
+    width: '90%',
+    borderBottomWidth: 2,
+    borderBottomColor: '#EDE9E9',
+    margin: 5,
   },
 });
 
