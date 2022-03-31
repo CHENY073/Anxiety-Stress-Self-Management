@@ -9,62 +9,37 @@ import database from '@react-native-firebase/database';
 import auth from '@react-native-firebase/auth';
 
 
-
-
 const HomeScreen = ({ navigation }) => {
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   
-
   const {height} = useWindowDimensions();
 
-
-  //this checks if the user is already logged in or not, 
-  //if they are, takes them to dashboard
+  //this checks if the user is already logged in or not, if they are, takes them to dashboard
   auth().onAuthStateChanged((user) => {
     if (user) {
       console.log('user logged');
-      
       navigation.navigate("Dashboard")
     }
-  
   });
-
-  //method to push to database
-  //let authenticate = (email, password) => {
-   // database().ref('/users').push({
-    ////  email: email,
-     // password: password,
-   // });
-  //};
-
-  
-
- 
-
-
-
 
   //checks if user entered info and then calls signIn 
   const handleLogin = () => {
     if(!email || !password){
       Alert.alert('Enter your username and password')
+    }else{
+      signIn(email, password);
     }
-    else{
-    signIn(email, password);
-    
-    
-    }
-    
   };
+
   //method to check if user exists in database, signs them in
   const signIn = async (email, password) => {
     try {
-      let response = await auth().signInWithEmailAndPassword(email, password)
+      let response = await auth().signInWithEmailAndPassword(email, password);
       if (response && response.user) {
-        Alert.alert("Success ✅", "Signed in!")
-        navigation.navigate('Dashboard'); 
+        Alert.alert("Success ✅", "Signed in!");
+        navigation.navigate('Dashboard');
       }
     } catch (e) {
       if(e.code === 'auth/invalid-email'){
@@ -74,12 +49,13 @@ const HomeScreen = ({ navigation }) => {
         Alert.alert("User not found");
         console.error("User not found")
        // console.error("User not found")
-
       }
-
-      
     }
-  }
+  };
+
+  const handleGoogle = () =>{
+    navigation.navigate('Dashboard');
+  };
 
   return (
     <KeyboardAvoidingView behavior='padding' style={styles.root, {height: height}}>
@@ -93,14 +69,13 @@ const HomeScreen = ({ navigation }) => {
           <View style={styles.buttonRowInner}>
             <CustomButton text="Sign Up" onPress={() => navigation.navigate('Sign Up')} type="PRIMARY"/>
             <CustomButton text="Login"
-             onPress={() => {    handleLogin();}
-            } 
+             onPress={() => {handleLogin();}}
              type="SECONDARY"/>
           </View>
         </View>
         <CustomButton text= "Forgot Password?" onPress={() => navigation.navigate('Forgot Password')} type="TERTIARY"/>
         <View style={styles.divider}/>
-        <CustomButton text="Google" onPress={onSignInPressed} type="GOOGLE"/>
+        <CustomButton text="Google" onPress={handleGoogle} type="GOOGLE"/>
       </ImageBackground>
     </KeyboardAvoidingView>
   );
