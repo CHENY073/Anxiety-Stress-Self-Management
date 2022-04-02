@@ -152,10 +152,6 @@ const HomeScreen = ({ navigation }) => {
     console.error(e.message);
   }
 }
-const handleGoogle = () =>{
-  //signInGoogle();
-  //navigation.navigate('Dashboard');
-};
 
 
 

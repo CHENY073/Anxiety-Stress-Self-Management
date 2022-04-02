@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, Image, Alert, StyleSheet, useWindowDimensions, ImageBackground, ToastAndroid, ScrollView} from 'react-native';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import Toast from 'react-native-toast-message';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
@@ -8,6 +9,7 @@ import auth from '@react-native-firebase/auth';
 const MenuScreen = ({ navigation }) => {
 
   const {height} = useWindowDimensions();
+ 
 
   const showToastAndroid = () => {
     ToastAndroid.show("LOGGED OUT", ToastAndroid.SHORT);};
@@ -24,6 +26,38 @@ const MenuScreen = ({ navigation }) => {
       console.error(e.message);
     }
   };
+
+  const signOutGoogle = async () => {
+    try {
+      await GoogleSignin.revokeAccess();
+      await GoogleSignin.signOut();
+      auth()
+        .signOut()
+        .then(() => alert('You are signed out!'));
+      
+      
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const isSignedIn = async () => {
+    await GoogleSignin.isSignedIn();
+    
+  };
+
+  const regularOrGoogle = () => {
+    if(!isSignedIn){
+      signOutGoogle();
+      
+    }else{
+      handleSignOut();
+    }
+    
+  }
+
+
+
 //this authenticates the user
   
   return (
@@ -139,7 +173,7 @@ Account
     </Text>
 
 
-<CustomButton text= "Log Out" onPress={()=>{handleSignOut();}
+<CustomButton text= "Log Out" onPress={()=>{regularOrGoogle(); }
         } 
   type="logOutButton"/>
 
