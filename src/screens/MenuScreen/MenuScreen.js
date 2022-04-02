@@ -10,13 +10,9 @@ const MenuScreen = ({ navigation }) => {
 
   const {height} = useWindowDimensions();
  
-
   const showToastAndroid = () => {
     ToastAndroid.show("LOGGED OUT", ToastAndroid.SHORT);};
-    
- 
-
-
+   
   const signOutGoogle = async () => {
     try {
       if(await GoogleSignin.isSignedIn()===true){
@@ -25,25 +21,17 @@ const MenuScreen = ({ navigation }) => {
       auth()
         .signOut()
         .then(() => alert('You are signed out!'));
-
-      }else{
-        auth().signOut();
-    showToastAndroid();
-    navigation.navigate("Home");
       }
-      
-      
-      
-    } catch (error) {
+      else {
+        auth().signOut();
+        showToastAndroid();
+        navigation.navigate("Home");
+      } 
+    } catch (error) 
+    {
       console.error(error);
     }
   };
-
-  
-  
-
-
-//this authenticates the user
   
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -63,8 +51,6 @@ const MenuScreen = ({ navigation }) => {
     alignSelf: 'stretch',
   }}
 />
-
-
 
 <Text style={styles.options} onPress={() =>navigation.navigate("Account Screen")}> 
 Account
@@ -91,8 +77,7 @@ Account
     alignSelf: 'stretch',
   }}
 />
-
-    
+   
 <Text style={styles.options} onPress={() =>navigation.navigate("Settings")}> 
             Settings
         </Text>
@@ -188,15 +173,7 @@ const styles = StyleSheet.create({
       color: 'white',
       alignSelf: 'flex-end',
       marginHorizontal: 30,
-      marginVertical: 5,
-      
-      
+      marginVertical: 5,     
   },
-  
-    
-    
-
-  
 });
-
 export default MenuScreen;
