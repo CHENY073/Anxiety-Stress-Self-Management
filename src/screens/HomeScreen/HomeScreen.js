@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import {View, Text, Image, StyleSheet, useWindowDimensions, ToastAndroid, ImageBackground, Alert, KeyboardAvoidingView} from 'react-native';
 import Toast from 'react-native-toast-message';
 import Logo from '../../../assets/images/Logo.png';
@@ -9,13 +10,19 @@ import CustomButton from '../../components/CustomButton';
 //import database from '@react-native-firebase/database';
 import auth from '@react-native-firebase/auth';
 
-
+GoogleSignin.configure({
+  webClientId: '14011892852-nkn2h4900prc2kgg6nvubu10p0mscc51.apps.googleusercontent.com',
+});
 const HomeScreen = ({ navigation }) => {
+
+
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   
   const {height} = useWindowDimensions();
+
+ 
 
   //shows toast message on top
   const verifyEmailToast = () => {
@@ -70,15 +77,8 @@ const HomeScreen = ({ navigation }) => {
 
   const showToastAndroid = () => {
     ToastAndroid.show("SIGNED IN", ToastAndroid.SHORT);};
-
-
-
-
-
-
-  //this checks if the user is already logged in or not, if they are, takes them to dashboard
-  
-  auth().onAuthStateChanged((user) => {
+//this checks if the user is already logged in or not, if they are, takes them to dashboard
+ auth().onAuthStateChanged((user) => {
     if (user && user.emailVerified) {
     
     console.log('user logged');
@@ -130,8 +130,27 @@ const HomeScreen = ({ navigation }) => {
   }
 }
 const handleGoogle = () =>{
-  navigation.navigate('Dashboard');
+  //signInGoogle();
+  //navigation.navigate('Dashboard');
 };
+
+const signInGoogle = async () => {
+  const { idToken } = await GoogleSignin.signIn();
+
+  // Create a Google credential with the token
+  const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+  // Sign-in the user with the credential
+ const userSignIn = auth().signInWithCredential(googleCredential);
+
+ userSignIn.then((user) =>{
+   console.log(user);
+ })
+ .catch ((e) => {
+   console.log(e);
+ })
+}
+
   return (
     <KeyboardAvoidingView behavior='padding' style={styles.root, {height: height}}>
       <ImageBackground source={SignInBackground} style={styles.background}>
@@ -150,7 +169,7 @@ const handleGoogle = () =>{
         </View>
         <CustomButton text= "Forgot Password?" onPress={() => navigation.navigate('Forgot Password')} type="TERTIARY"/>
         <View style={styles.divider}/>
-        <CustomButton text="Google" onPress={handleGoogle} type="GOOGLE"/>
+        <CustomButton text="Google" onPress={signInGoogle} type="GOOGLE"/>
         <Toast />
       </ImageBackground>
     </KeyboardAvoidingView>
