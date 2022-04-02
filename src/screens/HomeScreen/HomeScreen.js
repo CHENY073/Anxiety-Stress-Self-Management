@@ -10,10 +10,11 @@ import CustomButton from '../../components/CustomButton';
 //import database from '@react-native-firebase/database';
 import auth from '@react-native-firebase/auth';
 
-GoogleSignin.configure({
-  webClientId: '14011892852-nkn2h4900prc2kgg6nvubu10p0mscc51.apps.googleusercontent.com',
-});
+
+
 const HomeScreen = ({ navigation }) => {
+
+
 
 
   
@@ -21,6 +22,28 @@ const HomeScreen = ({ navigation }) => {
   const [password, setPassword] = useState('');
   
   const {height} = useWindowDimensions();
+
+
+  GoogleSignin.configure({
+    webClientId: '14011892852-nkn2h4900prc2kgg6nvubu10p0mscc51.apps.googleusercontent.com',
+  });
+  
+  const signInGoogleUser = async () => {
+    const { idToken } = await GoogleSignin.signIn();
+  
+    // Create a Google credential with the token
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+  
+    // Sign-in the user with the credential
+   const userSignIn = auth().signInWithCredential(googleCredential);
+  
+   userSignIn.then((user) =>{
+     console.log(user);
+   })
+   .catch ((e) => {
+     console.log(e);
+   })
+  }
 
  
 
@@ -134,22 +157,7 @@ const handleGoogle = () =>{
   //navigation.navigate('Dashboard');
 };
 
-const signInGoogle = async () => {
-  const { idToken } = await GoogleSignin.signIn();
 
-  // Create a Google credential with the token
-  const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-
-  // Sign-in the user with the credential
- const userSignIn = auth().signInWithCredential(googleCredential);
-
- userSignIn.then((user) =>{
-   console.log(user);
- })
- .catch ((e) => {
-   console.log(e);
- })
-}
 
   return (
     <KeyboardAvoidingView behavior='padding' style={styles.root, {height: height}}>
@@ -169,7 +177,9 @@ const signInGoogle = async () => {
         </View>
         <CustomButton text= "Forgot Password?" onPress={() => navigation.navigate('Forgot Password')} type="TERTIARY"/>
         <View style={styles.divider}/>
-        <CustomButton text="Google" onPress={signInGoogle} type="GOOGLE"/>
+        <CustomButton text="Google"
+         onPress={() => {signInGoogleUser();}}
+          type="GOOGLE"/>
         <Toast />
       </ImageBackground>
     </KeyboardAvoidingView>
