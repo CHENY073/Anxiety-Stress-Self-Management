@@ -26,7 +26,7 @@ const EmotionScreen = ({ navigation }) => {
       <CustomButton text= "Continue" onPress={() => navigation.navigate('Home')} type="SECONDARY"/>
 
       <View style={styles.container}>
-        <Slider value={value} setValue={setValue}/>
+        <Slider setValue={setValue}/>
       </View>
     </SafeAreaView>
   );
