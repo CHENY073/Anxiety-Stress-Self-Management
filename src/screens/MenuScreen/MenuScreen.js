@@ -16,24 +16,22 @@ const MenuScreen = ({ navigation }) => {
     
  
 
-  const handleSignOut = () => {
-    try{
-    auth().signOut();
-    showToastAndroid();
-    navigation.navigate("Home");
-    }
-    catch (e){
-      console.error(e.message);
-    }
-  };
 
   const signOutGoogle = async () => {
     try {
-      await GoogleSignin.revokeAccess();
+      if(await GoogleSignin.isSignedIn()===true){
+        await GoogleSignin.revokeAccess();
       await GoogleSignin.signOut();
       auth()
         .signOut()
         .then(() => alert('You are signed out!'));
+
+      }else{
+        auth().signOut();
+    showToastAndroid();
+    navigation.navigate("Home");
+      }
+      
       
       
     } catch (error) {
@@ -41,21 +39,8 @@ const MenuScreen = ({ navigation }) => {
     }
   };
 
-  const isSignedIn = async () => {
-    await GoogleSignin.isSignedIn();
-    
-  };
-
-  const regularOrGoogle = () => {
-    if(!isSignedIn){
-      signOutGoogle();
-      
-    }else{
-      handleSignOut();
-    }
-    
-  }
-
+  
+  
 
 
 //this authenticates the user
@@ -173,7 +158,7 @@ Account
     </Text>
 
 
-<CustomButton text= "Log Out" onPress={()=>{regularOrGoogle(); }
+<CustomButton text= "Log Out" onPress={()=>{signOutGoogle(); }
         } 
   type="logOutButton"/>
 
