@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
+import { FacebookAuthProvider } from "firebase/auth";
 import {View, Text, Image, StyleSheet, useWindowDimensions, ToastAndroid, ImageBackground, Alert, KeyboardAvoidingView} from 'react-native';
 import Toast from 'react-native-toast-message';
 import Logo from '../../../assets/images/Logo.png';
@@ -29,7 +30,9 @@ const HomeScreen = ({ navigation }) => {
   });
   
   const signInGoogleUser = async () => {
-    const { idToken } = await GoogleSignin.signIn();
+    try
+    {
+      const { idToken } = await GoogleSignin.signIn();
   
     // Create a Google credential with the token
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
@@ -42,11 +45,12 @@ const HomeScreen = ({ navigation }) => {
    })
    .catch ((e) => {
      console.log(e);
-   })
+   })}catch(e){
+     console.error(e.message);
+
+   }
   }
-
- 
-
+  
   //shows toast message on top
   const verifyEmailToast = () => {
     Toast.show({
@@ -100,13 +104,13 @@ const HomeScreen = ({ navigation }) => {
 
   const showToastAndroid = () => {
     ToastAndroid.show("SIGNED IN", ToastAndroid.SHORT);};
+    
 //this checks if the user is already logged in or not, if they are, takes them to dashboard
  auth().onAuthStateChanged((user) => {
     if (user && user.emailVerified) {
-    
-    console.log('user logged');
-    navigation.navigate("Dashboard");
-    }else{
+      console.log('user logged');
+      navigation.navigate("Dashboard");
+    } else {
       navigation.navigate("Home");
     }
   });
@@ -149,7 +153,7 @@ const HomeScreen = ({ navigation }) => {
      
   }
     //outputs any issues with authentication
-    console.error(e.message);
+    //console.error(e.message);
   }
 }
 
@@ -173,9 +177,13 @@ const HomeScreen = ({ navigation }) => {
         </View>
         <CustomButton text= "Forgot Password?" onPress={() => navigation.navigate('Forgot Password')} type="TERTIARY"/>
         <View style={styles.divider}/>
-        <CustomButton text="Google"
+        <GoogleSigninButton
+        style = {{width: 230, height: 48}}
+        size = {GoogleSigninButton.Size.Wide}
+        color= {GoogleSigninButton.Color.Dark}
          onPress={() => {signInGoogleUser();}}
-          type="GOOGLE"/>
+         />
+          
         <Toast />
       </ImageBackground>
     </KeyboardAvoidingView>
