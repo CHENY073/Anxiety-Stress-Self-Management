@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "14011892852",
+    "firebase_url": "https://anxiety-and-stress-default-rtdb.firebaseio.com",
     "project_id": "anxiety-and-stress",
     "storage_bucket": "anxiety-and-stress.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "14011892852-49trr2sofiu140nildob9hfjc0g78kq2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.anxietystressselfmanagement",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
         {
           "client_id": "14011892852-nkn2h4900prc2kgg6nvubu10p0mscc51.apps.googleusercontent.com",
           "client_type": 3

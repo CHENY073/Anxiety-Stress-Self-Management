@@ -2,7 +2,7 @@
 import React, {useState} from 'react';
 import {View, Text, Image, StyleSheet, useWindowDimensions, Alert, ImageBackground, ScrollView, SafeAreaView, } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
-
+import Toast from 'react-native-toast-message';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import Logo from '../../../assets/images/Logo.png';
@@ -26,28 +26,66 @@ const SignUpScreen = ({ navigation }) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false)
   const [toggleSecondCheckBox, setToggleSecondCheckBox] = useState(false)
 
+
+
+  const emailAlreadyInUseToast = () => {
+    Toast.show({
+      type: 'error',
+      text1: 'Email Already In Use',
+      text2: 'Please sign in or reset your password',
+      autoHide: false,
+    });
+  }
+  const invalidEmailToast = () => {
+    Toast.show({
+      type: 'error',
+      text1: 'Invalid Email',
+      text2: 'Please enter a valid email',
+      autoHide: false,
+    });
+  }
+  const emptyEmailToast = () => {
+    Toast.show({
+      type: 'error',
+      text1: 'Invalid Email',
+      text2: 'Please enter an email',
+      autoHide: false,
+    });
+  }
+
+  const handleSignOut = () => {
+    try{
+    auth().signOut();
+    
+    navigation.navigate("Home")}
+    catch (e){
+      console.error(e.message)
+
+    }
+    
+  };
+
   const createUser = async (email, password) => {
     try {
       await auth().createUserWithEmailAndPassword(email, password)
-      .then(() => {
-        Alert.alert("Success ✅", "Signed Up!");
-        navigation.navigate("Dashboard")
+      .then((userCredential) => {
+        userCredential.user.sendEmailVerification();
+        handleSignOut();
+        Alert.alert("✅", "Please verify your email to log in!");
+        
       })
      
     } catch (e) {
       if(e.code === 'auth/email-already-in-use'){
-        console.error(e.message)
-        Alert.alert('Email is already in use');
-
+        emailAlreadyInUseToast();
+        //console.error(e.message)
+       // Alert.alert('Email is already in use');
+      }if(e.code === 'auth/invalid-email'){
+        //console.error(e.message)
+       // Alert.alert('Invalid email');
+        invalidEmailToast();
       }
-      if(e.code === 'auth/invalid-email'){
-        console.error(e.message)
-        Alert.alert('Invalid email');
-
-      }
-      
       console.error(e.message)
-      
     }
   }
 
@@ -80,7 +118,7 @@ const SignUpScreen = ({ navigation }) => {
       Alert.alert("Password can not contain whitespace")
     }
     else if(email === ""){
-      Alert.alert("Please enter an email")
+      emptyEmailToast();
     }
 
     else{
@@ -201,9 +239,13 @@ const SignUpScreen = ({ navigation }) => {
         <Text>
         {"\n"}
         </Text>
+
+        <Toast />
    
     </View>
+    
     </ScrollView>
+    
   );
 };
 
