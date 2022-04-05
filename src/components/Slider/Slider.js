@@ -1,21 +1,22 @@
 /* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
-import {StyleSheet, useWindowDimensions, Animated} from 'react-native';
+import {View, StyleSheet, useWindowDimensions, Animated} from 'react-native';
 import Svg, {Circle, G, Path, Polygon} from 'react-native-svg';
 
-const Slider = ({setValue}) => {
+const Slider = ({value, setValue, showImages}) => {
   const window = useWindowDimensions();
   const size = window.width-40;
 
   const AnimatedG = Animated.createAnimatedComponent(G);
   const [color, setColor] = useState(new Animated.Value(0));
   const [angle, setAngle] = useState(new Animated.Value(0));
+  const text = ["","Angry","Sad","Indifferent","Happy","Excited"];
 
   const backgroundStyle = {
     backgroundColor: color.interpolate({
       inputRange: [0,1,2,3,4,5],
       outputRange: ['#EDE9E9', '#FFD7D7','#FFEBD7','#FFFFD7','#EBFFD7','#D7FFD7']
-    })
+    }),
   };
 
   const rotationStyle = {
@@ -28,27 +29,39 @@ const Slider = ({setValue}) => {
       })},
       {translateX: -50},
       {translateY: -30},
-    ]
+    ],
+  };
+
+  const textStyle = {
+    color: color.interpolate({
+      inputRange: [0,1,2,3,4,5],
+      outputRange: ['#000', '#F07575','#F0B275','#F0F075','#B2F075','#75F075']
+    }),
+    opacity: color.interpolate({
+      inputRange: [0,1,2,3,4,5],
+      outputRange: [0,1,1,1,1,1]
+    }),
   };
   
-  const handle = (value) => {
+  const handle = (number) => {
     Animated.parallel([
       Animated.timing(angle,{
-        toValue: value,
+        toValue: number,
         duration: 600,
         useNativeDriver: true,
       }),
       Animated.timing(color,{
-        toValue: value,
+        toValue: number,
         duration: 600,
         useNativeDriver: false,
       })
     ]).start(); 
-    setValue(value);
+    setValue(number);
   };
 
   return (
-    <Animated.View width={window.width} height={window.height} style={[styles.container, backgroundStyle]} >
+    <Animated.View width={window.width} height={window.height} style={[styles.root, backgroundStyle]} >
+      <View style={styles.container}></View>
       <Svg height={size/2+size/20} width={size}>
         <G scale={size/100} y="20" origin="0, -20">
           <G onPress={() => handle(1)} rotation="0" origin="50, 30">
@@ -72,14 +85,27 @@ const Slider = ({setValue}) => {
           </AnimatedG>
         </G>
       </Svg>
+      <View style={styles.container}>
+        <Animated.Text style={[styles.text, textStyle]}>{(showImages? text[value]: value)}</Animated.Text>
+      </View>
+      
     </Animated.View>
   );
 };
 
 const styles = StyleSheet.create({
-  container:{
+  root:{
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
+  },
+  container:{
+    flex:1,
+  },
+  text : {
+    fontSize: 36,
+    fontWeight: 'bold',
+    marginVertical: 20,
   },
 })
 

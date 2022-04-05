@@ -6,27 +6,27 @@ import Slider from '../../components/Slider/Slider';
 import Logo from '../../../assets/images/Logo.png';
 import Volume from '../../../assets/images/Volume.png';
 
-const EmotionScreen = ({ navigation }) => {
+const InControlScreen = ({ navigation }) => {
   const [value, setValue] = useState(0);
 
   return (
     <SafeAreaView style={styles.root}>
       <View style={styles.header}>
-        <View style={{width: 100}}><CustomButton text= "<" onPress={() => navigation.navigate('Home')} type="blackBackButton"/></View>
+        <View style={{width: 100}}><CustomButton text= "<" onPress={() => navigation.navigate('Emotion')} type="blackBackButton"/></View>
         <Image source={Logo} style={styles.logo} resizeMode="contain" />
         <View style={{width: 100}}><Image source={Volume} style={styles.volume} resizeMode="cover" /></View>
       </View>
       <Text style = {styles.title}>
-        Hi [Name],
+        How in control
       </Text>
       <Text style = {styles.title}>
-        What’s your mood?
+        are you?
       </Text>
       <View style = {styles.space}/>
-      <CustomButton text= "Continue" onPress={() => navigation.navigate('InControl')} type="SECONDARY"/>
+      <CustomButton text= "Continue" onPress={() => navigation.navigate('Home')} type="SECONDARY"/>
 
       <View style={styles.container}>
-        <Slider value={value} setValue={setValue} showImages={true}/>
+        <Slider value={value} setValue={setValue} showImages={false}/>
       </View>
     </SafeAreaView>
   );
@@ -72,4 +72,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EmotionScreen;
+export default InControlScreen;
