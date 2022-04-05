@@ -8,6 +8,7 @@
 
 import React from 'react';
 import {SafeAreaView, StyleSheet, Text} from 'react-native';
+import Toast from 'react-native-toast-message'
 import HomeScreen from './src/screens/HomeScreen';
 import ForgotPasswordScreen from './src/screens/ForgotPasswordScreen';
 import DashboardScreen from './src/screens/DashboardScreen';
@@ -26,6 +27,8 @@ import EmotionScreen from './src/screens/EmotionScreen';
 import InControlScreen from './src/screens/InControlScreen';
 
 const Stack = createNativeStackNavigator();
+
+
 
 
 const app = () => {

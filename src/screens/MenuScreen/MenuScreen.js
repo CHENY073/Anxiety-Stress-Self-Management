@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
-import {View, Text, Image, Alert, StyleSheet, useWindowDimensions, ImageBackground, ScrollView} from 'react-native';
+import {View, Text, Image, Alert, StyleSheet, useWindowDimensions, ImageBackground, ToastAndroid, ScrollView} from 'react-native';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import Toast from 'react-native-toast-message';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import auth from '@react-native-firebase/auth';
@@ -7,26 +9,30 @@ import auth from '@react-native-firebase/auth';
 const MenuScreen = ({ navigation }) => {
 
   const {height} = useWindowDimensions();
-
-  const handleSignOut = () => {
-    try{
-    auth().signOut();
-    Alert.alert("Success ✅", "Logged out!")
-    navigation.navigate("Home")}
-    catch (e){
-      console.error(e.message)
-
-    }
-    
-  };
-
-
  
-
-  //this authenticates the user
+  const showToastAndroid = () => {
+    ToastAndroid.show("LOGGED OUT", ToastAndroid.SHORT);};
+   
+  const signOutGoogle = async () => {
+    try {
+      if(await GoogleSignin.isSignedIn()===true){
+        await GoogleSignin.revokeAccess();
+      await GoogleSignin.signOut();
+      auth()
+        .signOut()
+        .then(() => alert('You are signed out!'));
+      }
+      else {
+        auth().signOut();
+        showToastAndroid();
+        navigation.navigate("Home");
+      } 
+    } catch (error) 
+    {
+      console.error(error);
+    }
+  };
   
-
-
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
     <View style={styles.root}>
@@ -45,7 +51,6 @@ const MenuScreen = ({ navigation }) => {
     alignSelf: 'stretch',
   }}
 />
-
 
 <Text style={styles.options} onPress={() =>navigation.navigate("Account Screen")}> 
 Account
@@ -72,8 +77,7 @@ Account
     alignSelf: 'stretch',
   }}
 />
-
-    
+   
 <Text style={styles.options} onPress={() =>navigation.navigate("Settings")}> 
             Settings
         </Text>
@@ -139,11 +143,11 @@ Account
     </Text>
 
 
-<CustomButton text= "Log Out" onPress={()=>{handleSignOut();}
+<CustomButton text= "Log Out" onPress={()=>{signOutGoogle(); }
         } 
   type="logOutButton"/>
 
-        
+        <Toast />
     </View>
     </ScrollView>
   );
@@ -169,15 +173,7 @@ const styles = StyleSheet.create({
       color: 'white',
       alignSelf: 'flex-end',
       marginHorizontal: 30,
-      marginVertical: 5,
-      
-      
+      marginVertical: 5,     
   },
-  
-    
-    
-
-  
 });
-
 export default MenuScreen;
