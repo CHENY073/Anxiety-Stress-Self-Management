@@ -23,7 +23,7 @@ const InControlScreen = ({ navigation }) => {
         are you?
       </Text>
       <View style = {styles.space}/>
-      <CustomButton text= "Continue" onPress={() => navigation.navigate('Home')} type="SECONDARY"/>
+      <CustomButton text= "Continue" onPress={() => navigation.navigate('Dashboard')} type="SECONDARY"/>
 
       <View style={styles.container}>
         <Slider value={value} setValue={setValue} showImages={false}/>

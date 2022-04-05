@@ -12,7 +12,7 @@ const EmotionScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.root}>
       <View style={styles.header}>
-        <View style={{width: 100}}><CustomButton text= "<" onPress={() => navigation.navigate('Home')} type="blackBackButton"/></View>
+        <View style={{width: 100}}><CustomButton text= "<" onPress={() => navigation.navigate('Dashboard')} type="blackBackButton"/></View>
         <Image source={Logo} style={styles.logo} resizeMode="contain" />
         <View style={{width: 100}}><Image source={Volume} style={styles.volume} resizeMode="cover" /></View>
       </View>
