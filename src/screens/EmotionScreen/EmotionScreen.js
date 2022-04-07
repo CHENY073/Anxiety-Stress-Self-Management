@@ -16,18 +16,18 @@ const EmotionScreen = ({ navigation }) => {
         <Image source={Logo} style={styles.logo} resizeMode="contain" />
         <View style={{width: 100}}><Image source={Volume} style={styles.volume} resizeMode="cover" /></View>
       </View>
-      <Text style = {styles.title}>
-        Hi [Name],
-      </Text>
-      <Text style = {styles.title}>
-        What’s your mood?
-      </Text>
-      <View style = {styles.space}/>
+
+        <Text style = {styles.title}>
+          Hi [Name],
+          {"\n"}
+          What’s your mood?
+        </Text>
+        <Slider value={value} setValue={setValue} showImages={true}/>
+
+
       <CustomButton text= "Continue" onPress={() => navigation.navigate('InControl')} type="SECONDARY"/>
 
-      <View style={styles.container}>
-        <Slider value={value} setValue={setValue} showImages={true}/>
-      </View>
+
     </SafeAreaView>
   );
 };
@@ -55,20 +55,12 @@ const styles = StyleSheet.create({
     margin: 20,
     alignSelf: 'flex-end',
   },
-  title : {
+  title:{
     fontSize: 36,
     fontWeight: 'bold',
     color: '#000000',
     marginVertical: 5,
-  },
-  container:{
-    position: "absolute",
-    top: 0,
-    left: 0,
-    zIndex: -1,
-  },
-  space:{
-    flex: 1,
+    textAlign: 'center',
   },
 });
 
