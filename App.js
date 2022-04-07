@@ -23,7 +23,8 @@ import SettingsScreen from './src/screens/SettingsScreen';
 import AboutUsScreen from './src/screens/AboutUsScreen';
 import HelpScreen from './src/screens/HelpScreen';
 import ExercisesScreen from './src/screens/ExercisesScreen';
-
+import EmotionScreen from './src/screens/EmotionScreen';
+import InControlScreen from './src/screens/InControlScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -46,6 +47,8 @@ const app = () => {
         <Stack.Screen options ={{headerShown: false}} name="About Us" component={AboutUsScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Help" component={HelpScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Exercises" component={ExercisesScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Emotion" component={EmotionScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="InControl" component={InControlScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
