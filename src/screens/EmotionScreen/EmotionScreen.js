@@ -132,7 +132,7 @@ const EmotionScreen = ({ navigation }) => {
         </G>
       </Svg>
 
-      <Animated.Text style={[styles.text, value? textStyle: {opacity: 0}]}>{text[value]}</Animated.Text>
+      <Animated.Text style={[styles.text, value? textStyle:{opacity: 0}]}>{text[value]}</Animated.Text>
 
       <View style={styles.button}>
         <CustomButton text= "Continue" onPress={() => navigation.navigate('InControl')} type="SECONDARY"/>
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
   button:{
     flex: 1,
     flexDirection: "column-reverse",
-    paddingBottom: 10,
+    paddingBottom: 30,
   },
 });
 
