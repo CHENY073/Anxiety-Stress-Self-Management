@@ -8,22 +8,25 @@ import Volume from '../../../assets/images/Volume.png';
 
 const EmotionScreen = ({ navigation }) => {
   const [value, setValue] = useState(0);
+  const [prev, setPrev] = useState(0);
   
   const window = useWindowDimensions();
   const size = window.width-40;
 
   const AnimatedG = Animated.createAnimatedComponent(G);
   const AnimatedSafeAreaView = Animated.createAnimatedComponent(SafeAreaView);
-  const [color, setColor] = useState(new Animated.Value(3));
+  const [color, setColor] = useState(new Animated.Value(0));
   const [angle, setAngle] = useState(new Animated.Value(3));
+  const colorsBG = ['#EDE9E9','#FFD7D7','#FFEBD7','#FFFFE0','#EBFFD7','#D7FFD7'];
+  const colors = ['#6D828F','#F07575','#F0B275','#F0F060','#B2F075','#75F075'];
   const text = ['','Angry','Sad','Indifferent','Happy','Excited'];
   const imgSize = 15;
   const imgAttributes = {['stroke']: '#000', ['strokeWidth']: 5,['scale']: imgSize/100, ['x']: -35.7, ['y']: -31.6, ['origin']: '50, 50'};
 
   const backgroundStyle = {
     backgroundColor: color.interpolate({
-      inputRange: [1,2,3,4,5],
-      outputRange: ['#FFD7D7','#FFEBD7','#FFFFE0','#EBFFD7','#D7FFD7']
+      inputRange: (prev<value)? [prev,value] : [value,prev],
+      outputRange: (prev<value)? [colorsBG[prev],colorsBG[value]] : [colorsBG[value],colorsBG[prev]]
     }),
   };
 
@@ -41,31 +44,35 @@ const EmotionScreen = ({ navigation }) => {
   };
 
   const textStyle = {
-    color: color.interpolate({
-      inputRange: [1,2,3,4,5],
-      outputRange: ['#F07575','#F0B275','#F0F060','#B2F075','#75F075']
+    color: (prev == 0)? colors[value] : color.interpolate({
+      inputRange: (prev<value)? [prev,value] : [value,prev],
+      outputRange: (prev<value)? [colors[prev],colors[value]] : [colors[value],colors[prev]]
     }),
-    opacity: 1,
+    opacity: (prev != 0)? 1 : color.interpolate({
+      inputRange: [0,value],
+      outputRange: [0,1]
+    }),
   };
 
   const handle = (number) => {
+    setValue(number);
     Animated.parallel([
       Animated.timing(angle,{
         toValue: number,
-        duration: 600,
+        duration: 700,
         useNativeDriver: true,
       }),
       Animated.timing(color,{
         toValue: number,
-        duration: 600,
+        duration: 1000,
         useNativeDriver: false,
       })
     ]).start(); 
-    setValue(number);
+    setPrev(value);
   };
 
   return (
-    <AnimatedSafeAreaView style={[styles.root, value? backgroundStyle: {backgroundColor:"#EDE9E9"}]}>
+    <AnimatedSafeAreaView style={[styles.root, backgroundStyle]}>
       <View style={styles.header}>
         <View style={{width: 100}}><CustomButton text= "<" onPress={() => navigation.navigate('Dashboard')} type="blackBackButton"/></View>
         <Image source={Logo} style={styles.logo} resizeMode="cover" />
@@ -81,7 +88,7 @@ const EmotionScreen = ({ navigation }) => {
       <Svg height={size/2+size/20} width={size} style={styles.slider}>
         <G scale={size/100} y="20" origin="0, -20">
           <G onPress={() => handle(1)} rotation="0" origin="50, 30">
-            <Path fill="#F07575" d="m25,30h-25c0,-11,3.5,-21.2,9.5,-29.4l20.3,14.7c-3,4.1,-4.8,9.2,-4.8,14.7z"/>
+            <Path fill= {colors[1]} d="m25,30h-25c0,-11,3.5,-21.2,9.5,-29.4l20.3,14.7c-3,4.1,-4.8,9.2,-4.8,14.7z"/>
             <G rotation="0" {...imgAttributes}>
               <Circle cx="50" cy="50" r="50"/>
               <Path d="m23.7 33.2l16.6 8-17.2 7.2"/>
@@ -90,7 +97,7 @@ const EmotionScreen = ({ navigation }) => {
             </G>
           </G>
           <G onPress={() => handle(2)} rotation="36" origin="50, 30">
-            <Path fill="#F0B275" d="m25,30h-25c0,-11,3.5,-21.2,9.5,-29.4l20.3,14.7c-3,4.1,-4.8,9.2,-4.8,14.7z"/>
+            <Path fill= {colors[2]} d="m25,30h-25c0,-11,3.5,-21.2,9.5,-29.4l20.3,14.7c-3,4.1,-4.8,9.2,-4.8,14.7z"/>
             <G rotation="-36" {...imgAttributes}>
               <Circle cx="50" cy="50" r="50"/>
               <Circle cx="34" cy="43" r="4" fill="#000"/>
@@ -99,7 +106,7 @@ const EmotionScreen = ({ navigation }) => {
             </G>
           </G>
           <G onPress={() => handle(3)} rotation="72" origin="50, 30">
-            <Path fill="#F0F060" d="m25,30h-25c0,-11,3.5,-21.2,9.5,-29.4l20.3,14.7c-3,4.1,-4.8,9.2,-4.8,14.7z"/>
+            <Path fill= {colors[3]} d="m25,30h-25c0,-11,3.5,-21.2,9.5,-29.4l20.3,14.7c-3,4.1,-4.8,9.2,-4.8,14.7z"/>
             <G rotation="-72" {...imgAttributes}>
               <Circle cx="50" cy="50" r="50"/>
               <Circle cx="34" cy="43" r="4" fill="#000"/>
@@ -108,7 +115,7 @@ const EmotionScreen = ({ navigation }) => {
             </G>
           </G>
           <G onPress={() => handle(4)} rotation="108" origin="50, 30">
-            <Path fill="#B2F075" d="m25,30h-25c0,-11,3.5,-21.2,9.5,-29.4l20.3,14.7c-3,4.1,-4.8,9.2,-4.8,14.7z"/>
+            <Path fill= {colors[4]} d="m25,30h-25c0,-11,3.5,-21.2,9.5,-29.4l20.3,14.7c-3,4.1,-4.8,9.2,-4.8,14.7z"/>
             <G rotation="-108" {...imgAttributes}>
               <Circle cx="50" cy="50" r="50"/>
               <Circle cx="34" cy="43" r="4" fill="#000"/>
@@ -117,7 +124,7 @@ const EmotionScreen = ({ navigation }) => {
             </G>
           </G>
           <G onPress={() => handle(5)} rotation="144" origin="50, 30">
-            <Path fill="#75F075" d="m25,30h-25c0,-11,3.5,-21.2,9.5,-29.4l20.3,14.7c-3,4.1,-4.8,9.2,-4.8,14.7z"/>
+            <Path fill= {colors[5]} d="m25,30h-25c0,-11,3.5,-21.2,9.5,-29.4l20.3,14.7c-3,4.1,-4.8,9.2,-4.8,14.7z"/>
             <G rotation="-144" {...imgAttributes}>
               <Circle cx="50" cy="50" r="50"/>
               <Path d="m23.7 33.2l16.6 8-17.2 7.2"/>
@@ -126,13 +133,13 @@ const EmotionScreen = ({ navigation }) => {
             </G>
           </G>
           <AnimatedG style={rotationStyle}>
-            <Polygon fill="#6D828F" points="50,35 50,25 20,30" rotation="90" origin="50, 30"/>
-            <Circle fill="#6D828F" cx="50" cy="30" r="5"/>
+            <Polygon fill= {colors[0]} points="50,35 50,25 20,30" rotation="90" origin="50, 30"/>
+            <Circle fill= {colors[0]} cx="50" cy="30" r="5"/>
           </AnimatedG>
         </G>
       </Svg>
 
-      <Animated.Text style={[styles.text, value? textStyle:{opacity: 0}]}>{text[value]}</Animated.Text>
+      <Animated.Text style={[styles.text, textStyle]}>{text[value]}</Animated.Text>
 
       <View style={styles.button}>
         <CustomButton text= "Continue" onPress={() => navigation.navigate('InControl')} type="SECONDARY"/>
