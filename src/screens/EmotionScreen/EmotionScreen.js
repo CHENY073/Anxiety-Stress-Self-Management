@@ -18,7 +18,7 @@ const EmotionScreen = ({ navigation }) => {
   const [color, setColor] = useState(new Animated.Value(0));
   const [angle, setAngle] = useState(new Animated.Value(3));
   const colorsBG = ['#EDE9E9','#FFD7D7','#FFEBD7','#FFFFE0','#EBFFD7','#D7FFD7'];
-  const colors = ['#6D828F','#F07575','#F0B275','#F0F060','#B2F075','#75F075'];
+  const colors = ['#6D828F','#F07575','#F0B275','#E8E850','#B2F075','#75F075'];
   const text = ['','Angry','Sad','Indifferent','Happy','Excited'];
   const imgSize = 15;
   const imgAttributes = {['stroke']: '#000', ['strokeWidth']: 5,['scale']: imgSize/100, ['x']: -35.7, ['y']: -31.6, ['origin']: '50, 50'};
