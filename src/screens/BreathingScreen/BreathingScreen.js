@@ -18,7 +18,7 @@ const BreathingScreen = ({ navigation }) => {
   const handlePress = () => {
     if(!music) Alert.alert('Please pick a music choice');
     else if(!cycle) Alert.alert('Please select the number of cycles');
-    else navigation.navigate('Timer');
+    else navigation.navigate('Timer', {music: music, cycle: cycle});
   };
 
   return (

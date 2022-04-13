@@ -7,46 +7,78 @@ import Logo from '../../../assets/images/Logo.png';
 import Volume from '../../../assets/images/Volume.png';
 import SignInBackground from '../../../assets/gif/SignInBackGround.gif';
 
-const TimerScreen = ({ navigation }) => {
+const TimerScreen = ({ route, navigation }) => {
+  const [timer, setTimer] = useState(0);
+
   const window = useWindowDimensions();
   const size = window.width-100;
 
-  const AnimatedCircle = Animated.createAnimatedComponent(Circle);
-  const [posX, setPosX] = useState(new Animated.Value(12));
-  const [posY, setPosY] = useState(new Animated.Value(232));
+  const {music, cycle} = route.params;
 
-  const handle = () => {
+  const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+  const [pos, setPos] = useState(new Animated.ValueXY(0,0));
+
+  const min = Math.floor(timer/60);
+  const sec = timer%60 < 10? '0' + (timer%60).toString(): timer%60;
+  const stage = Math.ceil(timer/5)%4;
+  const text = ['Breathe In','Hold','Breathe Out','Hold'];
+
+  const posX = pos.x.interpolate({
+    inputRange: [0,1],
+    outputRange: [12,232]
+  });
+  const posY = pos.y.interpolate({
+    inputRange: [0,1],
+    outputRange: [232,12]
+  });
+
+  const animation = () => {
     Animated.loop(
       Animated.sequence([
-        Animated.timing(posY,{
-          toValue: 12,
+        Animated.timing(pos.y,{
+          toValue: 1,
           duration: 5000,
           useNativeDriver: true,
         }),
-        Animated.timing(posX,{
-          toValue: 232,
+        Animated.timing(pos.x,{
+          toValue: 1,
           duration: 5000,
           useNativeDriver: true,
         }),
-        Animated.timing(posY,{
-          toValue: 232,
+        Animated.timing(pos.y,{
+          toValue: 0,
           duration: 5000,
           useNativeDriver: true,
         }),
-        Animated.timing(posX,{
-          toValue: 12,
+        Animated.timing(pos.x,{
+          toValue: 0,
           duration: 5000,
           useNativeDriver: true,
         }),
       ]),
-      {iterations: 1},
+      {iterations: cycle},
     ).start();
   };
 
   useEffect(() => {
-    setPosX(12);
-    setPosY(232);
-    handle();
+    pos.x.resetAnimation();
+    pos.y.resetAnimation();
+    animation();
+    setTimer(20*cycle);
+    var counter = 0;
+    var countdown = setInterval(() => {
+      setTimer(lastTimer => {
+        lastTimer <= 1 && clearInterval(countdown)
+        return lastTimer - 1
+      });
+      counter++;
+      if(counter == 20*cycle){
+        clearInterval(countdown);
+        pos.stopAnimation();
+        navigation.navigate('Dashboard');
+      }
+    }, 1000);
+    return () => clearInterval(countdown)
   },[]);
 
   return (
@@ -60,7 +92,7 @@ const TimerScreen = ({ navigation }) => {
         </View>
 
         <Text style = {styles.timer}>
-          00:00
+          {min}:{sec}
         </Text>
 
         <View style={styles.container}>
@@ -76,10 +108,9 @@ const TimerScreen = ({ navigation }) => {
             </G>
           </Svg>
           <Animated.Text style={styles.text}>
-            TEst
+            {text[stage]}
           </Animated.Text>
         </View>
-        <CustomButton text= "Start" onPress={() => handle()} type="SECONDARY"/>
       </ImageBackground>
     </SafeAreaView>
   );
