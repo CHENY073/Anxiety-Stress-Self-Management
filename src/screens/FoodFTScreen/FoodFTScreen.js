@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+ import React, {useState} from 'react';
 import {View, SafeAreaView, Text, Image, StyleSheet, useWindowDimensions, Alert} from 'react-native';
 
 import CustomButton from '../../components/CustomButton';
@@ -6,24 +6,28 @@ import CustomSelect from '../../components/CustomSelect';
 import Logo from '../../../assets/images/Logo.png';
 import Volume from '../../../assets/images/Volume.png';
 
-const ReasonsScreen = ({ navigation }) => {
-  const [reasons, setReasons] = useState([]);
+const BreathingScreen = ({ navigation }) => {
+  const [what, setWhat] = useState(null);
+  const [who, setWho] = useState(null);
+  const [where, setWhere] = useState(null);
+  const [when, setWhen] = useState(null);
+  const [why, setWhy] = useState(null);
 
   const window = useWindowDimensions();
 
-  const stressor = 'work';
-
-  const data = {
-    'work': ['Colleagues','Boss','Employees','Work Load','Culture','Toxic environment','Communication','Decision Making','Time Management','Dealing with Change'],
-    'home': ['Partner','Family','In laws','Children','Financial','Domestic duties','Sickness'],
-    'school': ['Homework','Making new friends','Exam pressure','Performance','Organization','Time management','Work/financial','Bullying'],
-    'social': ['Social Media','Bullying','Isolation','Traffic','Friends dispute','Sports performance','Organization','Climate Change','Economic Situation','War','Pandemic'],
-    '': [],
-  };
+  const whatData = [];
+  const whoData = [];
+  const whereData = [];
+  const whenData = [];
+  const whyData = [];
 
   const handlePress = () => {
-    if(reasons.length < 1) Alert.alert('Please pick a reason');
-    else navigation.navigate('FoodFT');
+    if(!what) Alert.alert('Please pick a what question');
+    else if(!who) Alert.alert('Please pick a who question');
+    else if(!where) Alert.alert('Please pick a where question');
+    else if(!when) Alert.alert('Please pick a when question');
+    else if(!why) Alert.alert('Please pick a why question');
+    else navigation.navigate('dashboard');
   };
 
   return (
@@ -35,13 +39,24 @@ const ReasonsScreen = ({ navigation }) => {
       </View>
 
       <Text style = {styles.title}>
-        What are your stressors at {stressor}?
+        Food for thought
       </Text>
 
-      <CustomSelect data={data[stressor]} onSelect={(value) => setReasons(value)} type="SECONDARY"/>
+      <View style = {styles.containter}>
+        <Text style = {styles.label}>What</Text>
+
+        <Text style = {styles.label}>Who</Text>
+
+        <Text style = {styles.label}>When</Text>
+
+        <Text style = {styles.label}>Where</Text>
+
+        <Text style = {styles.label}>Why</Text>
+
+      </View>
 
       <View style={styles.button}>
-        <CustomButton text= "Continue" onPress={() => handlePress()} type="SECONDARY"/>
+        <CustomButton text= "Submit" onPress={() => handlePress()} type="SECONDARY"/>
       </View>
     </SafeAreaView>
   );
@@ -70,12 +85,21 @@ const styles = StyleSheet.create({
     margin: 20,
     alignSelf: 'flex-end',
   },
+  containter: {
+    width: '80%',
+  },
   title: {
     fontSize: 36,
     fontWeight: 'bold',
     color: '#000000',
-    marginVertical: 5,
+    marginVertical: 15,
     textAlign: 'center',
+  },
+  label: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#736468',
+    marginVertical: 5,
   },
   button:{
     flex: 1,
@@ -84,4 +108,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ReasonsScreen;
+export default BreathingScreen;
