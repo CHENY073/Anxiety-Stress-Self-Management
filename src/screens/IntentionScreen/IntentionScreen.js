@@ -6,10 +6,10 @@ import CustomButton from '../../components/CustomButton';
 import Logo from '../../../assets/images/Logo.png';
 import Volume from '../../../assets/images/Volume.png';
 
-const EmotionScreen = ({ navigation }) => {
+const IntentionScreen = ({ navigation }) => {
   const [value, setValue] = useState(0);
   const [prev, setPrev] = useState(0);
-  
+
   const window = useWindowDimensions();
   const size = window.width-40;
 
@@ -19,9 +19,6 @@ const EmotionScreen = ({ navigation }) => {
   const [angle, setAngle] = useState(new Animated.Value(3));
   const colorsBG = ['#EDE9E9','#FFD7D7','#FFEBD7','#FFFFE0','#EBFFD7','#D7FFD7'];
   const colors = ['#6D828F','#F07575','#F0B275','#E8E850','#B2F075','#75F075'];
-  const text = ['','Angry','Sad','Indifferent','Happy','Excited'];
-  const imgSize = 15;
-  const imgAttributes = {['stroke']: '#000', ['strokeWidth']: 5,['scale']: imgSize/100, ['x']: -35.7, ['y']: -31.6, ['origin']: '50, 50'};
 
   const backgroundStyle = {
     backgroundColor: color.interpolate({
@@ -74,63 +71,33 @@ const EmotionScreen = ({ navigation }) => {
   return (
     <AnimatedSafeAreaView style={[styles.root, backgroundStyle]}>
       <View style={styles.header}>
-        <View style={{width: 100}}><CustomButton text= "<" onPress={() => navigation.navigate('Dashboard')} type="blackBackButton"/></View>
+        <View style={{width: 100}}><CustomButton text= "<" onPress={() => navigation.navigate('Emotion')} type="blackBackButton"/></View>
         <Image source={Logo} style={styles.logo} resizeMode="cover" />
         <View style={{width: 100}}><Image source={Volume} style={styles.volume} resizeMode="cover" /></View>
       </View>
 
       <Text style = {styles.title}>
-        Hi [Name],
+        Intention
         {"\n"}
-        What’s your mood?
+        to change
       </Text>
-      
+
       <Svg height={size/2+size/20} width={size} style={styles.slider}>
         <G scale={size/100} y="20" origin="0, -20">
           <G onPress={() => handle(1)} rotation="0" origin="50, 30">
             <Path fill= {colors[1]} d="m25,30h-25c0,-11,3.5,-21.2,9.5,-29.4l20.3,14.7c-3,4.1,-4.8,9.2,-4.8,14.7z"/>
-            <G rotation="0" {...imgAttributes}>
-              <Circle cx="50" cy="50" r="50"/>
-              <Path d="m23.7 33.2l16.6 8-17.2 7.2"/>
-              <Path d="m76.3 48.4l-17.2-7.2 16.6-8"/>
-              <Path d="m26 73.8h48c0 0-23.7-40-48 0z"/>
-            </G>
           </G>
           <G onPress={() => handle(2)} rotation="36" origin="50, 30">
             <Path fill= {colors[2]} d="m25,30h-25c0,-11,3.5,-21.2,9.5,-29.4l20.3,14.7c-3,4.1,-4.8,9.2,-4.8,14.7z"/>
-            <G rotation="-36" {...imgAttributes}>
-              <Circle cx="50" cy="50" r="50"/>
-              <Circle cx="34" cy="43" r="4" fill="#000"/>
-              <Circle cx="66" cy="43" r="4" fill="#000"/>
-              <Path d="m26.6 72.8c0 0 21.4-30 46.7 0" strokeLinecap='round'/>
-            </G>
           </G>
           <G onPress={() => handle(3)} rotation="72" origin="50, 30">
             <Path fill= {colors[3]} d="m25,30h-25c0,-11,3.5,-21.2,9.5,-29.4l20.3,14.7c-3,4.1,-4.8,9.2,-4.8,14.7z"/>
-            <G rotation="-72" {...imgAttributes}>
-              <Circle cx="50" cy="50" r="50"/>
-              <Circle cx="34" cy="43" r="4" fill="#000"/>
-              <Circle cx="66" cy="43" r="4" fill="#000"/>
-              <Path d="m33 68h33.6" strokeLinecap='round'/>
-            </G>
           </G>
           <G onPress={() => handle(4)} rotation="108" origin="50, 30">
             <Path fill= {colors[4]} d="m25,30h-25c0,-11,3.5,-21.2,9.5,-29.4l20.3,14.7c-3,4.1,-4.8,9.2,-4.8,14.7z"/>
-            <G rotation="-108" {...imgAttributes}>
-              <Circle cx="50" cy="50" r="50"/>
-              <Circle cx="34" cy="43" r="4" fill="#000"/>
-              <Circle cx="66" cy="43" r="4" fill="#000"/>
-              <Path d="m26.6 63.5c0 0 21.4 30 46.7 0" strokeLinecap='round'/>
-            </G>
           </G>
           <G onPress={() => handle(5)} rotation="144" origin="50, 30">
             <Path fill= {colors[5]} d="m25,30h-25c0,-11,3.5,-21.2,9.5,-29.4l20.3,14.7c-3,4.1,-4.8,9.2,-4.8,14.7z"/>
-            <G rotation="-144" {...imgAttributes}>
-              <Circle cx="50" cy="50" r="50"/>
-              <Path d="m23.7 33.2l16.6 8-17.2 7.2"/>
-              <Path d="m76.3 48.4l-17.2-7.2 16.6-8"/>
-              <Path d="m26 60h48c0 0-23.7 40-48 0z"/>
-            </G>
           </G>
           <AnimatedG style={rotationStyle}>
             <Polygon fill= {colors[0]} points="50,35 50,25 20,30" rotation="90" origin="50, 30"/>
@@ -139,10 +106,10 @@ const EmotionScreen = ({ navigation }) => {
         </G>
       </Svg>
 
-      <Animated.Text style={[styles.text, textStyle]}>{text[value]}</Animated.Text>
+      <Animated.Text style={[styles.text, textStyle]}>{value}</Animated.Text>
 
       <View style={styles.button}>
-        <CustomButton text= "Continue" onPress={() => navigation.navigate('InControl')} type="SECONDARY"/>
+        <CustomButton text= "Continue" onPress={() => navigation.navigate('Dashboard')} type="SECONDARY"/>
       </View>
     </AnimatedSafeAreaView>
   );
@@ -171,7 +138,7 @@ const styles = StyleSheet.create({
     margin: 20,
     alignSelf: 'flex-end',
   },
-  title:{
+  title : {
     fontSize: 36,
     fontWeight: 'bold',
     color: '#000000',
@@ -189,8 +156,8 @@ const styles = StyleSheet.create({
   button:{
     flex: 1,
     flexDirection: "column-reverse",
-    paddingBottom: 30,
+    paddingBottom: 10,
   },
 });
 
-export default EmotionScreen;
+export default IntentionScreen;

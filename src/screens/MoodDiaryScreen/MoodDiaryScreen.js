@@ -9,18 +9,13 @@ const MoodDiaryScreen = ({ navigation }) => {
 
   return (
     <View style={styles.root}>
-      
-        <CustomButton text= "≡" onPress={() => navigation.navigate('Dashboard')} type="dropButton"/>
+      <View style={styles.header}>
+        <View style={styles.button}><CustomButton text= "≡" onPress={() => navigation.navigate('Dashboard')} type="dropButton"/></View>
         <Text style={styles.title}>
-        Mood Diary
-      </Text>
-        <Text>
-          {"\n"}{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}
-          Not sure what goes
-          
+          Mood Diary
         </Text>
-        
-        
+      </View>
+      <CustomButton text= "Slider" onPress={() => navigation.navigate('Emotion')} type="PRIMARY"/>
     </View>
   );
 };
@@ -30,12 +25,21 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
+  header: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 30,
+  },
+  button: {
+    position: 'absolute',
+    left: 0,
+  },
   title: {
     fontSize: 34,
-    alignSelf: 'center',
     fontWeight: 'bold',
     color: 'black',
-    marginVertical: -75
   },
   
 });
