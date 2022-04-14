@@ -10,18 +10,13 @@ const ExercisesScreen = ({ navigation }) => {
 
   return (
     <View style={styles.root}>
-      
-        <CustomButton text= "≡" onPress={() => navigation.navigate('Dashboard')} type="dropButton"/>
+      <View style={styles.header}>
+        <View style={styles.button}><CustomButton text= "≡" onPress={() => navigation.navigate('Dashboard')} type="dropButton"/></View>
         <Text style={styles.title}>
-        Exercises
-      </Text>
-        <Text>
-          {"\n"}{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}
-          Not sure what goes
-          
+          Exercises
         </Text>
-        
-        
+      </View>
+      <CustomButton text= "Breathing" onPress={() => navigation.navigate('Breathing')} type="PRIMARY"/>
     </View>
   );
 };
@@ -31,12 +26,21 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
+  header: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 30,
+  },
+  button: {
+    position: 'absolute',
+    left: 0,
+  },
   title: {
     fontSize: 34,
-    alignSelf: 'center',
     fontWeight: 'bold',
     color: 'black',
-    marginVertical: -75
   },
   
 });
