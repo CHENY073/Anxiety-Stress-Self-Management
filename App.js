@@ -55,10 +55,10 @@ const app = () => {
         <Stack.Screen options ={{headerShown: false}} name="Emotion" component={EmotionScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="InControl" component={InControlScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Intention" component={IntentionScreen}/>
-        <Stack.Screen options ={{headerShown: false}} name="Breathing" component={BreathingScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Breathing" component={BreathingScreen} initialParams={{music: '', cycle: 1}}/>
         <Stack.Screen options ={{headerShown: false}} name="Timer" component={TimerScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Reasons" component={ReasonsScreen}/>
-        <Stack.Screen options ={{headerShown: false}} name="FoodFT" component={FoodFTScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="FoodFT" component={FoodFTScreen} initialParams={{back: 'Dashboard'}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
