@@ -75,7 +75,7 @@ const TimerScreen = ({ route, navigation }) => {
       if(counter == 20*cycle){
         clearInterval(countdown);
         pos.stopAnimation();
-        navigation.navigate('Dashboard');
+        navigation.navigate('FoodFT', {back: 'Breathing'});
       }
     }, 1000);
     return () => clearInterval(countdown)
