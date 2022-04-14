@@ -25,7 +25,7 @@ const DashboardScreen = ({ navigation }) => {
         </Text>
         
         <CustomButton text= "Exercises" onPress={() => navigation.navigate('Exercises')} type="exercisesButton"/>
-        <CustomButton text= "Test" onPress={() => navigation.navigate('Breathing')} type="PRIMARY"/>
+        <CustomButton text= "Test" onPress={() => navigation.navigate('Reasons')} type="PRIMARY"/>
     </View>
   );
 };

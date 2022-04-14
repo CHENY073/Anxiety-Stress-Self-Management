@@ -28,6 +28,8 @@ import InControlScreen from './src/screens/InControlScreen';
 import IntentionScreen from './src/screens/IntentionScreen';
 import BreathingScreen from './src/screens/BreathingScreen';
 import TimerScreen from './src/screens/TimerScreen';
+import ReasonsScreen from './src/screens/ReasonsScreen';
+import FoodFTScreen from './src/screens/FoodFTScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -55,6 +57,8 @@ const app = () => {
         <Stack.Screen options ={{headerShown: false}} name="Intention" component={IntentionScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Breathing" component={BreathingScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Timer" component={TimerScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Reasons" component={ReasonsScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="FoodFT" component={FoodFTScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
