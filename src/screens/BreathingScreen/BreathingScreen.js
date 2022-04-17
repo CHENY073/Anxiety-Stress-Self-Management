@@ -16,21 +16,47 @@ const BreathingScreen = ({ navigation }) => {
 
   const window = useWindowDimensions();
 
-  const musicData = ['ex1','ex2','ex3','ex4','ex5'];
+  const musicData = ['Rain','Waves','Fire','ex4','ex5'];
   const cycleData = ['1','2','3','5','10'];
 
   Sound.setCategory('Playback');
-  var gentle_rain_sleep = new Sound('gentle_rain_sleep.mp3', Sound.MAIN_BUNDLE, (error) => {
+  var gentle_waves= new Sound('gentle_waves_sleep.mp3', Sound.MAIN_BUNDLE, (error) => {
     if (error) {
       console.log('failed to load the sound', error);
       return;
     }
     // loaded successfully
-    console.log('duration in seconds: ' + gentle_rain_sleep.getDuration() + 'number of channels: ' + gentle_rain_sleep.getNumberOfChannels());
+    console.log('duration in seconds: ' + gentle_waves.getDuration() + 'number of channels: ' + gentle_waves.getNumberOfChannels());
   
     // Play the sound with an onEnd callback
     
   });
+  Sound.setCategory('Playback');
+  var gentle_rain= new Sound('gentle_rain_sleep.mp3', Sound.MAIN_BUNDLE, (error) => {
+    if (error) {
+      console.log('failed to load the sound', error);
+      return;
+    }
+    // loaded successfully
+    console.log('duration in seconds: ' + gentle_rain.getDuration() + 'number of channels: ' + gentle_rain.getNumberOfChannels());
+  
+    // Play the sound with an onEnd callback
+    
+  });
+  Sound.setCategory('Playback');
+  var gentle_fire= new Sound('gentle_fire.mp3', Sound.MAIN_BUNDLE, (error) => {
+    if (error) {
+      console.log('failed to load the sound', error);
+      return;
+    }
+    // loaded successfully
+    console.log('duration in seconds: ' + gentle_fire.getDuration() + 'number of channels: ' + gentle_fire.getNumberOfChannels());
+  
+    // Play the sound with an onEnd callback
+    
+  });
+  
+  
   
   
 
@@ -39,15 +65,39 @@ const BreathingScreen = ({ navigation }) => {
     else if(!cycle) Alert.alert('Please select the number of cycles');
     else {
       navigation.navigate('Timer', {music: music, cycle: cycle});
-      gentle_rain_sleep.play((success) => {
-        if (success) {
-          console.log('successfully finished playing');
-        } else {
-          console.log('playback failed due to audio decoding errors');
-        }
-      });
-  
-    };
+      if(music =='Waves'){
+        gentle_waves.play((success) => {
+          if (success) {
+            console.log('successfully finished playing');
+          } else {
+            console.log('playback failed due to audio decoding errors');
+          }
+        });
+    
+      }else if(music=='Rain'){
+        gentle_rain.play((success) => {
+          if (success) {
+            console.log('successfully finished playing');
+          } else {
+            console.log('playback failed due to audio decoding errors');
+          }
+        });
+
+
+      }else if(music=='Fire'){
+        gentle_fire.play((success) => {
+          if (success) {
+            console.log('successfully finished playing');
+          } else {
+            console.log('playback failed due to audio decoding errors');
+          }
+        });
+
+
+      }
+
+      }
+     
 
     }
 
