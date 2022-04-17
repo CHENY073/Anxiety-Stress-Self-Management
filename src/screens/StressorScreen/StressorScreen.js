@@ -20,8 +20,13 @@ const StressorScreen = ({ navigation }) => {
         Stressor of the day
       </Text>
 
-      <View style={styles.button}>
-        <CustomButton text= "Continue" onPress={() => navigation.navigate('Reasons')} type="SECONDARY"/>
+      <View style={styles.row}>
+        <CustomButton text= "Home" onPress={() => navigation.navigate('Reasons')} type="STRESSOR"/>
+        <CustomButton text= "Work" onPress={() => navigation.navigate('Reasons')} type="STRESSOR"/>
+      </View>
+      <View style={styles.row}>
+        <CustomButton text= "School" onPress={() => navigation.navigate('Reasons')} type="STRESSOR"/>
+        <CustomButton text= "Social Setting" onPress={() => navigation.navigate('Reasons')} type="STRESSOR"/>
       </View>
     </SafeAreaView>
   );
@@ -54,13 +59,14 @@ const styles = StyleSheet.create({
     fontSize: 36,
     fontWeight: 'bold',
     color: '#000000',
-    marginVertical: 5,
+    marginVertical: 25,
     textAlign: 'center',
   },
-  button:{
-    flex: 1,
-    flexDirection: "column-reverse",
-    paddingBottom: 10,
+  row:{
+    width: '100%',
+    marginVertical: 15,
+    flexDirection: "row",
+    justifyContent: 'space-around',
   },
 });
 

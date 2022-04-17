@@ -20,9 +20,9 @@ const ChoiceScreen = ({ navigation }) => {
         What would you like to do?
       </Text>
 
-      <View style={styles.button}>
-        <CustomButton text= "Continue" onPress={() => navigation.navigate('Stressor')} type="SECONDARY"/>
-      </View>
+      <CustomButton text= "Daily Stressors" onPress={() => navigation.navigate('Stressor')} type="CHOICE"/>
+      <CustomButton text= "Immediate Exercises" onPress={() => navigation.navigate('Breathing')} type="CHOICE"/>
+
     </SafeAreaView>
   );
 };
