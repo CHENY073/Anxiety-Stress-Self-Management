@@ -30,6 +30,8 @@ import BreathingScreen from './src/screens/BreathingScreen';
 import TimerScreen from './src/screens/TimerScreen';
 import ReasonsScreen from './src/screens/ReasonsScreen';
 import FoodFTScreen from './src/screens/FoodFTScreen';
+import ChoiceScreen from './src/screens/ChoiceScreen';
+import StressorScreen from './src/screens/StressorScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -59,6 +61,8 @@ const app = () => {
         <Stack.Screen options ={{headerShown: false}} name="Timer" component={TimerScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Reasons" component={ReasonsScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="FoodFT" component={FoodFTScreen} initialParams={{back: 'Dashboard'}}/>
+        <Stack.Screen options ={{headerShown: false}} name="Choice" component={ChoiceScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Stressor" component={StressorScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

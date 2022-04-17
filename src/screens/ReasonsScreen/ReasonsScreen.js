@@ -29,7 +29,7 @@ const ReasonsScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={[styles.root]}>
       <View style={styles.header}>
-        <View style={{width: 100}}><CustomButton text= "<" onPress={() => navigation.navigate('Dashboard')} type="blackBackButton"/></View>
+        <View style={{width: 100}}><CustomButton text= "<" onPress={() => navigation.navigate('Stressor')} type="blackBackButton"/></View>
         <Image source={Logo} style={styles.logo} resizeMode="cover" />
         <View style={{width: 100}}><Image source={Volume} style={styles.volume} resizeMode="cover" /></View>
       </View>
