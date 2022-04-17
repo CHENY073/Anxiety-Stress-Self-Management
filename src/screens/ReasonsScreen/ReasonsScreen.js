@@ -23,13 +23,13 @@ const ReasonsScreen = ({ route, navigation }) => {
 
   const handlePress = () => {
     if(reasons.length < 1) Alert.alert('Please pick a reason');
-    else navigation.navigate('FoodFT', {back: 'Reasons'});
+    else navigation.navigate('FoodFT');
   };
 
   return (
     <SafeAreaView style={[styles.root]}>
       <View style={styles.header}>
-        <View style={{width: 100}}><CustomButton text= "<" onPress={() => navigation.navigate('Stressor')} type="blackBackButton"/></View>
+        <View style={{width: 100}}><CustomButton text= "<" onPress={() => navigation.goBack()} type="blackBackButton"/></View>
         <Image source={Logo} style={styles.logo} resizeMode="cover" />
         <View style={{width: 100}}><Image source={Volume} style={styles.volume} resizeMode="cover" /></View>
       </View>

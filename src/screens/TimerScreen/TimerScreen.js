@@ -75,7 +75,7 @@ const TimerScreen = ({ route, navigation }) => {
       if(counter == 20*cycle){
         clearInterval(countdown);
         pos.stopAnimation();
-        navigation.navigate('FoodFT', {back: 'Breathing'});
+        navigation.navigate('FoodFT');
       }
     }, 1000);
     return () => clearInterval(countdown)
@@ -86,7 +86,7 @@ const TimerScreen = ({ route, navigation }) => {
       <ImageBackground source={SignInBackground} style={styles.background}>
         <View style={styles.overlay} />
         <View style={styles.header}>
-          <View style={{width: 100}}><CustomButton text= "<" onPress={() => navigation.navigate('Breathing')} type="blackBackButton"/></View>
+          <View style={{width: 100}}><CustomButton text= "<" onPress={() => navigation.goBack()} type="blackBackButton"/></View>
           <Image source={Logo} style={styles.logo} resizeMode="cover" />
           <View style={{width: 100}}><Image source={Volume} style={styles.volume} resizeMode="cover" /></View>
         </View>
