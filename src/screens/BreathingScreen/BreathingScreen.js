@@ -75,11 +75,13 @@ const BreathingScreen = ({ navigation }) => {
       return;
     }
     // loaded successfully
-    console.log('duration in seconds: ' + med_sleep.getDuration() + 'number of channels: ' + med_sleep.getNumberOfChannels() + "number of loops" + med_sleep.getNumberOfLoops());
+    console.log('duration in seconds: ' + med_sleep.getDuration() + 'number of channels: ' + med_sleep.getNumberOfChannels() + "number of loops" + med_sleep.getNumberOfLoops(1));
   
     // Play the sound with an onEnd callback
     
   });
+
+  
 
 
 
@@ -92,63 +94,164 @@ const BreathingScreen = ({ navigation }) => {
     else if(!cycle) Alert.alert('Please select the number of cycles');
     else {
       navigation.navigate('Timer', {music: music, cycle: cycle});
-      if(music =='Waves'){
+
+
+      if(music=='Waves'){
+        
         gentle_waves.play((success) => {
-          if (success) {
-            console.log('successfully finished playing');
-          } else {
+          if (success&&cycle=='2') {
+            gentle_waves.play();
+          } else if(success&&cycle=='3'){
+            gentle_waves.play((success) =>{
+              if(success){
+                gentle_waves.play();
+              }
+            });
+
+          }else if(success&&cycle=='5'){
+            gentle_waves.play((success) =>{
+              if(success){
+                gentle_waves.play((success) =>{
+                  if(success){
+                    gentle_waves.play((success) =>{
+                      if(success){
+                        gentle_waves.play();
+                      }
+                    });
+                  }
+                });
+              }
+            });
+          }
+          else {
             console.log('playback failed due to audio decoding errors');
           }
         });
-    
-      }else if(music=='Rain'){
+     }else if(music=='Rain'){
+        
         gentle_rain.play((success) => {
-          if (success) {
-            console.log('successfully finished playing');
-          } else {
+          if (success&&cycle=='2') {
+            gentle_rain.play();
+          } else if(success&&cycle=='3'){
+            gentle_rain.play((success) =>{
+              if(success){
+                gentle_rain.play();
+              }
+            });
+
+          }else if(success&&cycle=='5'){
+            gentle_rain.play((success) =>{
+              if(success){
+                gentle_rain.play((success) =>{
+                  if(success){
+                    gentle_rain.play((success) =>{
+                      if(success){
+                        gentle_rain.play();
+                      }
+                    });
+                  }
+                });
+              }
+            });
+          }
+          else {
             console.log('playback failed due to audio decoding errors');
           }
         });
-
-
-      }else if(music=='Fire'){
+     }else if(music=='Fire'){
+        
         gentle_fire.play((success) => {
-          if (success) {
-            console.log('successfully finished playing');
-          } else {
+          
+          if (success&&cycle=='2') {
+            gentle_fire.play();
+          } else if(success&&cycle=='3'){
+            gentle_fire.play((success) =>{
+              if(success){
+                gentle_fire.play();
+              }
+            });
+
+          }else if(success&&cycle=='5'){
+            gentle_fire.play((success) =>{
+              if(success){
+                gentle_fire.play((success) =>{
+                  if(success){
+                    gentle_fire.play((success) =>{
+                      if(success){
+                        gentle_fire.play();
+                      }
+                    });
+                  }
+                });
+              }
+            });
+          }
+          else {
             console.log('playback failed due to audio decoding errors');
           }
         });
-
-
-      }else if(music=='Forest'){
+     }else if(music=='Forest'){ 
         gentle_rainforest.play((success) => {
-          if (success) {
-            console.log('successfully finished playing');
-          } else {
+          if (success&&cycle=='2') {
+            gentle_rainforest.play();
+          } else if(success&&cycle=='3'){
+            gentle_rainforest.play((success) =>{
+              if(success){
+                gentle_rainforest.play();
+              }
+            });
+          }else if(success&&cycle=='5'){
+            gentle_rainforest.play((success) =>{
+              if(success){
+                gentle_rainforest.play((success) =>{
+                  if(success){
+                    gentle_rainforest.play((success) =>{
+                      if(success){
+                        gentle_rainforest.play();
+                      }
+                    });
+                  }
+                });
+              }
+            });
+          }
+          else {
             console.log('playback failed due to audio decoding errors');
           }
         });
-
-
-      }else if(music=='Meditation'){
-        med_sleep.play((success) => {
-          if (success) {
-            console.log('successfully finished playing');
-          } else {
-            console.log('playback failed due to audio decoding errors');
-          }
-        });
-
-
-      }
-
+     }else if(music=='Meditation'){
+          med_sleep.play((success) => {
+            if (success&&cycle=='2') {
+              med_sleep.play();
+            } else if(success&&cycle=='3'){
+              med_sleep.play((success) =>{
+                if(success){
+                  med_sleep.play();
+                }
+              });
+            }else if(success&&cycle=='5'){
+              med_sleep.play((success) =>{
+                if(success){
+                  med_sleep.play((success) =>{
+                    if(success){
+                      med_sleep.play((success) =>{
+                        if(success){
+                          med_sleep.play();
+                        }
+                      });
+                    }
+                  });
+                }
+              });
+            }
+            else {
+              console.log('playback failed due to audio decoding errors');
+            }
+          });
+       }
       }
      
-
     }
-
-    
 
   return (
     <SafeAreaView style={[styles.root]}>
