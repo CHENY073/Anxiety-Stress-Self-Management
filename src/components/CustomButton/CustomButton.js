@@ -134,6 +134,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 25,
   },
+  container_CHOICE:{
+    backgroundColor: '#736468',
+    width: 300,
+    height: 100,
+    marginVertical: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 25,
+  },
+  container_STRESSOR:{
+    backgroundColor: '#BDB49D',
+    width: 150,
+    height: 150,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 25,
+  },
+
+  
   pressed_PRIMARY:{
     backgroundColor: '#D5D2D2',
   },
@@ -143,6 +162,8 @@ const styles = StyleSheet.create({
   pressed_GOOGLE:{
     backgroundColor: "#EEE",
   },
+
+
    text_PRIMARY:{
     fontWeight: 'bold',
     color: '#736468',
@@ -212,6 +233,17 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#D3473C',
     fontSize: 24,
+  },
+  text_CHOICE: {
+    fontWeight: 'bold',
+    color: 'white',
+    fontSize: 36,
+    textAlign: 'center',
+  },
+  text_STRESSOR: {
+    color: 'white',
+    fontSize: 36,
+    textAlign: 'center',
   },
 })
 

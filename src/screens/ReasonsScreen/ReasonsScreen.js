@@ -6,19 +6,24 @@ import CustomSelect from '../../components/CustomSelect';
 import Logo from '../../../assets/images/Logo.png';
 import Volume from '../../../assets/images/Volume.png';
 
-const BreathingScreen = ({ navigation }) => {
-  const [music, setMusic] = useState(null);
-  const [cycle, setCycle] = useState(null);
+const ReasonsScreen = ({ route, navigation }) => {
+  const [reasons, setReasons] = useState([]);
 
   const window = useWindowDimensions();
 
-  const musicData = ['ex1','ex2','ex3','ex4','ex5'];
-  const cycleData = ['1','2','3','5','10'];
+  const {stressor} = route.params;  
+
+  const data = {
+    'work': ['Colleagues','Boss','Employees','Work Load','Culture','Toxic environment','Communication','Decision Making','Time Management','Dealing with Change'],
+    'home': ['Partner','Family','In laws','Children','Financial','Domestic duties','Sickness'],
+    'school': ['Homework','Making new friends','Exam pressure','Performance','Organization','Time management','Work/financial','Bullying'],
+    'social': ['Social Media','Bullying','Isolation','Traffic','Friends dispute','Sports performance','Organization','Climate Change','Economic Situation','War','Pandemic'],
+    '': [],
+  };
 
   const handlePress = () => {
-    if(!music) Alert.alert('Please pick a music choice');
-    else if(!cycle) Alert.alert('Please select the number of cycles');
-    else navigation.navigate('Timer', {music: music, cycle: cycle});
+    if(reasons.length < 1) Alert.alert('Please pick a reason');
+    else navigation.navigate('FoodFT');
   };
 
   return (
@@ -30,19 +35,13 @@ const BreathingScreen = ({ navigation }) => {
       </View>
 
       <Text style = {styles.title}>
-        Music choice?
+        What are your stressors at {stressor}?
       </Text>
 
-      <CustomSelect radio={true} data={musicData} onSelect={(value) => setMusic(value)} type="PRIMARY"/>
-
-      <Text style = {styles.title}>
-        Number of cycles?
-      </Text>
-
-      <CustomSelect radio={true} data={cycleData} onSelect={(value) => setCycle(value)} type="PRIMARY"/>
+      <CustomSelect data={data[stressor]} onSelect={(value) => setReasons(value)} type="SECONDARY"/>
 
       <View style={styles.button}>
-        <CustomButton text= "Start" onPress={() => handlePress()} type="SECONDARY"/>
+        <CustomButton text= "Continue" onPress={() => handlePress()} type="SECONDARY"/>
       </View>
     </SafeAreaView>
   );
@@ -85,4 +84,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BreathingScreen;
+export default ReasonsScreen;

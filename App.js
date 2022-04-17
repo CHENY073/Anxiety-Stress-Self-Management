@@ -28,6 +28,10 @@ import InControlScreen from './src/screens/InControlScreen';
 import IntentionScreen from './src/screens/IntentionScreen';
 import BreathingScreen from './src/screens/BreathingScreen';
 import TimerScreen from './src/screens/TimerScreen';
+import ReasonsScreen from './src/screens/ReasonsScreen';
+import FoodFTScreen from './src/screens/FoodFTScreen';
+import ChoiceScreen from './src/screens/ChoiceScreen';
+import StressorScreen from './src/screens/StressorScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -53,8 +57,12 @@ const app = () => {
         <Stack.Screen options ={{headerShown: false}} name="Emotion" component={EmotionScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="InControl" component={InControlScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Intention" component={IntentionScreen}/>
-        <Stack.Screen options ={{headerShown: false}} name="Breathing" component={BreathingScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Breathing" component={BreathingScreen} initialParams={{music: '', cycle: 1}}/>
         <Stack.Screen options ={{headerShown: false}} name="Timer" component={TimerScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Reasons" component={ReasonsScreen} initialParams={{stressor: ''}}/>
+        <Stack.Screen options ={{headerShown: false}} name="FoodFT" component={FoodFTScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Choice" component={ChoiceScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Stressor" component={StressorScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

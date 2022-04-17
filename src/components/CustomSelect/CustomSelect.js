@@ -43,8 +43,8 @@ const CustomSelect = ({data, onSelect, radio = false, type = 'PRIMARY'}) => {
     <View style={styles.container}>
       {data.map((item, index)=>{
         return (
-          <Pressable onPress={() => handleSelect(item)} style={getStyle(item, styles.button)} key={index}>
-            <Text style={getStyle(item, styles.text)}>{item}</Text>
+          <Pressable onPress={() => handleSelect(item)} style={getStyle(item, styles[`button_${type}`])} key={index}>
+            <Text style={getStyle(item, styles[`text_${type}`])}>{item}</Text>
           </Pressable>
         );
       })}
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
   },
-  button: {
+  button_PRIMARY: {
     minWidth: 100,
     height: 50,
     margin: 10,
@@ -68,8 +68,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  text: {
+  text_PRIMARY: {
     fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  button_SECONDARY: {
+    minWidth: 50,
+    height: 50,
+    margin: 10,
+    paddingHorizontal: 5,
+    borderWidth: 3,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  text_SECONDARY: {
+    fontSize: 15,
     fontWeight: 'bold',
     textAlign: 'center',
   },
