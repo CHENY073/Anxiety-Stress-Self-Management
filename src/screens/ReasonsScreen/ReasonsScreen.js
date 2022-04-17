@@ -6,12 +6,12 @@ import CustomSelect from '../../components/CustomSelect';
 import Logo from '../../../assets/images/Logo.png';
 import Volume from '../../../assets/images/Volume.png';
 
-const ReasonsScreen = ({ navigation }) => {
+const ReasonsScreen = ({ route, navigation }) => {
   const [reasons, setReasons] = useState([]);
 
   const window = useWindowDimensions();
 
-  const stressor = 'work';
+  const {stressor} = route.params;  
 
   const data = {
     'work': ['Colleagues','Boss','Employees','Work Load','Culture','Toxic environment','Communication','Decision Making','Time Management','Dealing with Change'],
