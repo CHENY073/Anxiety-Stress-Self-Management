@@ -81,6 +81,19 @@ const BreathingScreen = ({ navigation }) => {
     
   });
 
+  Sound.setCategory('Playback');
+  var gentle_fire_10= new Sound('gentle_fire_10.mp3', Sound.MAIN_BUNDLE, (error) => {
+    if (error) {
+      console.log('failed to load the sound', error);
+      return;
+    }
+    // loaded successfully
+    console.log('duration in seconds: ' + gentle_fire_10.getDuration() + 'number of channels: ' + gentle_fire_10.getNumberOfChannels() + "number of loops" + gentle_fire_10.getNumberOfLoops(1));
+  
+    // Play the sound with an onEnd callback
+    
+  });
+
   
 
 
@@ -95,8 +108,13 @@ const BreathingScreen = ({ navigation }) => {
     else {
       navigation.navigate('Timer', {music: music, cycle: cycle});
 
+      if(music=='Fire' && cycle=='10')
+      {
+        gentle_fire_10.play();
+      }
 
-      if(music=='Waves'){
+
+      else if(music=='Waves'){
         
         gentle_waves.play((success) => {
           if (success&&cycle=='2') {
