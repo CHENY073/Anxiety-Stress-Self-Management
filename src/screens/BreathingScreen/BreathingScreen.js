@@ -11,12 +11,13 @@ var Sound = require('react-native-sound');
 
 
 const BreathingScreen = ({ navigation }) => {
+
   const [music, setMusic] = useState(null);
   const [cycle, setCycle] = useState(null);
 
   const window = useWindowDimensions();
 
-  const musicData = ['Rain','Waves','Fire','ex4','ex5'];
+  const musicData = ['Rain','Waves','Fire','Forest','Meditation'];
   const cycleData = ['1','2','3','5','10'];
 
   Sound.setCategory('Playback');
@@ -50,12 +51,38 @@ const BreathingScreen = ({ navigation }) => {
       return;
     }
     // loaded successfully
-    console.log('duration in seconds: ' + gentle_fire.getDuration() + 'number of channels: ' + gentle_fire.getNumberOfChannels());
+    console.log('duration in seconds: ' + gentle_fire.getDuration() + 'number of channels: ' + gentle_fire.getNumberOfChannels() + "number of loops" + gentle_fire.getNumberOfLoops());
   
     // Play the sound with an onEnd callback
     
   });
+  Sound.setCategory('Playback');
+  var gentle_rainforest= new Sound('gentle_rainforest.mp3', Sound.MAIN_BUNDLE, (error) => {
+    if (error) {
+      console.log('failed to load the sound', error);
+      return;
+    }
+    // loaded successfully
+    console.log('duration in seconds: ' + gentle_rainforest.getDuration() + 'number of channels: ' + gentle_rainforest.getNumberOfChannels() + "number of loops" + gentle_rainforest.getNumberOfLoops());
   
+    // Play the sound with an onEnd callback
+    
+  });
+  Sound.setCategory('Playback');
+  var med_sleep= new Sound('med_sleep.mp3', Sound.MAIN_BUNDLE, (error) => {
+    if (error) {
+      console.log('failed to load the sound', error);
+      return;
+    }
+    // loaded successfully
+    console.log('duration in seconds: ' + med_sleep.getDuration() + 'number of channels: ' + med_sleep.getNumberOfChannels() + "number of loops" + med_sleep.getNumberOfLoops());
+  
+    // Play the sound with an onEnd callback
+    
+  });
+
+
+
   
   
   
@@ -94,6 +121,26 @@ const BreathingScreen = ({ navigation }) => {
         });
 
 
+      }else if(music=='Forest'){
+        gentle_rainforest.play((success) => {
+          if (success) {
+            console.log('successfully finished playing');
+          } else {
+            console.log('playback failed due to audio decoding errors');
+          }
+        });
+
+
+      }else if(music=='Meditation'){
+        med_sleep.play((success) => {
+          if (success) {
+            console.log('successfully finished playing');
+          } else {
+            console.log('playback failed due to audio decoding errors');
+          }
+        });
+
+
       }
 
       }
@@ -106,7 +153,7 @@ const BreathingScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={[styles.root]}>
       <View style={styles.header}>
-        <View style={{width: 100}}><CustomButton text= "<" onPress={() => navigation.goBack()} type="blackBackButton"/></View>
+        <View style={{width: 100}}><CustomButton text= "<" onPress={() => navigation.goBack() } type="blackBackButton"/></View>
         <Image source={Logo} style={styles.logo} resizeMode="cover" />
         <View style={{width: 100}}><Image source={Volume} style={styles.volume} resizeMode="cover" /></View>
       </View>
