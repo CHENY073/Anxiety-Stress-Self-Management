@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, SafeAreaView, Text, Image, StyleSheet, useWindowDimensions, Alert} from 'react-native';
 
 import CustomButton from '../../components/CustomButton';
@@ -81,26 +81,6 @@ const BreathingScreen = ({ navigation }) => {
     
   });
 
-  Sound.setCategory('Playback');
-  var gentle_fire_10= new Sound('gentle_fire_10.mp3', Sound.MAIN_BUNDLE, (error) => {
-    if (error) {
-      console.log('failed to load the sound', error);
-      return;
-    }
-    // loaded successfully
-    console.log('duration in seconds: ' + gentle_fire_10.getDuration() + 'number of channels: ' + gentle_fire_10.getNumberOfChannels() + "number of loops" + gentle_fire_10.getNumberOfLoops(1));
-  
-    // Play the sound with an onEnd callback
-    
-  });
-
-  
-
-
-
-  
-  
-  
 
   const handlePress = () => {
     if(!music) Alert.alert('Please pick a music choice');
@@ -108,15 +88,10 @@ const BreathingScreen = ({ navigation }) => {
     else {
       navigation.navigate('Timer', {music: music, cycle: cycle});
 
-      if(music=='Fire' && cycle=='10')
-      {
-        gentle_fire_10.play();
-      }
-
-
-      else if(music=='Waves'){
+      if(music=='Waves'){
         
         gentle_waves.play((success) => {
+          
           if (success&&cycle=='2') {
             gentle_waves.play();
           } else if(success&&cycle=='3'){
@@ -140,11 +115,47 @@ const BreathingScreen = ({ navigation }) => {
                 });
               }
             });
+          }else if(success&&cycle=='10'){
+            gentle_waves.play((success) =>{
+              if(success){
+                gentle_waves.play((success) =>{
+                  if(success){
+                    gentle_waves.play((success) =>{
+                      if(success){
+                        gentle_waves.play((success) =>{
+                          if(success){
+                            gentle_waves.play((success) =>{
+                              if(success){
+                                gentle_waves.play((success) =>{
+                                  if(success){
+                                    gentle_waves.play((success) =>{
+                                      if(success){
+                                        gentle_waves.play((success) => {
+                                          if(success){
+                                            gentle_waves.play();
+                                          }
+                                        })
+                                      }
+                                    })
+                                  }
+                                });
+                              }
+                            });
+                          }
+                        });
+                      }
+                    });
+                  }
+                });
+              }
+            });
           }
           else {
             console.log('playback failed due to audio decoding errors');
           }
+          
         });
+        
      }else if(music=='Rain'){
         
         gentle_rain.play((success) => {
@@ -165,6 +176,40 @@ const BreathingScreen = ({ navigation }) => {
                     gentle_rain.play((success) =>{
                       if(success){
                         gentle_rain.play();
+                      }
+                    });
+                  }
+                });
+              }
+            });
+          }else if(success&&cycle=='10'){
+            gentle_rain.play((success) =>{
+              if(success){
+                gentle_rain.play((success) =>{
+                  if(success){
+                    gentle_rain.play((success) =>{
+                      if(success){
+                        gentle_rain.play((success) =>{
+                          if(success){
+                            gentle_rain.play((success) =>{
+                              if(success){
+                                gentle_rain.play((success) =>{
+                                  if(success){
+                                    gentle_rain.play((success) =>{
+                                      if(success){
+                                        gentle_rain.play((success) => {
+                                          if(success){
+                                            gentle_rain.play();
+                                          }
+                                        })
+                                      }
+                                    })
+                                  }
+                                });
+                              }
+                            });
+                          }
+                        });
                       }
                     });
                   }
@@ -203,6 +248,40 @@ const BreathingScreen = ({ navigation }) => {
                 });
               }
             });
+          }else if(success&&cycle=='10'){
+            gentle_fire.play((success) =>{
+              if(success){
+                gentle_fire.play((success) =>{
+                  if(success){
+                    gentle_fire.play((success) =>{
+                      if(success){
+                        gentle_fire.play((success) =>{
+                          if(success){
+                            gentle_fire.play((success) =>{
+                              if(success){
+                                gentle_fire.play((success) =>{
+                                  if(success){
+                                    gentle_fire.play((success) =>{
+                                      if(success){
+                                        gentle_fire.play((success) => {
+                                          if(success){
+                                            gentle_fire.play();
+                                          }
+                                        })
+                                      }
+                                    })
+                                  }
+                                });
+                              }
+                            });
+                          }
+                        });
+                      }
+                    });
+                  }
+                });
+              }
+            });
           }
           else {
             console.log('playback failed due to audio decoding errors');
@@ -232,6 +311,40 @@ const BreathingScreen = ({ navigation }) => {
                 });
               }
             });
+          }else if(success&&cycle=='10'){
+            gentle_rainforest.play((success) =>{
+              if(success){
+                gentle_rainforest.play((success) =>{
+                  if(success){
+                    gentle_rainforest.play((success) =>{
+                      if(success){
+                        gentle_rainforest.play((success) =>{
+                          if(success){
+                            gentle_rainforest.play((success) =>{
+                              if(success){
+                                gentle_rainforest.play((success) =>{
+                                  if(success){
+                                    gentle_rainforest.play((success) =>{
+                                      if(success){
+                                        gentle_rainforest.play((success) => {
+                                          if(success){
+                                            gentle_rainforest.play();
+                                          }
+                                        })
+                                      }
+                                    })
+                                  }
+                                });
+                              }
+                            });
+                          }
+                        });
+                      }
+                    });
+                  }
+                });
+              }
+            });
           }
           else {
             console.log('playback failed due to audio decoding errors');
@@ -255,6 +368,40 @@ const BreathingScreen = ({ navigation }) => {
                       med_sleep.play((success) =>{
                         if(success){
                           med_sleep.play();
+                        }
+                      });
+                    }
+                  });
+                }
+              });
+            }else if(success&&cycle=='10'){
+              med_sleep.play((success) =>{
+                if(success){
+                  med_sleep.play((success) =>{
+                    if(success){
+                      med_sleep.play((success) =>{
+                        if(success){
+                          med_sleep.play((success) =>{
+                            if(success){
+                              med_sleep.play((success) =>{
+                                if(success){
+                                  med_sleep.play((success) =>{
+                                    if(success){
+                                      med_sleep.play((success) =>{
+                                        if(success){
+                                          med_sleep.play((success) => {
+                                            if(success){
+                                              med_sleep.play();
+                                            }
+                                          })
+                                        }
+                                      })
+                                    }
+                                  });
+                                }
+                              });
+                            }
+                          });
                         }
                       });
                     }
