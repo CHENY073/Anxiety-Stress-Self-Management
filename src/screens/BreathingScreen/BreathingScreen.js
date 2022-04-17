@@ -5,6 +5,10 @@ import CustomButton from '../../components/CustomButton';
 import CustomSelect from '../../components/CustomSelect';
 import Logo from '../../../assets/images/Logo.png';
 import Volume from '../../../assets/images/Volume.png';
+var Sound = require('react-native-sound');
+
+
+
 
 const BreathingScreen = ({ navigation }) => {
   const [music, setMusic] = useState(null);
@@ -15,11 +19,39 @@ const BreathingScreen = ({ navigation }) => {
   const musicData = ['ex1','ex2','ex3','ex4','ex5'];
   const cycleData = ['1','2','3','5','10'];
 
+  Sound.setCategory('Playback');
+  var gentle_rain_sleep = new Sound('gentle_rain_sleep.mp3', Sound.MAIN_BUNDLE, (error) => {
+    if (error) {
+      console.log('failed to load the sound', error);
+      return;
+    }
+    // loaded successfully
+    console.log('duration in seconds: ' + gentle_rain_sleep.getDuration() + 'number of channels: ' + gentle_rain_sleep.getNumberOfChannels());
+  
+    // Play the sound with an onEnd callback
+    
+  });
+  
+  
+
   const handlePress = () => {
     if(!music) Alert.alert('Please pick a music choice');
     else if(!cycle) Alert.alert('Please select the number of cycles');
-    else navigation.navigate('Timer', {music: music, cycle: cycle});
-  };
+    else {
+      navigation.navigate('Timer', {music: music, cycle: cycle});
+      gentle_rain_sleep.play((success) => {
+        if (success) {
+          console.log('successfully finished playing');
+        } else {
+          console.log('playback failed due to audio decoding errors');
+        }
+      });
+  
+    };
+
+    }
+
+    
 
   return (
     <SafeAreaView style={[styles.root]}>
