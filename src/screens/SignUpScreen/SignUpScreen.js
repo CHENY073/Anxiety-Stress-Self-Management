@@ -82,7 +82,7 @@ const SignUpScreen = ({navigation}) => {
         // Alert.alert('Invalid email');
         invalidEmailToast();
       }
-      
+     
     }
   };
 

@@ -20,7 +20,8 @@ const MenuScreen = ({ navigation }) => {
       await GoogleSignin.signOut();
       auth()
         .signOut()
-        .then(() => alert('You are signed out!'));
+        .then(() => showToastAndroid());
+        
       }
       else {
         auth().signOut();
