@@ -142,19 +142,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 25,
-    marginLeft: 25,
+    
   },
   container_INFO:{
     borderColor: "#ADD8E6",
     backgroundColor: 'white',
     
-    width: 25,
-    height: 25,
-    marginVertical: 40,
+    width: 155,
+    height: 55,
+    
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 3,
-    borderRadius: 25,
+    borderRadius: 20,
    
   },
   container_STRESSOR:{
