@@ -12,6 +12,8 @@ target 'anxietyStressSelfManagement' do
     :hermes_enabled => false
   )
 
+  pod 'RNSound', :path => '../node_modules/react-native-sound'
+
   target 'anxietyStressSelfManagementTests' do
     inherit! :complete
     # Pods for testing

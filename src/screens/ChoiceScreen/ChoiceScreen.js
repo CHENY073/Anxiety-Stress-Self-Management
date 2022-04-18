@@ -1,12 +1,19 @@
-import React from 'react';
-import {View, SafeAreaView, Text, Image, StyleSheet, useWindowDimensions} from 'react-native';
+import React, { useState } from 'react';
+import {View, Button, SafeAreaView, Text, Image, StyleSheet, useWindowDimensions} from 'react-native';
 
 import CustomButton from '../../components/CustomButton';
 import Logo from '../../../assets/images/Logo.png';
 import Volume from '../../../assets/images/Volume.png';
+import Modal from "react-native-modal";
 
 const ChoiceScreen = ({ navigation }) => {
   const window = useWindowDimensions();
+
+    const [isModalVisible, setModalVisible] = useState(false);
+  
+    const toggleModal = () => {
+      setModalVisible(!isModalVisible);
+    };
 
   return (
     <SafeAreaView style={[styles.root]}>
@@ -19,10 +26,27 @@ const ChoiceScreen = ({ navigation }) => {
       <Text style = {styles.title}>
         What would you like to do?
       </Text>
+    <View style={styles.stressorView}>
+    <CustomButton text= "Immediate Exercises" onPress={() => navigation.navigate('Breathing')} type="CHOICE"/>
+      </View>
+      <View >
 
-      <CustomButton text= "Daily Stressors" onPress={() => navigation.navigate('Stressor')} type="CHOICE"/>
-      <CustomButton text= "Immediate Exercises" onPress={() => navigation.navigate('Breathing')} type="CHOICE"/>
-
+      <Modal isVisible={isModalVisible} onModalHide={()=> setModalVisible(false)}>
+        <View style={styles.modal}>
+          <Text style={styles.modalText}>What are Immediate Exercises?</Text>
+          <Text style={styles.modalSmallText}> Exercises to help you lower your levels of stress and anxiety. Examples include
+          breathing exercises and meditating to relaxing music. Consistently doing these exercises can help us greatly in reaching
+          a more relaxed state.</Text>
+          <Text style={styles.modalText}>What are Daily Stressors?</Text>
+          <Text style={styles.modalSmallText}> Daily stressors are day to day issues that cause stress and anxiety. Isolating them
+          and focusing on what they are help us understand them better and reduce them. Writing them down helps us keep track of the 
+          things that cause us harm so we can work to elimnate them.</Text>
+          <Button style={styles.modalButton} title="Hide" onPress={toggleModal} />
+        </View>
+      </Modal>
+    </View>
+    <CustomButton text= "Daily Stressors" onPress={() => navigation.navigate('Stressor')} type="CHOICE"/>
+    <CustomButton style={styles.iButton} text="Learn More" onPress={toggleModal} type="INFO"/>
     </SafeAreaView>
   );
 };
@@ -61,6 +85,35 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column-reverse",
     paddingBottom: 10,
+  },
+  modalText:{
+    color: 'white',
+    fontSize: 30,
+    padding: 10,
+    textAlign: 'center'
+  },
+  modalSmallText:{
+    flex: 1,
+    color: 'white',
+    fontSize: 15,
+    padding: 10,
+    textAlign: 'center'
+  },
+  modal: {
+    width: "100%",
+    height: "90%",
+    alignItems: "center",
+    justifyContent: "center",
+   
+    borderRadius: 25,
+    backgroundColor: '#736468',
+  },
+  stressorView: {
+    flexDirection: "row",
+  },
+  iButton: {
+    backgroundColor: "red",
+    borderRadius: 20,
   },
 });
 

@@ -149,7 +149,7 @@ const HomeScreen = ({ navigation }) => {
      
   }
     //outputs any issues with authentication
-    console.error(e.message);
+    //console.error(e.message);
   }
 }
 

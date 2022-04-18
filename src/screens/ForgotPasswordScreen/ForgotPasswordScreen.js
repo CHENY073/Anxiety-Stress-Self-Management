@@ -7,9 +7,19 @@ import CustomButton from '../../components/CustomButton';
 import Logo from '../../../assets/images/Logo.png';
 import auth from '@react-native-firebase/auth';
 
+
 const ForgotPasswordScreen = ({ navigation }) => {
   
   const [email, setEmail] = useState('');
+
+  const invalidEmailToast23 = () => {
+    Toast.show({
+      type: 'error',
+      text1: 'Invalid Email',
+      text2: 'Please enter a valid email',
+      autoHide: false,
+    });
+  }
 
 
   const handleReset = async (email) => {
@@ -19,11 +29,17 @@ const ForgotPasswordScreen = ({ navigation }) => {
     Alert.alert("Success ✅", "Email sent");
     navigation.navigate("Home");
     }catch (e){
-      console.error(e.message);
+      if(e.code ==='auth/invalid-email'){
+        Alert.alert("Please enter a valid email")
 
+      }
+      if(e.code ==='auth/user-not-found'){
+        Alert.alert("Email not found!")
+
+      } 
     }
     
-  };
+  }
 
   const doReset = () => {
     if(email === ""){
@@ -33,9 +49,6 @@ const ForgotPasswordScreen = ({ navigation }) => {
       handleReset(email);
     }
   }
-
-  //thinking button where you press sign up
-
 
   
   return (

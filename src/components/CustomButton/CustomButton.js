@@ -142,6 +142,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 25,
+    
+  },
+  container_INFO:{
+    borderColor: "#ADD8E6",
+    backgroundColor: 'white',
+    
+    width: 155,
+    height: 55,
+    
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 3,
+    borderRadius: 20,
+   
   },
   container_STRESSOR:{
     backgroundColor: '#BDB49D',
@@ -244,6 +258,15 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 36,
     textAlign: 'center',
+  },
+  text_INFO: {
+    color: '#ADD8E6',
+    fontSize: 20,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    
+    paddingBottom: 3
+
   },
 })
 
