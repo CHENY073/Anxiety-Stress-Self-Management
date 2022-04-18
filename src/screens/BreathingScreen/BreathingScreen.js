@@ -76,7 +76,8 @@ const BreathingScreen = ({ navigation }) => {
     }
     // loaded successfully
     console.log('duration in seconds: ' + med_sleep.getDuration() + 'number of channels: ' + med_sleep.getNumberOfChannels() + "number of loops" + med_sleep.getNumberOfLoops(1));
-  
+
+    
     // Play the sound with an onEnd callback
     
   });
