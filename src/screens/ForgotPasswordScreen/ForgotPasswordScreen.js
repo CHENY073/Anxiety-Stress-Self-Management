@@ -60,19 +60,21 @@ const ForgotPasswordScreen = ({ navigation }) => {
       <SafeAreaView>
       <Image source={Logo} style={styles.logo} resizeMode="contain" />
          </SafeAreaView>
-         <Text>{"\n"}</Text>
+         
 
          <CustomButton text= "✖" onPress={() => navigation.navigate('Home')} type="QUINARY"/>
       <Text style = {styles.title}>
         Forgot Password
         
         
+        
       </Text>
       <Text style = {styles.subTitle}>
         
-            Please enter the email {"\n"}corresponding to your {"\n"}            account.
-        {"\n"} 
-        {"\n"} 
+            Please enter the email <Text>{"\n"}</Text> corresponding to your account.
+            <Text>{"\n"}</Text>
+            <Text>{"\n"}</Text>
+       
       </Text>
       
       <CustomInput
@@ -80,8 +82,11 @@ const ForgotPasswordScreen = ({ navigation }) => {
       value={email}
       setValue={setEmail}
       />
+      <Text>{"\n"}</Text>
    
-        <CustomButton text="Continue" onPress={()=>doReset(email)} type="continueButton" />
+        <CustomButton text="Continue" onPress={()=>doReset(email)} type="continueFButton" />
+        <Text>{"\n"}</Text>
+        
         
         </View>
    
@@ -93,13 +98,15 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     alignItems: 'center',
+    alignContent: 'space-between'
    
   },
   title : {
     fontSize: 38,
     fontWeight: 'bold',
     color: '#000000',
-    marginVertical: 70,
+    marginVertical: 95,
+    
   },
 
   parameters : {
@@ -126,7 +133,9 @@ const styles = StyleSheet.create({
     
     color: '#000000',
     marginTop: -70,
-    alignSelf: 'auto'
+    alignSelf: 'center',
+    textAlign: 'center'
+    
   },
   link: {
     color: 'red',
