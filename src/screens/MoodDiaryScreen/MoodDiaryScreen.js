@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useMemo, useCallback} from 'react';
 import {View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground} from 'react-native';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
@@ -8,7 +8,20 @@ import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 const MoodDiaryScreen = ({ navigation }) => {
 
   const {height} = useWindowDimensions();
- 
+  const [selected, setSelected] = useState();
+  const markedDates = useMemo(() => {
+    return {
+      [selected]: {
+        selected: true,
+        selectedColor: '#6D828F'
+      }
+    };
+  }, [selected]);
+
+  const onDayPress = useCallback((day) => {
+    setSelected(day.dateString);
+  }, []);
+
 
 
   return (
@@ -23,24 +36,48 @@ const MoodDiaryScreen = ({ navigation }) => {
 
 
       <Calendar
+      style={{
+    borderWidth: 1,
+    borderColor: 'gray',
+    height: 370
+    
+  }}
+  
+
+  theme={{
+
+    textSectionTitleColor: '#736468',
+    dayTextColor: '#2d4150',
+    dotColor: '#00adf5',
+
+    
+    arrowColor: '#736468',
+    monthTextColor: '#6D828F',
+    indicatorColor: 'blue',
+    textDayFontWeight: '300',
+    textMonthFontWeight: 'bold',
+    textDayHeaderFontWeight: '300',
+    textDayFontSize: 16,
+    textMonthFontSize: 16,
+    textDayHeaderFontSize: 16
+  }}
       // Initially visible month. Default = now
-      
+     
   
   // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
-  
+  markedDates={markedDates}
+  onDayPress={onDayPress}
   // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
- 
+  
   // Handler which gets executed on day press. Default = undefined
-  onDayPress={day => {
-    console.log('selected day', day);
-  }}
+
   // Handler which gets executed on day long press. Default = undefined
   onDayLongPress={day => {
     console.log('selected day', day);
     
   }}
   // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
-  monthFormat={'yyyy MM'}
+  monthFormat={'MMMM yyyy'}
   // Handler which gets executed when visible month changes in calendar. Default = undefined
   onMonthChange={month => {
     console.log('month changed', month);
@@ -50,12 +87,12 @@ const MoodDiaryScreen = ({ navigation }) => {
   // Replace default arrows with custom ones (direction can be 'left' or 'right')
   
   // Do not show days of other months in month page. Default = false
-  hideExtraDays={true}
+  hideExtraDays={false}
   // If hideArrows = false and hideExtraDays = false do not switch month when tapping on greyed out
   // day from another month that is visible in calendar page. Default = false
-  disableMonthChange={true}
+  disableMonthChange={false}
   // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday
-  firstDay={1}
+ 
   // Hide day names. Default = false
   
   hideDayNames={false}
@@ -70,18 +107,15 @@ const MoodDiaryScreen = ({ navigation }) => {
   // Disable right arrow. Default = false
   disableArrowRight={false}
   // Disable all touch events for disabled days. can be override with disableTouchEvent in markedDates
-  disableAllTouchEventsForDisabledDays={true}
+  disableAllTouchEventsForDisabledDays={false}
   // Replace default month and year title with custom one. the function receive a date as parameter
- 
-  // Enable the option to swipe between months. Default = false
   enableSwipeMonths={true}
-/>
+  // Enable the option to swipe between months. Default = false
+  
+/>    
 
-      
     </View>
 
-    
-    
   );
 };
 
