@@ -29,6 +29,7 @@ const HomeScreen = ({ navigation }) => {
   });
   
   const signInGoogleUser = async () => {
+    try{
     const { idToken } = await GoogleSignin.signIn();
   
     // Create a Google credential with the token
@@ -42,7 +43,10 @@ const HomeScreen = ({ navigation }) => {
    })
    .catch ((e) => {
      console.log(e);
-   })
+    })}catch(e){
+      ToastAndroid.show("SIGN IN CANCELLED", ToastAndroid.SHORT);
+      
+    }
   }
 
  

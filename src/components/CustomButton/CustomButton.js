@@ -165,6 +165,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 25,
   },
+  container_continueFButton:{
+    borderWidth:2,
+    backgroundColor: 'rgba(52, 52, 52, 0.0)',
+    borderColor:'#736468',
+    width: 150,
+    padding: 8.5,
+    marginVertical: -5,
+    alignItems: 'center',
+    borderRadius: 25,
+   
+  },
 
   
   pressed_PRIMARY:{
@@ -234,6 +245,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   text_continueButton: {
+    color: '#736468',
+    fontSize: 27,
+    fontWeight: 'bold',
+  },
+  text_continueFButton: {
     color: '#736468',
     fontSize: 27,
     fontWeight: 'bold',
