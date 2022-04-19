@@ -5,6 +5,7 @@ import Svg, {G, Path, Circle, Polygon} from 'react-native-svg';
 import CustomButton from '../../components/CustomButton';
 import Logo from '../../../assets/images/Logo.png';
 import Volume from '../../../assets/images/Volume.png';
+import auth from '@react-native-firebase/auth';
 
 const EmotionScreen = ({ navigation }) => {
   const [value, setValue] = useState(0);
@@ -12,6 +13,8 @@ const EmotionScreen = ({ navigation }) => {
   
   const window = useWindowDimensions();
   const size = window.width-40;
+
+  const user = auth().currentUser;
 
   const AnimatedG = Animated.createAnimatedComponent(G);
   const AnimatedSafeAreaView = Animated.createAnimatedComponent(SafeAreaView);
@@ -80,7 +83,7 @@ const EmotionScreen = ({ navigation }) => {
       </View>
 
       <Text style = {styles.title}>
-        Hi [Name],
+        Hi {user.displayName},
         {"\n"}
         What’s your mood?
       </Text>

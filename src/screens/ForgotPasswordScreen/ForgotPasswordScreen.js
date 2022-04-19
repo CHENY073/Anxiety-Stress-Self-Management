@@ -6,20 +6,27 @@ import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import Logo from '../../../assets/images/Logo.png';
 import auth from '@react-native-firebase/auth';
+import Toast from 'react-native-toast-message';
 
 
 const ForgotPasswordScreen = ({ navigation }) => {
   
   const [email, setEmail] = useState('');
 
-  const invalidEmailToast23 = () => {
+  const invalidEmailToast = () => {
     Toast.show({
       type: 'error',
       text1: 'Invalid Email',
       text2: 'Please enter a valid email',
-      autoHide: false,
     });
   }
+  const notFoundToast = () => {
+    Toast.show({
+      type: 'error',
+      text1: 'Email Not Found',
+      text2: 'Please check your email or sign up',
+    });
+  };
 
 
   const handleReset = async (email) => {
@@ -30,11 +37,11 @@ const ForgotPasswordScreen = ({ navigation }) => {
     navigation.navigate("Home");
     }catch (e){
       if(e.code ==='auth/invalid-email'){
-        Alert.alert("Please enter a valid email")
+        invalidEmailToast();
 
       }
       if(e.code ==='auth/user-not-found'){
-        Alert.alert("Email not found!")
+        notFoundToast();
 
       } 
     }
@@ -43,7 +50,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
 
   const doReset = () => {
     if(email === ""){
-    Alert.alert("Please enter an email")
+    invalidEmailToast();
     }
     else{
       handleReset(email);
@@ -87,7 +94,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
         <CustomButton text="Continue" onPress={()=>doReset(email)} type="continueFButton" />
         <Text>{"\n"}</Text>
         
-        
+        <Toast />
         </View>
    
     </ScrollView>

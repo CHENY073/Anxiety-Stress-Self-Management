@@ -21,7 +21,7 @@ const AccountScreen = ({ navigation }) => {
 
         <Text style={styles.options}>
             {"\n"}{"\n"}
-            NAME
+            
             
         </Text>
 

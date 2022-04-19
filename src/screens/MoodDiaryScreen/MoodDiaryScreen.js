@@ -32,7 +32,7 @@ const MoodDiaryScreen = ({ navigation }) => {
           Mood Diary
         </Text>
       </View>
-      <CustomButton text= "Slider" onPress={() => navigation.navigate('Emotion')} type="PRIMARY"/>
+      <CustomButton text= "+" onPress={() => navigation.navigate('Emotion')} type="PLUS"/>
 
 
       <Calendar

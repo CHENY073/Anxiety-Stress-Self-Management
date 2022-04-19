@@ -22,6 +22,7 @@ const HomeScreen = ({ navigation }) => {
   const [password, setPassword] = useState('');
   
   const {height} = useWindowDimensions();
+  
 
 
   GoogleSignin.configure({
@@ -57,7 +58,7 @@ const HomeScreen = ({ navigation }) => {
       type: 'error',
       text1: 'Unverified Email',
       text2: 'Please verify your email',
-      autoHide: false,
+      
     });
   }
   const invalidEmailToast = () => {
@@ -65,7 +66,7 @@ const HomeScreen = ({ navigation }) => {
       type: 'error',
       text1: 'Invalid Email',
       text2: 'Please enter a valid email',
-      autoHide: false,
+      
     });
   }
   const userNotFoundToast = () => {
@@ -73,7 +74,7 @@ const HomeScreen = ({ navigation }) => {
       type: 'error',
       text1: 'Email Not Found',
       text2: 'Please enter your email again',
-      autoHide: false,
+      
     });
   }
   const invalidPasswordToast = () => {
@@ -81,7 +82,7 @@ const HomeScreen = ({ navigation }) => {
       type: 'error',
       text1: 'Wrong Password',
       text2: 'Please enter your password again',
-      autoHide: false,
+     
     });
   }
   const tooManyRequestsToast = () => {
@@ -89,29 +90,35 @@ const HomeScreen = ({ navigation }) => {
       type: 'error',
       text1: 'Too Many Requests',
       text2: 'Please try again later',
-      autoHide: false,
+     
     });
   }
   const emptyInputToast = () => {
     Toast.show({
       type: 'error',
-      text1: 'Error:',
-      text2: 'Please enter your username and password',
+      text1: 'Missing email/password',
+      text2: 'Please enter your email and password',
       
-      autoHide: false,
     });
   }
 
+  
+  
   const showToastAndroid = () => {
     ToastAndroid.show("SIGNED IN", ToastAndroid.SHORT);};
 //this checks if the user is already logged in or not, if they are, takes them to dashboard
  auth().onAuthStateChanged((user) => {
-    if (user && user.emailVerified) {
+    try{if (user && user.emailVerified) {
     
     console.log('user logged');
     navigation.navigate("Dashboard");
+    
     }else{
       navigation.navigate("Home");
+      console.log('user not logged')
+    }}catch(e){
+      Alert.alert('No user signed in')
+
     }
   });
 
@@ -150,10 +157,7 @@ const HomeScreen = ({ navigation }) => {
       }else if(e.code === 'auth/too-many-requests'){
         tooManyRequestsToast();
         //console.error("Too many requests");
-     
   }
-    //outputs any issues with authentication
-    //console.error(e.message);
   }
 }
 
