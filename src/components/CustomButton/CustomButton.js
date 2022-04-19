@@ -176,6 +176,14 @@ const styles = StyleSheet.create({
     borderRadius: 25,
    
   },
+  container_PLUS:{
+    backgroundColor: '#FFFFFF',
+    width: 150,
+    padding: 8.5,
+    marginVertical: 5,
+    alignItems: 'center',
+    borderRadius: 25,
+  },
 
   
   pressed_PRIMARY:{
@@ -283,7 +291,12 @@ const styles = StyleSheet.create({
     
     paddingBottom: 3
 
+  },text_PLUS:{
+    fontWeight: 'bold',
+    color: '#736468',
+    fontSize: 24,
   },
+  
 })
 
 export default CustomButton;

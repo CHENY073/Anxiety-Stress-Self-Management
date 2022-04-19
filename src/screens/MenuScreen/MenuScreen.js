@@ -8,6 +8,7 @@ import auth from '@react-native-firebase/auth';
 
 const MenuScreen = ({ navigation }) => {
 
+
   const {height} = useWindowDimensions();
  
   const showToastAndroid = () => {
@@ -33,6 +34,16 @@ const MenuScreen = ({ navigation }) => {
       console.error(error);
     }
   };
+
+  const user = auth().currentUser;
+
+  
+
+  
+      
+
+    
+  
   
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -40,7 +51,7 @@ const MenuScreen = ({ navigation }) => {
       
         <CustomButton text= "<" onPress={() => navigation.navigate('Dashboard')} type="whiteBackButton"/>
         <Text style={styles.title}>
-        [NAME] 
+        {user.email}
       </Text>
         
 
