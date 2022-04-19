@@ -31,7 +31,6 @@ const SignUpScreen = ({navigation}) => {
       type: 'error',
       text1: 'Email Already In Use',
       text2: 'Please sign in or reset your password',
-      autoHide: false,
     });
   };
   const invalidEmailToast = () => {
@@ -39,7 +38,6 @@ const SignUpScreen = ({navigation}) => {
       type: 'error',
       text1: 'Invalid Email',
       text2: 'Please enter a valid email',
-      autoHide: false,
     });
   };
   const emptyEmailToast = () => {
@@ -47,7 +45,6 @@ const SignUpScreen = ({navigation}) => {
       type: 'error',
       text1: 'Invalid Email',
       text2: 'Please enter an email',
-      autoHide: false,
     });
   };
   const shortPasswordToast = () => {
@@ -55,7 +52,6 @@ const SignUpScreen = ({navigation}) => {
       type: 'error',
       text1: 'Invalid Password',
       text2: 'Password is too short',
-      autoHide: false,
     });
   };
   const specialCharacterToast = () => {
@@ -63,7 +59,6 @@ const SignUpScreen = ({navigation}) => {
       type: 'error',
       text1: 'Invalid Password',
       text2: 'Password must contain at least 1 special character',
-      autoHide: false,
     });
   };
   const lowercaseToast = () => {
@@ -71,7 +66,6 @@ const SignUpScreen = ({navigation}) => {
       type: 'error',
       text1: 'Invalid Password',
       text2: 'Password must contain at least 1 lowercase character',
-      autoHide: false,
     });
   };
   const uppercaseToast = () => {
@@ -79,7 +73,6 @@ const SignUpScreen = ({navigation}) => {
       type: 'error',
       text1: 'Invalid Password',
       text2: 'Password must contain at least 1 uppercase character',
-      autoHide: false,
     });
   };
   const noNameToast = () => {
@@ -87,7 +80,6 @@ const SignUpScreen = ({navigation}) => {
       type: 'error',
       text1: 'Invalid Name',
       text2: 'Please enter a name',
-      autoHide: false,
     });
   };
   const matchingPasswordToast = () => {
@@ -95,7 +87,6 @@ const SignUpScreen = ({navigation}) => {
       type: 'error',
       text1: 'Invalid Password',
       text2: 'Passwords do not match',
-      autoHide: false,
     });
   };
   const checkBoxesToast = () => {
@@ -103,22 +94,10 @@ const SignUpScreen = ({navigation}) => {
       type: 'error',
       text1: 'Agree to Terms',
       text2: 'Please check the boxes',
-      autoHide: false,
     });
   };
 
 
-
-
-  const handleSignOut = () => {
-    try {
-      auth().signOut();
-
-      navigation.navigate('Home');
-    } catch (e) {
-      console.error(e);
-    }
-  };
 
   const createUser = async (email, password) => {
     try {
@@ -126,7 +105,6 @@ const SignUpScreen = ({navigation}) => {
         .createUserWithEmailAndPassword(email, password)
         .then(userCredential => {
           userCredential.user.sendEmailVerification();
-          handleSignOut();
           Alert.alert('✅', 'Please verify your email to log in!');
         });
     } catch (e) {

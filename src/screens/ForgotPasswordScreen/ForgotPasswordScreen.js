@@ -18,7 +18,6 @@ const ForgotPasswordScreen = ({ navigation }) => {
       type: 'error',
       text1: 'Invalid Email',
       text2: 'Please enter a valid email',
-      autoHide: false,
     });
   }
   const notFoundToast = () => {
@@ -26,7 +25,6 @@ const ForgotPasswordScreen = ({ navigation }) => {
       type: 'error',
       text1: 'Email Not Found',
       text2: 'Please check your email or sign up',
-      autoHide: false,
     });
   };
 
@@ -52,7 +50,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
 
   const doReset = () => {
     if(email === ""){
-    Alert.alert("Please enter an email")
+    invalidEmailToast();
     }
     else{
       handleReset(email);

@@ -38,12 +38,6 @@ const MenuScreen = ({ navigation }) => {
   const user = auth().currentUser;
 
   
-
-  
-      
-
-    
-  
   
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
