@@ -96,8 +96,8 @@ const HomeScreen = ({ navigation }) => {
   const emptyInputToast = () => {
     Toast.show({
       type: 'error',
-      text1: 'Error:',
-      text2: 'Please enter your username and password',
+      text1: 'Missing email/password',
+      text2: 'Please enter your email and password',
       
       autoHide: false,
     });
@@ -107,12 +107,16 @@ const HomeScreen = ({ navigation }) => {
     ToastAndroid.show("SIGNED IN", ToastAndroid.SHORT);};
 //this checks if the user is already logged in or not, if they are, takes them to dashboard
  auth().onAuthStateChanged((user) => {
-    if (user && user.emailVerified) {
+    try{if (user && user.emailVerified) {
     
     console.log('user logged');
     navigation.navigate("Dashboard");
+    console.log(user);
     }else{
       navigation.navigate("Home");
+    }}catch(e){
+      Alert.alert('No user signed in')
+
     }
   });
 
@@ -151,10 +155,7 @@ const HomeScreen = ({ navigation }) => {
       }else if(e.code === 'auth/too-many-requests'){
         tooManyRequestsToast();
         //console.error("Too many requests");
-     
   }
-    //outputs any issues with authentication
-    //console.error(e.message);
   }
 }
 

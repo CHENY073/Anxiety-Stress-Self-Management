@@ -1,13 +1,12 @@
 /* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
-import {View, Text, Image, StyleSheet, useWindowDimensions, Alert, ImageBackground, ScrollView, SafeAreaView, } from 'react-native';
+import {View, Text, Image, StyleSheet, useWindowDimensions, Alert, KeyboardAvoidingView, ImageBackground, ScrollView, SafeAreaView, } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
-import Toast from 'react-native-toast-message';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import Logo from '../../../assets/images/Logo.png';
-import database from '@react-native-firebase/database';
 import auth from '@react-native-firebase/auth';
+import Toast from 'react-native-toast-message';
 
 var numberRegex = new RegExp("^(?=.*[0-9])");
 var specialCharacterRegex = new RegExp("^(?=.*[!@#$%^&*])");
@@ -16,13 +15,13 @@ var uppercaseRegex = new RegExp("^(?=.*[A-Z])");
 var whitespaceRegex = new RegExp("^(?=.*[\\s])");
 
 const SignUpScreen = ({navigation}) => {
-  const window = useWindowDimensions();
+  const {height} = useWindowDimensions();
 
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [code, setCode] = useState('');
+  const [userCode, setUserCode] = useState('');
 
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [toggleSecondCheckBox, setToggleSecondCheckBox] = useState(false);
@@ -51,6 +50,65 @@ const SignUpScreen = ({navigation}) => {
       autoHide: false,
     });
   };
+  const shortPasswordToast = () => {
+    Toast.show({
+      type: 'error',
+      text1: 'Invalid Password',
+      text2: 'Password is too short',
+      autoHide: false,
+    });
+  };
+  const specialCharacterToast = () => {
+    Toast.show({
+      type: 'error',
+      text1: 'Invalid Password',
+      text2: 'Password must contain at least 1 special character',
+      autoHide: false,
+    });
+  };
+  const lowercaseToast = () => {
+    Toast.show({
+      type: 'error',
+      text1: 'Invalid Password',
+      text2: 'Password must contain at least 1 lowercase character',
+      autoHide: false,
+    });
+  };
+  const uppercaseToast = () => {
+    Toast.show({
+      type: 'error',
+      text1: 'Invalid Password',
+      text2: 'Password must contain at least 1 uppercase character',
+      autoHide: false,
+    });
+  };
+  const noNameToast = () => {
+    Toast.show({
+      type: 'error',
+      text1: 'Invalid Name',
+      text2: 'Please enter a name',
+      autoHide: false,
+    });
+  };
+  const matchingPasswordToast = () => {
+    Toast.show({
+      type: 'error',
+      text1: 'Invalid Password',
+      text2: 'Passwords do not match',
+      autoHide: false,
+    });
+  };
+  const checkBoxesToast = () => {
+    Toast.show({
+      type: 'error',
+      text1: 'Agree to Terms',
+      text2: 'Please check the boxes',
+      autoHide: false,
+    });
+  };
+
+
+
 
   const handleSignOut = () => {
     try {
@@ -58,7 +116,7 @@ const SignUpScreen = ({navigation}) => {
 
       navigation.navigate('Home');
     } catch (e) {
-      console.error(e.message);
+      console.error(e);
     }
   };
 
@@ -74,78 +132,63 @@ const SignUpScreen = ({navigation}) => {
     } catch (e) {
       if (e.code === 'auth/email-already-in-use') {
         emailAlreadyInUseToast();
-        //console.error(e.message)
-        // Alert.alert('Email is already in use');
       }
       if (e.code === 'auth/invalid-email') {
-        //console.error(e.message)
-        // Alert.alert('Invalid email');
-        invalidEmailToast();
+         invalidEmailToast();
       }
-     
     }
   };
 
   //this authenticates the user
   const handleSignUp = () => {
-    if (code !== ''){
-      createUser(name, email, code, password);
-    }else if (code === ''){
-      createUser(name, email, password);
-    }
+    createUser(email,password);
   };
 
   //function to only allow sign up if terms are ageed to
   const checkSignUp = () => {
     if (!toggleCheckBox || !toggleSecondCheckBox) {
-      Alert.alert('Please agree to terms');
+      checkBoxesToast();
     } else if (password != confirmPassword) {
-      Alert.alert('Passwords do not match');
+      matchingPasswordToast();
     } else if (password.length < 8) {
-      Alert.alert('Password is too short');
+      shortPasswordToast();
     } else if (password.length > 20) {
       Alert.alert('Password is too long');
     } else if (!numberRegex.test(password)) {
       Alert.alert('Password must contain at least 1 number');
     } else if (!specialCharacterRegex.test(password)) {
-      Alert.alert('Password must contain at least 1 special character');
+      specialCharacterToast();
     } else if (!lowercaseRegex.test(password)) {
-      Alert.alert('Password must contain at least 1 lowercase character');
+      lowercaseToast();
     } else if (!uppercaseRegex.test(password)) {
-      Alert.alert('Password must contain at least 1 uppercase character');
+      uppercaseToast();
     } else if (whitespaceRegex.test(password)) {
       Alert.alert('Password can not contain whitespace');
     } else if (email === '') {
       emptyEmailToast();
-    } else {
+    } else if(name === ''){
+      noNameToast();
+    }
+    else {
       handleSignUp();
     }
   };
 
-  //pushes info to db
-  // let authenticate = (email, code, password, confirmPassword) => {
-  //  database().ref('/accounts').push({
-
-  // email: email,
-  //  code: code,
-  // password: password,
-  //   confirmPassword: confirmPassword,
-
-  //  });
-  //};
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
+    <KeyboardAvoidingView behavior='padding'style={ {height: height}}>
+    <ScrollView>
+      
       <View style={styles.root}>
-        <SafeAreaView>
-          <Image source={Logo} style={styles.logo} resizeMode="contain" />
-        </SafeAreaView>
+      
+      <Image source={Logo} style={ {height: height * 0.15}} resizeMode="contain" />
         <CustomButton
           text="✖"
           onPress={() => navigation.navigate('Home')}
           type="QUINARY"
         />
-        <Text style={styles.title}>Sign Up</Text>
+        
+        <Text style={styles.title}>{'\n'}{'\n'}Sign Up</Text>
 
         <Text style={styles.subTitle}>Please fill in the fields below</Text>
 
@@ -155,8 +198,8 @@ const SignUpScreen = ({navigation}) => {
 
         <CustomInput
           placeholder="Code (optional)"
-          value={code}
-          setValue={setCode}
+          value={userCode}
+          setValue={setUserCode}
         />
 
         <CustomInput
@@ -213,9 +256,16 @@ const SignUpScreen = ({navigation}) => {
         <CustomButton text="Sign Up" onPress={() => {checkSignUp(); }} type="QUATERNARY"/>
         <Text>{'\n'}</Text>
 
-        <Toast />
+        
       </View>
-    </ScrollView>
+      
+     
+      </ScrollView>
+      <Toast/>
+      
+      </KeyboardAvoidingView>
+    
+    
   );
 };
 
@@ -226,34 +276,31 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     alignItems: 'center',
-    width: window.width,
-    height: window.height,
     
   },
   title : {
     fontSize: 38,
     fontWeight: 'bold',
     color: '#000000',
-    marginVertical: 70,
+    
   },
 
   parameters : {
     fontSize: 14,
     color: '#736468',
     
-    alignSelf: 'flex-start',
-    marginHorizontal: 45,
+    
   },
   logo: {
     maxWidth: 100,
     maxHeight: 100,
-    marginVertical: 15,
+   
   },
   subTitle : {
     fontSize: 17,
     
     color: '#000000',
-    marginTop: -70,
+    
   },
   link: {
     color: 'red',
@@ -264,7 +311,7 @@ const styles = StyleSheet.create({
     alignSelf: "baseline",
     justifyContent: "center",
     flexDirection: 'row',
-    marginHorizontal: 75,
+    
   },
   checkboxContainer:{
     flex: 1,
