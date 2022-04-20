@@ -177,14 +177,30 @@ const styles = StyleSheet.create({
    
   },
   container_PLUS:{
+    justifyContent: 'center',
     backgroundColor: '#FFFFFF',
     width: 150,
     padding: 8.5,
     marginVertical: 5,
     alignItems: 'center',
-    borderRadius: 25,
-  },
+    borderRadius: 50,
+    width: '40%'
 
+  },
+  container_INFOSMALL:{
+    borderColor: "#ADD8E6",
+    backgroundColor: 'white',
+    
+    width: 115,
+    height: 45,
+    
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 3,
+    borderRadius: 20,
+   
+  },
+  
   
   pressed_PRIMARY:{
     backgroundColor: '#D5D2D2',
@@ -295,6 +311,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#736468',
     fontSize: 24,
+  },
+  text_INFOSMALL: {
+    color: '#ADD8E6',
+    fontSize: 20,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    
+    paddingBottom: 3
+
   },
   
 })

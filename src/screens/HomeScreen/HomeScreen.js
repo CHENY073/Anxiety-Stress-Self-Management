@@ -109,13 +109,10 @@ const HomeScreen = ({ navigation }) => {
 //this checks if the user is already logged in or not, if they are, takes them to dashboard
  auth().onAuthStateChanged((user) => {
     try{if (user && user.emailVerified) {
-    
-    console.log('user logged');
     navigation.navigate("Dashboard");
     
     }else{
       navigation.navigate("Home");
-      console.log('user not logged')
     }}catch(e){
       Alert.alert('No user signed in')
 
