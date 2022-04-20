@@ -10,13 +10,11 @@ const MoodDiaryScreen = ({ navigation }) => {
 
   const {height} = useWindowDimensions();
   const [selected, setSelected] = useState();
-
   const [isModalVisible, setModalVisible] = useState(false);
   
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
-
 
   const colors = ['#6D828F','#F07575','#F0B275','#E8E850','#B2F075','#75F075'];
   
@@ -30,11 +28,6 @@ const MoodDiaryScreen = ({ navigation }) => {
   const control3 = {key: 'control', color: colors[3]};
   const control4 = {key: 'control', color: colors[4]};
   const control5 = {key: 'control', color: colors[5]};
-  
-  
-
-
-
 
   return (
     <View style={styles.root}>
@@ -44,9 +37,6 @@ const MoodDiaryScreen = ({ navigation }) => {
           Mood Diary
         </Text>
       </View>
-      
-
-
       <CalendarList
       style={{
     borderWidth: 1,
@@ -94,7 +84,7 @@ const MoodDiaryScreen = ({ navigation }) => {
     textDayFontSize: 16,
     textMonthFontSize: 16,
     textDayHeaderFontSize: 16,
-    
+
   }}
 
   onDayPress={day => {
@@ -132,26 +122,19 @@ const MoodDiaryScreen = ({ navigation }) => {
           represents your mood and the dot to the right of that represent how in control you are. The colors are the same as the colors selected when adding
           an entry. Ranging from red to green, in which red represents 1 and green represents 5.</Text>
           
-          <Button style={styles.modalButton} title="Hide" onPress={toggleModal} />
-          
-          
+          <Button style={styles.modalButton} title="Hide" onPress={toggleModal} /> 
         </View>
       </Modal>
-    
       <View style={styles.modalWrapper}>
     <CustomButton style={styles.iButton} text="Learn More" onPress={toggleModal} type="INFOSMALL"/>
     </View>
-
     </View>
-    
-
   );
 };
 
 const styles = StyleSheet.create({
   root: {
-    flex: 1,
-    
+    flex: 1,  
   },
   header: {
     width: '100%',
@@ -192,7 +175,6 @@ const styles = StyleSheet.create({
     height: "90%",
     alignItems: "center",
     justifyContent: "center",
-   
     borderRadius: 25,
     backgroundColor: '#736468',
   },
