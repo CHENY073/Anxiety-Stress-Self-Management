@@ -177,12 +177,15 @@ const styles = StyleSheet.create({
    
   },
   container_PLUS:{
+    justifyContent: 'center',
     backgroundColor: '#FFFFFF',
     width: 150,
     padding: 8.5,
     marginVertical: 5,
     alignItems: 'center',
-    borderRadius: 25,
+    borderRadius: 50,
+    width: '40%'
+
   },
 
   

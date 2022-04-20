@@ -32,17 +32,18 @@ const MoodDiaryScreen = ({ navigation }) => {
           Mood Diary
         </Text>
       </View>
-      <CustomButton text= "+" onPress={() => navigation.navigate('Emotion')} type="PLUS"/>
+      
 
 
-      <Calendar
+      <CalendarList
       style={{
     borderWidth: 1,
-    borderColor: 'gray',
+    borderColor: '#2d4150',
     height: 370
     
   }}
-  
+  horizontal={true}
+  pagingEnabled={true}
 
   theme={{
 
@@ -59,7 +60,8 @@ const MoodDiaryScreen = ({ navigation }) => {
     textDayHeaderFontWeight: '300',
     textDayFontSize: 16,
     textMonthFontSize: 16,
-    textDayHeaderFontSize: 16
+    textDayHeaderFontSize: 16,
+    
   }}
       // Initially visible month. Default = now
      
@@ -107,14 +109,18 @@ const MoodDiaryScreen = ({ navigation }) => {
   // Disable right arrow. Default = false
   disableArrowRight={false}
   // Disable all touch events for disabled days. can be override with disableTouchEvent in markedDates
-  disableAllTouchEventsForDisabledDays={false}
+  disableAllTouchEventsForDisabledDays={true}
   // Replace default month and year title with custom one. the function receive a date as parameter
-  enableSwipeMonths={true}
+  
   // Enable the option to swipe between months. Default = false
   
-/>    
+/>  
+<View style={styles.buttonWrapper}>
+<CustomButton text= "Add an Entry" onPress={() => navigation.navigate('Emotion')} type="PLUS"/>
+</View>
 
     </View>
+    
 
   );
 };
@@ -139,6 +145,11 @@ const styles = StyleSheet.create({
     fontSize: 34,
     fontWeight: 'bold',
     color: 'black',
+  }, 
+  buttonWrapper: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop:10,
   },
   
 });
