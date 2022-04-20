@@ -11,7 +11,7 @@ const ExercisesScreen = ({ navigation }) => {
   return (
     <View style={styles.root}>
       <View style={styles.header}>
-        <View style={styles.button}><CustomButton text= "<" onPress={() => navigation.navigate('Dashboard')} type="dropButton"/></View>
+        <View style={styles.button}><CustomButton text= "<" onPress={() => navigation.goBack()} type="dropButton"/></View>
         <Text style={styles.title}>
           Exercises
         </Text>
