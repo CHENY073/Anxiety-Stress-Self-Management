@@ -14,16 +14,9 @@ import auth from '@react-native-firebase/auth';
 
 const HomeScreen = ({ navigation }) => {
 
-
-
-
-  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
   const {height} = useWindowDimensions();
-  
-
 
   GoogleSignin.configure({
     webClientId: '14011892852-nkn2h4900prc2kgg6nvubu10p0mscc51.apps.googleusercontent.com',
@@ -49,8 +42,6 @@ const HomeScreen = ({ navigation }) => {
       
     }
   }
-
- 
 
   //shows toast message on top
   const verifyEmailToast = () => {
@@ -102,20 +93,15 @@ const HomeScreen = ({ navigation }) => {
     });
   }
 
-  
-  
   const showToastAndroid = () => {
     ToastAndroid.show("SIGNED IN", ToastAndroid.SHORT);};
 //this checks if the user is already logged in or not, if they are, takes them to dashboard
  auth().onAuthStateChanged((user) => {
     try{if (user && user.emailVerified) {
-    
-    console.log('user logged');
     navigation.navigate("Dashboard");
     
     }else{
       navigation.navigate("Home");
-      console.log('user not logged')
     }}catch(e){
       Alert.alert('No user signed in')
 
@@ -138,6 +124,8 @@ const HomeScreen = ({ navigation }) => {
       if (response && response.user && response.user.emailVerified) {
         showToastAndroid();
         navigation.navigate('Dashboard');
+        setEmail('');
+        setPassword('');
       }else if(!response.user.emailVerified){
         verifyEmailToast();
 
@@ -160,9 +148,6 @@ const HomeScreen = ({ navigation }) => {
   }
   }
 }
-
-
-
   return (
     <KeyboardAvoidingView behavior='padding' style={styles.root, {height: height}}>
       <ImageBackground source={SignInBackground} style={styles.background}>

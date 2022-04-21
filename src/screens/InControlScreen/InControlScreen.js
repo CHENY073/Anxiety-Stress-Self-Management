@@ -109,7 +109,7 @@ const InControlScreen = ({ navigation }) => {
       <Animated.Text style={[styles.text, textStyle]}>{value}</Animated.Text>
 
       <View style={styles.button}>
-        <CustomButton text= "Continue" onPress={() => navigation.navigate('Choice')} type="SECONDARY"/>
+        <CustomButton text= "Continue" onPress={() => navigation.navigate('Mood Diary')} type="SECONDARY"/>
       </View>
     </AnimatedSafeAreaView>
   );

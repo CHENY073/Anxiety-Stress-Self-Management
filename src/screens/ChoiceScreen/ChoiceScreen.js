@@ -27,7 +27,7 @@ const ChoiceScreen = ({ navigation }) => {
         What would you like to do?
       </Text>
     <View style={styles.stressorView}>
-    <CustomButton text= "Immediate Exercises" onPress={() => navigation.navigate('Breathing')} type="CHOICE"/>
+    <CustomButton text= "Immediate Exercises" onPress={() => navigation.navigate('Exercises')} type="CHOICE"/>
       </View>
       <View >
 
