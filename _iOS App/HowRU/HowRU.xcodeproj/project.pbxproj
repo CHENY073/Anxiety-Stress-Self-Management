@@ -41,6 +41,19 @@
 		4875DA462841BD660073F629 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4875DA452841BD660073F629 /* SignupViewModel.swift */; };
 		4875DA482841BDB50073F629 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4875DA472841BDB50073F629 /* AppUser.swift */; };
 		4875DA4A2841BDC00073F629 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4875DA492841BDC00073F629 /* MockData.swift */; };
+		4875DA6828427E400073F629 /* AuthenticationBG.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4875DA6728427E400073F629 /* AuthenticationBG.gif */; };
+		4875DA6A28427F8D0073F629 /* GifImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4875DA6928427F8D0073F629 /* GifImage.swift */; };
+		4875DA6C284283900073F629 /* BackgroundGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4875DA6B284283900073F629 /* BackgroundGradientView.swift */; };
+		4875DA6E284283A30073F629 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4875DA6D284283A30073F629 /* LogoView.swift */; };
+		4875DA70284283E50073F629 /* AuthenticateButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4875DA6F284283E50073F629 /* AuthenticateButtonView.swift */; };
+		4875DA73284284250073F629 /* EmailTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4875DA72284284250073F629 /* EmailTextField.swift */; };
+		4875DA75284284410073F629 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4875DA74284284410073F629 /* CustomTextField.swift */; };
+		4875DA77284284650073F629 /* UserTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4875DA76284284650073F629 /* UserTextField.swift */; };
+		4875DA79284284770073F629 /* CustomSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4875DA78284284770073F629 /* CustomSecureField.swift */; };
+		4875DA7B284284890073F629 /* PasswordSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4875DA7A284284890073F629 /* PasswordSecureField.swift */; };
+		4875DA7D284287DC0073F629 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4875DA7C284287DC0073F629 /* DashboardView.swift */; };
+		4875DA7F284289340073F629 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4875DA7E284289340073F629 /* DashboardViewModel.swift */; };
+		4875DA8128428F2C0073F629 /* MainButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4875DA8028428F2C0073F629 /* MainButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +70,19 @@
 		4875DA452841BD660073F629 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		4875DA472841BDB50073F629 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
 		4875DA492841BDC00073F629 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		4875DA6728427E400073F629 /* AuthenticationBG.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = AuthenticationBG.gif; path = ../../../assets/gif/AuthenticationBG.gif; sourceTree = "<group>"; };
+		4875DA6928427F8D0073F629 /* GifImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImage.swift; sourceTree = "<group>"; };
+		4875DA6B284283900073F629 /* BackgroundGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundGradientView.swift; sourceTree = "<group>"; };
+		4875DA6D284283A30073F629 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
+		4875DA6F284283E50073F629 /* AuthenticateButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateButtonView.swift; sourceTree = "<group>"; };
+		4875DA72284284250073F629 /* EmailTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailTextField.swift; sourceTree = "<group>"; };
+		4875DA74284284410073F629 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		4875DA76284284650073F629 /* UserTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTextField.swift; sourceTree = "<group>"; };
+		4875DA78284284770073F629 /* CustomSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureField.swift; sourceTree = "<group>"; };
+		4875DA7A284284890073F629 /* PasswordSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSecureField.swift; sourceTree = "<group>"; };
+		4875DA7C284287DC0073F629 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		4875DA7E284289340073F629 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		4875DA8028428F2C0073F629 /* MainButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +145,7 @@
 				4875D9FB2841B65E0073F629 /* ContentView.swift */,
 				4875DA0A2841B7650073F629 /* GoogleService-Info.plist */,
 				4875D9FD2841B65F0073F629 /* Assets.xcassets */,
+				4875DA6728427E400073F629 /* AuthenticationBG.gif */,
 				4875D9FF2841B65F0073F629 /* Preview Content */,
 			);
 			path = HowRU;
@@ -146,6 +173,7 @@
 			children = (
 				4875DA3D2841BD110073F629 /* Utils */,
 				4875DA3C2841BD080073F629 /* Authentication */,
+				4875DA7C284287DC0073F629 /* DashboardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -154,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				4875DA422841BD480073F629 /* Authentication */,
+				4875DA7E284289340073F629 /* DashboardViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -178,6 +207,12 @@
 		4875DA3D2841BD110073F629 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				4875DA71284284150073F629 /* TextFields */,
+				4875DA6928427F8D0073F629 /* GifImage.swift */,
+				4875DA6B284283900073F629 /* BackgroundGradientView.swift */,
+				4875DA6D284283A30073F629 /* LogoView.swift */,
+				4875DA6F284283E50073F629 /* AuthenticateButtonView.swift */,
+				4875DA8028428F2C0073F629 /* MainButtonView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -189,6 +224,18 @@
 				4875DA452841BD660073F629 /* SignupViewModel.swift */,
 			);
 			path = Authentication;
+			sourceTree = "<group>";
+		};
+		4875DA71284284150073F629 /* TextFields */ = {
+			isa = PBXGroup;
+			children = (
+				4875DA72284284250073F629 /* EmailTextField.swift */,
+				4875DA74284284410073F629 /* CustomTextField.swift */,
+				4875DA76284284650073F629 /* UserTextField.swift */,
+				4875DA78284284770073F629 /* CustomSecureField.swift */,
+				4875DA7A284284890073F629 /* PasswordSecureField.swift */,
+			);
+			path = TextFields;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,6 +323,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4875DA6828427E400073F629 /* AuthenticationBG.gif in Resources */,
 				4875DA012841B65F0073F629 /* Preview Assets.xcassets in Resources */,
 				4875DA0B2841B7650073F629 /* GoogleService-Info.plist in Resources */,
 				4875D9FE2841B65F0073F629 /* Assets.xcassets in Resources */,
@@ -290,14 +338,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				4875DA482841BDB50073F629 /* AppUser.swift in Sources */,
+				4875DA6E284283A30073F629 /* LogoView.swift in Sources */,
+				4875DA73284284250073F629 /* EmailTextField.swift in Sources */,
+				4875DA8128428F2C0073F629 /* MainButtonView.swift in Sources */,
+				4875DA6C284283900073F629 /* BackgroundGradientView.swift in Sources */,
 				4875D9FC2841B65E0073F629 /* ContentView.swift in Sources */,
 				4875DA3B2841BA0B0073F629 /* AuthManager.swift in Sources */,
+				4875DA77284284650073F629 /* UserTextField.swift in Sources */,
 				4875DA442841BD5C0073F629 /* LoginViewModel.swift in Sources */,
+				4875DA7D284287DC0073F629 /* DashboardView.swift in Sources */,
+				4875DA6A28427F8D0073F629 /* GifImage.swift in Sources */,
 				4875DA4A2841BDC00073F629 /* MockData.swift in Sources */,
+				4875DA7F284289340073F629 /* DashboardViewModel.swift in Sources */,
+				4875DA79284284770073F629 /* CustomSecureField.swift in Sources */,
 				4875DA462841BD660073F629 /* SignupViewModel.swift in Sources */,
+				4875DA70284283E50073F629 /* AuthenticateButtonView.swift in Sources */,
 				4875DA3F2841BD240073F629 /* LoginView.swift in Sources */,
 				4875D9FA2841B65E0073F629 /* HowRUApp.swift in Sources */,
 				4875DA412841BD310073F629 /* SignupView.swift in Sources */,
+				4875DA7B284284890073F629 /* PasswordSecureField.swift in Sources */,
+				4875DA75284284410073F629 /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,10 +7,23 @@
 
 import SwiftUI
 
+/**
+ Decides whether to show the login/signup views or the dashboard view, depending if the user is currently logged in or not.
+ */
 struct ContentView: View {
+    
+    @EnvironmentObject var authManager: AuthManager
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        
+        if authManager.userSession == nil {
+            LoginView()
+        } else {
+            if let user = authManager.currentUser {
+                DashboardView(user: user)
+            }
+        }
+        
     }
 }
 
