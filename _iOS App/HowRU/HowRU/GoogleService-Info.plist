@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>14011892852-mrb52hjfcmo1tot7phk2rcb55umtvgfv.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.14011892852-mrb52hjfcmo1tot7phk2rcb55umtvgfv</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>14011892852-49trr2sofiu140nildob9hfjc0g78kq2.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBdjN-7mcnOaeRoF02mWb84ahmVU-UDCn8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>14011892852</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>CapstoneFIU.HowRU</string>
+	<key>PROJECT_ID</key>
+	<string>anxiety-and-stress</string>
+	<key>STORAGE_BUCKET</key>
+	<string>anxiety-and-stress.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:14011892852:ios:0313838e6df53f326cfd21</string>
+	<key>DATABASE_URL</key>
+	<string>https://anxiety-and-stress-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
