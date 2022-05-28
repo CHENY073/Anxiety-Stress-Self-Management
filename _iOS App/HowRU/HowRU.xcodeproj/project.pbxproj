@@ -35,6 +35,12 @@
 		4875DA362841B8450073F629 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4875DA352841B8450073F629 /* FirebaseStorage */; };
 		4875DA382841B8450073F629 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 4875DA372841B8450073F629 /* FirebaseStorageCombine-Community */; };
 		4875DA3B2841BA0B0073F629 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4875DA3A2841BA0B0073F629 /* AuthManager.swift */; };
+		4875DA3F2841BD240073F629 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4875DA3E2841BD240073F629 /* LoginView.swift */; };
+		4875DA412841BD310073F629 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4875DA402841BD310073F629 /* SignupView.swift */; };
+		4875DA442841BD5C0073F629 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4875DA432841BD5C0073F629 /* LoginViewModel.swift */; };
+		4875DA462841BD660073F629 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4875DA452841BD660073F629 /* SignupViewModel.swift */; };
+		4875DA482841BDB50073F629 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4875DA472841BDB50073F629 /* AppUser.swift */; };
+		4875DA4A2841BDC00073F629 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4875DA492841BDC00073F629 /* MockData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +51,12 @@
 		4875DA002841B65F0073F629 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4875DA0A2841B7650073F629 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4875DA3A2841BA0B0073F629 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		4875DA3E2841BD240073F629 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		4875DA402841BD310073F629 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		4875DA432841BD5C0073F629 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		4875DA452841BD660073F629 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
+		4875DA472841BDB50073F629 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
+		4875DA492841BDC00073F629 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +135,8 @@
 		4875DA072841B6FA0073F629 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4875DA472841BDB50073F629 /* AppUser.swift */,
+				4875DA492841BDC00073F629 /* MockData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -130,6 +144,8 @@
 		4875DA082841B7000073F629 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4875DA3D2841BD110073F629 /* Utils */,
+				4875DA3C2841BD080073F629 /* Authentication */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -137,6 +153,7 @@
 		4875DA092841B7060073F629 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				4875DA422841BD480073F629 /* Authentication */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -147,6 +164,31 @@
 				4875DA3A2841BA0B0073F629 /* AuthManager.swift */,
 			);
 			path = AppState;
+			sourceTree = "<group>";
+		};
+		4875DA3C2841BD080073F629 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				4875DA3E2841BD240073F629 /* LoginView.swift */,
+				4875DA402841BD310073F629 /* SignupView.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		4875DA3D2841BD110073F629 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		4875DA422841BD480073F629 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				4875DA432841BD5C0073F629 /* LoginViewModel.swift */,
+				4875DA452841BD660073F629 /* SignupViewModel.swift */,
+			);
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,9 +289,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4875DA482841BDB50073F629 /* AppUser.swift in Sources */,
 				4875D9FC2841B65E0073F629 /* ContentView.swift in Sources */,
 				4875DA3B2841BA0B0073F629 /* AuthManager.swift in Sources */,
+				4875DA442841BD5C0073F629 /* LoginViewModel.swift in Sources */,
+				4875DA4A2841BDC00073F629 /* MockData.swift in Sources */,
+				4875DA462841BD660073F629 /* SignupViewModel.swift in Sources */,
+				4875DA3F2841BD240073F629 /* LoginView.swift in Sources */,
 				4875D9FA2841B65E0073F629 /* HowRUApp.swift in Sources */,
+				4875DA412841BD310073F629 /* SignupView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
