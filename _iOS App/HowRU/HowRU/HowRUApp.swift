@@ -18,7 +18,6 @@ struct HowRUApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(AuthManager.shared)
         }
     }
 }
