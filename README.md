@@ -1,24 +1,3 @@
-# Anxiety and Stress Self Management - howRU.life
-#### With the ever increasing demand of people suffering from mental health issues, it has been very difficult for patients to seek some cure and relief from stress and anxiety. When dealing with day to day activities, whether it is school or work, many people sometimes face stress and/or become anxious.
-
-#### There are limited resources in the market that allow for these people to help cope with stress and anxiety. The app’s goal is to be an interactive platform to help users manage stress and anxiety by first evaluating how they feel and then offering healthy practices to help eliminate the stress and/or anxiety that the user is facing.
-
-#### The purpose of this capstone project was to develop the first iteration of the Anxiety and Stress Self Management mobile application, named howRU.life. Primarily, the app’s goal is to be an interactive platform to help users manage stress and anxiety by first evaluating how they feel and then offering healthy practices to help eliminate the stress and/or anxiety that the user is facing. 
-
-### Example Screens:
-
-
-Home  Screen       |  Mood Diary Screen
-:-------------------------:|:-------------------------:
-<img src="https://user-images.githubusercontent.com/90110498/164375385-7130c694-50a0-4403-a09d-442e5c0bb7a3.JPG" alt="Home" width="350"/><br>  |  <img src="https://user-images.githubusercontent.com/90110498/164375491-ebc28945-5746-4596-a37e-1b7ba3685df6.JPG" alt="Calendar" width="350"/><br>
-
-In Control Screen           |  Breathing Exercise
-:-------------------------:|:-------------------------:
-<img src="https://user-images.githubusercontent.com/90110498/164375381-8d02b87e-11e4-4812-bb14-c0a7b0c0a64d.JPG" alt="Mood" width="350"/><br>  |  <img src="https://user-images.githubusercontent.com/90110498/164375370-32a9ec0f-a7d1-4799-a7f0-870eebf17f80.JPG" alt="Music" width="350"/><br>
-
------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
 ### GUIDE TO START THE APPLICATION
 
 ## Step 1: in terminal, update the version of react-native to the latest version
