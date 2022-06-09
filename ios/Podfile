@@ -13,6 +13,10 @@ target 'anxietyStressSelfManagement' do
   )
 
   pod 'RNSound', :path => '../node_modules/react-native-sound'
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'GoogleSignIn'
+  pod 'GoogleSignInSwiftSupport'
 
   target 'anxietyStressSelfManagementTests' do
     inherit! :complete
