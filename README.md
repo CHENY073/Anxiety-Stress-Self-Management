@@ -195,6 +195,3 @@ pod install
 # NOTE: if you get "Error error SHA-1 for file is not computed" issue, do
 npm install -i -g --force react-native-cli
 # delete the node_modules, reinstall pods, delete workspace build, re-install dependencies, and run metro and the project again.
-
-
-test
