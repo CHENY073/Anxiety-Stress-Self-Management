@@ -23,7 +23,7 @@ const ReasonsScreen = ({ route, navigation }) => {
 
   const handlePress = () => {
     if(reasons.length < 1) Alert.alert('Please pick a reason');
-    else navigation.navigate('FoodFT');
+    else navigation.navigate('Awareness');
   };
 
   return (
