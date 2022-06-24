@@ -4,6 +4,7 @@ import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import Modal from "react-native-modal";
+import {CheckBox} from 'react-native-checkbox';
 
 
 const MoodDiaryScreen = ({ navigation }) => {
@@ -46,29 +47,6 @@ const MoodDiaryScreen = ({ navigation }) => {
   }}
   horizontal={true}
   pagingEnabled={true}
-  
-  markingType={'multi-dot'}
-
-  markedDates={{
-    '2022-04-12': {dots: [mood1, control1]},
-    '2022-04-17': {dots: [mood3, control4]},
-    '2022-04-18': {dots: [mood3, control3]},
-    '2022-04-18': {dots: [mood5, control5]},
-    '2022-04-01': {dots: [mood2, control2]},
-    '2022-04-06': {dots: [mood2, control4]},
-    '2022-04-16': {dots: [mood3, control3]},
-    '2022-04-18': {dots: [mood5, control5]},
-    '2022-04-08': {dots: [mood4, control4]},
-    '2022-04-03': {dots: [mood1, control4]},
-    '2022-04-18': {dots: [mood5, control5]},
-    '2022-04-05': {dots: [mood5, control5]},
-    '2022-04-10': {dots: [mood4, control5]},
-    '2022-04-14': {dots: [mood3, control4]},
-    '2022-04-03': {dots: [mood4, control4]},
-    '2022-04-02': {dots: [mood3, control4]},
-    '2022-04-20': {dots: [mood5, control5]},
-   
-  }}
 
   theme={{
     textSectionTitleColor: '#736468',
@@ -108,6 +86,28 @@ const MoodDiaryScreen = ({ navigation }) => {
 />  
 <View style={styles.buttonWrapper}>
 <CustomButton text= "Add an Entry" onPress={() => navigation.navigate('Emotion')} type="PLUS"/>
+</View>
+
+<View>
+< Text style={styles.question}>ACTIVITY</Text>
+<View>
+{answers.map((answer) => (
+        <CheckBox
+          center
+          key={answer.id}
+          title={answer.choice}
+          // if these are not empty strings, the default checkbox appears
+          checkedIcon=""
+          uncheckedIcon=""
+          checked={this.state[answer.id] || false}
+          // ternary conditionally renders the color of choice container 
+          containerStyle={this.state[answer.id]
+          ? { backgroundColor: answer.isCorrect
+              ? 'lightgreen' : 'pink' } : null}
+          onPress={() => this.handleSelection(answer)}
+         />
+        ))}
+</View>
 </View>
 
 <Modal isVisible={isModalVisible} onModalHide={()=> setModalVisible(false)}>
