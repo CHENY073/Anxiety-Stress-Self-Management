@@ -1,10 +1,9 @@
 import React, {useState, useMemo, useCallback} from 'react';
-import {View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground, Button} from 'react-native';
+import {View, Text, ScrollView, SafeAreaView, Image, StyleSheet, useWindowDimensions, ImageBackground, Alert, Button} from 'react-native';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import Modal from "react-native-modal";
-import {CheckBox} from 'react-native-checkbox';
 
 
 const MoodDiaryScreen = ({ navigation }) => {
@@ -17,116 +16,85 @@ const MoodDiaryScreen = ({ navigation }) => {
     setModalVisible(!isModalVisible);
   };
 
-  const colors = ['#6D828F','#F07575','#F0B275','#E8E850','#B2F075','#75F075'];
-  
-  const mood1= {key: 'mood1', color: colors[1]};
-  const mood2= {key: 'mood', color: colors[2]};
-  const mood3= {key: 'mood', color: colors[3]};
-  const mood4= {key: 'mood', color: colors[4]};
-  const mood5= {key: 'mood', color: colors[5]};
-  const control1 = {key: 'control1', color: colors[1]};
-  const control2 = {key: 'control', color: colors[2]};
-  const control3 = {key: 'control', color: colors[3]};
-  const control4 = {key: 'control', color: colors[4]};
-  const control5 = {key: 'control', color: colors[5]};
+
 
   return (
     <View style={styles.root}>
-      <View style={styles.header}>
-        <View style={styles.button}><CustomButton text= "<" onPress={() => navigation.navigate('Dashboard')} type="dropButton"/></View>
-        <Text style={styles.title}>
-          Mood Diary
-        </Text>
-      </View>
-      <CalendarList
-      style={{
-    borderWidth: 1,
-    borderColor: '#2d4150',
-    height: 370
-    
-  }}
-  horizontal={true}
-  pagingEnabled={true}
-
-  theme={{
-    textSectionTitleColor: '#736468',
-    dayTextColor: '#2d4150',
-    arrowColor: '#736468',
-    monthTextColor: '#6D828F',
-    indicatorColor: 'blue',
-    textDayFontWeight: '300',
-    textMonthFontWeight: 'bold',
-    textDayHeaderFontWeight: '300',
-    textDayFontSize: 16,
-    textMonthFontSize: 16,
-    textDayHeaderFontSize: 16,
-
-  }}
-
-  onDayPress={day => {
-    console.log('selected day', day);
-  }}
-  onDayLongPress={day => {
-    console.log('selected day', day);
-  }}
-  monthFormat={'MMMM yyyy'}
-  onMonthChange={month => {
-    console.log('month changed', month);
-  }}
+    <View style={styles.header}>
+      <View style={styles.button}><CustomButton text= "<" onPress={() => navigation.navigate('Dashboard')} type="dropButton"/></View>
+      <Text style={styles.title}>
+        Mood Diary
+      </Text>
+    </View>
+    <CalendarList
+    style={{
+  borderWidth: 1,
+  borderColor: '#2d4150',
+  height: 370
   
-  hideArrows={false}
-  hideExtraDays={true}
-  hideDayNames={false}
-  showWeekNumbers={false}
- 
-  disableArrowLeft={false}
-  disableArrowRight={false}
-  disableAllTouchEventsForDisabledDays={true}
+}}
+horizontal={true}
+pagingEnabled={true}
+
+
+theme={{
+  textSectionTitleColor: '#736468',
+  dayTextColor: '#2d4150',
+  arrowColor: '#736468',
+  monthTextColor: '#6D828F',
+  indicatorColor: 'blue',
+  textDayFontWeight: '300',
+  textMonthFontWeight: 'bold',
+  textDayHeaderFontWeight: '300',
+  textDayFontSize: 16,
+  textMonthFontSize: 16,
+  textDayHeaderFontSize: 16,
+
+}}
+
+onDayPress={day => {
+  console.log('selected day', day);
+}}
+onDayLongPress={day => {
+  console.log('selected day', day);
+}}
+monthFormat={'MMMM yyyy'}
+onMonthChange={month => {
+  console.log('month changed', month);
+}}
+
+hideArrows={false}
+hideExtraDays={true}
+hideDayNames={false}
+showWeekNumbers={false}
+
+disableArrowLeft={false}
+disableArrowRight={false}
+disableAllTouchEventsForDisabledDays={true}
 
 />  
 <View style={styles.buttonWrapper}>
 <CustomButton text= "Add an Entry" onPress={() => navigation.navigate('Emotion')} type="PLUS"/>
 </View>
 
-<View>
-< Text style={styles.question}>ACTIVITY</Text>
-<View>
-{answers.map((answer) => (
-        <CheckBox
-          center
-          key={answer.id}
-          title={answer.choice}
-          // if these are not empty strings, the default checkbox appears
-          checkedIcon=""
-          uncheckedIcon=""
-          checked={this.state[answer.id] || false}
-          // ternary conditionally renders the color of choice container 
-          containerStyle={this.state[answer.id]
-          ? { backgroundColor: answer.isCorrect
-              ? 'lightgreen' : 'pink' } : null}
-          onPress={() => this.handleSelection(answer)}
-         />
-        ))}
-</View>
-</View>
-
 <Modal isVisible={isModalVisible} onModalHide={()=> setModalVisible(false)}>
-        <View style={styles.modal}>
-          <Text style={styles.modalText}>How does the calendar work?</Text>
-          <Text style={styles.modalSmallText}>When you tap on "add entry", you will be taken to a selector for your mood
-          and a selector for how in control you are. After picking your values, they will be display in the calendar.</Text>
-          <Text style={styles.modalText}>What are the dots under the dates?</Text>
-          <Text style={styles.modalSmallText}> The colored dots under the dates represent your mood and how in control you are. The first dot from the left
-          represents your mood and the dot to the right of that represent how in control you are. The colors are the same as the colors selected when adding
-          an entry. Ranging from red to green, in which red represents 1 and green represents 5.</Text>
-          
-          <Button style={styles.modalButton} title="Hide" onPress={toggleModal} /> 
-        </View>
-      </Modal>
-      <View style={styles.modalWrapper}>
-    <CustomButton style={styles.iButton} text="Learn More" onPress={toggleModal} type="INFOSMALL"/>
-    </View>
-    </View>
+      <View style={styles.modal}>
+        <Text style={styles.modalText}>How does the calendar work?</Text>
+        <Text style={styles.modalSmallText}>When you tap on "add entry", you will be taken to a selector for your mood
+        and a selector for how in control you are. After picking your values, they will be display in the calendar.</Text>
+        <Text style={styles.modalText}>What are the dots under the dates?</Text>
+        <Text style={styles.modalSmallText}> The colored dots under the dates represent your mood and how in control you are. The first dot from the left
+        represents your mood and the dot to the right of that represent how in control you are. The colors are the same as the colors selected when adding
+        an entry. Ranging from red to green, in which red represents 1 and green represents 5.</Text>
+        
+        <Button style={styles.modalButton} title="Hide" onPress={toggleModal} /> 
+      </View>
+    </Modal>
+    <View style={styles.modalWrapper}>
+  <CustomButton style={styles.iButton} text="Learn More" onPress={toggleModal} type="INFOSMALL"/>
+  <CustomButton text= "Daily Log" onPress={() => navigation.navigate('DailyLog')} type="PLUS"/>
+  </View>
+  </View>
   );
 };
 
@@ -184,8 +152,31 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     alignItems: 'center',
     paddingTop:10,
-  }
-  
+  },
+  button:{
+    flex: 1,
+    flexDirection: "column-reverse",
+    paddingBottom: 10,
+  },
+  containter: {
+    width: '80%',
+  },
+  picker: {
+    backgroundColor: '#D6CBCB',
+    color: '#736468',
+  },
+  label: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#736468',
+    marginTop: 2,
+  },
+  volume:{
+    width: 30,
+    height: 30,
+    margin: 20,
+    alignSelf: 'flex-end',
+  },
 });
 
 export default MoodDiaryScreen;
