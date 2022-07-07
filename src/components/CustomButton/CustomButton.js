@@ -71,6 +71,20 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 35,
   },
+  container_redButton:{
+    backgroundColor: '#f01111',
+    width: 380,
+    padding: 18,
+    alignSelf: 'center',
+    borderRadius: 35,
+  },
+  container_greenButton:{
+    backgroundColor: '#60e346',
+    width: 380,
+    padding: 18,
+    alignSelf: 'center',
+    borderRadius: 35,
+  },
   container_dropButton:{
     width: 100,
     padding: 10,
@@ -244,6 +258,16 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   text_exercisesButton: {
+    color: '#FFFFFF',
+    fontSize: 24,
+    alignSelf: 'center',
+  },
+  text_redButton: {
+    color: '#FFFFFF',
+    fontSize: 24,
+    alignSelf: 'center',
+  },
+  text_greenButton: {
     color: '#FFFFFF',
     fontSize: 24,
     alignSelf: 'center',
