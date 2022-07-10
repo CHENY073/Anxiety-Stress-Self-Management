@@ -29,7 +29,6 @@ const AboutUsScreen = ({ navigation }) => {
         {"\n"}{"\n"}  HowRU is an app which seeks to help manage your anxiety and stress. 
         This app provides various features such as a daily mood diary where you can put how you feel each day by asking you various questions.
         Additionally, immediate breathing exercises are available to calm down your anxiety level at a moments notice.
-        (...)
         </Text>
     </View>
 

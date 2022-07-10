@@ -31,7 +31,6 @@ const AccountScreen = ({ navigation }) => {
 
         <Text style={styles.normal}>
         {"\n"}{"\n"} Email: {email}
-        {"\n"} UserName: {userName}
         </Text>
  
     </View>

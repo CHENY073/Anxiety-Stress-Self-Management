@@ -17,22 +17,30 @@ const SettingsScreen = ({ navigation }) => {
   var newDate = new Date(date)
 
   //Sends a notification daily based on users specified time
-  const testSchNoti = () => {
+  const scheduleNotification = () => {
     PushNotification.localNotificationSchedule({
       channelId: "my-channel",
-      title: "Daily Reminder", // (optional)
-      message: "Hello! Don't forget to fill out your daily entries.", // (required)
-      date: new Date(newDate), // Trying to get to fire at a specific time, for 5 seconds into future:  Date.now() + 5 * 1000
+      title: "Daily Reminder", // optional
+      message: "Hello! Don't forget to fill out your daily entries.", // required
+      date: new Date(newDate), // Sends notification at the specified time.
       allowWhileIdle: true, // (optional) set notification to work while on doze, default: false
     
       /* Android Only */
       repeatType: 'day',
       repeatTime: 1, // (optional) Increment of configured repeatType. Check 'Repeating Notifications' section for more info.
+
+      
+    });
+    Toast.show({
+      type: 'success',
+      text1: 'Notifications scheduled',
+      position: 'bottom',
+      bottomOffset: 100,
     });
   }
 
   //Closes all notifications and ends any scheduled notifications
-  const testCloseNoti = () =>
+  const closeNotification = () =>
   {
     PushNotification.cancelAllLocalNotifications();
     PushNotification.cancelLocalNotification('my-channel');
@@ -66,18 +74,20 @@ const SettingsScreen = ({ navigation }) => {
         </Text>
 
     </View>
+   
+    <Text style={styles.options}>
+      <DatePicker date={date} onDateChange={setDate} mode= 'time' fadeToColor='none'/>
+    </Text>
 
-    <DatePicker date={date} onDateChange={setDate} mode= 'time'/>
     <Text>
-          {"\n"}  
+      {"\n"}  
     </Text>
-    <CustomButton text= "Schedule Daily Notifications" onPress={() => testSchNoti()} type="greenButton"/>
+    <CustomButton text= "Schedule Daily Notifications" onPress={() => scheduleNotification()} type="greenButton"/>
     
     <Text>
-          {"\n"}  
+      {"\n"}  
     </Text>
-    
-    <CustomButton text= "End All Notifications" onPress={() => testCloseNoti()} type="redButton"/>
+    <CustomButton text= "End All Notifications" onPress={() => closeNotification()} type="redButton"/>
 
     </ScrollView>
   );
@@ -104,7 +114,7 @@ const styles = StyleSheet.create({
   options: {
       fontSize: 15,
       color: 'white',
-      alignSelf: 'flex-end',
+      alignSelf: 'center',
       marginHorizontal: 30,
       marginVertical: 5,
   },

@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     borderRadius: 35,
   },
   container_greenButton:{
-    backgroundColor: '#60e346',
+    backgroundColor: '#2fc240',
     width: 380,
     padding: 18,
     alignSelf: 'center',
