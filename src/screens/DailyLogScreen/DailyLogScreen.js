@@ -1,6 +1,6 @@
 import React, {useState, useMemo, useCallback} from 'react';
 import {View, Text, ScrollView, SafeAreaView, Image, StyleSheet, useWindowDimensions, ImageBackground, Alert, Button} from 'react-native';
-import CustomInput from '../../components/CustomInput';
+import CustomSelect from '../../components/CustomSelect';
 import CustomButton from '../../components/CustomButton';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import Modal from "react-native-modal";
@@ -16,8 +16,8 @@ const DailyLogScreen = ({navigation}) => {
     const [anxietyLevel, setAnxietyLevel] = useState(0);
     const [strategies, setStrategies] = useState(0);
   
-    const activityData = ['','Exercise', 'Meditation', 'Reading'];
-    const triggersData = ['','None', 'Memories', 'Confrontation', 'Crowds'];
+    const activityData = ['','Home', 'Work', 'Social Setting','School'];
+    const triggersData = ['','Mind', 'Body', 'Emotion', 'Behavior'];
     const signsData = ['','Insomnia', 'Restlessness', 'Palpitations', 'Difficulty concentrating'];
     const anxietyLevelData = ['','1','2','3','4','5','6','7','8','9','10'];
     const strategiesData = ['','Breathing','Positive self-talk', 'Listening to music', 'Talking to a friend'];
@@ -43,10 +43,10 @@ const DailyLogScreen = ({navigation}) => {
       <Text style = {styles.title}>
         Daily Log
       </Text>
-
+    
       <View style = {styles.containter}>
-        <Text style = {styles.label}>What activity did you do?</Text>
-        <Picker selectedValue={activity} onValueChange={(itemValue, itemIndex) => setActivity(itemValue)} style = {styles.picker} numberOfLines={5}>
+      <Text style = {styles.label}>What activity did you do?</Text>
+        <Picker selectedValue={triggers} onValueChange={(itemValue, itemIndex) => setTriggers(itemValue)} style = {styles.picker} numberOfLines={5}>
           {activityData.map((item, index)=>{
             return (
               <Picker.Item value={index} label = {item} key={index}/>
@@ -96,7 +96,7 @@ const DailyLogScreen = ({navigation}) => {
       </View>
       </View>
     </SafeAreaView>
-    </ScrollView>
+   </ScrollView>
 
   );
 };
