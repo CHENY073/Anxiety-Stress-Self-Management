@@ -15,6 +15,7 @@ const DailyLogScreen = ({navigation}) => {
     const [activity, setActivity] = useState('');
     const [triggers, setTriggers] = useState(0);
     const [signs, setSigns] = useState(0);
+    const [signsInput, setSignsInput] = useState('');
     const [anxietyLevel, setAnxietyLevel] = useState(0);
     const [strategies, setStrategies] = useState(0);
   
@@ -34,6 +35,7 @@ const DailyLogScreen = ({navigation}) => {
       else navigation.navigate('Intention');
     };
 
+
     return (
         <ScrollView>
         <SafeAreaView style={[styles.root]}>
@@ -52,7 +54,7 @@ const DailyLogScreen = ({navigation}) => {
         <CustomInput  value={activity} setValue={setActivity} secureTextEntry={false}/>
 
         
-        <Text style = {styles.label}>What triggers did you experience?</Text>
+        <Text style = {styles.label}>What trigger did you experience?</Text>
         <Picker selectedValue={triggers} onValueChange={(itemValue, itemIndex) => setTriggers(itemValue)} style = {styles.picker} numberOfLines={5}>
           {triggersData.map((item, index)=>{
             return (
@@ -61,7 +63,7 @@ const DailyLogScreen = ({navigation}) => {
           })}
         </Picker>
         
-        <Text style = {styles.label}>What signs did you experience?</Text>
+        <Text style = {styles.label}>What sign did you experience?</Text>
         <Picker selectedValue={signs} onValueChange={(itemValue, itemIndex) => setSigns(itemValue)} style = {styles.picker} numberOfLines={5}>
           {signsData.map((item, index)=>{
             return (
@@ -69,6 +71,8 @@ const DailyLogScreen = ({navigation}) => {
             );
           })}
         </Picker>
+        <Text style={styles.label}>Based on the 4 quardents, what did you experience</Text>
+        <CustomInput value={signsInput} setValue={setSignsInput} secureTextEntry={false} />
 
         <Text style = {styles.label}>How stressed are you?</Text>
         <Slider
