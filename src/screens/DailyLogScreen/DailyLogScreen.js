@@ -18,19 +18,26 @@ const DailyLogScreen = ({navigation}) => {
     const [signsInput, setSignsInput] = useState('');
     const [anxietyLevel, setAnxietyLevel] = useState(0);
     const [strategies, setStrategies] = useState(0);
+    const [body, setBody] = useState(0);
+    const [mind, setMind] = useState(0);
+    const [emotion, setEmotion] = useState(0);
+    const [behavior, setBehavior] = useState(0);
   
-    const activityData = ['','Exercise 🏃', 'Meditation 🧘', 'Reading 📖'];
+    // const activityData = ['','Exercise 🏃', 'Meditation 🧘', 'Reading 📖'];
     const triggersData = ['','Home', 'School', 'Work', 'Social Life'];
     const signsData = ['','Body', 'Mind', 'Emotion', 'Behavior'];
-
-  
+    const bodyData = ['','Headaches','Skin Irriation','High Blood Pressure','Fatigue','Palpitations','Difficulty Breathing'];
+    const mindData = ['','Worrying','Muddled Thinking','Impaired Judgement','Indecision','Difficulty Concentrating'];
+    const emotionsData = ['','Fear','Irritability','Depression','Apathy','Alienation','Loss of Confidence'];
+    const behaviorData = ['','Addiction','Less Appetite','Less Sex Drive','Insomnia','Restlessness','Accident Prone'];
+    const stressedLevel = ['','1','2','3','4','5','6','7','8','9','10'];
     const strategiesData = ['','Breathing','Positive self-talk', 'Listening to music', 'Talking to a friend', 'Group Support'];
   
     const handlePress = () => {
       if(!activity) Alert.alert('Please pick an activity answer');
       else if(!triggers) Alert.alert('Please pick a triggers answer');
       else if(!signs) Alert.alert('Please pick a signs answer');
-    //  else if(!anxietyLevel) Alert.alert('Please pick a number');
+      else if(!anxietyLevel) Alert.alert('Please pick a number');
       else if(!strategies) Alert.alert('Please pick a strategies answer');
       else navigation.navigate('Intention');
     };
@@ -71,19 +78,51 @@ const DailyLogScreen = ({navigation}) => {
             );
           })}
         </Picker>
-        <Text style={styles.label}>Based on the 4 quardents, what did you experience</Text>
-        <CustomInput value={signsInput} setValue={setSignsInput} secureTextEntry={false} />
+        
+        <Text style = {styles.label}>Body</Text>
+        <Picker selectedValue={body} onValueChange={(itemValue, itemIndex) => setBody(itemValue)} style = {styles.picker} numberOfLines={5}>
+          {bodyData.map((item, index)=>{
+            return (
+              <Picker.Item value={index} label = {item} key={index}/>
+            );
+          })}
+        </Picker>
+
+        <Text style = {styles.label}>Mind</Text>
+        <Picker selectedValue={mind} onValueChange={(itemValue, itemIndex) => setMind(itemValue)} style = {styles.picker} numberOfLines={5}>
+          {mindData.map((item, index)=>{
+            return (
+              <Picker.Item value={index} label = {item} key={index}/>
+            );
+          })}
+        </Picker>
+
+        <Text style = {styles.label}>Emotions</Text>
+        <Picker selectedValue={emotion} onValueChange={(itemValue, itemIndex) => setEmotion(itemValue)} style = {styles.picker} numberOfLines={5}>
+          {emotionsData.map((item, index)=>{
+            return (
+              <Picker.Item value={index} label = {item} key={index}/>
+            );
+          })}
+        </Picker>
+
+        <Text style = {styles.label}>Behavior</Text>
+        <Picker selectedValue={behavior} onValueChange={(itemValue, itemIndex) => setBehavior(itemValue)} style = {styles.picker} numberOfLines={5}>
+          {behaviorData.map((item, index)=>{
+            return (
+              <Picker.Item value={index} label = {item} key={index}/>
+            );
+          })}
+        </Picker>
 
         <Text style = {styles.label}>How stressed are you?</Text>
-        <Slider
-          value={anxietyLevel}
-          onValueChange={(anxietyLevel, setAnxietyLevel) => setSigns(anxietyLevel)}
-          minimumTrackTintColor= '#de3c3c'
-          maximumTrackTintColor= '#5cde3c'
-          minimumValue= '0'
-          maximumValue= '10'
-          step= '2'
-        />
+        <Picker selectedValue={anxietyLevel} onValueChange={(itemValue, itemIndex) => setAnxietyLevel(itemValue)} style = {styles.picker} numberOfLines={5}>
+          {stressedLevel.map((item, index)=>{
+            return (
+              <Picker.Item value={index} label = {item} key={index}/>
+            );
+          })}
+        </Picker>
         
         <Text style = {styles.label}>What strategies can you use?</Text>
         <Picker selectedValue={strategies} onValueChange={(itemValue, itemIndex) => setStrategies(itemValue)} style = {styles.picker} numberOfLines={5}>
