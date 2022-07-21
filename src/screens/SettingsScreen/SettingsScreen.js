@@ -16,6 +16,8 @@ const SettingsScreen = ({ navigation }) => {
   var m = Moment();
   var newDate = new Date(date)
 
+  // Notifications only work for the Android version. Missing some requirements for iOS notifications
+
   //Sends a notification daily based on users specified time
   const scheduleNotification = () => {
     PushNotification.localNotificationSchedule({

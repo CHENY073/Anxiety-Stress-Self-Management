@@ -62,7 +62,7 @@ const AwarenessScreen = ({ navigation }) => {
       </Text>
 
       <View style={styles.button}>
-        <CustomButton text= "Continue" onPress={() => navigation.navigate('FoodFT')} type="SECONDARY"/>
+        <CustomButton text= "Continue" onPress={() => navigation.navigate('Daily Log')} type="SECONDARY"/>
       </View>
     </SafeAreaView>
   );

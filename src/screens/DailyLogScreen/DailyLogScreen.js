@@ -3,9 +3,7 @@ import {View, Text, ScrollView, SafeAreaView, Image, StyleSheet, useWindowDimens
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
-import Modal from "react-native-modal";
 import {Picker} from '@react-native-picker/picker';
-import Slider from "react-native-sliders";
 
 
 import Volume from '../../../assets/images/Volume.png';
@@ -30,7 +28,7 @@ const DailyLogScreen = ({navigation}) => {
     const mindData = ['','Worrying','Muddled Thinking','Impaired Judgement','Indecision','Difficulty Concentrating'];
     const emotionsData = ['','Fear','Irritability','Depression','Apathy','Alienation','Loss of Confidence'];
     const behaviorData = ['','Addiction','Less Appetite','Less Sex Drive','Insomnia','Restlessness','Accident Prone'];
-    const stressedLevel = ['','1','2','3','4','5','6','7','8','9','10'];
+    const stressedLevel = ['','1','2','3','4','5'];
     const strategiesData = ['','Breathing','Positive self-talk', 'Listening to music', 'Talking to a friend', 'Group Support'];
   
     const handlePress = () => {
