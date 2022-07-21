@@ -33,6 +33,7 @@ import FoodFTScreen from './src/screens/FoodFTScreen';
 import ChoiceScreen from './src/screens/ChoiceScreen';
 import StressorScreen from './src/screens/StressorScreen';
 import AwarenessScreen from './src/screens/AwarenessScreen';
+import DailyLogScreen from './src/screens/DailyLogScreen/DailyLogScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -65,6 +66,7 @@ const app = () => {
         <Stack.Screen options ={{headerShown: false}} name="Choice" component={ChoiceScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Stressor" component={StressorScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Awareness" component={AwarenessScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Daily Log" component={DailyLogScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -108,6 +108,7 @@ const MoodDiaryScreen = ({ navigation }) => {
 />  
 <View style={styles.buttonWrapper}>
 <CustomButton text= "Add an Entry" onPress={() => navigation.navigate('Emotion')} type="PLUS"/>
+<CustomButton text= "Daily Log" onPress={() => navigation.navigate('Daily Log')} type="PLUS"/>
 </View>
 
 <Modal isVisible={isModalVisible} onModalHide={()=> setModalVisible(false)}>
