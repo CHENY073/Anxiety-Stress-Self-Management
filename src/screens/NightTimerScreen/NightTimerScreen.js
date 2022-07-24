@@ -5,9 +5,9 @@ import Svg, {G, Path, Circle} from 'react-native-svg';
 import CustomButton from '../../components/CustomButton';
 import Logo from '../../../assets/images/Logo.png';
 import Volume from '../../../assets/images/Volume.png';
-import SignInBackground from '../../../assets/gif/SignInBackGround.gif';
+import NightSkyGif from '../../../assets/gif/NightSkyGif.gif';
 
-const TimerScreen = ({ route, navigation }) => {
+const NightTimerScreen = ({ route, navigation }) => {
   const [timer, setTimer] = useState(0);
 
   const window = useWindowDimensions();
@@ -32,6 +32,7 @@ const TimerScreen = ({ route, navigation }) => {
     outputRange: [232,12]
   });
 
+
   const animation = () => {
     Animated.loop(
       Animated.sequence([
@@ -42,19 +43,14 @@ const TimerScreen = ({ route, navigation }) => {
         }),
         Animated.timing(pos.x,{
           toValue: 1,
-          duration: 4000,
+          duration: 7000,
           useNativeDriver: true,
         }),
         Animated.timing(pos.y,{
           toValue: 0,
-          duration: 4000,
+          duration: 8000,
           useNativeDriver: true,
-        }),
-        Animated.timing(pos.x,{
-          toValue: 0,
-          duration: 4000,
-          useNativeDriver: true,
-        }),
+        })
       ]),
       {iterations: cycle},
     ).start();
@@ -64,7 +60,7 @@ const TimerScreen = ({ route, navigation }) => {
     pos.x.resetAnimation();
     pos.y.resetAnimation();
     animation();
-    setTimer(16*cycle);
+    setTimer(19*cycle);
     var counter = 0;
     var countdown = setInterval(() => {
       setTimer(lastTimer => {
@@ -72,7 +68,7 @@ const TimerScreen = ({ route, navigation }) => {
         return lastTimer - 1
       });
       counter++;
-      if(counter == 16*cycle){
+      if(counter == 19*cycle){
         clearInterval(countdown);
         pos.stopAnimation();
         navigation.navigate('Dashboard');
@@ -83,7 +79,7 @@ const TimerScreen = ({ route, navigation }) => {
 
   return (
     <SafeAreaView style={styles.root}>
-      <ImageBackground source={SignInBackground} style={styles.background}>
+      <ImageBackground source={NightSkyGif} style={styles.background}>
         <View style={styles.overlay} />
         <View style={styles.header}>
           <View style={{width: 100}}><CustomButton text= "<" onPress={() => navigation.goBack()} type="blackBackButton"/></View>
@@ -103,7 +99,7 @@ const TimerScreen = ({ route, navigation }) => {
                 <Path origin="122, 122" y="30" rotation="0" d="M10.5 182C10.5 182.828 11.1716 183.5 12 183.5C12.8284 183.5 13.5 182.828 13.5 182H10.5ZM13.0607 0.939346C12.4749 0.353546 11.5251 0.353546 10.9393 0.939346L1.3934 10.4853C0.807611 11.0711 0.807611 12.0208 1.3934 12.6066C1.97919 13.1924 2.92893 13.1924 3.51472 12.6066L12 4.12132L20.4853 12.6066C21.0711 13.1924 22.0208 13.1924 22.6066 12.6066C23.1924 12.0208 23.1924 11.0711 22.6066 10.4853L13.0607 0.939346ZM13.5 182L13.5 2H10.5L10.5 182H13.5Z"/>
                 <Path origin="122, 122" x="-30" rotation="90" d="M10.5 182C10.5 182.828 11.1716 183.5 12 183.5C12.8284 183.5 13.5 182.828 13.5 182H10.5ZM13.0607 0.939346C12.4749 0.353546 11.5251 0.353546 10.9393 0.939346L1.3934 10.4853C0.807611 11.0711 0.807611 12.0208 1.3934 12.6066C1.97919 13.1924 2.92893 13.1924 3.51472 12.6066L12 4.12132L20.4853 12.6066C21.0711 13.1924 22.0208 13.1924 22.6066 12.6066C23.1924 12.0208 23.1924 11.0711 22.6066 10.4853L13.0607 0.939346ZM13.5 182L13.5 2H10.5L10.5 182H13.5Z"/>
                 <Path origin="122, 122" y="-30" rotation="180" d="M10.5 182C10.5 182.828 11.1716 183.5 12 183.5C12.8284 183.5 13.5 182.828 13.5 182H10.5ZM13.0607 0.939346C12.4749 0.353546 11.5251 0.353546 10.9393 0.939346L1.3934 10.4853C0.807611 11.0711 0.807611 12.0208 1.3934 12.6066C1.97919 13.1924 2.92893 13.1924 3.51472 12.6066L12 4.12132L20.4853 12.6066C21.0711 13.1924 22.0208 13.1924 22.6066 12.6066C23.1924 12.0208 23.1924 11.0711 22.6066 10.4853L13.0607 0.939346ZM13.5 182L13.5 2H10.5L10.5 182H13.5Z"/>
-                <Path origin="122, 122" x="30" rotation="270" d="M10.5 182C10.5 182.828 11.1716 183.5 12 183.5C12.8284 183.5 13.5 182.828 13.5 182H10.5ZM13.0607 0.939346C12.4749 0.353546 11.5251 0.353546 10.9393 0.939346L1.3934 10.4853C0.807611 11.0711 0.807611 12.0208 1.3934 12.6066C1.97919 13.1924 2.92893 13.1924 3.51472 12.6066L12 4.12132L20.4853 12.6066C21.0711 13.1924 22.0208 13.1924 22.6066 12.6066C23.1924 12.0208 23.1924 11.0711 22.6066 10.4853L13.0607 0.939346ZM13.5 182L13.5 2H10.5L10.5 182H13.5Z"/>
+
               </G>
             </G>
           </Svg>
@@ -122,12 +118,12 @@ const styles = StyleSheet.create({
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(255,122,186,0.5)',
+    backgroundColor: 'rgba(27,45,108,0.5)',
   },
   background: {
     flex: 1,
     alignItems:'center',
-    
+
   },
   header:{
     width: '100%',
@@ -164,8 +160,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     fontSize: 36,
     fontWeight: 'bold',
-    color: '#000000',
+    color: '#FFFFFF',
   },
 });
 
-export default TimerScreen;
+export default NightTimerScreen;
