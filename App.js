@@ -26,7 +26,6 @@ import ExercisesScreen from './src/screens/ExercisesScreen';
 import DayBreathingScreen from './src/screens/DayBreathingScreen';
 import BreathingMenuScreen from './src/screens/BreathingMenuScreen';
 import NightBreathingMenuScreen from './src/screens/NightBreathingMenuScreen';
-import PrepScreen from './src/screens/PrepScreen';
 import EmotionScreen from './src/screens/EmotionScreen';
 import InControlScreen from './src/screens/InControlScreen';
 import IntentionScreen from './src/screens/IntentionScreen';
@@ -64,7 +63,6 @@ const app = () => {
         <Stack.Screen options ={{headerShown: false}} name="Day Breathing Screen" component={DayBreathingScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Breathing Menu Screen" component={BreathingMenuScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Night Breathing Menu Screen" component={NightBreathingMenuScreen}/>
-        <Stack.Screen options ={{headerShown: false}} name="478 Prep Screen" component={PrepScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Emotion" component={EmotionScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="InControl" component={InControlScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Intention" component={IntentionScreen}/>

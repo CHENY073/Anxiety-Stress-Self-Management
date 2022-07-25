@@ -45,9 +45,6 @@ const DayBreathingScreen = ({ route, navigation }) => {
                         <Text style={styles.baseText}> seconds.<Text>{"\n"}</Text></Text>
          </Text>
 
-         <Text style={styles.baseText}>
-                        Repeat.
-         </Text>
 
           <View style={styles.button}>
                              <CustomButton text= "Next" onPress={() => navigation.navigate('Breathing')} type="SECONDARY"/>

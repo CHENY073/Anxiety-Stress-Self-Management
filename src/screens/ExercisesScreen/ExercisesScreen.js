@@ -16,8 +16,8 @@ const ExercisesScreen = ({ navigation }) => {
           Exercises
         </Text>
       </View>
-      <CustomButton text= "4-4-4-4 Day Exercise" onPress={() => navigation.navigate('Day Breathing Screen')} type="PRIMARY"/>
-      <CustomButton text= "4-7-8 Sleep Exercise" onPress={() => navigation.navigate('Breathing Menu Screen')} type="PRIMARY"/>
+      <CustomButton text= "4-4-4-4 Day Exercise" onPress={() => navigation.navigate('Day Breathing Screen')} type="CHOICE"/>
+      <CustomButton text= "4-7-8 Sleep Exercise" onPress={() => navigation.navigate('Breathing Menu Screen')} type="CHOICE"/>
     </View>
   );
 };

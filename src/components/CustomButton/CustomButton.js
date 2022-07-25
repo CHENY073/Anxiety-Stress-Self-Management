@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Pressable} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, Pressable} from 'react-native';
 
 const CustomButton = ({text, onPress, type}) => {
 
