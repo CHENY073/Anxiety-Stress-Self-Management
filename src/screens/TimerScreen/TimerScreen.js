@@ -20,7 +20,7 @@ const TimerScreen = ({ route, navigation }) => {
 
   const min = Math.floor(timer/60);
   const sec = timer%60 < 10? '0' + (timer%60).toString(): timer%60;
-  const stage = Math.ceil(timer/5)%4;
+  const stage = Math.ceil(timer/4)%4;
   const text = ['Breathe In','Hold','Breathe Out','Hold'];
 
   const posX = pos.x.interpolate({
@@ -37,22 +37,22 @@ const TimerScreen = ({ route, navigation }) => {
       Animated.sequence([
         Animated.timing(pos.y,{
           toValue: 1,
-          duration: 5000,
+          duration: 4000,
           useNativeDriver: true,
         }),
         Animated.timing(pos.x,{
           toValue: 1,
-          duration: 5000,
+          duration: 4000,
           useNativeDriver: true,
         }),
         Animated.timing(pos.y,{
           toValue: 0,
-          duration: 5000,
+          duration: 4000,
           useNativeDriver: true,
         }),
         Animated.timing(pos.x,{
           toValue: 0,
-          duration: 5000,
+          duration: 4000,
           useNativeDriver: true,
         }),
       ]),
@@ -64,7 +64,7 @@ const TimerScreen = ({ route, navigation }) => {
     pos.x.resetAnimation();
     pos.y.resetAnimation();
     animation();
-    setTimer(20*cycle);
+    setTimer(16*cycle);
     var counter = 0;
     var countdown = setInterval(() => {
       setTimer(lastTimer => {
@@ -72,7 +72,7 @@ const TimerScreen = ({ route, navigation }) => {
         return lastTimer - 1
       });
       counter++;
-      if(counter == 20*cycle){
+      if(counter == 16*cycle){
         clearInterval(countdown);
         pos.stopAnimation();
         navigation.navigate('Dashboard');

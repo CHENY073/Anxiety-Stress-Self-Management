@@ -2,11 +2,15 @@ import React, {useState} from 'react';
 import {View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground, ScrollView} from 'react-native';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 const AccountScreen = ({ navigation }) => {
 
   const {height} = useWindowDimensions();
-
+  const user = auth().currentUser;
+  const email = user.email;
+  const userName= user.displayName;
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
     <View style={styles.root}>
@@ -25,6 +29,9 @@ const AccountScreen = ({ navigation }) => {
             
         </Text>
 
+        <Text style={styles.normal}>
+        {"\n"}{"\n"} Email: {email}
+        </Text>
  
     </View>
     </ScrollView>
@@ -57,7 +64,14 @@ const styles = StyleSheet.create({
       
       
   },
-  
+  normal: {
+    fontSize: 20,
+    fontWeight: 'normal',
+    color: '#000000',
+    marginVertical: 45,
+    textAlign: 'left',
+    position: 'absolute',
+  },
 });
 
 export default AccountScreen;

@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import { View, Text, StyleSheet, Pressable} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, Pressable} from 'react-native';
 
 const CustomButton = ({text, onPress, type}) => {
 
@@ -66,6 +66,20 @@ const styles = StyleSheet.create({
   },
   container_exercisesButton:{
     backgroundColor: '#bdb49d',
+    width: 380,
+    padding: 18,
+    alignSelf: 'center',
+    borderRadius: 35,
+  },
+  container_redButton:{
+    backgroundColor: '#f01111',
+    width: 380,
+    padding: 18,
+    alignSelf: 'center',
+    borderRadius: 35,
+  },
+  container_greenButton:{
+    backgroundColor: '#2fc240',
     width: 380,
     padding: 18,
     alignSelf: 'center',
@@ -244,6 +258,16 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   text_exercisesButton: {
+    color: '#FFFFFF',
+    fontSize: 24,
+    alignSelf: 'center',
+  },
+  text_redButton: {
+    color: '#FFFFFF',
+    fontSize: 24,
+    alignSelf: 'center',
+  },
+  text_greenButton: {
     color: '#FFFFFF',
     fontSize: 24,
     alignSelf: 'center',

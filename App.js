@@ -23,15 +23,21 @@ import SettingsScreen from './src/screens/SettingsScreen';
 import AboutUsScreen from './src/screens/AboutUsScreen';
 import HelpScreen from './src/screens/HelpScreen';
 import ExercisesScreen from './src/screens/ExercisesScreen';
+import DayBreathingScreen from './src/screens/DayBreathingScreen';
+import BreathingMenuScreen from './src/screens/BreathingMenuScreen';
+import NightBreathingMenuScreen from './src/screens/NightBreathingMenuScreen';
 import EmotionScreen from './src/screens/EmotionScreen';
 import InControlScreen from './src/screens/InControlScreen';
 import IntentionScreen from './src/screens/IntentionScreen';
 import BreathingScreen from './src/screens/BreathingScreen';
 import TimerScreen from './src/screens/TimerScreen';
+import NightTimerScreen from './src/screens/NightTimerScreen';
 import ReasonsScreen from './src/screens/ReasonsScreen';
 import FoodFTScreen from './src/screens/FoodFTScreen';
 import ChoiceScreen from './src/screens/ChoiceScreen';
 import StressorScreen from './src/screens/StressorScreen';
+import AwarenessScreen from './src/screens/AwarenessScreen';
+import DailyLogScreen from './src/screens/DailyLogScreen/DailyLogScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -54,15 +60,21 @@ const app = () => {
         <Stack.Screen options ={{headerShown: false}} name="About Us" component={AboutUsScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Help" component={HelpScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Exercises" component={ExercisesScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Day Breathing Screen" component={DayBreathingScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Breathing Menu Screen" component={BreathingMenuScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Night Breathing Menu Screen" component={NightBreathingMenuScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Emotion" component={EmotionScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="InControl" component={InControlScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Intention" component={IntentionScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Breathing" component={BreathingScreen} initialParams={{music: '', cycle: 1}}/>
         <Stack.Screen options ={{headerShown: false}} name="Timer" component={TimerScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Night Timer" component={NightTimerScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Reasons" component={ReasonsScreen} initialParams={{stressor: ''}}/>
         <Stack.Screen options ={{headerShown: false}} name="FoodFT" component={FoodFTScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Choice" component={ChoiceScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Stressor" component={StressorScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Awareness" component={AwarenessScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Daily Log" component={DailyLogScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

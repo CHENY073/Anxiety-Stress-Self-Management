@@ -7,6 +7,7 @@ import CustomButton from '../../components/CustomButton';
 import Logo from '../../../assets/images/Logo.png';
 import auth from '@react-native-firebase/auth';
 import Toast from 'react-native-toast-message';
+import firestore from '@react-native-firebase/firestore';
 
 var numberRegex = new RegExp("^(?=.*[0-9])");
 var specialCharacterRegex = new RegExp("^(?=.*[!@#$%^&*])");
@@ -22,6 +23,7 @@ const SignUpScreen = ({navigation}) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [userCode, setUserCode] = useState('');
+  var db= firestore(); 
 
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [toggleSecondCheckBox, setToggleSecondCheckBox] = useState(false);
@@ -106,7 +108,14 @@ const SignUpScreen = ({navigation}) => {
         .then(userCredential => {
           userCredential.user.sendEmailVerification();
           Alert.alert('✅', 'Please verify your email to log in!');
-        });
+          
+          //Adds user and user info to firestore collection
+          return db.collection('users').doc(userCredential.user.uid).set({
+            email: email,
+            displayName: name,
+            uid: userCredential.user.uid
+           })
+        })
     } catch (e) {
       if (e.code === 'auth/email-already-in-use') {
         emailAlreadyInUseToast();
@@ -121,7 +130,7 @@ const SignUpScreen = ({navigation}) => {
   const handleSignUp = () => {
     createUser(email,password);
   };
-
+    
   //function to only allow sign up if terms are ageed to
   const checkSignUp = () => {
     if (!toggleCheckBox || !toggleSecondCheckBox) {
