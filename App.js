@@ -19,7 +19,7 @@ import PolicyScreen from './src/screens/PolicyScreen';
 import MoodDiaryScreen from './src/screens/MoodDiaryScreen';
 import MenuScreen from './src/screens/MenuScreen';
 import AccountScreen from './src/screens/AccountScreen';
-import SettingsScreen from './src/screens/SettingsScreen';
+import NotificationsScreen from './src/screens/NotificationsScreen';
 import AboutUsScreen from './src/screens/AboutUsScreen';
 import HelpScreen from './src/screens/HelpScreen';
 import ExercisesScreen from './src/screens/ExercisesScreen';
@@ -38,6 +38,10 @@ import ChoiceScreen from './src/screens/ChoiceScreen';
 import StressorScreen from './src/screens/StressorScreen';
 import AwarenessScreen from './src/screens/AwarenessScreen';
 import DailyLogScreen from './src/screens/DailyLogScreen/DailyLogScreen';
+import AwarenessBehaviorScreen from './src/screens/AwarenessBehaviorScreen';
+import AwarenessMindScreen from './src/screens/AwarenessMindScreen';
+import AwarenessBodyScreen from './src/screens/AwarenessBodyScreen';
+import AwarenessFeelingsScreen from './src/screens/AwarenessFeelingsScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -56,7 +60,7 @@ const app = () => {
         <Stack.Screen options ={{headerShown: false}} name="Mood Diary" component={MoodDiaryScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Menu Screen" component={MenuScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Account Screen" component={AccountScreen}/>
-        <Stack.Screen options ={{headerShown: false}} name="Settings" component={SettingsScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Notifications" component={NotificationsScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="About Us" component={AboutUsScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Help" component={HelpScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Exercises" component={ExercisesScreen}/>
@@ -75,6 +79,10 @@ const app = () => {
         <Stack.Screen options ={{headerShown: false}} name="Stressor" component={StressorScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Awareness" component={AwarenessScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Daily Log" component={DailyLogScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Awareness Behavior" component={AwarenessBehaviorScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Awareness Mind" component={AwarenessMindScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Awareness Body" component={AwarenessBodyScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Awareness Feelings" component={AwarenessFeelingsScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

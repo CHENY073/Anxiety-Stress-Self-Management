@@ -145,7 +145,7 @@ const DailyLogScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   root: {
     flex: 1,  
-    
+    backgroundColor: '#FFF7F5',
   },
   header: {
     width: '100%',

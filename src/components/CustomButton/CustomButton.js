@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
   },
   container_SECONDARY:{
-    backgroundColor: '#736468',
+    backgroundColor: '#457f9d',
     width: 150,
     padding: 8.5,
     marginVertical: 5,
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   container_QUATERNARY:{
     borderWidth:2,
     backgroundColor: 'rgba(52, 52, 52, 0.0)',
-    borderColor:'#736468',
+    borderColor:'#457F9D',
     width: 150,
     padding: 8,
     marginVertical: -5,
@@ -58,32 +58,32 @@ const styles = StyleSheet.create({
   },
   container_moodButton:{
     
-    backgroundColor: '#748894',
+    backgroundColor: '#457f9d',
     width: 380,
     padding: 18,
     alignSelf: 'center',
     borderRadius: 35,
   },
   container_exercisesButton:{
-    backgroundColor: '#bdb49d',
+    backgroundColor: '#ec8e96',
     width: 380,
     padding: 18,
     alignSelf: 'center',
     borderRadius: 35,
   },
   container_redButton:{
-    backgroundColor: '#f01111',
-    width: 380,
+    backgroundColor: '#f27c7a',
+    width: 350,
     padding: 18,
     alignSelf: 'center',
-    borderRadius: 35,
+    borderRadius: 30,
   },
   container_greenButton:{
-    backgroundColor: '#2fc240',
-    width: 380,
+    backgroundColor: '#f27c7a',
+    width: 350,
     padding: 18,
     alignSelf: 'center',
-    borderRadius: 35,
+    borderRadius: 30,
   },
   container_dropButton:{
     width: 100,
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
   container_continueButton:{
     borderWidth:2,
     backgroundColor: 'rgba(52, 52, 52, 0.0)',
-    borderColor:'#736468',
+    borderColor:'#457F9D',
     width: 150,
     padding: 8.5,
     marginVertical: -5,
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
   container_submitButton:{
     borderWidth:2,
     backgroundColor: 'rgba(52, 52, 52, 0.0)',
-    borderColor:'#736468',
+    borderColor:'#457F9D',
     width: 150,
     padding: 8.5,
     marginVertical: -5,
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
   },
   container_CHOICE:{
-    backgroundColor: '#736468',
+    backgroundColor: '#457F9D',
     width: 300,
     height: 100,
     marginVertical: 40,
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
    
   },
   container_STRESSOR:{
-    backgroundColor: '#BDB49D',
+    backgroundColor: '#457f9d',
     width: 150,
     height: 150,
     alignItems: 'center',
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
   container_continueFButton:{
     borderWidth:2,
     backgroundColor: 'rgba(52, 52, 52, 0.0)',
-    borderColor:'#736468',
+    borderColor:'#457F9D',
     width: 150,
     padding: 8.5,
     marginVertical: -5,
@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
 
   },
   container_INFOSMALL:{
-    borderColor: "#ADD8E6",
+    borderColor: "#f2a1a6",
     backgroundColor: 'white',
     
     width: 115,
@@ -217,10 +217,10 @@ const styles = StyleSheet.create({
   
   
   pressed_PRIMARY:{
-    backgroundColor: '#D5D2D2',
+    backgroundColor: '#457F9D',
   },
   pressed_SECONDARY:{
-    backgroundColor: '#675A5E',
+    backgroundColor: '#457F9D',
   },
   pressed_GOOGLE:{
     backgroundColor: "#EEE",
@@ -229,7 +229,7 @@ const styles = StyleSheet.create({
 
    text_PRIMARY:{
     fontWeight: 'bold',
-    color: '#736468',
+    color: '#457F9D',
     fontSize: 24,
   },
   text_SECONDARY: {
@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   text_QUATERNARY: {
-    color: '#736468',
+    color: '#457F9D',
     fontSize: 24,
     fontWeight: 'bold',
   },
@@ -278,6 +278,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   text_whiteBackButton: {
+    marginTop: 15,
     color: 'white',
     fontSize: 40,
     alignSelf: 'center',
@@ -293,17 +294,17 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   text_continueButton: {
-    color: '#736468',
+    color: '#457F9D',
     fontSize: 27,
     fontWeight: 'bold',
   },
   text_continueFButton: {
-    color: '#736468',
+    color: '#457F9D',
     fontSize: 27,
     fontWeight: 'bold',
   },
   text_submitButton: {
-    color: '#736468',
+    color: '#457F9D',
     fontSize: 27,
     fontWeight: 'bold',
   },
@@ -337,7 +338,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   text_INFOSMALL: {
-    color: '#ADD8E6',
+    color: '#f2a1a6',
     fontSize: 20,
     textAlign: 'center',
     fontWeight: 'bold',

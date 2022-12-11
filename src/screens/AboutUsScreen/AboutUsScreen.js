@@ -40,14 +40,11 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     borderBottomWidth: 700,
-    borderBottomColor: 'white',
-    
+    borderBottomColor: '#FFF7F5',
     backgroundColor :'#736467',
   },
   title: {
     fontSize: 28,
-    
-    
     color: 'white',
     marginVertical: -35,
     alignSelf: 'center',

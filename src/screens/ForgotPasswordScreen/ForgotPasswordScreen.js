@@ -105,8 +105,7 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     alignItems: 'center',
-    alignContent: 'space-between'
-   
+    alignContent: 'space-between',
   },
   title : {
     fontSize: 38,

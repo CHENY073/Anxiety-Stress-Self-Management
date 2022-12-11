@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, SafeAreaView, Text, Image, ImageBackground, StyleSheet, useWindowDimensions} from 'react-native';
-
 import CustomButton from '../../components/CustomButton';
 import Logo from '../../../assets/images/Logo.png';
 import Volume from '../../../assets/images/Volume.png';
-import Quads from '../../../assets/images/Quads.png';
+import Background2 from '../../../assets/images/Background2.png';
 
-const AwarenessScreen = ({ navigation }) => {
+
+const AwarenessFeelingsScreen = ({ navigation }) => {
   const window = useWindowDimensions();
   const {height} = useWindowDimensions();
 
@@ -18,38 +18,33 @@ const AwarenessScreen = ({ navigation }) => {
         <View style={{width: 100}}><Image source={Volume} style={styles.volume} resizeMode="cover" /></View>
       </View>
       
-      <Text style = {styles.normal}>
-      <Text style={{fontWeight: "bold"}}> Stress = </Text>
-      Body Reaction + Situation
+      <Text style = {styles.title}>
+      <Text style={{fontWeight: "bold"}}> Feelings </Text>
       </Text>
 
-      <Text style = {styles.normal}>
-      <Text style={{fontWeight: "bold"}}> Anxiety = </Text>
-      Anticipation + Event (real or imagined)
-      </Text>
-      
 
-<View style={styles.container}>
-<Image source={Quads} style={styles.quadForm, {height: height *0.45}} resizeMode="contain" />
+      <View style={styles.container}>
+<Image source={Background2} style={styles.container, {height: height *0.65}} resizeMode="contain" />
 <View style={styles.viewQuadText}>
   <Text style={styles.quadText}>
+    <Text style ={styles.title}>{'\n This may look like:' }  </Text>
     <Text>
-    {'\n                              \n'}
-    
-    {'\n\n                            \n'}
-   
-    
-  {/* None of this formatting is in the bible. ^ */}
-    
-    </Text>
-    </Text>
-</View>
-</View>
 
-     
+    {'\n'}
+    {'\n•Loss of confidence \n'}
+    {'•Irritability \n'}
+    {'•Depression\n'}
+    {'•Apathy \n'}
+    {'•Alienation \n'}
+    {'•Fear  \n'}
+    
+    </Text>
+    </Text>
+</View>
+</View>
 
       <View style={styles.button}>
-        <CustomButton text= "Continue" onPress={() => navigation.navigate('Awareness Body')} type="SECONDARY"/>
+        <CustomButton text= "Continue" onPress={() => navigation.navigate('Awareness Behavior')} type="SECONDARY"/>
       </View>
     </SafeAreaView>
   );
@@ -64,7 +59,7 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#FFF7F5'
+    backgroundColor: '#FFF7F5',
   },
   header:{
     width: '100%',
@@ -85,7 +80,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   title: {
-    fontSize: 24,
+    fontSize: 30,
     fontWeight: 'bold',
     color: '#000000',
     marginVertical: 2,
@@ -110,7 +105,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   quadText: {
-    fontSize: 14,
+    fontSize: 28,
     fontWeight: 'normal',
     color: 'black',
     marginVertical: 1,
@@ -121,4 +116,4 @@ const styles = StyleSheet.create({
 },
 });
 
-export default AwarenessScreen;
+export default AwarenessFeelingsScreen;

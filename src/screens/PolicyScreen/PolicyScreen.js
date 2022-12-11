@@ -101,7 +101,7 @@ Website visitors may opt out of the use of the DART cookie by visiting the Googl
     root: {
       flex: 1,
       alignItems: 'center',
-      
+      backgroundColor: '#FFF7F5'
     },
 
     logo: {

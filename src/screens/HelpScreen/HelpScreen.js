@@ -36,8 +36,7 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     borderBottomWidth: 700,
-    borderBottomColor: 'white',
-    
+    borderBottomColor: '#FFF7F5',
     backgroundColor :'#736467',
   },
   title: {
