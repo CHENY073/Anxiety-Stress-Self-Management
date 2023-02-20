@@ -1,42 +1,34 @@
 {
   "project_info": {
-    "project_number": "14011892852",
-    "firebase_url": "https://anxiety-and-stress-default-rtdb.firebaseio.com",
-    "project_id": "anxiety-and-stress",
-    "storage_bucket": "anxiety-and-stress.appspot.com"
+    "project_number": "867873321843",
+    "firebase_url": "https://stress-and-anxiety1-default-rtdb.firebaseio.com/",
+    "project_id": "stress-and-anxiety1",
+    "storage_bucket": "stress-and-anxiety1.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:14011892852:android:62f79d2273778d7e6cfd21",
+        "mobilesdk_app_id": "1:867873321843:android:4855f1822cb9ee025e0b06",
         "android_client_info": {
           "package_name": "com.anxietystressselfmanagement"
         }
       },
       "oauth_client": [
         {
-          "client_id": "14011892852-49trr2sofiu140nildob9hfjc0g78kq2.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.anxietystressselfmanagement",
-            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
-          }
-        },
-        {
-          "client_id": "14011892852-nkn2h4900prc2kgg6nvubu10p0mscc51.apps.googleusercontent.com",
+          "client_id": "867873321843-rmp4vqk2pctftre55ng82rm9uvaoskbs.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBlujtc3_PITiXXD6TX0kbNZhp4EnqHg3A"
+          "current_key": "AIzaSyA-syQAAGMOuegMdoqDpZlArncCfGdfiGg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "14011892852-nkn2h4900prc2kgg6nvubu10p0mscc51.apps.googleusercontent.com",
+              "client_id": "867873321843-rmp4vqk2pctftre55ng82rm9uvaoskbs.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

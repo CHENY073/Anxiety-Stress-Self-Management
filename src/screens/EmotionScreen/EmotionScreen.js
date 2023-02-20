@@ -14,7 +14,14 @@ const EmotionScreen = ({ navigation }) => {
   const window = useWindowDimensions();
   const size = window.width-40;
 
-  const user = auth().currentUser;
+  auth.onAuthStateChanged(auth, (user) => {
+    if(user){
+      auth.setUser(user);
+    }else{
+      auth.setUser(flase);
+    }
+  })
+  console.log('user name', user);
 
   const AnimatedG = Animated.createAnimatedComponent(G);
   const AnimatedSafeAreaView = Animated.createAnimatedComponent(SafeAreaView);
