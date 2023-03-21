@@ -4,10 +4,12 @@ import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import {Picker} from '@react-native-picker/picker';
-
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 import Volume from '../../../assets/images/Volume.png';
 import Logo from '../../../assets/images/Logo.png';
+
 
 const DailyLogScreen = ({navigation}) => {
     const [activity, setActivity] = useState('');
@@ -31,13 +33,29 @@ const DailyLogScreen = ({navigation}) => {
     const stressedLevel = ['','1','2','3','4','5'];
     const strategiesData = ['','Breathing','Positive self-talk', 'Listening to music', 'Talking to a friend', 'Group Support'];
   
+    const user = auth().currentUser;
+    var db = firestore();
+
     const handlePress = () => {
       if(!activity) Alert.alert('Please pick an activity answer');
       else if(!triggers) Alert.alert('Please pick a triggers answer');
       else if(!signs) Alert.alert('Please pick a signs answer');
       else if(!anxietyLevel) Alert.alert('Please pick a number');
       else if(!strategies) Alert.alert('Please pick a strategies answer');
-      else navigation.navigate('Intention');
+      else {
+        const dailyLogDoc = db.collection('DailyLog').doc(user.uid).collection('dates').doc('2023-03-20').set({
+          activity : activity,
+          triggers : triggersData[triggers],
+          signs : signsData[signs],
+          body : bodyData[body],
+          mind : mindData[mind],
+          emotion : emotionsData[emotion],
+          behavior : behaviorData[behavior],
+          stressedLevel : anxietyLevel,
+          strategies : strategiesData[strategies]
+        })
+        navigation.navigate('Intention');
+      } 
     };
 
 

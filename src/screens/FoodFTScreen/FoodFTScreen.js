@@ -5,6 +5,9 @@ import {Picker} from '@react-native-picker/picker';
 import CustomButton from '../../components/CustomButton'
 import Logo from '../../../assets/images/Logo.png';
 import Volume from '../../../assets/images/Volume.png';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
+
 
 const BreathingScreen = ({ navigation }) => {
   const [what, setWhat] = useState(0);
@@ -21,13 +24,25 @@ const BreathingScreen = ({ navigation }) => {
   const whenData = ['','When will it be fixed?','When will you start changing?','When do you use exaggerated words, such as always, never, every time, etc?','When will you finally use strategy in your daily life?'];
   const whyData = ['','Why do you feel this way? Why should you feel any different?','Why do you persist in remaining stuck in your habit loop?','Why does this pattern continue and which lifestyle habit can decrease your anxiety levels?','Why are you feeling this level of stress and anxiety?'];
 
+  const user = auth().currentUser;
+  var db = firestore();
+
   const handlePress = () => {
     if(!what) Alert.alert('Please pick a what question');
     else if(!who) Alert.alert('Please pick a who question');
     else if(!where) Alert.alert('Please pick a where question');
     else if(!when) Alert.alert('Please pick a when question');
     else if(!why) Alert.alert('Please pick a why question');
-    else navigation.navigate('Intention');
+    else{
+      const foodFTDoc = db.collection('FoodFT').doc(user.uid).collection('dates').doc('2023-03-20').set({
+        what : whatData[what],
+        who : whoData[who],
+        where : whereData[where],
+        when : whenData[when],
+        why : whyData[why]
+      })
+      navigation.navigate('Intention');
+    } 
   };
 
   return (

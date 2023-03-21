@@ -14,14 +14,6 @@ const EmotionScreen = ({ navigation }) => {
   const window = useWindowDimensions();
   const size = window.width-40;
 
-  auth.onAuthStateChanged(auth, (user) => {
-    if(user){
-      auth.setUser(user);
-    }else{
-      auth.setUser(flase);
-    }
-  })
-  console.log('user name', user);
 
   const AnimatedG = Animated.createAnimatedComponent(G);
   const AnimatedSafeAreaView = Animated.createAnimatedComponent(SafeAreaView);
@@ -90,7 +82,7 @@ const EmotionScreen = ({ navigation }) => {
       </View>
 
       <Text style = {styles.title}>
-        Hi {user.displayName},
+        Hello,
         {"\n"}
         What’s your mood?
       </Text>

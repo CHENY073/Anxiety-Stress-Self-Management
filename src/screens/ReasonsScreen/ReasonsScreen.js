@@ -5,6 +5,8 @@ import CustomButton from '../../components/CustomButton';
 import CustomSelect from '../../components/CustomSelect';
 import Logo from '../../../assets/images/Logo.png';
 import Volume from '../../../assets/images/Volume.png';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 const ReasonsScreen = ({ route, navigation }) => {
   const [reasons, setReasons] = useState([]);
@@ -12,6 +14,10 @@ const ReasonsScreen = ({ route, navigation }) => {
   const window = useWindowDimensions();
 
   const {stressor} = route.params;  
+  const user = auth().currentUser;
+  const date = new Date();
+
+  var db = firestore();
 
   const data = {
     'work': ['Colleagues','Boss','Employees','Work Load','Culture','Toxic environment','Communication','Decision Making','Time Management','Dealing with Change'],
@@ -23,7 +29,13 @@ const ReasonsScreen = ({ route, navigation }) => {
 
   const handlePress = () => {
     if(reasons.length < 1) Alert.alert('Please pick a reason');
-    else navigation.navigate('FoodFT');
+    else{
+      const stressorsDoc = db.collection('stressors').doc(user.uid).collection('dates').doc('2023-03-20').set({
+        stressor : stressor,
+        reasons : reasons
+      })
+      navigation.navigate('FoodFT');
+    } 
   };
 
   return (
