@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     alignItems: 'center',
     borderRadius: 50,
-    width: '40%'
+    width: '90%'
 
   },
   container_INFOSMALL:{

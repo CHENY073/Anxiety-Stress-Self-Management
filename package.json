@@ -23,6 +23,7 @@
     "react": "17.0.2",
     "react-moment": "^1.1.2",
     "react-native": "^0.67.4",
+    "react-native-calendar-strip": "^2.2.6",
     "react-native-calendars": "^1.1282.0",
     "react-native-date-picker": "^4.2.2",
     "react-native-keycode": "^1.1.2",
