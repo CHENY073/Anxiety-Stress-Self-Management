@@ -21,12 +21,12 @@ const StressorScreen = ({ navigation }) => {
       </Text>
 
       <View style={styles.row}>
-        <CustomButton text= "Home" onPress={() => navigation.navigate('Reasons', {stressor: 'Home'})} type="STRESSOR"/>
-        <CustomButton text= "Work" onPress={() => navigation.navigate('Reasons', {stressor: 'Work'})} type="STRESSOR"/>
+        <CustomButton text= "Home" onPress={() => navigation.navigate('Reasons', {stressor: 'home'})} type="STRESSOR"/>
+        <CustomButton text= "Work" onPress={() => navigation.navigate('Reasons', {stressor: 'work'})} type="STRESSOR"/>
       </View>
       <View style={styles.row}>
-        <CustomButton text= "School" onPress={() => navigation.navigate('Reasons', {stressor: 'School'})} type="STRESSOR"/>
-        <CustomButton text= "Social Setting" onPress={() => navigation.navigate('Reasons', {stressor: 'Social'})} type="STRESSOR"/>
+        <CustomButton text= "School" onPress={() => navigation.navigate('Reasons', {stressor: 'school'})} type="STRESSOR"/>
+        <CustomButton text= "Social Setting" onPress={() => navigation.navigate('Reasons', {stressor: 'social'})} type="STRESSOR"/>
       </View>
     </SafeAreaView>
   );

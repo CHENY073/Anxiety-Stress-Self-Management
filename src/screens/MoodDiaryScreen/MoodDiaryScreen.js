@@ -1,5 +1,5 @@
 import React, {useState, useMemo, useCallback, useEffect} from 'react';
-import {View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground, Button} from 'react-native';
+import {View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground, Button, FlatList, ScrollView} from 'react-native';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
@@ -16,30 +16,39 @@ const MoodDiaryScreen = ({ navigation }) => {
   const {height} = useWindowDimensions();
   const [selected, setSelected] = useState();
   const [isModalVisible, setModalVisible] = useState(false);
-  
+  const [stressorData, setStressorData] = useState([]);
+  const [foodFTData, setFoodData] = useState([]);
+  const [dailyLogData, setDailyData] = useState([]);
+  var test = 'test';
   const user = auth().currentUser;
   var db = firestore();
-  const test = "Why am i stuck doing this alone?"
 
   useEffect(() => {
-    let ignore = false;
-    
-    if (!ignore)  userData()
-    return () => { ignore = true; }
-    },[]);
-  
-  async function userData(date) {
-    const stressorDoc = await db.collection('stressors').doc(user.uid).collection('dates').doc('2023-03-20').get();
-    const foodFTDoc = await db.collection('FoodFT').doc(user.uid).collection('dates').doc('2023-03-20').get();
-    const dailyLogDoc = await db.collection('DailyLog').doc(user.uid).collection('dates').doc('2023-03-20').get();
-    console.log("test");
-    return stressorDoc.data();
-  }
- 
+    stressorsData('2023-03-20');
+    foodData('2023-03-20');
+    dailyData('2023-03-20');
+  }, []);
 
-  function toggleModal() {
-    setModalVisible(!isModalVisible);
+  async function stressorsData(date) {
+    const response = await db.collection('stressors').doc(user.uid).collection('dates').doc(date).get();
+      const tempData = [];      
+      tempData.push(response.data());      
+      setStressorData(tempData);
   }
+  
+  async function foodData(date) {
+    const foodFTDoc = await db.collection('FoodFT').doc(user.uid).collection('dates').doc('2023-03-20').get();
+    const tempData = [];      
+      tempData.push(foodFTDoc.data());      
+      setFoodData(tempData);    
+  }
+
+  async function dailyData(date) {
+    const dailyLogDoc = await db.collection('DailyLog').doc(user.uid).collection('dates').doc('2023-03-20').get();
+    const tempData = [];      
+      tempData.push(dailyLogDoc.data());      
+      setDailyData(tempData);    
+  } 
 
   return (
     
@@ -49,65 +58,65 @@ const MoodDiaryScreen = ({ navigation }) => {
         <Text style={styles.title}>
           Dashboard
         </Text>
-      </View>
-
-      
+      </View>      
 
       <View style={styles.container}>
         <CalendarStrip
           style={{height:100, paddingTop: 10, paddingBottom: 10}}
 
           onDateSelected = {day =>{
-            console.log('day selected', day);
-            userData(day);
+            console.log('day selected', day.format('YYYY-MM-DD'));            
           }}
         />
-      </View>  
+      </View>       
 
-      <Modal isVisible={isModalVisible} onModalHide={()=> setModalVisible(false)}>
-        <View style={styles.modal}>
-          <Text style={styles.modalText}>What was your stressor of the day?</Text>
-          <Text style={styles.modalSmallText}>Your main stressor for the day was School.</Text>
-          <Text style={styles.modalText}>What were your reasons for stress?</Text>
-          <Text style={styles.modalSmallText}> Your reasons for stress at School were Homework, Projects, and Exams.</Text>
-                
-          <Button style={styles.modalButton} title="Close" onPress={toggleModal} /> 
-        </View>
-      </Modal>
-        <View style={styles.modalWrapper}>
-          <Text> {"\n"} </Text>
-          <CustomButton style={styles.iButton} text="Daily Stressor Data" onPress={toggleModal} type="moodButton"/>
-        </View>
+      <View style={{ flex: 1 }}>
+        <ScrollView style={{ paddingHorizontal: 20 }}>
+          {stressorData.map((item) => (
+            <View style={{ marginBottom: 10 }}>
+              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Your stressor for the day was : {item.stressor}</Text>
+              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Your selected reasons were : {item.reasons}</Text>
+              
+            </View>
+          ))}
+        </ScrollView>
+      </View>
 
-        <Modal isVisible={isModalVisible} onModalHide={()=> setModalVisible(false)}>
-        <View style={styles.modal}>
-          <Text style={styles.modalText}>What was your stressor of the day?</Text>
-          <Text style={styles.modalSmallText}>Your main stressor for the day was School.</Text>
-          <Text style={styles.modalText}>What were your reasons for stress?</Text>
-          <Text style={styles.modalSmallText}> Your reasons for stress at School were Homework, Projects, and Exams.</Text>
-                
-          <Button style={styles.modalButton} title="Close" onPress={toggleModal} /> 
-        </View>
-      </Modal>
-        <View style={styles.modalWrapper}>
-          <Text> {"\n"} </Text>
-          <CustomButton style={styles.iButton} text="Food for Thought Data" onPress={toggleModal} type="exercisesButton"/>
-        </View>
+      <View style={{ flex: 1 }}>
+        <ScrollView style={{ paddingHorizontal: 20 }}>
+          {foodFTData.map((item) => (
+            <View style={{ marginBottom: 10 }}>              
+              <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Food For Though Questions of the Day</Text>
+              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Who : {item.who}</Text>              
+              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>What : {item.what}</Text>              
+              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Where : {item.where}</Text>              
+              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>When : {item.when}</Text>              
+              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Why : {item.why}</Text>             
+            </View>
+          ))}
+        </ScrollView>
+      </View>
 
-        <Modal isVisible={isModalVisible} onModalHide={()=> setModalVisible(false)}>
-        <View style={styles.modal}>
-          <Text style={styles.modalText}>What was your stressor of the day?</Text>
-          <Text style={styles.modalSmallText}>Your main stressor for the day was School.</Text>
-          <Text style={styles.modalText}>What were your reasons for stress?</Text>
-          <Text style={styles.modalSmallText}> Your reasons for stress at School were Homework, Projects, and Exams.</Text>
-                
-          <Button style={styles.modalButton} title="Close" onPress={toggleModal} /> 
-        </View>
-      </Modal>
-        <View style={styles.modalWrapper}>
-          <Text> {"\n"} </Text>
-          <CustomButton style={styles.iButton} text="Daily Log Data" onPress={toggleModal} type="moodButton"/>
-        </View>
+      <View style={{ flex: 1 }}>
+        <ScrollView style={{ paddingHorizontal: 20 }}>
+          {dailyLogData.map((item) => (
+            <View style={{ marginBottom: 10 }}>
+              <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Daily Log Data</Text>
+              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Activity : {item.activity}</Text>              
+              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Triggers : {item.triggers}</Text> 
+              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Signs : {item.signs}</Text>
+              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Body : {item.body}</Text>
+              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Mind : {item.mind}</Text>
+              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Emotion : {item.emotion}</Text> 
+              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Behavior : {item.behavior}</Text>
+              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Anxiety Level : {item.stressedLevel}</Text>
+              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Strategies : {item.strategies}</Text>
+              <Text style={{ marginTop: 15 }}>{item.reasons}</Text>
+            </View>
+          ))}
+        </ScrollView>
+      </View>
+
     </View>
   );
 };

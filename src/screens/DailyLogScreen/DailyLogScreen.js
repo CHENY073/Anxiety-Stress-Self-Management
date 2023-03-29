@@ -1,5 +1,5 @@
 import React, {useState, useMemo, useCallback} from 'react';
-import {View, Text, ScrollView, SafeAreaView, Image, StyleSheet, useWindowDimensions, ImageBackground, Alert, Button} from 'react-native';
+import {View, Text, ScrollView, SafeAreaView, Image, StyleSheet, useWindowDimensions, ImageBackground, Alert, Button, TextInput} from 'react-native';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
@@ -22,6 +22,7 @@ const DailyLogScreen = ({navigation}) => {
     const [mind, setMind] = useState(0);
     const [emotion, setEmotion] = useState(0);
     const [behavior, setBehavior] = useState(0);
+    const [customInput, setCustomInput] = useState('');
   
     // const activityData = ['','Exercise 🏃', 'Meditation 🧘', 'Reading 📖'];
     const triggersData = ['','Home', 'School', 'Work', 'Social Life'];
@@ -32,9 +33,18 @@ const DailyLogScreen = ({navigation}) => {
     const behaviorData = ['','Addiction','Less Appetite','Less Sex Drive','Insomnia','Restlessness','Accident Prone'];
     const stressedLevel = ['','1','2','3','4','5'];
     const strategiesData = ['','Breathing','Positive self-talk', 'Listening to music', 'Talking to a friend', 'Group Support'];
+    
   
     const user = auth().currentUser;
     var db = firestore();
+    
+    const handleCustomInputChange = (text) => {
+      setCustomInput(text);
+    };
+    const handleOptionChange = (itemValue) => {
+      setTriggers(itemValue);
+      setCustomInput('');
+    };
 
     const handlePress = () => {
       if(!activity) Alert.alert('Please pick an activity answer');
@@ -76,7 +86,30 @@ const DailyLogScreen = ({navigation}) => {
         <Text style = {styles.label}>What activity did you do?</Text>
         <CustomInput  value={activity} setValue={setActivity} secureTextEntry={false}/>
 
-        
+          <Text style={{ marginVertical: 10 }}>Select an option:</Text>
+        <Picker
+          selectedValue={triggers}
+          onValueChange={(itemValue) => handleOptionChange(itemValue)}
+        >
+          {triggersData.map((option) => (
+            <Picker.Item key={option} label={option} value={option} />
+          ))}
+        </Picker>
+        <View style={{ marginTop: 10 }}>
+          <Text style={{ marginVertical: 10 }}>Or enter a custom value:</Text>
+          <TextInput
+            value={customInput}
+            onChangeText={(text) => handleCustomInputChange(text)}
+            placeholder="Enter custom value"
+            style={{
+              borderWidth: 1,
+              borderColor: '#ccc',
+              padding: 10,
+              borderRadius: 5,
+            }}
+          />
+        </View>
+
         <Text style = {styles.label}>What trigger did you experience?</Text>
         <Picker selectedValue={triggers} onValueChange={(itemValue, itemIndex) => setTriggers(itemValue)} style = {styles.picker} numberOfLines={5}>
           {triggersData.map((item, index)=>{

@@ -12,19 +12,31 @@ const DashboardScreen = ({ navigation }) => {
     <View style={styles.root}>
       <CustomButton text= "≡" onPress={() => navigation.navigate('Menu Screen')} type="dropButton"/>
       <Text style={styles.title}>
-        Dashboard
+        Home
       </Text>
       <Text>
       {"\n"}{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}
       </Text>
       
-        <CustomButton text= "Mood Diary" onPress={() => navigation.navigate('Mood Diary')} type="moodButton"/>
+        <CustomButton text= "Dashboard" onPress={() => navigation.navigate('Mood Diary')} type="moodButton"/>
         <Text>
           {"\n"}
           
         </Text>
         
         <CustomButton text= "Exercises" onPress={() => navigation.navigate('Choice')} type="exercisesButton"/>
+        <Text>
+          {"\n"}
+          
+        </Text>
+        
+        <CustomButton text= "Daily Log" onPress={() => navigation.navigate('Awareness')} type="moodButton"/>
+        <Text>
+          {"\n"}
+          
+        </Text>
+        
+        <CustomButton text= "Emotion & Control" onPress={() => navigation.navigate('Emotion')} type="exercisesButton"/>
     </View>
   );
 };

@@ -7,6 +7,7 @@ import Logo from '../../../assets/images/Logo.png';
 import Volume from '../../../assets/images/Volume.png';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import moment from 'react-moment';
 
 const ReasonsScreen = ({ route, navigation }) => {
   const [reasons, setReasons] = useState([]);
@@ -15,7 +16,7 @@ const ReasonsScreen = ({ route, navigation }) => {
 
   const {stressor} = route.params;  
   const user = auth().currentUser;
-  const date = new Date();
+ 
 
   var db = firestore();
 
@@ -30,7 +31,7 @@ const ReasonsScreen = ({ route, navigation }) => {
   const handlePress = () => {
     if(reasons.length < 1) Alert.alert('Please pick a reason');
     else{
-      const stressorsDoc = db.collection('stressors').doc(user.uid).collection('dates').doc('2023-03-20').set({
+      const stressorsDoc = db.collection('stressors').doc(user.uid).collection('dates').doc('2022-03-27').set({
         stressor : stressor,
         reasons : reasons
       })
