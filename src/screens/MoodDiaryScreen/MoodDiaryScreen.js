@@ -5,7 +5,7 @@ import CustomButton from '../../components/CustomButton';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import CalendarStrip from 'react-native-calendar-strip';
 import Modal from "react-native-modal";
-import Moment from 'react-moment';
+import moment from 'moment';
 
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
@@ -19,9 +19,14 @@ const MoodDiaryScreen = ({ navigation }) => {
   const [stressorData, setStressorData] = useState([]);
   const [foodFTData, setFoodData] = useState([]);
   const [dailyLogData, setDailyData] = useState([]);
-  var test = 'test';
+  const [indexD, setIndexD] = useState(0);
+  const [index, setIndex] = useState(0);
+  
   const user = auth().currentUser;
   var db = firestore();
+
+  const today = new Date();
+  const myDate = moment(today).format('YYYY-MM-DD');
 
   useEffect(() => {
     stressorsData('2023-03-20');
@@ -30,29 +35,96 @@ const MoodDiaryScreen = ({ navigation }) => {
   }, []);
 
   async function stressorsData(date) {
+    try{
     const response = await db.collection('stressors').doc(user.uid).collection('dates').doc(date).get();
-      const tempData = [];      
-      tempData.push(response.data());      
-      setStressorData(tempData);
+    const tempData = [];      
+    tempData.push(response.data());      
+    setStressorData(tempData);
+    }catch (error){
+      console.log(error);
+    }
+    
   }
   
   async function foodData(date) {
-    const foodFTDoc = await db.collection('FoodFT').doc(user.uid).collection('dates').doc('2023-03-20').get();
+    try{
+    const foodFTDoc = await db.collection('FoodFT').doc(user.uid).collection('dates').doc(date).get();
     const tempData = [];      
       tempData.push(foodFTDoc.data());      
       setFoodData(tempData);    
+    } catch (error){
+      console.log(error);
+    }
   }
 
   async function dailyData(date) {
-    const dailyLogDoc = await db.collection('DailyLog').doc(user.uid).collection('dates').doc('2023-03-20').get();
+    try{
+    const dailyLogDoc = await db.collection('DailyLog').doc(user.uid).collection('dates').doc(date).get();
     const tempData = [];      
       tempData.push(dailyLogDoc.data());      
       setDailyData(tempData);    
+    } catch (error){
+      console.log(error);
+    }
   } 
+
+  const fields = useMemo(() =>[
+    { label: 'Activity', value: dailyLogData[0]?.activity },
+    { label: 'Triggers', value: dailyLogData[0]?.triggers },
+    { label: 'Signs', value: dailyLogData[0]?.signs },
+    { label: 'Body', value: dailyLogData[0]?.body },
+    { label: 'Mind', value: dailyLogData[0]?.mind },
+    { label: 'Emotion', value: dailyLogData[0]?.emotion },
+    { label: 'Behavior', value: dailyLogData[0]?.behavior },
+    { label: 'Anxiety Level', value: dailyLogData[0]?.stressedLevel },
+    { label: 'Strategies', value: dailyLogData[0]?.strategies },
+  ], [dailyLogData]);
+
+  const data = useMemo(() => [
+    { label: 'Who', value: foodFTData[0]?.who },
+    { label: 'What', value: foodFTData[0]?.what },
+    { label: 'Where', value: foodFTData[0]?.where },
+    { label: 'When', value: foodFTData[0]?.when },
+    { label: 'Why', value: foodFTData[0]?.why },
+  ], [foodFTData]);
+
+
+  const handleLeftArrowPressDaily = useCallback(() => {
+    if (indexD === 0) {
+      setIndexD(fields.length - 1);
+    } else {
+      setIndexD(indexD - 1);
+    }
+  }, [indexD, fields.length]);
+
+  const handleRightArrowPressDaily = useCallback(() => {
+    if (indexD === fields.length - 1) {
+      setIndexD(0);
+    } else {
+      setIndexD(indexD + 1);
+    }
+  }, [indexD, fields.length]);
+
+
+  const handleLeftArrowPress = useCallback(() => {
+    if (index === 0) {
+      setIndex(data.length - 1);
+    } else {
+      setIndex(index - 1);
+    }
+  }, [index, data.length]);
+
+  const handleRightArrowPress = useCallback(() => {
+    if (index === data.length - 1) {
+      setIndex(0);
+    } else {
+      setIndex(index + 1);
+    }
+  }, [index, data.length]);
 
   return (
     
-    <View style={styles.root}>
+    <ScrollView style={styles.root}>
       <View style={styles.header}>
         <View style={styles.button}><CustomButton text= "<" onPress={() => navigation.navigate('Dashboard')} type="dropButton"/></View>
         <Text style={styles.title}>
@@ -65,60 +137,55 @@ const MoodDiaryScreen = ({ navigation }) => {
           style={{height:100, paddingTop: 10, paddingBottom: 10}}
 
           onDateSelected = {day =>{
-            console.log('day selected', day.format('YYYY-MM-DD'));            
+            const selected = day.format('YYYY-MM-DD');
+            dailyData(selected);
           }}
         />
       </View>       
 
-      <View style={{ flex: 1 }}>
-        <ScrollView style={{ paddingHorizontal: 20 }}>
-          {stressorData.map((item) => (
-            <View style={{ marginBottom: 10 }}>
-              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Your stressor for the day was : {item.stressor}</Text>
-              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Your selected reasons were : {item.reasons}</Text>
-              
-            </View>
-          ))}
-        </ScrollView>
+      <View style={{ flex: 1, paddingHorizontal: 20, paddingTop: 20 }}>
+  <ScrollView style={{ backgroundColor: '#c9d6df', borderRadius: 10, padding: 20 }}>
+    {stressorData.map((item) => (
+      <View style={{ marginBottom: 10 }}>
+        <Text style={{ fontSize: 18, fontWeight: 'bold', alignSelf: 'center' }}>Stressors for the Day</Text>
+        <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Your stressor for the day was {item.stressor}</Text>
+        <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Your selected reasons were: {item.reasons}</Text>
       </View>
+    ))}
+  </ScrollView>
+</View>
 
-      <View style={{ flex: 1 }}>
-        <ScrollView style={{ paddingHorizontal: 20 }}>
-          {foodFTData.map((item) => (
-            <View style={{ marginBottom: 10 }}>              
-              <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Food For Though Questions of the Day</Text>
-              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Who : {item.who}</Text>              
-              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>What : {item.what}</Text>              
-              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Where : {item.where}</Text>              
-              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>When : {item.when}</Text>              
-              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Why : {item.why}</Text>             
-            </View>
-          ))}
-        </ScrollView>
-      </View>
-
-      <View style={{ flex: 1 }}>
-        <ScrollView style={{ paddingHorizontal: 20 }}>
-          {dailyLogData.map((item) => (
-            <View style={{ marginBottom: 10 }}>
-              <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Daily Log Data</Text>
-              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Activity : {item.activity}</Text>              
-              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Triggers : {item.triggers}</Text> 
-              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Signs : {item.signs}</Text>
-              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Body : {item.body}</Text>
-              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Mind : {item.mind}</Text>
-              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Emotion : {item.emotion}</Text> 
-              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Behavior : {item.behavior}</Text>
-              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Anxiety Level : {item.stressedLevel}</Text>
-              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Strategies : {item.strategies}</Text>
-              <Text style={{ marginTop: 15 }}>{item.reasons}</Text>
-            </View>
-          ))}
-        </ScrollView>
-      </View>
-
+<View style={{ flex: 1, paddingHorizontal: 20, paddingTop: 20 }}>
+  <View style={{ backgroundColor: '#7bb4c8', borderRadius: 10, padding: 20 }}>
+    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+      <CustomButton onPress={handleLeftArrowPress} type="arrow" text="<" style={{ alignSelf: 'center' }} />
+      <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Questions of the Day</Text>
+      <CustomButton onPress={handleRightArrowPress} type="arrow" text=">" style={{ alignSelf: 'center'}} />
     </View>
+    <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{data[index]?.label}: {data[index]?.value}</Text>
+  </View>
+</View>
+
+<View style={{ paddingHorizontal: 20, paddingTop: 20 }}>
+  <View style={{ backgroundColor: '#457f9d', borderRadius: 10, padding: 20 }}>
+    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+      <CustomButton onPress={handleLeftArrowPressDaily} type="arrow" text="<" style={{ alignSelf: 'center' }} />
+      <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Daily Log Data</Text>
+      <CustomButton onPress={handleRightArrowPressDaily} type="arrow" text=">" style={{ alignSelf: 'center' }} />
+    </View>
+    <View style={{ height: 40}}>
+      <View style={{ marginBottom: 5 }}>
+        <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{fields[indexD]?.label}: {fields[indexD]?.value}</Text>
+        <Text style={{ marginTop: 15 }}>{dailyLogData[indexD]?.reasons}</Text>
+      </View> 
+    </View>
+  </View>
+</View>
+
+
+    </ScrollView>
   );
+
 };
 
 const styles = StyleSheet.create({

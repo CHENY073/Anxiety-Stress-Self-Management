@@ -7,6 +7,7 @@ import Logo from '../../../assets/images/Logo.png';
 import Volume from '../../../assets/images/Volume.png';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import moment from 'moment';
 
 
 const BreathingScreen = ({ navigation }) => {
@@ -26,6 +27,9 @@ const BreathingScreen = ({ navigation }) => {
 
   const user = auth().currentUser;
   var db = firestore();
+  
+  const today = new Date();
+  const myDate = moment(today).format('YYYY-MM-DD');
 
   const handlePress = () => {
     if(!what) Alert.alert('Please pick a what question');
@@ -34,7 +38,7 @@ const BreathingScreen = ({ navigation }) => {
     else if(!when) Alert.alert('Please pick a when question');
     else if(!why) Alert.alert('Please pick a why question');
     else{
-      const foodFTDoc = db.collection('FoodFT').doc(user.uid).collection('dates').doc('2023-03-20').set({
+      const foodFTDoc = db.collection('FoodFT').doc(user.uid).collection('dates').doc(myDate).set({
         what : whatData[what],
         who : whoData[who],
         where : whereData[where],

@@ -6,7 +6,7 @@ const CustomSelect = ({data, onSelect, radio = false, type = 'PRIMARY'}) => {
 
   const [userOption, setUserOption] = radio? useState(null): useState([]);
 
-  const colors = {'PRIMARY':'#6D828F', 'SECONDARY':'#BDB49D'};
+  const colors = {'PRIMARY':'#6D828F', 'SECONDARY':'#457F9D'};
 
   const handleSelect = (value) => {
     if(radio) setUserOption(value);

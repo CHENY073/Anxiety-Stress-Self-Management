@@ -1,22 +1,26 @@
 import React, {useState} from 'react';
-import {View, SafeAreaView, Text, Image, StyleSheet, useWindowDimensions, Alert} from 'react-native';
+import {View, SafeAreaView, Text, Image, StyleSheet, useWindowDimensions, Alert, TextInput, Button} from 'react-native';
 
 import CustomButton from '../../components/CustomButton';
 import CustomSelect from '../../components/CustomSelect';
+import CustomInput from '../../components/CustomInput';
 import Logo from '../../../assets/images/Logo.png';
 import Volume from '../../../assets/images/Volume.png';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-import moment from 'react-moment';
+import moment from 'moment';
 
 const ReasonsScreen = ({ route, navigation }) => {
   const [reasons, setReasons] = useState([]);
+  const [reasonsCustom, setReasonsCustom] = useState('');
 
   const window = useWindowDimensions();
 
   const {stressor} = route.params;  
-  const user = auth().currentUser;
- 
+  const user = auth().currentUser; 
+  
+  const today = new Date();
+  const myDate = moment(today).format('YYYY-MM-DD');
 
   var db = firestore();
 
@@ -31,12 +35,19 @@ const ReasonsScreen = ({ route, navigation }) => {
   const handlePress = () => {
     if(reasons.length < 1) Alert.alert('Please pick a reason');
     else{
-      const stressorsDoc = db.collection('stressors').doc(user.uid).collection('dates').doc('2022-03-27').set({
+      const stressorsDoc = db.collection('stressors').doc(user.uid).collection('dates').doc(myDate).set({
         stressor : stressor,
         reasons : reasons
       })
       navigation.navigate('FoodFT');
     } 
+  };
+
+  const handleAdd = () =>{
+    if (reasonsCustom !== ''){
+      setReasons([...reasons,reasonsCustom]);
+      setReasonsCustom('');
+    }
   };
 
   return (
@@ -48,10 +59,15 @@ const ReasonsScreen = ({ route, navigation }) => {
       </View>
 
       <Text style = {styles.title}>
-        What are your stressors at {stressor}?
+        What are your {stressor} stressors?
       </Text>
 
       <CustomSelect data={data[stressor]} onSelect={(value) => setReasons(value)} type="SECONDARY"/>
+      <CustomInput
+        value={reasonsCustom} setValue={setReasonsCustom} placeholder="Add Custom Reasons"
+      />      
+
+      <Button color = '#F2A1A6' title="Add" onPress={handleAdd}/>
 
       <View style={styles.button}>
         <CustomButton text= "Continue" onPress={() => handlePress()} type="SECONDARY"/>

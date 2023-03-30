@@ -1,4 +1,4 @@
-import React, {useState, useMemo, useCallback} from 'react';
+import React, {useState, useMemo, useCallback, Component, useEffect} from 'react';
 import {View, Text, ScrollView, SafeAreaView, Image, StyleSheet, useWindowDimensions, ImageBackground, Alert, Button, TextInput} from 'react-native';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
@@ -6,23 +6,21 @@ import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import {Picker} from '@react-native-picker/picker';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-
 import Volume from '../../../assets/images/Volume.png';
 import Logo from '../../../assets/images/Logo.png';
+import moment from 'moment';
 
 
 const DailyLogScreen = ({navigation}) => {
     const [activity, setActivity] = useState('');
     const [triggers, setTriggers] = useState(0);
     const [signs, setSigns] = useState(0);
-    const [signsInput, setSignsInput] = useState('');
     const [anxietyLevel, setAnxietyLevel] = useState(0);
     const [strategies, setStrategies] = useState(0);
-    const [body, setBody] = useState(0);
-    const [mind, setMind] = useState(0);
-    const [emotion, setEmotion] = useState(0);
-    const [behavior, setBehavior] = useState(0);
-    const [customInput, setCustomInput] = useState('');
+    const [body, setBody] = useState('');
+    const [mind, setMind] = useState('');
+    const [emotion, setEmotion] = useState('');
+    const [behavior, setBehavior] = useState('');
   
     // const activityData = ['','Exercise 🏃', 'Meditation 🧘', 'Reading 📖'];
     const triggersData = ['','Home', 'School', 'Work', 'Social Life'];
@@ -38,13 +36,10 @@ const DailyLogScreen = ({navigation}) => {
     const user = auth().currentUser;
     var db = firestore();
     
-    const handleCustomInputChange = (text) => {
-      setCustomInput(text);
-    };
-    const handleOptionChange = (itemValue) => {
-      setTriggers(itemValue);
-      setCustomInput('');
-    };
+    const today = new Date();
+    const myDate = moment(today).format('YYYY-MM-DD');
+     
+  
 
     const handlePress = () => {
       if(!activity) Alert.alert('Please pick an activity answer');
@@ -53,14 +48,14 @@ const DailyLogScreen = ({navigation}) => {
       else if(!anxietyLevel) Alert.alert('Please pick a number');
       else if(!strategies) Alert.alert('Please pick a strategies answer');
       else {
-        const dailyLogDoc = db.collection('DailyLog').doc(user.uid).collection('dates').doc('2023-03-20').set({
+        const dailyLogDoc = db.collection('DailyLog').doc(user.uid).collection('dates').doc(myDate).set({
           activity : activity,
           triggers : triggersData[triggers],
           signs : signsData[signs],
-          body : bodyData[body],
-          mind : mindData[mind],
-          emotion : emotionsData[emotion],
-          behavior : behaviorData[behavior],
+          body : body,
+          mind : mind,
+          emotion : emotion,
+          behavior : behavior,
           stressedLevel : anxietyLevel,
           strategies : strategiesData[strategies]
         })
@@ -83,32 +78,9 @@ const DailyLogScreen = ({navigation}) => {
       </Text>
 
       <View style = {styles.containter}>
-        <Text style = {styles.label}>What activity did you do?</Text>
-        <CustomInput  value={activity} setValue={setActivity} secureTextEntry={false}/>
-
-          <Text style={{ marginVertical: 10 }}>Select an option:</Text>
-        <Picker
-          selectedValue={triggers}
-          onValueChange={(itemValue) => handleOptionChange(itemValue)}
-        >
-          {triggersData.map((option) => (
-            <Picker.Item key={option} label={option} value={option} />
-          ))}
-        </Picker>
-        <View style={{ marginTop: 10 }}>
-          <Text style={{ marginVertical: 10 }}>Or enter a custom value:</Text>
-          <TextInput
-            value={customInput}
-            onChangeText={(text) => handleCustomInputChange(text)}
-            placeholder="Enter custom value"
-            style={{
-              borderWidth: 1,
-              borderColor: '#ccc',
-              padding: 10,
-              borderRadius: 5,
-            }}
-          />
-        </View>
+        <Text style = {styles.label}>What activity did you do?</Text>        
+        
+        <CustomInput  value={activity} setValue={setActivity} placeholder='Ex. Meditation, Reading, Gym, etc.' secureTextEntry={false}/>
 
         <Text style = {styles.label}>What trigger did you experience?</Text>
         <Picker selectedValue={triggers} onValueChange={(itemValue, itemIndex) => setTriggers(itemValue)} style = {styles.picker} numberOfLines={5}>
@@ -128,41 +100,18 @@ const DailyLogScreen = ({navigation}) => {
           })}
         </Picker>
         
-        <Text style = {styles.label}>Body</Text>
-        <Picker selectedValue={body} onValueChange={(itemValue, itemIndex) => setBody(itemValue)} style = {styles.picker} numberOfLines={5}>
-          {bodyData.map((item, index)=>{
-            return (
-              <Picker.Item value={index} label = {item} key={index}/>
-            );
-          })}
-        </Picker>
+        <Text style = {styles.label}>Body</Text>                
+        <CustomInput  value={body} setValue={setBody} placeholder='Ex. Headaches, Fatigue, etc.' secureTextEntry={false}/>
+        
 
         <Text style = {styles.label}>Mind</Text>
-        <Picker selectedValue={mind} onValueChange={(itemValue, itemIndex) => setMind(itemValue)} style = {styles.picker} numberOfLines={5}>
-          {mindData.map((item, index)=>{
-            return (
-              <Picker.Item value={index} label = {item} key={index}/>
-            );
-          })}
-        </Picker>
+        <CustomInput  value={mind} setValue={setMind} placeholder='Ex. Worrying, Indecision, etc.' secureTextEntry={false}/>
 
         <Text style = {styles.label}>Emotions</Text>
-        <Picker selectedValue={emotion} onValueChange={(itemValue, itemIndex) => setEmotion(itemValue)} style = {styles.picker} numberOfLines={5}>
-          {emotionsData.map((item, index)=>{
-            return (
-              <Picker.Item value={index} label = {item} key={index}/>
-            );
-          })}
-        </Picker>
+        <CustomInput  value={emotion} setValue={setEmotion} placeholder='Ex. Depression, Anxiety, etc.' secureTextEntry={false}/>
 
         <Text style = {styles.label}>Behavior</Text>
-        <Picker selectedValue={behavior} onValueChange={(itemValue, itemIndex) => setBehavior(itemValue)} style = {styles.picker} numberOfLines={5}>
-          {behaviorData.map((item, index)=>{
-            return (
-              <Picker.Item value={index} label = {item} key={index}/>
-            );
-          })}
-        </Picker>
+        <CustomInput  value={behavior} setValue={setBehavior} placeholder='Ex. Insomnia, Restlessness etc.' secureTextEntry={false}/>
 
         <Text style = {styles.label}>How stressed are you?</Text>
         <Picker selectedValue={anxietyLevel} onValueChange={(itemValue, itemIndex) => setAnxietyLevel(itemValue)} style = {styles.picker} numberOfLines={5}>
@@ -221,7 +170,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   containter: {
-    width: '80%',
+    width: '85%',
   },
   picker: {
     backgroundColor: '#D6CBCB',
