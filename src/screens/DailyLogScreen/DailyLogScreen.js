@@ -75,7 +75,7 @@ const DailyLogScreen = ({navigation}) => {
           stressedLevel : anxietyLevel,
           strategies : strategiesFinal
         })
-        navigation.navigate('Intention');
+        navigation.navigate('Mood Diary');
       } 
     };
 

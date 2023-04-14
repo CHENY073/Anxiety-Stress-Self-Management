@@ -45,7 +45,7 @@ const ChoiceScreen = ({ navigation }) => {
         </View>
       </Modal>
     </View>
-    <CustomButton text= "Daily Stressors" onPress={() => navigation.navigate('Daily Log')} type="CHOICE"/>
+    <CustomButton text= "Daily Stressors" onPress={() => navigation.navigate('Emotion')} type="CHOICE"/>
     <CustomButton style={styles.iButton} text="Learn More" onPress={toggleModal} type="INFO"/>
     </SafeAreaView>
   );

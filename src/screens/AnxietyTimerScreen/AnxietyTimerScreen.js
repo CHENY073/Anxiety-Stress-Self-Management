@@ -85,7 +85,6 @@ const AnxietyTimerScreen = ({ route, navigation }) => {
   return (
     <SafeAreaView style={styles.root}>
       <ImageBackground source={Cloud} style={styles.background}>
-        <View style={styles.overlay} />
         <View style={styles.header}>
           <View style={{width: 100}}><CustomButton text= "<" onPress={() => navigation.goBack()} type="blackBackButton"/></View>
           <Image source={Logo} style={styles.logo} resizeMode="cover" />
