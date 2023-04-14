@@ -98,7 +98,7 @@ const HomeScreen = ({ navigation }) => {
 //this checks if the user is already logged in or not, if they are, takes them to dashboard
  auth().onAuthStateChanged((user) => {
     try{if (user && user.emailVerified) {
-    navigation.navigate("Dashboard");
+    navigation.navigate("Choice");
     
     }else{
       navigation.navigate("Home");
@@ -123,7 +123,7 @@ const HomeScreen = ({ navigation }) => {
       let response = await auth().signInWithEmailAndPassword(email, password);
       if (response && response.user && response.user.emailVerified) {
         showToastAndroid();
-        navigation.navigate('Dashboard');
+        navigation.navigate('Choice');
         setEmail('');
         setPassword('');
       }else if(!response.user.emailVerified){

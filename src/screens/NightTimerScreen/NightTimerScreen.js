@@ -73,7 +73,7 @@ const NightTimerScreen = ({ route, navigation }) => {
       if(counter == 23*cycle){
         clearInterval(countdown);
         pos.stopAnimation();
-        navigation.navigate('Dashboard');
+        navigation.navigate('Exercises');
       }
     }, 1000);
     return () => clearInterval(countdown)

@@ -62,7 +62,7 @@ const MenuScreen = ({ navigation }) => {
       <TouchableOpacity onPress={() => {
         switch(title) {
           case "Home":
-            navigation.navigate("Dashboard");
+            navigation.navigate("Choice");
             break;
           case "Settings":
             //TODO: Implement Settings screen
@@ -125,7 +125,7 @@ const MenuScreen = ({ navigation }) => {
 
         <ImageBackground source={lake} style = {{padding: 10, width: 500, height:230}}>
         
-          <CustomButton text= "<" onPress={() => navigation.navigate('Dashboard')} type="whiteBackButton"/>
+          <CustomButton text= "<" onPress={() => navigation.navigate('Choice')} type="whiteBackButton"/>
 
            <Image source={profile} style={{
               width: 90,

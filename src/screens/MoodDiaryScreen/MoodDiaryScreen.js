@@ -126,7 +126,7 @@ const MoodDiaryScreen = ({ navigation }) => {
     
     <ScrollView style={styles.root}>
       <View style={styles.header}>
-        <View style={styles.button}><CustomButton text= "<" onPress={() => navigation.navigate('Dashboard')} type="dropButton"/></View>
+        <View style={styles.button}><CustomButton text= "<" onPress={() => navigation.navigate('Choice')} type="dropButton"/></View>
         <Text style={styles.title}>
           Dashboard
         </Text>
@@ -138,6 +138,8 @@ const MoodDiaryScreen = ({ navigation }) => {
 
           onDateSelected = {day =>{
             const selected = day.format('YYYY-MM-DD');
+            foodData(selected);
+            stressorsData(selected);
             dailyData(selected);
           }}
         />

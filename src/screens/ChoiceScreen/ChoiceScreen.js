@@ -18,7 +18,7 @@ const ChoiceScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={[styles.root]}>
       <View style={styles.header}>
-        <View style={{width: 100}}><CustomButton text= "<" onPress={() => navigation.goBack()} type="blackBackButton"/></View>
+        <View style={{width: 100}}><CustomButton text= "≡" onPress={() => navigation.navigate('Menu Screen')} type="blackBackButton"/></View>
         <Image source={Logo} style={styles.logo} resizeMode="cover" />
         <View style={{width: 100}}><Image source={Volume} style={styles.volume} resizeMode="cover" /></View>
       </View>
@@ -45,7 +45,7 @@ const ChoiceScreen = ({ navigation }) => {
         </View>
       </Modal>
     </View>
-    <CustomButton text= "Daily Stressors" onPress={() => navigation.navigate('Stressor')} type="CHOICE"/>
+    <CustomButton text= "Daily Stressors" onPress={() => navigation.navigate('Daily Log')} type="CHOICE"/>
     <CustomButton style={styles.iButton} text="Learn More" onPress={toggleModal} type="INFO"/>
     </SafeAreaView>
   );

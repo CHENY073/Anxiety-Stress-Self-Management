@@ -17,20 +17,25 @@ const DailyLogScreen = ({navigation}) => {
     const [signs, setSigns] = useState(0);
     const [anxietyLevel, setAnxietyLevel] = useState(0);
     const [strategies, setStrategies] = useState(0);
-    const [body, setBody] = useState('');
-    const [mind, setMind] = useState('');
-    const [emotion, setEmotion] = useState('');
-    const [behavior, setBehavior] = useState('');
+    const [customStrategies, setCustomStrategies] = useState('');
+    const [body, setBody] = useState(0);
+    const [customBody, setCustomBody] = useState('');
+    const [mind, setMind] = useState(0);
+    const [customMind, setCustomMind] = useState('');
+    const [emotion, setEmotion] = useState(0);    
+    const [customEmotion, setCustomEmotion] = useState('');
+    const [behavior, setBehavior] = useState(0);    
+    const [customBehavior, setCustomBehavior] = useState('');
   
     // const activityData = ['','Exercise 🏃', 'Meditation 🧘', 'Reading 📖'];
     const triggersData = ['','Home', 'School', 'Work', 'Social Life'];
     const signsData = ['','Body', 'Mind', 'Emotion', 'Behavior'];
-    const bodyData = ['','Headaches','Skin Irriation','High Blood Pressure','Fatigue','Palpitations','Difficulty Breathing'];
-    const mindData = ['','Worrying','Muddled Thinking','Impaired Judgement','Indecision','Difficulty Concentrating'];
-    const emotionsData = ['','Fear','Irritability','Depression','Apathy','Alienation','Loss of Confidence'];
-    const behaviorData = ['','Addiction','Less Appetite','Less Sex Drive','Insomnia','Restlessness','Accident Prone'];
+    const bodyData = ['','Headaches ','Skin Irriation ','High Blood Pressure ','Fatigue ','Palpitations ','Difficulty Breathing ','Custom '];
+    const mindData = ['','Worrying ','Muddled Thinking ','Impaired Judgement ','Indecision ','Difficulty Concentrating ','Custom '];
+    const emotionsData = ['','Fear ','Irritability ','Depression ','Apathy ','Alienation ','Loss of Confidence ','Custom '];
+    const behaviorData = ['','Addiction ','Less Appetite ','Less Sex Drive ','Insomnia ','Restlessness ','Accident Prone ','Custom '];
     const stressedLevel = ['','1','2','3','4','5'];
-    const strategiesData = ['','Breathing','Positive self-talk', 'Listening to music', 'Talking to a friend', 'Group Support'];
+    const strategiesData = ['','Breathing ','Positive self-talk ', 'Listening to music ', 'Talking to a friend ', 'Group Support ','Custom '];
     
   
     const user = auth().currentUser;
@@ -42,22 +47,28 @@ const DailyLogScreen = ({navigation}) => {
   
 
     const handlePress = () => {
+      const bodyFinal = body == 7 ? customBody : bodyData[body];
+      const emotionFinal = emotion == 7 ? customEmotion : emotionsData[emotion];
+      const mindFinal = mind == 6 ? customMind : mindData[mind];
+      const behaviorFinal = behavior == 7 ? customBehavior : behaviorData[behavior];
+      const strategiesFinal = strategies == 6 ? customStrategies : strategiesData[strategies];      
+
       if(!activity) Alert.alert('Please pick an activity answer');
       else if(!triggers) Alert.alert('Please pick a triggers answer');
       else if(!signs) Alert.alert('Please pick a signs answer');
       else if(!anxietyLevel) Alert.alert('Please pick a number');
-      else if(!strategies) Alert.alert('Please pick a strategies answer');
+      else if(!strategies) Alert.alert('Please pick a strategies answer');      
       else {
         const dailyLogDoc = db.collection('DailyLog').doc(user.uid).collection('dates').doc(myDate).set({
           activity : activity,
           triggers : triggersData[triggers],
           signs : signsData[signs],
-          body : body,
-          mind : mind,
-          emotion : emotion,
-          behavior : behavior,
+          body : bodyFinal,
+          mind : mindFinal,
+          emotion : emotionFinal,
+          behavior : behaviorFinal,
           stressedLevel : anxietyLevel,
-          strategies : strategiesData[strategies]
+          strategies : strategiesFinal
         })
         navigation.navigate('Intention');
       } 
@@ -100,18 +111,46 @@ const DailyLogScreen = ({navigation}) => {
           })}
         </Picker>
         
-        <Text style = {styles.label}>Body</Text>                
-        <CustomInput  value={body} setValue={setBody} placeholder='Ex. Headaches, Fatigue, etc.' secureTextEntry={false}/>
+        <Text style = {styles.label}>Body</Text>  
+        <Picker selectedValue={body} onValueChange={(itemValue, itemIndex) => setBody(itemValue)} style = {styles.picker} numberOfLines={5}>
+          {bodyData.map((item, index)=>{
+            return (
+              <Picker.Item value={index} label = {item} key={index}/>
+            );
+          })}
+        </Picker>              
+        <CustomInput  value={customBody} setValue={setCustomBody} placeholder={'Custom Input'} secureTextEntry={false}/>
         
 
         <Text style = {styles.label}>Mind</Text>
-        <CustomInput  value={mind} setValue={setMind} placeholder='Ex. Worrying, Indecision, etc.' secureTextEntry={false}/>
+        <Picker selectedValue={mind} onValueChange={(itemValue, itemIndex) => setMind(itemValue)} style = {styles.picker} numberOfLines={5}>
+          {mindData.map((item, index)=>{
+            return (
+              <Picker.Item value={index} label = {item} key={index}/>
+            );
+          })}
+        </Picker>  
+        <CustomInput  value={customMind} setValue={setCustomMind} placeholder={'Custom Input'} secureTextEntry={false}/>
 
         <Text style = {styles.label}>Emotions</Text>
-        <CustomInput  value={emotion} setValue={setEmotion} placeholder='Ex. Depression, Anxiety, etc.' secureTextEntry={false}/>
+        <Picker selectedValue={emotion} onValueChange={(itemValue, itemIndex) => setEmotion(itemValue)} style = {styles.picker} numberOfLines={5}>
+          {emotionsData.map((item, index)=>{
+            return (
+              <Picker.Item value={index} label = {item} key={index}/>
+            );
+          })}
+        </Picker>  
+        <CustomInput  value={customEmotion} setValue={setCustomEmotion} placeholder={'Custom Input'} secureTextEntry={false}/>
 
         <Text style = {styles.label}>Behavior</Text>
-        <CustomInput  value={behavior} setValue={setBehavior} placeholder='Ex. Insomnia, Restlessness etc.' secureTextEntry={false}/>
+        <Picker selectedValue={behavior} onValueChange={(itemValue, itemIndex) => setBehavior(itemValue)} style = {styles.picker} numberOfLines={5}>
+          {behaviorData.map((item, index)=>{
+            return (
+              <Picker.Item value={index} label = {item} key={index}/>
+            );
+          })}
+        </Picker>  
+        <CustomInput  value={customBehavior} setValue={setCustomBehavior} placeholder={'Custom Input'} secureTextEntry={false}/>
 
         <Text style = {styles.label}>How stressed are you?</Text>
         <Picker selectedValue={anxietyLevel} onValueChange={(itemValue, itemIndex) => setAnxietyLevel(itemValue)} style = {styles.picker} numberOfLines={5}>
@@ -130,6 +169,7 @@ const DailyLogScreen = ({navigation}) => {
             );
           })}
         </Picker>
+        <CustomInput  value={customStrategies} setValue={setCustomStrategies} placeholder={'Custom Input'} secureTextEntry={false}/>
       </View>
 
       <View style={styles.button}>
