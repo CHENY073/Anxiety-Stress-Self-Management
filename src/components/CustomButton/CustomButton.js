@@ -179,6 +179,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 25,
   },
+  container_EXERCISE:{
+    backgroundColor: '#457f9d',
+    width: 175,
+    height: 175,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 25,
+  },
   container_continueFButton:{
     borderWidth:2,
     backgroundColor: 'rgba(52, 52, 52, 0.0)',
@@ -320,6 +328,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   text_STRESSOR: {
+    color: 'white',
+    fontSize: 36,
+    textAlign: 'center',
+  },
+  text_EXERCISE: {
     color: 'white',
     fontSize: 36,
     textAlign: 'center',

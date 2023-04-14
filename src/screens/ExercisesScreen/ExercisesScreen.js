@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View, Text, Image, StyleSheet, useWindowDimensions, ImageBackground} from 'react-native';
+import React from 'react';
+import {View, SafeAreaView, Text, Image, StyleSheet, useWindowDimensions, ImageBackground} from 'react-native';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 
@@ -9,17 +9,27 @@ const ExercisesScreen = ({ navigation }) => {
   const {height} = useWindowDimensions();
 
   return (
-    <View style={styles.root}>
+    <SafeAreaView style={[styles.root]}>
       <View style={styles.header}>
-        <View style={styles.button}><CustomButton text= "<" onPress={() => navigation.goBack()} type="dropButton"/></View>
-        <Text style={styles.title}>
-          Exercises
-        </Text>
+        <View style={{width: 100}}><CustomButton text= "<" onPress={() => navigation.goBack()} type="blackBackButton"/></View>
       </View>
-      <CustomButton text= "4-4-4-4 Day Exercise" onPress={() => navigation.navigate('Day Breathing Screen')} type="CHOICE"/>
-      <CustomButton text= "4-7-8 Sleep Exercise" onPress={() => navigation.navigate('Breathing Menu Screen')} type="CHOICE"/>      
-      <CustomButton text= "4-4-4 Anxiety Exercise" onPress={() => navigation.navigate('Anxiety Breathing Menu Screen')} type="CHOICE"/>
-    </View>
+
+      <Text style = {styles.title}>
+        Rest your Mind
+      </Text>
+      <Text style = {styles.subtitle}>
+        Exercises
+      </Text>
+
+      <View style={styles.row}>
+      <CustomButton text= "Destress your Day" onPress={() => navigation.navigate('Day Breathing Screen')} type="EXERCISE"/>
+      <CustomButton text= "Ease your Sleep" onPress={() => navigation.navigate('Breathing Menu Screen')} type="EXERCISE"/>
+      </View>
+      <View style={styles.row}>
+      <CustomButton text= "Calm yourself" onPress={() => navigation.navigate('Anxiety Breathing Menu Screen')} type="EXERCISE"/>
+      <CustomButton text= "" onPress={() => navigation.navigate('Anxiety Breathing Menu Screen')} type="EXERCISE"/>
+      </View>
+    </SafeAreaView>
   );
 };
 
@@ -29,23 +39,33 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#FFF7F5',
   },
-  header: {
+  header:{
     width: '100%',
+    height: 100,
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    justifyContent: 'center',
-    padding: 30,
-  },
-  button: {
-    position: 'absolute',
-    left: 0,
   },
   title: {
-    fontSize: 34,
+    fontSize: 36,
     fontWeight: 'bold',
-    color: 'black',
+    color: '#000000',
+    marginVertical: 10,
+    textAlign: 'center',
   },
-  
+  subtitle: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: '#000000',
+    marginVertical: 10,
+    textAlign: 'center',
+  },
+  row:{
+    width: '100%',
+    marginVertical: 15,
+    flexDirection: "row",
+    justifyContent: 'space-around',
+  },
 });
 
 export default ExercisesScreen;

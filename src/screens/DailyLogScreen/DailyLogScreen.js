@@ -9,6 +9,7 @@ import firestore from '@react-native-firebase/firestore';
 import Volume from '../../../assets/images/Volume.png';
 import Logo from '../../../assets/images/Logo.png';
 import moment from 'moment';
+import Modal from "react-native-modal";
 
 
 const DailyLogScreen = ({navigation}) => {
@@ -44,7 +45,11 @@ const DailyLogScreen = ({navigation}) => {
     const today = new Date();
     const myDate = moment(today).format('YYYY-MM-DD');
      
+    const [isModalVisible, setModalVisible] = useState(false);
   
+    const toggleModal = () => {
+      setModalVisible(!isModalVisible);
+    };
 
     const handlePress = () => {
       const bodyFinal = body == 7 ? customBody : bodyData[body];
@@ -171,7 +176,23 @@ const DailyLogScreen = ({navigation}) => {
         </Picker>
         <CustomInput  value={customStrategies} setValue={setCustomStrategies} placeholder={'Custom Input'} secureTextEntry={false}/>
       </View>
+      <Modal isVisible={isModalVisible} onModalHide={()=> setModalVisible(false)}>
+        <View style={styles.modal}>
+          <Text style={styles.modalText}>Anger:</Text>
+          <Text style={styles.modalSmallText}> Bitter, Livid, Resentful, Furios, Irritated, Annoyed, Frustrated, Mad, Upset</Text>
+          <Text style={styles.modalText}>Sad:</Text>
+          <Text style={styles.modalSmallText}> Unhappy, Blue, Dejected, Depressed, Disappointed, Mournful, Crushed, Heavy, Lonely</Text>
+          <Text style={styles.modalText}>Afraid:</Text>
+          <Text style={styles.modalSmallText}>Nervous, Fearful, Scared, Uneasy, Panicky, Intimidated, Insecure, Shocked, Threatened</Text>
+          <Text style={styles.modalText}>Confusion:</Text>
+          <Text style={styles.modalSmallText}>Unclear, Puzzled, Rattled, Baffled, Bewildered, Stumped, Confounded, Helpless, Incapable</Text>
+          <Text style={styles.modalText}>Anxious:</Text>
+          <Text style={styles.modalSmallText}>Stressed, Confused, Worried, Nervous, Apprehensive, Insecure, Skittish, Uneasy, Perplexed</Text>
+          <Button style={styles.modalButton} title="Hide" onPress={toggleModal} />
+        </View>
+      </Modal>
 
+      <CustomButton style={styles.iButton} text="Emotion Examples" onPress={toggleModal} type="INFO"/>
       <View style={styles.button}>
         <CustomButton text= "Submit" onPress={() => handlePress()} type="SECONDARY"/>
       </View>
@@ -232,6 +253,34 @@ const styles = StyleSheet.create({
     maxWidth: 75,
     maxHeight: 75,
     marginVertical: 10,
+  },
+  modalText:{
+    color: 'black',
+    fontSize: 28,
+    padding: 5,
+    textAlign: 'center',
+    fontWeight: 'bold'
+  },
+  modalSmallText:{
+    flex: 1,
+    color: 'black',
+    fontSize: 18,
+    padding: 5,
+    textAlign: 'center'
+  },
+  modal: {
+    width: "100%",
+    height: "90%",
+    alignItems: "center",
+    justifyContent: "center",
+   
+    borderRadius: 25,
+    backgroundColor: '#7BB4CB',
+  },
+  iButton: {
+    backgroundColor: "red",
+    
+    borderRadius: 20,
   },
 });
 
