@@ -22,11 +22,11 @@ const ExercisesScreen = ({ navigation }) => {
       </Text>
 
       <View style={styles.row}>
-      <CustomButton text= "Destress your Day" onPress={() => navigation.navigate('Day Breathing Screen')} type="EXERCISE"/>
-      <CustomButton text= "Ease your Sleep" onPress={() => navigation.navigate('Breathing Menu Screen')} type="EXERCISE"/>
+      <CustomButton text= "Destress Your Day" onPress={() => navigation.navigate('Day Breathing Screen')} type="EXERCISE"/>
+      <CustomButton text= "Ease Your Sleep" onPress={() => navigation.navigate('Breathing Menu Screen')} type="EXERCISE"/>
       </View>
       <View style={styles.row}>
-      <CustomButton text= "Calm yourself" onPress={() => navigation.navigate('Anxiety Breathing Menu Screen')} type="EXERCISE"/>
+      <CustomButton text= "Hone Your Focus" onPress={() => navigation.navigate('Anxiety Breathing Menu Screen')} type="EXERCISE"/>
       <CustomButton text= "" onPress={() => navigation.navigate('Anxiety Breathing Menu Screen')} type="EXERCISE"/>
       </View>
     </SafeAreaView>

@@ -124,7 +124,7 @@ const DailyLogScreen = ({navigation}) => {
             );
           })}
         </Picker>              
-        <CustomInput  value={customBody} setValue={setCustomBody} placeholder={'Custom Input'} secureTextEntry={false}/>
+        <CustomInput  value={customBody} setValue={setCustomBody} secureTextEntry={false}/>
         
 
         <Text style = {styles.label}>Mind</Text>
@@ -135,7 +135,7 @@ const DailyLogScreen = ({navigation}) => {
             );
           })}
         </Picker>  
-        <CustomInput  value={customMind} setValue={setCustomMind} placeholder={'Custom Input'} secureTextEntry={false}/>
+        <CustomInput  value={customMind} setValue={setCustomMind} secureTextEntry={false}/>
 
         <Text style = {styles.label}>Emotions</Text>
         <Picker selectedValue={emotion} onValueChange={(itemValue, itemIndex) => setEmotion(itemValue)} style = {styles.picker} numberOfLines={5}>
@@ -145,7 +145,7 @@ const DailyLogScreen = ({navigation}) => {
             );
           })}
         </Picker>  
-        <CustomInput  value={customEmotion} setValue={setCustomEmotion} placeholder={'Custom Input'} secureTextEntry={false}/>
+        <CustomInput  value={customEmotion} setValue={setCustomEmotion}  secureTextEntry={false}/>
 
         <Text style = {styles.label}>Behavior</Text>
         <Picker selectedValue={behavior} onValueChange={(itemValue, itemIndex) => setBehavior(itemValue)} style = {styles.picker} numberOfLines={5}>
@@ -155,7 +155,7 @@ const DailyLogScreen = ({navigation}) => {
             );
           })}
         </Picker>  
-        <CustomInput  value={customBehavior} setValue={setCustomBehavior} placeholder={'Custom Input'} secureTextEntry={false}/>
+        <CustomInput  value={customBehavior} setValue={setCustomBehavior}  secureTextEntry={false}/>
 
         <Text style = {styles.label}>How stressed are you?</Text>
         <Picker selectedValue={anxietyLevel} onValueChange={(itemValue, itemIndex) => setAnxietyLevel(itemValue)} style = {styles.picker} numberOfLines={5}>
@@ -174,7 +174,7 @@ const DailyLogScreen = ({navigation}) => {
             );
           })}
         </Picker>
-        <CustomInput  value={customStrategies} setValue={setCustomStrategies} placeholder={'Custom Input'} secureTextEntry={false}/>
+        <CustomInput  value={customStrategies} setValue={setCustomStrategies} secureTextEntry={false}/>
       </View>
       <Modal isVisible={isModalVisible} onModalHide={()=> setModalVisible(false)}>
         <View style={styles.modal}>
