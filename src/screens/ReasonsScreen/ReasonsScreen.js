@@ -39,7 +39,7 @@ const ReasonsScreen = ({ route, navigation }) => {
         stressor : stressor,
         reasons : reasons
       })
-      navigation.navigate('FoodFT');
+      navigation.navigate('Awareness');
     } 
   };
 
