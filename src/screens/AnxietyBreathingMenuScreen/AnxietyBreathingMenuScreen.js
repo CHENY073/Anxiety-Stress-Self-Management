@@ -20,11 +20,11 @@ const AnxietyBreathingMenuScreen = ({ route, navigation }) => {
          </View>
 
          <Text style = {styles.title}>
-                     4-4-4 Anxiety Exercise
+                     4-4-4 Focus Exercise
          </Text>
 
          <Text style = {styles.italic}>
-                    To help you relax.
+                    To help you focus.
          </Text>
 
 
