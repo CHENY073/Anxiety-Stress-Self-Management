@@ -5,7 +5,7 @@ import CustomButton from '../../components/CustomButton';
 import CustomSelect from '../../components/CustomSelect';
 import Logo from '../../../assets/images/Logo.png';
 import Volume from '../../../assets/images/Volume.png';
-import SignInBackGround from '../../../assets/gif/SignInBackGround.gif';
+import SignInBackGround from '../../../assets/gif/NightSkyGif.gif';
 
 const DayBreathingScreen = ({ route, navigation }) => {
 
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   timer: {
     fontSize: 36,
     fontWeight: 'bold',
-    color: '#000000',
+    color: '#ffffff',
     marginVertical: 50,
   },
   container: {
@@ -103,14 +103,14 @@ const styles = StyleSheet.create({
   title: {
       fontSize: 36,
       fontWeight: 'bold',
-      color: '#000000',
+      color: '#ffffff',
       marginVertical: 5,
       textAlign: 'center',
     },
     baseText: {
           fontSize: 22,
           fontWeight: 'normal',
-          color: '#000000',
+          color: '#ffffff',
           marginVertical: 10,
           textAlign: 'left',
     },
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
         fontStyle: 'italic',
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#000000',
+        color: '#ffffff',
         marginVertical: 10,
         textAlign: 'center',
     },

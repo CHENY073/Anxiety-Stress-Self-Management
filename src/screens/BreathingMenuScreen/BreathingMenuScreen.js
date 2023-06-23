@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     },
     baseText: {
           fontSize: 22,
-          fontWeight: 'normal',
+          fontWeight: 'bold',
           color: '#FFFFFF',
           marginVertical: 10,
           textAlign: 'left',
