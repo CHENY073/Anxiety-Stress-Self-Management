@@ -28,14 +28,14 @@ const AwarenessBehaviorScreen = ({ navigation }) => {
   <Text style={styles.quadText}>
     <Text style ={styles.title}>{'\n This may look like:' }  </Text>
     <Text>
-
+    //List in alphabetical order
     {'\n'}
     {'\n •Accident Prone \n'}
+    {' •Insomnia  \n'}
     {' •Loss of appetite \n'}
     {' •Loss of sex drive\n'}
-    {' •Insomnia  \n'}
-    {' •Restlessness \n'}
     {' •More addiction  \n'}
+    {' •Restlessness \n'}
     
     </Text>
     </Text>

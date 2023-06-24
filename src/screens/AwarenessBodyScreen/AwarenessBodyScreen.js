@@ -29,14 +29,16 @@ const AwarenessBodyScreen = ({ navigation }) => {
   <Text style={styles.quadText}>
     <Text style ={styles.title}>{'\n This may look like:' }  </Text>
     <Text>
-
+    //Rearrange in alphabetical order
     {'\n'}
-    {'\n  •Headaches \n'}
-    {'  •Skin Irriation \n'}
-    {'  •High Blood Pressure\n'}
+    {'\n•Difficulty breathing  \n'}
     {'  •Fatigue  \n'}
+    {'  •Headaches \n'}
+    {'  •High Blood Pressure\n'}
     {'  •Palpitations \n'}
-    {'  •Difficulty breathing  \n'}
+    {'  •Skin Irritation \n'}
+
+
     
     </Text>
     </Text>
