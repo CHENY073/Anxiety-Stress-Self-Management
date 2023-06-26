@@ -31,12 +31,12 @@ const AwarenessFeelingsScreen = ({ navigation }) => {
     <Text>
 
     {'\n'}
-    {'\n•Loss of confidence \n'}
-    {'•Irritability \n'}
-    {'•Depression\n'}
+    {'\n•Alienation \n'}
     {'•Apathy \n'}
-    {'•Alienation \n'}
+    {'•Depression\n'}
     {'•Fear  \n'}
+    {'•Irritability \n'}
+    {'•Loss of confidence \n'}
     
     </Text>
     </Text>

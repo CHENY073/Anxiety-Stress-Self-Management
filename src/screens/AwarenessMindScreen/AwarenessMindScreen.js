@@ -30,12 +30,12 @@ const AwarenessMindScreen = ({ navigation }) => {
     <Text>
 
     {'\n'}
-    {'\n   •Worrying \n'}
-    {'   •Muddled thinking \n'}
+    {'\n •Difficulty concentrating \n'}
     {'   •Impaired judgement\n'}
     {'   •Indecision  \n'}
+    {'   •Muddled thinking \n'}
     {'   •Negativity \n'}
-    {'   •Difficulty concentrating \n'}
+    {'   •Worrying \n'}
     
     </Text>
     </Text>
