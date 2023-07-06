@@ -53,7 +53,7 @@ const ExercisesScreen = ({ navigation }) => {
 
 
     <CustomButton
-      text="Hone Your Focus"
+      text="Strengthen Your Focus"
       onPress={() => navigation.navigate('Anxiety Breathing Menu Screen')}
       type="EXERCISE"
     />
