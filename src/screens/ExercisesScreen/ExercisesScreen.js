@@ -53,13 +53,10 @@ const ExercisesScreen = ({ navigation }) => {
 
 
     <CustomButton
-      text="Hone Your Focus"
+      text="Own Your Focus"
       onPress={() => navigation.navigate('Anxiety Breathing Menu Screen')}
       type="EXERCISE"
     />
-
-
-
 
 
     </SafeAreaView>
@@ -70,7 +67,7 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#FFF7F5',
+    backgroundColor: '#E8B9B3',
   },
   header:{
     width: '100%',

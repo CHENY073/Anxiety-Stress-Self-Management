@@ -84,7 +84,7 @@ const EmotionScreen = ({ navigation }) => {
       <Text style = {styles.title}>
         Hello,
         {"\n"}
-        What’s your mood?
+        How are you feeling?
       </Text>
       
       <Svg height={size/2+size/20} width={size} style={styles.slider}>

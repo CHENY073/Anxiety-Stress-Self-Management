@@ -8,8 +8,6 @@ import Volume from '../../../assets/images/Volume.png';
 var Sound = require('react-native-sound');
 
 
-
-
 const BreathingScreen = ({ navigation }) => {
 
   const [music, setMusic] = useState(null);
@@ -17,7 +15,7 @@ const BreathingScreen = ({ navigation }) => {
 
   const window = useWindowDimensions();
 
-  const musicData = ['Rain','Waves','Fire','Forest','Meditation'];
+  const musicData = ['Rain','Waves','Fire','Forest','Meditation', 'Birds'];
   const cycleData = ['1','2','3','5','10'];
 
   Sound.setCategory('Playback');
@@ -42,7 +40,6 @@ const BreathingScreen = ({ navigation }) => {
     console.log('duration in seconds: ' + gentle_rain.getDuration() + 'number of channels: ' + gentle_rain.getNumberOfChannels());
   
     // Play the sound with an onEnd callback
-    
   });
   Sound.setCategory('Playback');
   var gentle_fire= new Sound('gentle_fire.mp3', Sound.MAIN_BUNDLE, (error) => {
@@ -81,6 +78,20 @@ const BreathingScreen = ({ navigation }) => {
     // Play the sound with an onEnd callback
     
   });
+
+  Sound.setCategory('Playback');
+    var birds_forest= new Sound('birds_forest.mp3', Sound.MAIN_BUNDLE, (error) => {
+      if (error) {
+        console.log('failed to load the sound', error);
+        return;
+      }
+      // loaded successfully
+      console.log('duration in seconds: ' + birds_forest.getDuration() + 'number of channels: ' + birds_forest.getNumberOfChannels() + "number of loops" + birds_forest.getNumberOfLoops(1));
+
+
+      // Play the sound with an onEnd callback
+
+    });
 
 
   const handlePress = () => {
@@ -288,7 +299,8 @@ const BreathingScreen = ({ navigation }) => {
             console.log('playback failed due to audio decoding errors');
           }
         });
-     }else if(music=='Forest'){ 
+     }
+     else if(music=='Forest'){
         gentle_rainforest.play((success) => {
           if (success&&cycle=='2') {
             gentle_rainforest.play();
@@ -312,7 +324,8 @@ const BreathingScreen = ({ navigation }) => {
                 });
               }
             });
-          }else if(success&&cycle=='10'){
+          }
+          else if(success&&cycle=='10'){
             gentle_rainforest.play((success) =>{
               if(success){
                 gentle_rainforest.play((success) =>{
@@ -351,7 +364,8 @@ const BreathingScreen = ({ navigation }) => {
             console.log('playback failed due to audio decoding errors');
           }
         });
-     }else if(music=='Meditation'){
+     }
+     else if(music=='Meditation'){
           med_sleep.play((success) => {
             if (success&&cycle=='2') {
               med_sleep.play();
@@ -375,7 +389,8 @@ const BreathingScreen = ({ navigation }) => {
                   });
                 }
               });
-            }else if(success&&cycle=='10'){
+            }
+            else if(success&&cycle=='10'){
               med_sleep.play((success) =>{
                 if(success){
                   med_sleep.play((success) =>{
@@ -410,11 +425,79 @@ const BreathingScreen = ({ navigation }) => {
                 }
               });
             }
+             else if(music=='Birds'){
+                    birds_forest.play((success) => {
+                      if (success&&cycle=='2') {
+                        birds_forest.play();
+                      } else if(success&&cycle=='3'){
+                        birds_forest.play((success) =>{
+                          if(success){
+                            birds_forest.play();
+                          }
+                        });
+                      }else if(success&&cycle=='5'){
+                        birds_forest.play((success) =>{
+                          if(success){
+                            birds_forest.play((success) =>{
+                              if(success){
+                                birds_forest.play((success) =>{
+                                  if(success){
+                                    birds_forest.play();
+                                  }
+                                });
+                              }
+                            });
+                          }
+                        });
+                      }
+                      else if(success&&cycle=='10'){
+                        birds_forest.play((success) =>{
+                          if(success){
+                            birds_forest.play((success) =>{
+                              if(success){
+                                birds_forest.play((success) =>{
+                                  if(success){
+                                    birds_forest.play((success) =>{
+                                      if(success){
+                                        birds_forest.play((success) =>{
+                                          if(success){
+                                            birds_forest.play((success) =>{
+                                              if(success){
+                                                birds_forest.play((success) =>{
+                                                  if(success){
+                                                    birds_forest.play((success) => {
+                                                      if(success){
+                                                        birds_forest.play();
+                                                      }
+                                                    })
+                                                  }
+                                                })
+                                              }
+                                            });
+                                          }
+                                        });
+                                      }
+                                    });
+                                  }
+                                });
+                              }
+                            });
+                          }
+                        });
+                      }
+                      else {
+                        console.log('playback failed due to audio decoding errors');
+                      }
+                    });
+                 }
+
             else {
               console.log('playback failed due to audio decoding errors');
             }
           });
        }
+
+
       }
      
     }

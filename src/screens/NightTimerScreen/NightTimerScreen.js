@@ -7,10 +7,16 @@ import Logo from '../../../assets/images/Logo.png';
 import Volume from '../../../assets/images/Volume.png';
 import NightSkyGif from '../../../assets/gif/NightSkyGif.gif';
 import NightTimeGif from '../../../assets/gif/NightTimeGif.gif';
-
+import Waves from '../../../assets/gif/waves3.gif';
+import Rain from '../../../assets/gif/rain2.gif';
+import Fire from '../../../assets/gif/fire.gif';
+import Forest from '../../../assets/gif/forest3.gif';
+import Meditation from '../../../assets/gif/meditation3.gif';
+import Birds from '../../../assets/gif/birds3.gif';
 
 const NightTimerScreen = ({ route, navigation }) => {
   const [timer, setTimer] = useState(0);
+  const [backgroundImage, setBackgroundImage] = useState(null);
 
   const window = useWindowDimensions();
   const size = window.width-100;
@@ -19,7 +25,7 @@ const NightTimerScreen = ({ route, navigation }) => {
 
 
   const [pos, setPos] = useState(new Animated.ValueXY(0,0));
-
+//EASE YOUR SLEEP
   const min = Math.floor(timer/60);
   const sec = timer%60 < 10? '0' + (timer%60).toString(): timer%60;
   const stage = Math.ceil(timer/4)%3;
@@ -59,6 +65,20 @@ const NightTimerScreen = ({ route, navigation }) => {
   };
 
   useEffect(() => {
+  if (music === 'Waves') {
+          setBackgroundImage(Waves);
+      } else if (music === 'Rain') {
+        setBackgroundImage(Rain);
+      } else if (music === 'Fire') {
+        setBackgroundImage(Fire);
+      } else if (music === 'Forest') {
+        setBackgroundImage(Forest);
+      } else if (music === 'Meditation') {
+        setBackgroundImage(Meditation);
+      } else if (music === 'Birds') {
+        setBackgroundImage(Birds);
+      }
+
     pos.x.resetAnimation();
     pos.y.resetAnimation();
     animation();
@@ -81,7 +101,7 @@ const NightTimerScreen = ({ route, navigation }) => {
 
   return (
     <SafeAreaView style={styles.root}>
-      <ImageBackground source={NightSkyGif} style={styles.background}>
+      <ImageBackground source={backgroundImage} style={styles.background}>
         <View style={styles.overlay} />
         <View style={styles.header}>
           <View style={{width: 100}}><CustomButton text= "<" onPress={() => navigation.goBack()} type="blackBackButton"/></View>
@@ -109,7 +129,7 @@ const styles = StyleSheet.create({
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(27,45,108,0.5)',
+    backgroundColor: 'rgba(27,45,100,0.3)',
   },
   background: {
     flex: 1,
@@ -135,9 +155,9 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   timer: {
-    fontSize: 36,
+    fontSize: 50,
     fontWeight: 'bold',
-    color: '#000000',
+    color: '#FFFFFF',
     marginVertical: 50,
   },
   NightTimeGif: {

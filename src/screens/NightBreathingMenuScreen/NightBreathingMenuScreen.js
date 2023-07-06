@@ -17,7 +17,7 @@ const NightBreathingMenuScreen = ({ navigation }) => {
 
   const window = useWindowDimensions();
 
-  const musicData = ['Rain','Waves','Fire','Forest','Meditation'];
+  const musicData = ['Rain','Waves','Fire','Forest','Meditation', 'Birds'];
   const cycleData = ['1','2','3','5','10'];
 
   Sound.setCategory('Playback');
@@ -82,6 +82,19 @@ const NightBreathingMenuScreen = ({ navigation }) => {
 
   });
 
+  Sound.setCategory('Playback');
+    var birds_forest = new Sound('birds_forest.mp3', Sound.MAIN_BUNDLE, (error) => {
+      if (error) {
+        console.log('failed to load the sound', error);
+        return;
+      }
+      // loaded successfully
+      console.log('duration in seconds: ' + birds_forest.getDuration() + 'number of channels: ' + birds_forest.getNumberOfChannels() + "number of loops" + birds_forest.getNumberOfLoops(1));
+
+
+      // Play the sound with an onEnd callback
+
+    });
 
   const handlePress = () => {
     if(!music) Alert.alert('Please pick a music choice');
@@ -410,6 +423,73 @@ const NightBreathingMenuScreen = ({ navigation }) => {
                 }
               });
             }
+
+             else if(music=='Birds'){
+                                birds_forest.play((success) => {
+                                  if (success&&cycle=='2') {
+                                    birds_forest.play();
+                                  } else if(success&&cycle=='3'){
+                                    birds_forest.play((success) =>{
+                                      if(success){
+                                        birds_forest.play();
+                                      }
+                                    });
+                                  }else if(success&&cycle=='5'){
+                                    birds_forest.play((success) =>{
+                                      if(success){
+                                        birds_forest.play((success) =>{
+                                          if(success){
+                                            birds_forest.play((success) =>{
+                                              if(success){
+                                                birds_forest.play();
+                                              }
+                                            });
+                                          }
+                                        });
+                                      }
+                                    });
+                                  }
+                                  else if(success&&cycle=='10'){
+                                    birds_forest.play((success) =>{
+                                      if(success){
+                                        birds_forest.play((success) =>{
+                                          if(success){
+                                            birds_forest.play((success) =>{
+                                              if(success){
+                                                birds_forest.play((success) =>{
+                                                  if(success){
+                                                    birds_forest.play((success) =>{
+                                                      if(success){
+                                                        birds_forest.play((success) =>{
+                                                          if(success){
+                                                            birds_forest.play((success) =>{
+                                                              if(success){
+                                                                birds_forest.play((success) => {
+                                                                  if(success){
+                                                                    birds_forest.play();
+                                                                  }
+                                                                })
+                                                              }
+                                                            })
+                                                          }
+                                                        });
+                                                      }
+                                                    });
+                                                  }
+                                                });
+                                              }
+                                            });
+                                          }
+                                        });
+                                      }
+                                    });
+                                  }
+                                  else {
+                                    console.log('playback failed due to audio decoding errors');
+                                  }
+                                });
+                             }
+
             else {
               console.log('playback failed due to audio decoding errors');
             }

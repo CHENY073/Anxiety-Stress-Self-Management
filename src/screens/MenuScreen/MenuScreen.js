@@ -172,7 +172,6 @@ const MenuScreen = ({ navigation }) => {
   );
 };
 
-
 const styles = StyleSheet.create({
 
   container: {
