@@ -13,7 +13,7 @@ import settings from '../../../assets/MenuScreen/settings.png';
 import about from '../../../assets/MenuScreen/about.png';
 import help from '../../../assets/MenuScreen/help.png';
 //import forest1 from '../../../assets/MenuScreen/forest1.png';
-import lake from '../../../assets/MenuScreen/lake.png';
+import new_lake from '../../../assets/MenuScreen/new_lake.png';
 //import HelpScreen from '../HelpScreen/HelpScreen';
 
 const signOutGoogle = async () => {
@@ -123,7 +123,7 @@ const MenuScreen = ({ navigation }) => {
 
 		  <View style={{justifyContent: 'flex-start', padding: 0, flex: 1 }}>
 
-        <ImageBackground source={lake} style = {{padding: 10, width: 500, height:230}}>
+        <ImageBackground source={new_lake} style = {{padding: 10, width: 500, height:230}}>
         
           <CustomButton text= "<" onPress={() => navigation.navigate('Choice')} type="whiteBackButton"/>
 
@@ -172,12 +172,11 @@ const MenuScreen = ({ navigation }) => {
   );
 };
 
-
 const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: '#457f9d',
+    backgroundColor: '#E8B9B3',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
   },
