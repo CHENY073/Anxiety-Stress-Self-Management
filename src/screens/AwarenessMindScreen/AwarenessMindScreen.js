@@ -3,7 +3,7 @@ import {View, SafeAreaView, Text, Image, ImageBackground, StyleSheet, useWindowD
 import CustomButton from '../../components/CustomButton';
 import Logo from '../../../assets/images/Logo.png';
 import Volume from '../../../assets/images/Volume.png';
-import Background1 from '../../../assets/images/Background1.png';
+import Background1 from '../../../assets/images/Background2.png';
 
 const AwarenessMindScreen = ({ navigation }) => {
   const window = useWindowDimensions();
@@ -30,7 +30,7 @@ const AwarenessMindScreen = ({ navigation }) => {
     <Text>
 
     {'\n'}
-    {'\n •Difficulty concentrating \n'}
+    {'\n   •Difficulty concentrating \n'}
     {'   •Impaired judgement\n'}
     {'   •Indecision  \n'}
     {'   •Muddled thinking \n'}
@@ -42,9 +42,6 @@ const AwarenessMindScreen = ({ navigation }) => {
 </View>
 </View>
 
-      <View style={styles.button}>
-        <CustomButton text= "Continue" onPress={() => navigation.navigate('Awareness Feelings')} type="SECONDARY"/>
-      </View>
     </SafeAreaView>
   );
 };

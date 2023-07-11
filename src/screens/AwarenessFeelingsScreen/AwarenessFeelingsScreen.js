@@ -43,9 +43,6 @@ const AwarenessFeelingsScreen = ({ navigation }) => {
 </View>
 </View>
 
-      <View style={styles.button}>
-        <CustomButton text= "Continue" onPress={() => navigation.navigate('Awareness Behavior')} type="SECONDARY"/>
-      </View>
     </SafeAreaView>
   );
 };

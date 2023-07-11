@@ -28,7 +28,7 @@ const AwarenessBehaviorScreen = ({ navigation }) => {
   <Text style={styles.quadText}>
     <Text style ={styles.title}>{'\n This may look like:' }  </Text>
     <Text>
-    //List in alphabetical order
+
     {'\n'}
     {'\n •Accident Prone \n'}
     {' •Insomnia  \n'}
@@ -41,10 +41,7 @@ const AwarenessBehaviorScreen = ({ navigation }) => {
     </Text>
 </View>
 </View>
-
-      <View style={styles.button}>
-        <CustomButton text= "Continue" onPress={() => navigation.navigate('FoodFT')} type="SECONDARY"/>
-      </View>
+      
     </SafeAreaView>
   );
 };

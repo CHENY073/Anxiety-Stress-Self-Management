@@ -12,6 +12,7 @@ const ExercisesScreen = ({ navigation }) => {
 // button's styling
  const CustomButton = ({ text, onPress, type }) => {
     const buttonStyle = type === 'blackBackButton' ? styles.blackBackButton : styles.button;
+    const buttonTextAlign = type === 'EXERCISE' ? 'center' : 'left';
 
     return (
       <TouchableOpacity style={buttonStyle} onPress={onPress}>
@@ -97,7 +98,7 @@ const styles = StyleSheet.create({
 
   // this code in css i have added
   button: {
-    width: 300, // Adjust the width as per your requirement
+    width: 340, // Adjust the width as per your requirement
     height: 100, // Adjust the height as per your requirement
     justifyContent: 'center',
     alignItems: 'center',
