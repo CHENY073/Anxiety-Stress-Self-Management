@@ -3,7 +3,7 @@ import {View, SafeAreaView, Text, Image, ImageBackground, StyleSheet, useWindowD
 import CustomButton from '../../components/CustomButton';
 import Logo from '../../../assets/images/Logo.png';
 import Volume from '../../../assets/images/Volume.png';
-import Background1 from '../../../assets/images/Background1.png';
+import Background1 from '../../../assets/images/Background2.png';
 
 
 const AwarenessBodyScreen = ({ navigation }) => {
@@ -29,9 +29,9 @@ const AwarenessBodyScreen = ({ navigation }) => {
   <Text style={styles.quadText}>
     <Text style ={styles.title}>{'\n This may look like:' }  </Text>
     <Text>
-    //Rearrange in alphabetical order
+
     {'\n'}
-    {'\n•Difficulty breathing  \n'}
+    {'\n  •Difficulty breathing \n'}
     {'  •Fatigue  \n'}
     {'  •Headaches \n'}
     {'  •High Blood Pressure\n'}
@@ -45,9 +45,6 @@ const AwarenessBodyScreen = ({ navigation }) => {
 </View>
 </View>
 
-      <View style={styles.button}>
-        <CustomButton text= "Continue" onPress={() => navigation.navigate('Awareness Mind')} type="SECONDARY"/>
-      </View>
     </SafeAreaView>
   );
 };
@@ -55,6 +52,7 @@ const AwarenessBodyScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
