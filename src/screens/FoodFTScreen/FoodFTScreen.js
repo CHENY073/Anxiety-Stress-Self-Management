@@ -10,7 +10,7 @@ import firestore from '@react-native-firebase/firestore';
 import moment from 'moment';
 
 
-const BreathingScreen = ({ navigation }) => {
+const FoodFTScreen = ({ navigation }) => {
   const [what, setWhat] = useState(0);
   const [who, setWho] = useState(0);
   const [where, setWhere] = useState(0);
@@ -45,7 +45,7 @@ const BreathingScreen = ({ navigation }) => {
         when : whenData[when],
         why : whyData[why]
       })
-      navigation.navigate('Intention');
+      navigation.navigate('Mood Diary');
     } 
   };
 
@@ -168,4 +168,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BreathingScreen;
+export default FoodFTScreen;

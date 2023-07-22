@@ -35,16 +35,21 @@ const MoodDiaryScreen = ({ navigation }) => {
   }, []);
 
   async function stressorsData(date) {
-    try{
-    const response = await db.collection('stressors').doc(user.uid).collection('dates').doc(date).get();
-    const tempData = [];      
-    tempData.push(response.data());      
-    setStressorData(tempData);
-    }catch (error){
+    try {
+      const response = await db.collection('stressors').doc(user.uid).collection('dates').doc(date).get();
+      const data = response.data(); // Get the data object from the response
+  
+      // Check if the data exists before updating the state
+      if (data) {
+        setStressorData([data]); // Set the 'stressorData' state as an array with the data object
+      } else {
+        setStressorData([]); // Data is empty, set an empty array
+      }
+    } catch (error) {
       console.log(error);
     }
-    
   }
+  
   
   async function foodData(date) {
     try{
@@ -133,16 +138,15 @@ const MoodDiaryScreen = ({ navigation }) => {
       </View>      
 
       <View style={styles.container}>
-        <CalendarStrip
-          style={{height:100, paddingTop: 10, paddingBottom: 10}}
-
-          onDateSelected = {day =>{
-            const selected = day.format('YYYY-MM-DD');
-            foodData(selected);
-            stressorsData(selected);
-            dailyData(selected);
-          }}
-        />
+      <CalendarStrip
+       style={{ height: 100, paddingTop: 10, paddingBottom: 10 }}
+       onDateSelected={day => {
+       const selectedDate = moment(day).format('YYYY-MM-DD'); // Format the date as 'YYYY-MM-DD'
+       foodData(selectedDate);
+       stressorsData(selectedDate);
+      dailyData(selectedDate);
+      }}
+    />
       </View>       
 
       <View style={{ flex: 1, paddingHorizontal: 20, paddingTop: 20 }}>
@@ -183,7 +187,9 @@ const MoodDiaryScreen = ({ navigation }) => {
     </View>
   </View>
 </View>
-
+<View style={styles.buttonWrapper}>
+<CustomButton text= "Continue" onPress={() => navigation.navigate('OptionScreen')} type="SECONDARY"/>
+      </View>
 
     </ScrollView>
   );
@@ -212,9 +218,11 @@ const styles = StyleSheet.create({
     color: 'black',
   }, 
   buttonWrapper: {
+    flex: 1,
+    flexDirection: "column-reverse",
+    paddingTop: 70,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop:10,
   },
   modalText:{
     color: 'white',
