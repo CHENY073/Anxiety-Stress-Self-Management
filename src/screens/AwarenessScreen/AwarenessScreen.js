@@ -78,7 +78,7 @@ const AwarenessScreen = ({ navigation }) => {
         </View>  
 
       <View style={styles.btcont}>
-        <CustomButton text= "Continue" onPress={() => navigation.navigate('FoodFT')} type="smallSecondary"/>
+        <CustomButton text= "Continue" onPress={() => navigation.navigate('Intention')} type="smallSecondary"/>
       </View>
     </SafeAreaView>
   );

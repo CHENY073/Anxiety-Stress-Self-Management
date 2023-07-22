@@ -45,6 +45,7 @@ import AwarenessFeelingsScreen from './src/screens/AwarenessFeelingsScreen';
 import AnxietyBreathingMenuScreen from './src/screens/AnxietyBreathingMenuScreen';
 import AnxietyBreathingScreen from './src/screens/AnxietyBreathingScreen';
 import AnxietyTimerScreen from './src/screens/AnxietyTimerScreen';
+import OptionScreen from './src/screens/OptionScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -88,7 +89,8 @@ const app = () => {
         <Stack.Screen options ={{headerShown: false}} name="Awareness Feelings" component={AwarenessFeelingsScreen}/>        
         <Stack.Screen options ={{headerShown: false}} name="Anxiety Breathing Menu Screen" component={AnxietyBreathingMenuScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Anxiety Breathing Screen" component={AnxietyBreathingScreen}/>
-        <Stack.Screen options ={{headerShown: false}} name="Anxiety Timer Screen" component={AnxietyTimerScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Anxiety Timer Screen" component={AnxietyTimerScreen}/> 
+        <Stack.Screen options ={{headerShown: false}} name="OptionScreen" component={OptionScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
