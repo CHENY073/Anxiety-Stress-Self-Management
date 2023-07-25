@@ -17,18 +17,19 @@ const AboutUsScreen = ({ navigation }) => {
         About Us
       </Text>
         
-    
- 
+
 
         <Text style={styles.options}>
             {"\n"}{"\n"}
-           
-            
         </Text>
+
         <Text style={styles.normal}>
-        {"\n"}{"\n"}  HowRU is an app which seeks to help manage your anxiety and stress. 
-        This app provides various features such as a daily mood diary where you can put how you feel each day by asking you various questions.
-        Additionally, immediate breathing exercises are available to calm down your anxiety level at a moments notice.
+
+        HowRU is an innovative application designed to assist in the management of stress and anxiety.
+        The application offers a variety of features, including a daily mood diary, where you can document your emotional state through
+        responses to carefully curated questions. Furthermore, HowRU also provides immediate access to guided breathing exercises,
+        offering an effective solution for instant anxiety relief.
+        This multifaceted tool serves as your personalized ally in mental health maintenance and immediate stress reduction.
         </Text>
     </View>
 
@@ -39,9 +40,12 @@ const AboutUsScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    borderBottomWidth: 700,
+    borderBottomWidth: 600,
     borderBottomColor: '#FFF7F5',
-    backgroundColor :'#736467',
+    //backgroundColor :'#736467',
+    backgroundColor :'#457f9d',
+    justifyContent: 'center',  // add this line
+    alignItems: 'center',
   },
   title: {
     fontSize: 28,
@@ -51,7 +55,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 8,
   },
   options: {
-      fontSize: 15,
+      fontSize: 10,
       color: 'white',
       alignSelf: 'flex-end',
       marginHorizontal: 30,
@@ -60,12 +64,17 @@ const styles = StyleSheet.create({
       
   },
   normal: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: 'normal',
     color: '#000000',
     marginVertical: 45,
     textAlign: 'left',
     position: 'absolute',
+       borderWidth: 1, // set the border thickness
+        borderColor: 'black', // set the border color
+        backgroundColor: 'white', // set the background color of the box
+        padding: 10, // set the space between text and border
+        borderRadius: 15,
   },
   
 });

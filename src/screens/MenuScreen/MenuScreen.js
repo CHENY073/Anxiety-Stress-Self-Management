@@ -17,6 +17,19 @@ import new_lake from '../../../assets/MenuScreen/new_lake.png';
 //import HelpScreen from '../HelpScreen/HelpScreen';
 
 const signOutGoogle = async () => {
+ Alert.alert(
+    "Log Out",
+    "Are you sure you want to log out?",
+    [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel"
+      },
+      {
+        text: "OK",
+        onPress: async () =>
+        {
 
   try {
 
@@ -40,7 +53,10 @@ const signOutGoogle = async () => {
   {
     console.error(error);
   }
-
+    }
+   }
+  ]
+ );
 };
 
 const showToastAndroid = () => {
@@ -78,7 +94,7 @@ const MenuScreen = ({ navigation }) => {
             break;
           case "LogOut":
             signOutGoogle();
-            navigation.navigate("Home");
+            // navigation.navigate("Home");
             break;
           default:
             setCurrentTab(title);

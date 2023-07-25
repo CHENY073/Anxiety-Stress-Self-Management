@@ -6,12 +6,13 @@ import CustomSelect from '../../components/CustomSelect';
 import Logo from '../../../assets/images/Logo.png';
 import Volume from '../../../assets/images/Volume.png';
 import SignInBackGround from '../../../assets/gif/NightSkyGif.gif';
+import movingSky from '../../../assets/gif/movingsky.gif';
 
 const DayBreathingScreen = ({ route, navigation }) => {
 
  return (
      <SafeAreaView style={styles.root}>
-       <ImageBackground source={SignInBackGround} style={styles.background}>
+       <ImageBackground source={movingSky} style={styles.background}>
          <View style={styles.overlay} />
          <View style={styles.header}>
            <View style={{width: 100}}><CustomButton text= "<" onPress={() => navigation.goBack()} type="blackBackButton"/></View>
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(27,45,108,0.5)',
+    backgroundColor: 'rgba(25,45,100,0.5)',
   },
   background: {
     flex: 1,
