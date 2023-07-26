@@ -46,6 +46,7 @@ import AnxietyBreathingMenuScreen from './src/screens/AnxietyBreathingMenuScreen
 import AnxietyBreathingScreen from './src/screens/AnxietyBreathingScreen';
 import AnxietyTimerScreen from './src/screens/AnxietyTimerScreen';
 import OptionScreen from './src/screens/OptionScreen';
+import StressDataScreen from './src/screens/StressDataScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -91,6 +92,7 @@ const app = () => {
         <Stack.Screen options ={{headerShown: false}} name="Anxiety Breathing Screen" component={AnxietyBreathingScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Anxiety Timer Screen" component={AnxietyTimerScreen}/> 
         <Stack.Screen options ={{headerShown: false}} name="OptionScreen" component={OptionScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="StressDataScreen" component={StressDataScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

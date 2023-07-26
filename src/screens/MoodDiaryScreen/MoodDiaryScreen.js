@@ -128,7 +128,6 @@ const MoodDiaryScreen = ({ navigation }) => {
   }, [index, data.length]);
 
   return (
-    
     <ScrollView style={styles.root}>
       <View style={styles.header}>
         <View style={styles.button}><CustomButton text= "<" onPress={() => navigation.navigate('Choice')} type="dropButton"/></View>
