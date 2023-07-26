@@ -5,7 +5,8 @@ import {View, Text, Image, StyleSheet, useWindowDimensions, ToastAndroid, ImageB
 import Toast from 'react-native-toast-message';
 import Logo from '../../../assets/images/Logo.png';
 import CustomInput from '../../components/CustomInput';
-import SignInBackground from '../../../assets/gif/SignInBackGround.gif';
+//import SignInBackground from '../../../assets/gif/SignInBackGround.gif';
+import SignInBackground from '../../../assets/gif/meditation3.gif';
 import CustomButton from '../../components/CustomButton';
 //import database from '@react-native-firebase/database';
 import auth from '@react-native-firebase/auth';
@@ -182,7 +183,7 @@ const styles = StyleSheet.create({
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(255,122,186,0.5)',
+    backgroundColor: 'rgba(190,120,140,0.4)',
   },
   background: {
     flex: 1,

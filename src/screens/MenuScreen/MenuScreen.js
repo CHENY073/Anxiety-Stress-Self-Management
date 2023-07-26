@@ -16,6 +16,7 @@ import new_lake from '../../../assets/MenuScreen/new_lake.png';
 
 const signOutGoogle = async (navigation) => {
   Alert.alert(
+
     "Log Out",
     "Are you sure you want to log out?",
     [
@@ -80,7 +81,9 @@ const MenuScreen = ({ navigation }) => {
             navigation.navigate("Help");
             break;
           case "LogOut":
+
             signOutGoogle(navigation);
+
             break;
           default:
             setCurrentTab(title);
