@@ -197,7 +197,7 @@ const DailyLogScreen = ({navigation}) => {
         <CustomButton text= "Submit" onPress={() => handlePress()} type="SECONDARY"/>
       </View>
       </View>
-    </SafeAreaView>
+      </SafeAreaView>
     </ScrollView>
 
   );

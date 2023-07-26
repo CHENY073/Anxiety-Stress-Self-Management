@@ -105,7 +105,6 @@ const IntentionScreen = ({ navigation }) => {
           </AnimatedG>
         </G>
       </Svg>
-
       <Animated.Text style={[styles.text, textStyle]}>{value}</Animated.Text>
 
       <View style={styles.button}>
