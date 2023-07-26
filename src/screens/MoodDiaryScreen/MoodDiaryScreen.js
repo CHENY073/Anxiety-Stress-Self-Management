@@ -134,7 +134,7 @@ const MoodDiaryScreen = ({ navigation }) => {
         <Text style={styles.title}>
           Dashboard
         </Text>
-      </View>      
+      </View>
 
       <View style={styles.container}>
       <CalendarStrip
@@ -189,7 +189,9 @@ const MoodDiaryScreen = ({ navigation }) => {
 <View style={styles.buttonWrapper}>
 <CustomButton text= "Continue" onPress={() => navigation.navigate('OptionScreen')} type="SECONDARY"/>
       </View>
-
+    <View style={styles.stressorView}>
+          <CustomButton text= "View Stress Data" onPress={() => navigation.navigate('StressDataScreen')} type="SECONDARY"/>
+          </View>
     </ScrollView>
   );
 
@@ -219,7 +221,7 @@ const styles = StyleSheet.create({
   buttonWrapper: {
     flex: 1,
     flexDirection: "column-reverse",
-    paddingTop: 70,
+    paddingTop: 50,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -252,7 +254,13 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     alignItems: 'center',
     paddingTop:10,
-  }
+  },
+  stressorView: {
+        borderRadius: 20,
+            justifyContent: 'center',
+            alignItems: 'center',
+            justifyContent: 'center',
+      },
   
 });
 
