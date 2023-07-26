@@ -132,7 +132,7 @@ const MoodDiaryScreen = ({ navigation }) => {
       <View style={styles.header}>
         <View style={styles.button}><CustomButton text= "<" onPress={() => navigation.navigate('Choice')} type="dropButton"/></View>
         <Text style={styles.title}>
-          Dashboard
+          Mood Diary
         </Text>
       </View>
 
