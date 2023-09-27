@@ -38,14 +38,14 @@ const ChoiceScreen = ({ navigation }) => {
           breathing exercises and meditating to relaxing music. Consistently doing these exercises can help us greatly in reaching
           a more relaxed state.</Text>
           <Text style={styles.modalText}>What are Daily Stressors?</Text>
-          <Text style={styles.modalSmallText}> Daily stressors are day to day issues that cause stress and anxiety. Isolating them
+          <Text style={styles.modalSmallText}> this is a test to see what is happening Daily stressors are day to day issues that cause stress and anxiety. Isolating them
           and focusing on what they are help us understand them better and reduce them. Writing them down helps us keep track of the 
           things that cause us harm so we can work to elimnate them.</Text>
           <Button style={styles.modalButton} title="Hide" onPress={toggleModal} />
         </View>
       </Modal>
     </View>
-    <CustomButton text= "Daily Stressors" onPress={() => navigation.navigate('Emotion')} type="CHOICE"/>
+    <CustomButton text= "Daily Roadmap" onPress={() => navigation.navigate('Emotion')} type="CHOICE"/>
     <CustomButton style={styles.iButton} text="Learn More" onPress={toggleModal} type="INFO"/>
     </SafeAreaView>
   );
