@@ -4,7 +4,6 @@ import {View, SafeAreaView, Text, Image, StyleSheet, useWindowDimensions, Alert,
 import CustomButton from '../../components/CustomButton';
 import CustomSelect from '../../components/CustomSelect';
 import Logo from '../../../assets/images/Logo.png';
-import Volume from '../../../assets/images/Volume.png';
 import SignInBackGround from '../../../assets/gif/NightSkyGif.gif';
 import movingSky from '../../../assets/gif/movingsky.gif';
 
@@ -16,9 +15,12 @@ const DayBreathingScreen = ({ route, navigation }) => {
          <View style={styles.overlay} />
          <View style={styles.header}>
            <View style={{width: 100}}><CustomButton text= "<" onPress={() => navigation.goBack()} type="blackBackButton"/></View>
-           <Image source={Logo} style={styles.logo} resizeMode="cover" />
-           <View style={{width: 100}}><Image source={Volume} style={styles.volume} resizeMode="cover" /></View>
-         </View>
+       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+         <View style={{ marginRight: 100 }}>
+            <Image source={Logo} style={styles.logo} resizeMode="cover" />
+            </View>
+            </View>
+      </View>
 
          <Text style = {styles.title}>
                      4-4-4-4 Day Exercise

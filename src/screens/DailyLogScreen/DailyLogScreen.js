@@ -6,7 +6,6 @@ import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import {Picker} from '@react-native-picker/picker';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-import Volume from '../../../assets/images/Volume.png';
 import Logo from '../../../assets/images/Logo.png';
 import moment from 'moment';
 import Modal from "react-native-modal";
@@ -85,8 +84,11 @@ const DailyLogScreen = ({navigation}) => {
         <SafeAreaView style={[styles.root]}>
       <View style={styles.header}>
       <View style={{width: 150}}><CustomButton text= "<" onPress={() => navigation.goBack()} type="blackBackButton"/></View>
-        <Image source={Logo} style={styles.logo} resizeMode="cover" />
-        <View style={{width: 150}}><Image source={Volume} style={styles.volume} resizeMode="cover" /></View>
+       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+         <View style={{ marginRight: 150 }}>
+            <Image source={Logo} style={styles.logo} resizeMode="cover" />
+            </View>
+            </View>
       </View>
       <View style={styles.buttonWrapper}>
       <Text style = {styles.title}>
