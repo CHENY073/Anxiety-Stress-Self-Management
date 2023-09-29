@@ -4,7 +4,6 @@ import {View, SafeAreaView, Text, Image, StyleSheet, useWindowDimensions, Alert}
 import CustomButton from '../../components/CustomButton';
 import CustomSelect from '../../components/CustomSelect';
 import Logo from '../../../assets/images/Logo.png';
-import Volume from '../../../assets/images/Volume.png';
 var Sound = require('react-native-sound');
 
 
@@ -508,8 +507,11 @@ const AnxietyBreathingScreen = ({ navigation }) => {
     <SafeAreaView style={[styles.root]}>
       <View style={styles.header}>
         <View style={{width: 100}}><CustomButton text= "<" onPress={() => navigation.goBack() } type="blackBackButton"/></View>
-        <Image source={Logo} style={styles.logo} resizeMode="cover" />
-        <View style={{width: 100}}><Image source={Volume} style={styles.volume} resizeMode="cover" /></View>
+       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+         <View style={{ marginRight: 100 }}>
+            <Image source={Logo} style={styles.logo} resizeMode="cover" />
+            </View>
+            </View>
       </View>
 
       <Text style = {styles.title}>

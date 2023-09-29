@@ -4,7 +4,6 @@ import Svg, {G, Path, Circle, Polygon} from 'react-native-svg';
 
 import CustomButton from '../../components/CustomButton';
 import Logo from '../../../assets/images/Logo.png';
-import Volume from '../../../assets/images/Volume.png';
 
 const InControlScreen = ({ navigation }) => {
   const [value, setValue] = useState(0);
@@ -72,8 +71,11 @@ const InControlScreen = ({ navigation }) => {
     <AnimatedSafeAreaView style={[styles.root, backgroundStyle]}>
       <View style={styles.header}>
         <View style={{width: 100}}><CustomButton text= "<" onPress={() => navigation.goBack()} type="blackBackButton"/></View>
-        <Image source={Logo} style={styles.logo} resizeMode="cover" />
-        <View style={{width: 100}}><Image source={Volume} style={styles.volume} resizeMode="cover" /></View>
+       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+         <View style={{ marginRight: 100 }}>
+            <Image source={Logo} style={styles.logo} resizeMode="cover" />
+            </View>
+            </View>
       </View>
 
       <Text style = {styles.title}>
