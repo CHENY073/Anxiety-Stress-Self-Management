@@ -4,8 +4,10 @@ import Svg, {G, Path, Circle, Polygon} from 'react-native-svg';
 
 import CustomButton from '../../components/CustomButton';
 import Logo from '../../../assets/images/Logo.png';
-import Volume from '../../../assets/images/Volume.png';
+import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
+import moment from 'moment';
+
 
 const EmotionScreen = ({ navigation }) => {
   const [value, setValue] = useState(0);
@@ -14,6 +16,12 @@ const EmotionScreen = ({ navigation }) => {
   const window = useWindowDimensions();
   const size = window.width-40;
 
+
+    const user = auth().currentUser;
+    var db = firestore();
+
+    const today = new Date();
+    const myDate = moment(today).format('YYYY-MM-DD');
 
   const AnimatedG = Animated.createAnimatedComponent(G);
   const AnimatedSafeAreaView = Animated.createAnimatedComponent(SafeAreaView);
@@ -69,7 +77,10 @@ const EmotionScreen = ({ navigation }) => {
         duration: 1000,
         useNativeDriver: false,
       })
-    ]).start(); 
+    ]).start();
+     const feelingDoc = db.collection('DailyLog').doc(user.uid).collection('dates').doc(myDate).set({
+       feeling: value,
+     })
     setPrev(value);
   };
 
@@ -77,8 +88,11 @@ const EmotionScreen = ({ navigation }) => {
     <AnimatedSafeAreaView style={[styles.root, backgroundStyle]}>
       <View style={styles.header}>
         <View style={{width: 100}}><CustomButton text= "<" onPress={() => navigation.goBack()} type="blackBackButton"/></View>
-        <Image source={Logo} style={styles.logo} resizeMode="cover" />
-        <View style={{width: 100}}><Image source={Volume} style={styles.volume} resizeMode="cover" /></View>
+       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+         <View style={{ marginRight: 100 }}>
+            <Image source={Logo} style={styles.logo} resizeMode="cover" />
+            </View>
+            </View>
       </View>
 
       <Text style = {styles.title}>
