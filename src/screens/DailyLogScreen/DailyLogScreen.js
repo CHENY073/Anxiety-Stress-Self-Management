@@ -50,6 +50,18 @@ const DailyLogScreen = ({navigation}) => {
       setModalVisible(!isModalVisible);
     };
 
+    let feeling = "placeholder";
+    const doc = db.collection('DailyLog').doc(user.uid).collection('dates').doc(myDate);
+    doc.get().then((doc) => {
+        if (doc.exists){
+         feeling = doc.data()['feeling'];
+        } else {
+        console.log("not found");
+        }
+    })
+
+
+
     const handlePress = () => {
       const bodyFinal = body == 7 ? customBody : bodyData[body];
       const emotionFinal = emotion == 7 ? customEmotion : emotionsData[emotion];
@@ -72,7 +84,8 @@ const DailyLogScreen = ({navigation}) => {
           emotion : emotionFinal,
           behavior : behaviorFinal,
           stressedLevel : anxietyLevel,
-          strategies : strategiesFinal
+          strategies : strategiesFinal,
+          feeling: feeling
         })
         navigation.navigate('Mood Diary');
       } 

@@ -86,7 +86,7 @@ export default StressDataScreen;
 
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Dimensions, ActivityIndicator } from 'react-native';
-import { LineChart } from "react-native-chart-kit";
+import { LineChart, PieChart } from "react-native-chart-kit";
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
@@ -124,8 +124,8 @@ const StressDataScreen = () => {
         );
     }
 
-    // Prepare data for the chart
-     const chartData = {
+    // Prepare data for the line chart
+     const lineChartData = {
             labels: Object.keys(data).map(dateString => {
                 const date = new Date(dateString);
                 return `${date.getMonth() + 1}/${date.getDate()}`;
@@ -137,11 +137,94 @@ const StressDataScreen = () => {
             ],
         };
 
+    // Prepare data for the pie chart
+     const feelings = {
+         data: Object.values(data).slice(-7).map(log => log.feeling),
+        };
+
+       // creating map to find frequency of each feeling
+       const feelingsFrequencyMap = new Map();
+        feelings.data.forEach(item => {
+            if(feelingsFrequencyMap.has(item)){
+                feelingsFrequencyMap.set(item, feelingsFrequencyMap.get(item) +1);
+            } else {
+                feelingsFrequencyMap.set(item, 1);
+            }
+        })
+
+        // creating map to map number to feeling
+        const numberToFeelingData = [
+            ['Angry', 0],
+            ['Sad', 1],
+            ['Indifferent', 2],
+            ['Happy', 3],
+            ['Excited', 4],
+        ]
+        const numberToFeeling = new Map(numberToFeelingData);
+
+        const getFrequencyOfFeeling = feeling => {
+            const num = numberToFeeling.get(feeling);
+            let freq = 0;
+            if (feelingsFrequencyMap.has(num)){
+                freq = feelingsFrequencyMap.get(num);
+            }
+            return Math.round((freq/7)*100);
+        }
+
+        const pieChartData = [
+            {
+                name: 'Excited',
+                population: getFrequencyOfFeeling('Excited'),
+                color: '#7ad3a2',
+                legendFontColor: 'black',
+                legendFontSize: 15,
+            },
+            {
+                name: 'Happy',
+                population: getFrequencyOfFeeling('Happy'),
+                color: '#baeccf',
+                legendFontColor: 'black',
+                legendFontSize: 15,
+            },
+            {
+                name: 'Indifferent',
+                population: getFrequencyOfFeeling('Indifferent'),
+                color: '#ebf2b3',
+                legendFontColor: 'black',
+                legendFontSize: 15,
+            },
+            {
+                name: 'Sad',
+                population: getFrequencyOfFeeling('Sad'),
+                color: '#ebc483',
+                legendFontColor: 'black',
+                legendFontSize: 15,
+            },
+            {
+                name: 'Angry',
+                population: getFrequencyOfFeeling('Angry'),
+                color: '#ec8c90',
+                legendFontColor: 'black',
+                legendFontSize: 15,
+            }
+        ];
+
     return (
+    // TODO: insert app logo
         <View style={styles.container}>
-            <Text style={styles.title}>Stress Data</Text>
+            <Text style={styles.title}>Feelings</Text>
+            <PieChart
+                data={pieChartData}
+                width={Dimensions.get("window").width}
+                height={220}
+                chartConfig={{ color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+               }}
+               backgroundColor="#ecf2f5"
+               accessor="population"
+            />
+            <Text style={styles.title}>Stress Level</Text>
             <LineChart
-                data={chartData}
+                data={lineChartData}
                 width={Dimensions.get("window").width} // from react-native
                 height={220}
                 yAxisLabel=""
@@ -185,6 +268,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 10,
+        color: 'black',
     },
 });
 

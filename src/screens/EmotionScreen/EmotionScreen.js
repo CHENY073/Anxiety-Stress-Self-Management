@@ -4,7 +4,10 @@ import Svg, {G, Path, Circle, Polygon} from 'react-native-svg';
 
 import CustomButton from '../../components/CustomButton';
 import Logo from '../../../assets/images/Logo.png';
+import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
+import moment from 'moment';
+
 
 const EmotionScreen = ({ navigation }) => {
   const [value, setValue] = useState(0);
@@ -13,6 +16,12 @@ const EmotionScreen = ({ navigation }) => {
   const window = useWindowDimensions();
   const size = window.width-40;
 
+
+    const user = auth().currentUser;
+    var db = firestore();
+
+    const today = new Date();
+    const myDate = moment(today).format('YYYY-MM-DD');
 
   const AnimatedG = Animated.createAnimatedComponent(G);
   const AnimatedSafeAreaView = Animated.createAnimatedComponent(SafeAreaView);
@@ -68,7 +77,10 @@ const EmotionScreen = ({ navigation }) => {
         duration: 1000,
         useNativeDriver: false,
       })
-    ]).start(); 
+    ]).start();
+     const feelingDoc = db.collection('DailyLog').doc(user.uid).collection('dates').doc(myDate).set({
+       feeling: value,
+     })
     setPrev(value);
   };
 
