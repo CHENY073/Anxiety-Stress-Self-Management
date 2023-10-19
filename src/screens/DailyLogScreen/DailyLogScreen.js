@@ -34,7 +34,7 @@ const DailyLogScreen = ({navigation}) => {
     const mindData = ['','Worrying ','Muddled Thinking ','Impaired Judgement ','Indecision ','Difficulty Concentrating ','Custom '];
     const emotionsData = ['','Fear ','Irritability ','Depression ','Apathy ','Alienation ','Loss of Confidence ','Custom '];
     const behaviorData = ['','Addiction ','Less Appetite ','Less Sex Drive ','Insomnia ','Restlessness ','Accident Prone ','Custom '];
-    const stressedLevel = ['','1','2','3','4','5'];
+    const stressedLevel = ['','1','2','3','4','55'];
     const strategiesData = ['','Breathing ','Positive self-talk ', 'Listening to music ', 'Talking to a friend ', 'Group Support ','Custom '];
     
   
