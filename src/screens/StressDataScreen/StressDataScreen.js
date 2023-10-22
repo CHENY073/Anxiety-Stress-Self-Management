@@ -85,36 +85,46 @@ export default StressDataScreen;
 */
 
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Dimensions, ActivityIndicator } from 'react-native';
-import { LineChart, PieChart } from "react-native-chart-kit";
+import {ScrollView, View, Text, StyleSheet, Dimensions, ActivityIndicator } from 'react-native';
+import { LineChart, PieChart, BarChart} from "react-native-chart-kit";
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
 const StressDataScreen = () => {
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState(null);
+    const [dataInControlAndChange, setDataInControlAndChange] = useState(null);
 
     const user = auth().currentUser;
     var db = firestore();
 
-     useEffect(() => {
-            const fetchData = async () => {
-                try {
-                    const snapshot = await db.collection('DailyLog').doc(user.uid).collection('dates').get();
-                    let data = {};
-                    snapshot.forEach(doc => {
-                        data[doc.id] = doc.data();
-                    });
-                    setData(data);
-                    setLoading(false);
-                } catch (error) {
-                    console.error(error);
-                    setLoading(false);
-                }
-            };
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const snapshotDailyLog = await db.collection('DailyLog').doc(user.uid).collection('dates').get();
+                let dataDailyLog = {};
+                snapshotDailyLog.forEach(doc => {
+                    dataDailyLog[doc.id] = doc.data();
+                });
+                setData(dataDailyLog);
 
-            fetchData();
-        }, []);
+                const snapshotInControl = await db.collection('InControlAndChange').doc(user.uid).collection('dates').get();
+                let dataInControl = {};
+                snapshotInControl.forEach(doc => {
+                    dataInControl[doc.id] = doc.data();
+                });
+                setDataInControlAndChange(dataInControl);
+
+                setLoading(false);
+            } catch (error) {
+                console.error(error);
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, []);
+
 
     if (loading) {
         return (
@@ -136,6 +146,35 @@ const StressDataScreen = () => {
                 },
             ],
         };
+
+
+     const barChartDataIntention = {
+             labels: Object.keys(dataInControlAndChange).map(dateString => {
+                 const date = new Date(dateString);
+                 return `${date.getMonth()+1}/${date.getDate()+1}`;
+             }),
+             datasets: [
+                 {
+                     data: Object.values(dataInControlAndChange).map(log => log.Intention),
+                     color: (opacity = 1) => `rgba(0, 123, 255, ${opacity})`,
+                 },
+             ],
+     };
+
+
+     const barChartDataInControl = {
+             labels: Object.keys(dataInControlAndChange).map(dateString => {
+                 const date = new Date(dateString);
+                 return `${date.getMonth()+1}/${date.getDate()+1}`;
+             }),
+             datasets: [
+                 {
+                     data: Object.values(dataInControlAndChange).map(log => log.InControl),
+                     color: (opacity = 1) => `rgba(0, 123, 255, ${opacity})`,
+                 },
+             ],
+     };
+
 
     // Prepare data for the pie chart
      const feelings = {
@@ -211,6 +250,7 @@ const StressDataScreen = () => {
 
     return (
     // TODO: insert app logo
+     <ScrollView contentContainerStyle={styles.scrollViewContainer}>
         <View style={styles.container}>
             <Text style={styles.title}>Feelings</Text>
             <PieChart
@@ -221,6 +261,46 @@ const StressDataScreen = () => {
                }}
                backgroundColor="#ecf2f5"
                accessor="population"
+            />
+            <Text style={styles.title}>In Control</Text>
+            <BarChart
+                data={barChartDataInControl}
+                width={Dimensions.get("window").width}
+                height={220}
+                yAxisLabel=""
+                chartConfig={{
+                    fromZero: true,
+                    backgroundColor: "#e26a00",
+                    backgroundGradientFrom: "#457F9D",
+                    backgroundGradientTo: "#ffa726",
+                    decimalPlaces: 0,
+                    color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                    labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                }}
+                style={{
+                    marginVertical: 8,
+                    borderRadius: 16,
+                }}
+            />
+            <Text style={styles.title}>Intention To Change</Text>
+            <BarChart
+                data={barChartDataIntention}
+                width={Dimensions.get("window").width}
+                height={220}
+                yAxisLabel=""
+                chartConfig={{
+                    fromZero: true,
+                    backgroundColor: "#e26a00",
+                    backgroundGradientFrom: "#457F9D",
+                    backgroundGradientTo: "#ffa726",
+                    decimalPlaces: 0,
+                    color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                    labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                }}
+                style={{
+                    marginVertical: 8,
+                    borderRadius: 16,
+                }}
             />
             <Text style={styles.title}>Stress Level</Text>
             <LineChart
@@ -253,6 +333,7 @@ const StressDataScreen = () => {
                 }}
             />
         </View>
+     </ScrollView>
     );
 };
 

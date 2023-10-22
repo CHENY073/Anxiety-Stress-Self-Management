@@ -35,6 +35,7 @@ const ChoiceScreen = ({ navigation }) => {
       <CustomButton text= "Immediate Exercises" onPress={() => navigation.navigate('Exercises')} type="CHOICE"/>
       <CustomButton text="Daily Roadmap" onPress={() => navigation.navigate('Emotion')} type="CHOICE" />
       <CustomButton text="Monthly Calendar" onPress={() => navigation.navigate('Mood Diary')} type="CHOICE" />
+      <CustomButton text="Dashboard" onPress={() => navigation.navigate('StressDataScreen')} type="CHOICE" />
 
       <View>
         <Modal isVisible={isModalVisible} onModalHide={() => setModalVisible(false)}>
