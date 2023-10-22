@@ -5,6 +5,11 @@ import Svg, {G, Path, Circle, Polygon} from 'react-native-svg';
 import CustomButton from '../../components/CustomButton';
 import Logo from '../../../assets/images/Logo.png';
 
+import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
+import moment from 'moment';
+
+
 const IntentionScreen = ({ navigation }) => {
   const [value, setValue] = useState(0);
   const [prev, setPrev] = useState(0);
@@ -12,12 +17,33 @@ const IntentionScreen = ({ navigation }) => {
   const window = useWindowDimensions();
   const size = window.width-40;
 
+  const user = auth().currentUser;
+  var db = firestore();
+
+  const today = new Date();
+  const myDate = moment(today).format('YYYY-MM-DD');
+
   const AnimatedG = Animated.createAnimatedComponent(G);
   const AnimatedSafeAreaView = Animated.createAnimatedComponent(SafeAreaView);
   const [color, setColor] = useState(new Animated.Value(0));
   const [angle, setAngle] = useState(new Animated.Value(3));
   const colorsBG = ['#EDE9E9','#FFD7D7','#FFEBD7','#FFFFE0','#EBFFD7','#D7FFD7'];
   const colors = ['#6D828F','#F07575','#F0B275','#E8E850','#B2F075','#75F075'];
+
+   const handlePress = async () => {
+     try {
+        await db.collection('InControlAndChange')
+                 .doc(user.uid)
+                 .collection('dates')
+                 .doc(myDate)
+                 .set({
+                   Intention: value
+                 }, { merge: true });
+        navigation.navigate('OptionScreen');
+      } catch (error) {
+        console.log(error);
+      }
+   };
 
   const backgroundStyle = {
     backgroundColor: color.interpolate({
@@ -107,10 +133,11 @@ const IntentionScreen = ({ navigation }) => {
           </AnimatedG>
         </G>
       </Svg>
-      <Animated.Text style={[styles.text, textStyle]}>{value}</Animated.Text>
+
+     <Animated.Text style={[styles.text, textStyle]}>{value.toString()}</Animated.Text>
 
       <View style={styles.button}>
-        <CustomButton text= "Continue" onPress={() => navigation.navigate('OptionScreen')} type="SECONDARY"/>
+         <CustomButton text="Continue" onPress={handlePress} type="SECONDARY"/>
       </View>
     </AnimatedSafeAreaView>
   );
