@@ -58,8 +58,16 @@ const DailyLogScreen = ({navigation}) => {
         } else {
         console.log("not found");
         }
-    })
-
+    });
+    let stressor = "placeholder";
+    const doc1 = db.collection('DailyLog').doc(user.uid).collection('dates').doc(myDate);
+    doc1.get().then((doc1) => {
+        if (doc1.exists){
+         stressor = doc1.data()['triggers'];
+        } else {
+        console.log("not found");
+        }
+    });
 
 
     const handlePress = () => {
@@ -85,7 +93,8 @@ const DailyLogScreen = ({navigation}) => {
           behavior : behaviorFinal,
           stressedLevel : anxietyLevel,
           strategies : strategiesFinal,
-          feeling: feeling
+          feeling: feeling,
+          stressor:triggersData[triggers],
         })
         navigation.navigate('Mood Diary');
       } 

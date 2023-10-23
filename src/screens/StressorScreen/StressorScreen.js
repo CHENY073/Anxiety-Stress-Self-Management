@@ -2,10 +2,20 @@ import React from 'react';
 import {View, SafeAreaView, Text, Image, StyleSheet, useWindowDimensions} from 'react-native';
 
 import CustomButton from '../../components/CustomButton';
+import firestore from '@react-native-firebase/firestore';
 import Logo from '../../../assets/images/Logo.png';
+import moment from 'moment';
 
 const StressorScreen = ({ navigation }) => {
   const window = useWindowDimensions();
+  const user = auth().currentUser;
+    var db = firestore();
+
+    const today = new Date();
+    const myDate = moment(today).format('YYYY-MM-DD');
+    const triggerDoc = db.collection('DailyLog').doc(user.uid).collection('dates').doc(myDate).set({
+      triggers: value,
+    })
 
   return (
     <SafeAreaView style={[styles.root]}>
