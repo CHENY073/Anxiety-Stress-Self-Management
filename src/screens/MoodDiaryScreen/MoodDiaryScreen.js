@@ -129,126 +129,72 @@ const MoodDiaryScreen = ({ navigation }) => {
   }, [index, data.length]);
 
   return (
-//    <ScrollView style={styles.root}>
-//      <View style={styles.header}>
-//        <View style={styles.button}><CustomButton text= "<" onPress={() => navigation.navigate('Choice')} type="dropButton"/></View>
-//        <Text style={styles.title}>
-//          Mood Diary
-//        </Text>
-//      </View>
-//
-//      <View style={styles.container}>
-//      <CalendarStrip
-//       style={{ height: 100, paddingTop: 10, paddingBottom: 10 }}
-//       onDateSelected={day => {
-//       const selectedDate = moment(day).format('YYYY-MM-DD'); // Format the date as 'YYYY-MM-DD'
-//       foodData(selectedDate);
-//       stressorsData(selectedDate);
-//      dailyData(selectedDate);
-//      }}
-//    />
-//      </View>
-//
-//      <View style={{ flex: 1, paddingHorizontal: 20, paddingTop: 20 }}>
-//  <ScrollView style={{ backgroundColor: '#c9d6df', borderRadius: 10, padding: 20 }}>
-//    {stressorData.map((item) => (
-//      <View style={{ marginBottom: 10 }}>
-//        <Text style={{ fontSize: 18, fontWeight: 'bold', alignSelf: 'center' }}>Stressors for the Day</Text>
-//        <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Your stressor for the day was {item.stressor}</Text>
-//        <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Your selected reasons were: {item.reasons}</Text>
-//      </View>
-//    ))}
-//  </ScrollView>
-//</View>
-//
-//<View style={{ flex: 1, paddingHorizontal: 20, paddingTop: 20 }}>
-//  <View style={{ backgroundColor: '#7bb4c8', borderRadius: 10, padding: 20 }}>
-//    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-//      <CustomButton onPress={handleLeftArrowPress} type="arrow" text="<" style={{ alignSelf: 'center' }} />
-//      <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Questions of the Day</Text>
-//      <CustomButton onPress={handleRightArrowPress} type="arrow" text=">" style={{ alignSelf: 'center'}} />
-//    </View>
-//    <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{data[index]?.label}: {data[index]?.value}</Text>
-//  </View>
-//</View>
-//
-//<View style={{ paddingHorizontal: 20, paddingTop: 20 }}>
-//  <View style={{ backgroundColor: '#457f9d', borderRadius: 10, padding: 20 }}>
-//    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-//      <CustomButton onPress={handleLeftArrowPressDaily} type="arrow" text="<" style={{ alignSelf: 'center' }} />
-//      <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Daily Log Data</Text>
-//      <CustomButton onPress={handleRightArrowPressDaily} type="arrow" text=">" style={{ alignSelf: 'center' }} />
-//    </View>
-//    <View style={{ height: 40}}>
-//      <View style={{ marginBottom: 5 }}>
-//        <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{fields[indexD]?.label}: {fields[indexD]?.value}</Text>
-//        <Text style={{ marginTop: 15 }}>{dailyLogData[indexD]?.reasons}</Text>
-//      </View>
-//    </View>
-//  </View>
-//</View>
-//<View style={styles.buttonWrapper}>
-//<CustomButton text= "Continue" onPress={() => navigation.navigate('OptionScreen')} type="SECONDARY"/>
-//      </View>
-//    <View style={styles.stressorView}>
-//          <CustomButton text= "View Stress Data" onPress={() => navigation.navigate('StressDataScreen')} type="SECONDARY"/>
+//     Original Screen Code:
+//     <ScrollView style={styles.root}>
+//          <View style={styles.header}>
+//            <View style={styles.button}><CustomButton text= "<" onPress={() => navigation.navigate('Choice')} type="dropButton"/></View>
+//            <Text style={styles.title}>
+//              Mood Diary
+//            </Text>
 //          </View>
-//    </ScrollView>
-
-//    <ScrollView style={styles.root}>
-//      <View style={styles.header}>
-//        <View style={styles.button}><CustomButton text= "<" onPress={() => navigation.navigate('Choice')} type="dropButton"/></View>
-//        <Text style={styles.title}>
-//          Mood Diary
-//        </Text>
-//      </View>
 //
-//      <View style={styles.container}>
-//        <CalendarStrip
-//          style={{ height: 100, paddingTop: 10, paddingBottom: 10 }}
-//          onDateSelected={day => {
-//            const selectedDate = moment(day).format('YYYY-MM-DD'); // Format the date as 'YYYY-MM-DD'
-//            foodData(selectedDate);
-//            stressorsData(selectedDate);
+//          <View style={styles.container}>
+//          <CalendarStrip
+//           style={{ height: 100, paddingTop: 10, paddingBottom: 10 }}
+//           onDateSelected={day => {
+//           const selectedDate = moment(day).format('YYYY-MM-DD'); // Format the date as 'YYYY-MM-DD'
+//           foodData(selectedDate);
+//           stressorsData(selectedDate);
+//          dailyData(selectedDate);
 //          }}
 //        />
-//      </View>
-
-
-//    <View style={styles.root}>
-//        <View style={styles.header}>
-//            <View style={styles.button}><CustomButton text="<" onPress={() => navigation.navigate('Choice')} type="dropButton" /></View>
-//            <Text style={styles.title}>
-//                Monthly Calendar
-//            </Text>
-//        </View>
+//          </View>
 //
-//
-//        <View style={styles.container}>
-//                <Calendar
-//                    onDayPress={(day) => {
-//                        const selectedDate = moment(day.dateString).format('YYYY-MM-DD');
-//                    }}
-//                    style={{ backgroundColor: 'transparent' }}
-//                    theme={{
-//                        backgroundColor: 'transparent',
-//                        calendarBackground: 'transparent',
-//                        dayTextColor: '#000',
-//                        todayTextColor: '#0000ff',
-//                        textDayFontFamily: 'System',
-//                        textDayFontWeight: 'bold',
-//                        textDayHeaderFontFamily: 'System',
-//                        textDayHeaderFontWeight: 'bold'
-//                    }}
-//                     markedDates={{
-//                        [todayFormatted]: {
-//                          selected: true,
-//                          marked: true,
-//                        }
-//                    }}
-//                />
-//        </View>
+//          <View style={{ flex: 1, paddingHorizontal: 20, paddingTop: 20 }}>
+//      <ScrollView style={{ backgroundColor: '#c9d6df', borderRadius: 10, padding: 20 }}>
+//        {stressorData.map((item) => (
+//          <View style={{ marginBottom: 10 }}>
+//            <Text style={{ fontSize: 18, fontWeight: 'bold', alignSelf: 'center' }}>Stressors for the Day</Text>
+//            <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Your stressor for the day was {item.stressor}</Text>
+//            <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Your selected reasons were: {item.reasons}</Text>
+//          </View>
+//        ))}
+//      </ScrollView>
 //    </View>
+//
+//    <View style={{ flex: 1, paddingHorizontal: 20, paddingTop: 20 }}>
+//      <View style={{ backgroundColor: '#7bb4c8', borderRadius: 10, padding: 20 }}>
+//        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+//          <CustomButton onPress={handleLeftArrowPress} type="arrow" text="<" style={{ alignSelf: 'center' }} />
+//          <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Questions of the Day</Text>
+//          <CustomButton onPress={handleRightArrowPress} type="arrow" text=">" style={{ alignSelf: 'center'}} />
+//        </View>
+//        <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{data[index]?.label}: {data[index]?.value}</Text>
+//      </View>
+//    </View>
+
+    <View style={{ paddingHorizontal: 20, paddingTop: 20 }}>
+      <View style={{ backgroundColor: '#457f9d', borderRadius: 10, padding: 20 }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+          <CustomButton onPress={handleLeftArrowPressDaily} type="arrow" text="<" style={{ alignSelf: 'center' }} />
+          <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Daily Log Data</Text>
+          <CustomButton onPress={handleRightArrowPressDaily} type="arrow" text=">" style={{ alignSelf: 'center' }} />
+        </View>
+        <View style={{ height: 40}}>
+          <View style={{ marginBottom: 5 }}>
+            <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{fields[indexD]?.label}: {fields[indexD]?.value}</Text>
+            <Text style={{ marginTop: 15 }}>{dailyLogData[indexD]?.reasons}</Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View style={styles.buttonWrapper}>
+    <CustomButton text= "Continue" onPress={() => navigation.navigate('OptionScreen')} type="SECONDARY"/>
+          </View>
+        <View style={styles.stressorView}>
+              <CustomButton text= "View Stress Data" onPress={() => navigation.navigate('StressDataScreen')} type="SECONDARY"/>
+              </View>
+        </ScrollView>
 
     <View style={styles.root}>
 
