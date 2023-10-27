@@ -172,29 +172,29 @@ const MoodDiaryScreen = ({ navigation }) => {
 //        <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{data[index]?.label}: {data[index]?.value}</Text>
 //      </View>
 //    </View>
-
-    <View style={{ paddingHorizontal: 20, paddingTop: 20 }}>
-      <View style={{ backgroundColor: '#457f9d', borderRadius: 10, padding: 20 }}>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-          <CustomButton onPress={handleLeftArrowPressDaily} type="arrow" text="<" style={{ alignSelf: 'center' }} />
-          <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Daily Log Data</Text>
-          <CustomButton onPress={handleRightArrowPressDaily} type="arrow" text=">" style={{ alignSelf: 'center' }} />
-        </View>
-        <View style={{ height: 40}}>
-          <View style={{ marginBottom: 5 }}>
-            <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{fields[indexD]?.label}: {fields[indexD]?.value}</Text>
-            <Text style={{ marginTop: 15 }}>{dailyLogData[indexD]?.reasons}</Text>
-          </View>
-        </View>
-      </View>
-    </View>
-    <View style={styles.buttonWrapper}>
-    <CustomButton text= "Continue" onPress={() => navigation.navigate('OptionScreen')} type="SECONDARY"/>
-          </View>
-        <View style={styles.stressorView}>
-              <CustomButton text= "View Stress Data" onPress={() => navigation.navigate('StressDataScreen')} type="SECONDARY"/>
-              </View>
-        </ScrollView>
+//
+//    <View style={{ paddingHorizontal: 20, paddingTop: 20 }}>
+//      <View style={{ backgroundColor: '#457f9d', borderRadius: 10, padding: 20 }}>
+//        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+//          <CustomButton onPress={handleLeftArrowPressDaily} type="arrow" text="<" style={{ alignSelf: 'center' }} />
+//          <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Daily Log Data</Text>
+//          <CustomButton onPress={handleRightArrowPressDaily} type="arrow" text=">" style={{ alignSelf: 'center' }} />
+//        </View>
+//        <View style={{ height: 40}}>
+//          <View style={{ marginBottom: 5 }}>
+//            <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{fields[indexD]?.label}: {fields[indexD]?.value}</Text>
+//            <Text style={{ marginTop: 15 }}>{dailyLogData[indexD]?.reasons}</Text>
+//          </View>
+//        </View>
+//      </View>
+//    </View>
+//    <View style={styles.buttonWrapper}>
+//    <CustomButton text= "Continue" onPress={() => navigation.navigate('OptionScreen')} type="SECONDARY"/>
+//          </View>
+//        <View style={styles.stressorView}>
+//              <CustomButton text= "View Stress Data" onPress={() => navigation.navigate('StressDataScreen')} type="SECONDARY"/>
+//              </View>
+//        </ScrollView>
 
     <View style={styles.root}>
 
