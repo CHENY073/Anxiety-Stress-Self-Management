@@ -47,6 +47,7 @@ import AnxietyBreathingScreen from './src/screens/AnxietyBreathingScreen';
 import AnxietyTimerScreen from './src/screens/AnxietyTimerScreen';
 import OptionScreen from './src/screens/OptionScreen';
 import StressDataScreen from './src/screens/StressDataScreen';
+import DailyDataScreen from './src/screens/DailyDataScreen/DailyDataScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -64,6 +65,7 @@ const app = () => {
         <Stack.Screen options ={{headerShown: false}} name="Policy" component={PolicyScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Mood Diary" component={MoodDiaryScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Menu Screen" component={MenuScreen}/>
+        <Stack.Screen options ={{headerShown: false}} name="Data Screen" component={DailyDataScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Account Screen" component={AccountScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="Notifications" component={NotificationsScreen}/>
         <Stack.Screen options ={{headerShown: false}} name="About Us" component={AboutUsScreen}/>

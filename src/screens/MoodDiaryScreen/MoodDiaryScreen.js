@@ -196,10 +196,16 @@ const MoodDiaryScreen = ({ navigation }) => {
 //              </View>
 //        </ScrollView>
 
+
+
+//The line of code below can be inserted into line 208 to access daily log data
+
+//         <View style={{width: 100}}><CustomButton text= "<" onPress={() => navigation.navigate('Data Screen')} type="blackBackButton"/></View>
     <View style={styles.root}>
 
        <View style={styles.header}>
            <View style={{width: 100}}><CustomButton text= "<" onPress={() => navigation.goBack()} type="blackBackButton"/></View>
+  
            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                <View style={{ marginRight: 100 }}>
                    <Image source={Logo} style={styles.logo} resizeMode="cover" />
