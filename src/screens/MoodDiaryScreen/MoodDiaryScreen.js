@@ -128,6 +128,12 @@ const MoodDiaryScreen = ({ navigation }) => {
     }
   }, [index, data.length]);
 
+  const onDayPress = (day) => {
+     const selectedDate = day.dateString
+     navigation.navigate('Data Screen', {date: selectedDate})
+  }
+
+
   return (
 //     Original Screen Code:
 //     <ScrollView style={styles.root}>
@@ -221,9 +227,7 @@ const MoodDiaryScreen = ({ navigation }) => {
 
        <View style={styles.container}>
            <Calendar
-               onDayPress={(day) => {
-                   const selectedDate = myDate
-               }}
+               onDayPress={onDayPress}
                style={{ backgroundColor: 'transparent' }}
                theme={{
                    backgroundColor: 'transparent',
