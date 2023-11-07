@@ -9,8 +9,6 @@ import firestore from '@react-native-firebase/firestore';
 import Logo from '../../../assets/images/Logo.png';
 import moment from 'moment';
 import Modal from "react-native-modal";
-import DailyDataScreen from '.';
-
 
 const DailyDataScreen1 = ({navigation, route}) => {
     const { date } = route.params;
