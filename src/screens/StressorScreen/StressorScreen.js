@@ -14,9 +14,6 @@ const StressorScreen = ({ navigation }) => {
 
     const today = new Date();
     const myDate = moment(today).format('YYYY-MM-DD');
-    const triggerDoc = db.collection('DailyLog').doc(user.uid).collection('dates').doc(myDate).set({
-      triggers: 'Value',
-    })
 
   return (
     <SafeAreaView style={[styles.root]}>

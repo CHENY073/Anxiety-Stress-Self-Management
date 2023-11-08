@@ -136,26 +136,26 @@ const StressDataScreen = () => {
 
     // Prepare data for the line chart
      const lineChartData = {
-            labels: Object.keys(data).slice(-1).map(dateString => {
+            labels: Object.keys(data).map(dateString => {
                 const date = new Date(dateString);
                 return `${date.getMonth() + 1}/${date.getDate()}`;
             }),
             datasets: [
                 {
-                    data: Object.values(data).slice(-1).map(log => log.stressedLevel),
+                    data: Object.values(data).map(log => log.stressedLevel),
                 },
             ],
         };
 
 
      const barChartDataIntention = {
-             labels: Object.keys(dataInControlAndChange).slice(-1).map(dateString => {
+             labels: Object.keys(dataInControlAndChange).map(dateString => {
                  const date = new Date(dateString);
                  return `${date.getMonth()+1}/${date.getDate()+1}`;
              }),
              datasets: [
                  {
-                     data: Object.values(dataInControlAndChange).slice(-1).map(log => log.Intention),
+                     data: Object.values(dataInControlAndChange).map(log => log.Intention),
                      color: (opacity = 1) => `rgba(0, 123, 255, ${opacity})`,
                  },
              ],
