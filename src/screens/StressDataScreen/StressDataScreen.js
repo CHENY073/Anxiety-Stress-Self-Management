@@ -163,13 +163,13 @@ const StressDataScreen = () => {
 
 
      const barChartDataInControl = {
-             labels: Object.keys(dataInControlAndChange).map(dateString => {
+             labels: Object.keys(dataInControlAndChange).slice(-1).map(dateString => {
                  const date = new Date(dateString);
                  return `${date.getMonth()+1}/${date.getDate()+1}`;
              }),
              datasets: [
                  {
-                     data: Object.values(dataInControlAndChange).map(log => log.InControl),
+                     data: Object.values(dataInControlAndChange).slice(-1).map(log => log.InControl),
                      color: (opacity = 1) => `rgba(0, 123, 255, ${opacity})`,
                  },
              ],
@@ -272,7 +272,7 @@ const trigger = {
    const numberToStressor = new Map(numberToStressorData);
 
    const getFrequencyOfStressor = stressor => {
-       const num = numberToStressir.get(stressor);
+       const num = numberToStressor.get(stressor);
        let freq1 = 0;
        if (stressorFrequencyMap.has(num)){
            freq1 = stressorFrequencyMap.get(num);
@@ -283,28 +283,28 @@ const trigger = {
    const pieChartData1 = [
        {
            name: 'Home',
-           population: getFrequencyOfFeeling('Home'),
+           population: getFrequencyOfStressor('Home'),
            color: '#FF0000',
            legendFontColor: 'black',
            legendFontSize: 15,
        },
        {
            name: 'Work',
-           population: getFrequencyOfFeeling('Work'),
+           population: getFrequencyOfStressor('Work'),
            color: '#FFFF00',
            legendFontColor: 'black',
            legendFontSize: 15,
        },
        {
            name: 'School',
-           population: getFrequencyOfFeeling('School'),
+           population: getFrequencyOfStressor('School'),
            color: '#00b300',
            legendFontColor: 'black',
            legendFontSize: 15,
        },
        {
            name: 'Social Life',
-           population: getFrequencyOfFeeling('Social Life'),
+           population: getFrequencyOfStressor('Social Life'),
            color: '#0000b3',
            legendFontColor: 'black',
            legendFontSize: 15,
