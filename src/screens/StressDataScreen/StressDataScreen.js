@@ -334,33 +334,32 @@ const StressDataScreen = () => {
             }
             return Math.round((freq/7)*100);
         }
-    // TODO: change colors for each sign
         const signPieChartData = [
             {
                 name: 'Body',
                 population: getFrequencyOfSign('Body'),
-                color: '#7ad3a2',
+                color: '#df7a84',
                 legendFontColor: 'black',
                 legendFontSize: 15,
             },
             {
                 name: 'Mind',
                 population: getFrequencyOfSign('Mind'),
-                color: '#baeccf',
+                color: '#f8806f',
                 legendFontColor: 'black',
                 legendFontSize: 15,
             },
             {
                 name: 'Emotion',
                 population: getFrequencyOfSign('Emotion'),
-                color: '#ebf2b3',
+                color: '#d46766',
                 legendFontColor: 'black',
                 legendFontSize: 15,
             },
             {
                 name: 'Behavior',
                 population:getFrequencyOfSign('Behavior'),
-                color: '#ebc483',
+                color: '#a44c5f',
                 legendFontColor: 'black',
                 legendFontSize: 15,
             }
@@ -461,7 +460,16 @@ const StressDataScreen = () => {
                     borderRadius: 16
                 }}
             />
-            // TODO: create signs pie chart
+            <Text style={styles.title}>Signs</Text>
+            <PieChart
+                data={signPieChartData}
+                width={Dimensions.get("window").width}
+                height={220}
+                chartConfig={{ color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+               }}
+               backgroundColor="#ecf2f5"
+               accessor="population"
+            />
         </View>
      </ScrollView>
     );
