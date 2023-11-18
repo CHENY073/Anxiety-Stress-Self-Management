@@ -247,70 +247,125 @@ const StressDataScreen = () => {
                 legendFontSize: 15,
             }
         ];
-// Prepare data for the pie chart
-const trigger = {
-    data: Object.values(data).slice(-7).map(log => log.triggers),
-   };
+    // Prepare data for the pie chart
+    const trigger = {
+        data: Object.values(data).slice(-7).map(log => log.triggers),
+       };
 
-  // creating map to find frequency of each stressor
-  const stressorFrequencyMap = new Map();
-   feelings.data.forEach(item => {
-       if(stressorFrequencyMap.has(item)){
-           stressorFrequencyMap.set(item, stressorFrequencyMap.get(item) +1);
-       } else {
-           stressorFrequencyMap.set(item, 1);
+      // creating map to find frequency of each stressor
+      const stressorFrequencyMap = new Map();
+       feelings.data.forEach(item => {
+           if(stressorFrequencyMap.has(item)){
+               stressorFrequencyMap.set(item, stressorFrequencyMap.get(item) +1);
+           } else {
+               stressorFrequencyMap.set(item, 1);
+           }
+       })
+
+       // creating map to map number to stressor
+       const numberToStressorData = [
+           ['Home', 0],
+           ['Work', 1],
+           ['School', 2],
+           ['Social Life', 3],
+       ]
+       const numberToStressor = new Map(numberToStressorData);
+
+       const getFrequencyOfStressor = stressor => {
+           const num = numberToStressor.get(stressor);
+           let freq1 = 0;
+           if (stressorFrequencyMap.has(num)){
+               freq1 = stressorFrequencyMap.get(num);
+           }
+           return Math.round((freq1/7)*100);
        }
-   })
 
-   // creating map to map number to stressor
-   const numberToStressorData = [
-       ['Home', 0],
-       ['Work', 1],
-       ['School', 2],
-       ['Social Life', 3],
-   ]
-   const numberToStressor = new Map(numberToStressorData);
+       const pieChartData1 = [
+           {
+               name: 'Home',
+               population: getFrequencyOfStressor('Home'),
+               color: '#FF0000',
+               legendFontColor: 'black',
+               legendFontSize: 15,
+           },
+           {
+               name: 'Work',
+               population: getFrequencyOfStressor('Work'),
+               color: '#FFFF00',
+               legendFontColor: 'black',
+               legendFontSize: 15,
+           },
+           {
+               name: 'School',
+               population: getFrequencyOfStressor('School'),
+               color: '#00b300',
+               legendFontColor: 'black',
+               legendFontSize: 15,
+           },
+           {
+               name: 'Social Life',
+               population: getFrequencyOfStressor('Social Life'),
+               color: '#0000b3',
+               legendFontColor: 'black',
+               legendFontSize: 15,
+           },
 
-   const getFrequencyOfStressor = stressor => {
-       const num = numberToStressor.get(stressor);
-       let freq1 = 0;
-       if (stressorFrequencyMap.has(num)){
-           freq1 = stressorFrequencyMap.get(num);
-       }
-       return Math.round((freq1/7)*100);
-   }
+       ];
 
-   const pieChartData1 = [
-       {
-           name: 'Home',
-           population: getFrequencyOfStressor('Home'),
-           color: '#FF0000',
-           legendFontColor: 'black',
-           legendFontSize: 15,
-       },
-       {
-           name: 'Work',
-           population: getFrequencyOfStressor('Work'),
-           color: '#FFFF00',
-           legendFontColor: 'black',
-           legendFontSize: 15,
-       },
-       {
-           name: 'School',
-           population: getFrequencyOfStressor('School'),
-           color: '#00b300',
-           legendFontColor: 'black',
-           legendFontSize: 15,
-       },
-       {
-           name: 'Social Life',
-           population: getFrequencyOfStressor('Social Life'),
-           color: '#0000b3',
-           legendFontColor: 'black',
-           legendFontSize: 15,
-       },
-      
-   ];
+       // Prepare data for signs Pie Chart
+       const signs = {
+            data: Object.values(data).slice(-7).map(log => log.signs),
+        };
+
+       // creating map to find frequency of each sign
+       const signsFrequencyMap = new Map();
+        signs.data.forEach(item => {
+            if(signsFrequencyMap.has(item)){
+                signsFrequencyMap.set(item, signsFrequencyMap.get(item) +1);
+            } else {
+                signsFrequencyMap.set(item, 1);
+            }
+        })
+
+        const getFrequencyOfSign = sign => {
+            let freq = 0;
+            if (signsFrequencyMap.has(sign)){
+                freq = signsFrequencyMap.get(sign);
+            }
+            return Math.round((freq/7)*100);
+        }
+        const signPieChartData = [
+            {
+                name: 'Body',
+                population: getFrequencyOfSign('Body'),
+                color: '#df7a84',
+                legendFontColor: 'black',
+                legendFontSize: 15,
+            },
+            {
+                name: 'Mind',
+                population: getFrequencyOfSign('Mind'),
+                color: '#f8806f',
+                legendFontColor: 'black',
+                legendFontSize: 15,
+            },
+            {
+                name: 'Emotion',
+                population: getFrequencyOfSign('Emotion'),
+                color: '#d46766',
+                legendFontColor: 'black',
+                legendFontSize: 15,
+            },
+            {
+                name: 'Behavior',
+                population:getFrequencyOfSign('Behavior'),
+                color: '#a44c5f',
+                legendFontColor: 'black',
+                legendFontSize: 15,
+            }
+        ];
+
+
     return (
     // TODO: insert app logo
      <ScrollView contentContainerStyle={styles.scrollViewContainer}>
@@ -404,6 +459,16 @@ const trigger = {
                     marginVertical: 8,
                     borderRadius: 16
                 }}
+            />
+            <Text style={styles.title}>Signs</Text>
+            <PieChart
+                data={signPieChartData}
+                width={Dimensions.get("window").width}
+                height={220}
+                chartConfig={{ color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+               }}
+               backgroundColor="#ecf2f5"
+               accessor="population"
             />
         </View>
      </ScrollView>
