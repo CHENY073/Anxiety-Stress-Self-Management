@@ -96,10 +96,9 @@ const DailyLogScreen = ({navigation}) => {
           feeling: feeling,
           stressor:triggersData[triggers],
         })
-        navigation.navigate('Mood Diary');
+        navigation.navigate('Choice');
       } 
     };
-
 
     return (
         <ScrollView>

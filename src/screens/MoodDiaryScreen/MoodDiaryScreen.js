@@ -207,6 +207,7 @@ const MoodDiaryScreen = ({ navigation }) => {
 //The line of code below can be inserted into line 208 to access daily log data
 
 //         <View style={{width: 100}}><CustomButton text= "<" onPress={() => navigation.navigate('Data Screen')} type="blackBackButton"/></View>
+
     <View style={styles.root}>
 
        <View style={styles.header}>

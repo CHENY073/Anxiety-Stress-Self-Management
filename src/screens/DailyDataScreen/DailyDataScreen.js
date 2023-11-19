@@ -34,6 +34,7 @@ const DailyDataScreen1 = ({navigation, route}) => {
        fetchData();
       }, [date]);
       console.log(data);
+
     return (
         <ScrollView>
         <SafeAreaView style={[styles.root]}>
@@ -49,7 +50,7 @@ const DailyDataScreen1 = ({navigation, route}) => {
       <Text style = {styles.title}>
         Daily Log Data
       </Text>
-    
+
       <View style = {styles.containter}>
         <Text style = {styles.label}>What activity did you do?</Text>
         <Text style = {styles.data}>{data?.activity}</Text>
@@ -57,7 +58,7 @@ const DailyDataScreen1 = ({navigation, route}) => {
         <Text style = {styles.data}>{data?.triggers}</Text>
         <Text style = {styles.label}>What sign did you experience?</Text>
         <Text style = {styles.data}>{data?.signs}</Text>
-        <Text style = {styles.label}>Body</Text>  
+        <Text style = {styles.label}>Body</Text>
         <Text style = {styles.data}>{data?.body}</Text>
         <Text style = {styles.label}>Mind</Text>
         <Text style = {styles.data}>{data?.mind}</Text>
@@ -70,14 +71,14 @@ const DailyDataScreen1 = ({navigation, route}) => {
         <Text style = {styles.label}>What strategies can you use?</Text>
         <Text style = {styles.data}>{data?.strategies}</Text>
       </View>
-    
+
       <View style={styles.button}>
-       
+
       </View>
       </View>
       </SafeAreaView>
     </ScrollView>
-    
+
     );
 };
 
